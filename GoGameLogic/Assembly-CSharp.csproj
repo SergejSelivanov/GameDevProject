@@ -64,10 +64,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\HorizontalLine.cs" />
-    <Compile Include="Assets\Node.cs" />
-    <Compile Include="Assets\Player.cs" />
-    <Compile Include="Assets\VerticalLine.cs" />
+    <Compile Include="Assets\Scripts\HorizontalLine.cs" />
+    <Compile Include="Assets\Scripts\MotionlessEnemy.cs" />
+    <Compile Include="Assets\Scripts\Node.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\VerticalLine.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.20f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
