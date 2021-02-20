@@ -22,6 +22,19 @@ public class MotionlessEnemy : MonoBehaviour
         return false;
     }
 
+    private bool CheckifPlayerInfrontofEnemy(GameObject player)
+    {
+        if (gameObject.transform.rotation.eulerAngles.y == 0 && gameObject.transform.position.x == player.transform.position.x && gameObject.transform.position.z + 1 == player.transform.position.z)
+            return true;
+        if (gameObject.transform.rotation.eulerAngles.y == 90 && gameObject.transform.position.z == player.transform.position.z && gameObject.transform.position.x + 1 == player.transform.position.x)
+            return true;
+        if (gameObject.transform.rotation.eulerAngles.y == 180 && gameObject.transform.position.x == player.transform.position.x && gameObject.transform.position.z - 1 == player.transform.position.z)
+            return true;
+        if (gameObject.transform.rotation.eulerAngles.y == 270 && gameObject.transform.position.z == player.transform.position.z && gameObject.transform.position.x - 1 == player.transform.position.x)
+            return true;
+        return false;
+    }
+
     /*void Start()
     {
         
@@ -36,5 +49,7 @@ public class MotionlessEnemy : MonoBehaviour
         && transform.position.z == player.transform.position.z
         && !CheckIfFacing(player))
             Destroy(gameObject);
+        if (CheckifPlayerInfrontofEnemy(player))
+            Application.LoadLevel(0);
     }
 }
