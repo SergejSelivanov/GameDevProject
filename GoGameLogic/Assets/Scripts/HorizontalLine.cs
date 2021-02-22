@@ -15,7 +15,9 @@ public class HorizontalLine : MonoBehaviour
         HorizontalLine[] ListOfLines = GetListOfHorLines();
         for (int i = 0; i < ListOfLines.Length; i++)
         {
-            if (ListOfLines[i].transform.position.x - 0.5 * sign == PlayerPos.x && ListOfLines[i].transform.position.x + 0.5 * sign == FinalPos.x && ListOfLines[i].transform.position.z == PlayerPos.z)
+            if (ListOfLines[i].transform.position.x - 0.5 * sign == PlayerPos.x 
+            && ListOfLines[i].transform.position.x + 0.5 * sign == FinalPos.x
+            && ListOfLines[i].transform.position.z == PlayerPos.z)
                 return true;
         }
         return false;
