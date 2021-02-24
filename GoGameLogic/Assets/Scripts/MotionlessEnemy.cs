@@ -9,27 +9,74 @@ public class MotionlessEnemy : MonoBehaviour
 	private VerticalLine VerLineFuncs;
 	private HorizontalLine HorLineFuncs;
 
-
-	// Start is called before the first frame update
-	private bool CheckIfFacing(GameObject player)
+	public bool CheckIfFacing(GameObject player, GameObject Enemy)
 	{
-		if (gameObject.transform.rotation.eulerAngles.y == 0 
+		if (Enemy.transform.rotation.eulerAngles.y == 0
+		&& player.transform.rotation.eulerAngles.y == Enemy.transform.rotation.y + 180)
+			return true;
+		if (Enemy.transform.rotation.eulerAngles.y == 90
+		&& player.transform.rotation.eulerAngles.y - 180 == Enemy.transform.rotation.eulerAngles.y)
+			return true;
+		if (Enemy.transform.rotation.eulerAngles.y == 180
+		&& player.transform.rotation.eulerAngles.y + 180 == Enemy.transform.rotation.eulerAngles.y)
+			return true;
+		if (Enemy.transform.rotation.eulerAngles.y == 270
+		&& player.transform.rotation.eulerAngles.y == Enemy.transform.rotation.eulerAngles.y - 180)
+			return true;
+		return false;
+	}
+
+	public bool CheckIfFacing(GameObject player)
+	{
+		if (gameObject.transform.rotation.eulerAngles.y == 0
 		&& player.transform.rotation.eulerAngles.y == gameObject.transform.rotation.y + 180)
 			return true;
-		if (gameObject.transform.rotation.eulerAngles.y == 90 
+		if (gameObject.transform.rotation.eulerAngles.y == 90
 		&& player.transform.rotation.eulerAngles.y - 180 == gameObject.transform.rotation.eulerAngles.y)
 			return true;
-		if (gameObject.transform.rotation.eulerAngles.y == 180 
+		if (gameObject.transform.rotation.eulerAngles.y == 180
 		&& player.transform.rotation.eulerAngles.y + 180 == gameObject.transform.rotation.eulerAngles.y)
 			return true;
-		if (gameObject.transform.rotation.eulerAngles.y == 270 
+		if (gameObject.transform.rotation.eulerAngles.y == 270
 		&& player.transform.rotation.eulerAngles.y == gameObject.transform.rotation.eulerAngles.y - 180)
 			return true;
 		return false;
 	}
 
-	private bool CheckifPlayerInfrontofEnemy(GameObject player)
+
+	public bool CheckifPlayerInfrontofEnemy(GameObject player, GameObject Enemy)
 	{
+		/*Debug.Log("ENemy:");
+		Debug.Log(Enemy);
+		Debug.Log(Enemy.transform.position.z);
+		Debug.Log("player:");
+		Debug.Log(player.transform.position.z);*/
+		if (Enemy.transform.rotation.eulerAngles.y == 0
+		&& Enemy.transform.position.x == player.transform.position.x
+		&& Enemy.transform.position.z + 1 == player.transform.position.z
+		&& VerLineFuncs.CheckIfThereIsLine(Enemy.transform.position, 1, Enemy.transform.position + new Vector3(0, 0, 1)))
+			return true;
+		if (Enemy.transform.rotation.eulerAngles.y == 90
+		&& Enemy.transform.position.z == player.transform.position.z
+		&& Enemy.transform.position.x + 1 == player.transform.position.x
+		&& HorLineFuncs.CheckIfThereIsLine(Enemy.transform.position, 1, Enemy.transform.position + new Vector3(1, 0, 0)))
+			return true;
+		if (Enemy.transform.rotation.eulerAngles.y == 180
+		&& Enemy.transform.position.x == player.transform.position.x
+		&& Enemy.transform.position.z - 1 == player.transform.position.z
+		&& VerLineFuncs.CheckIfThereIsLine(Enemy.transform.position, -1, Enemy.transform.position + new Vector3(0, 0, -1)))
+			return true;
+		if (Enemy.transform.rotation.eulerAngles.y == 270
+		&& Enemy.transform.position.z == player.transform.position.z
+		&& Enemy.transform.position.x - 1 == player.transform.position.x
+		&& HorLineFuncs.CheckIfThereIsLine(Enemy.transform.position, -1, Enemy.transform.position + new Vector3(-1, 0, 0)))
+			return true;
+		return false;
+	}
+
+	public bool CheckifPlayerInfrontofEnemy(GameObject player)
+	{
+		//Debug.Log(gameObject);
 		if (gameObject.transform.rotation.eulerAngles.y == 0 
 		&& gameObject.transform.position.x == player.transform.position.x 
 		&& gameObject.transform.position.z + 1 == player.transform.position.z
