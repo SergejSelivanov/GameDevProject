@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 	private HorizontalLine HorLineFuncs;
 	private LineMovingEnemy LineMovingEnemyFuncs;
 	private MotionlessEnemy MotionlessEnemyFuncs;
+	private float SkillReady = 0;
 
 	private GameObject FinalNode;
 
@@ -45,6 +46,21 @@ public class Player : MonoBehaviour
 		}
 	}*/
 
+	public float SkillSetter
+    {
+		get
+        {
+			return SkillReady;
+        }
+		set
+        {
+			//if (SkillReady < 1 && value != 0)
+			if (value <= 1)
+				SkillReady = value;
+        }
+	}
+
+
 	private void MoveEnemies()
     {
 		//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
@@ -58,7 +74,11 @@ public class Player : MonoBehaviour
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
 			&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
+			{
 				Destroy(ListOfMovingEnemies[i]);
+				if (SkillReady < 1)
+					SkillReady += 0.5f;
+			}
 			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
 				Application.LoadLevel(0);
 			if (ListOfMovingEnemies[i] != null)

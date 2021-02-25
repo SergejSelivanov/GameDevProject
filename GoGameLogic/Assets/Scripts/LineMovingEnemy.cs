@@ -148,10 +148,10 @@ public class LineMovingEnemy : MonoBehaviour
     private void DestroyIfClose(GameObject Obj)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log(Obj.transform.rotation.eulerAngles.y == 0);
+       /* Debug.Log(Obj.transform.rotation.eulerAngles.y == 0);
         Debug.Log(Obj.transform.position.x == player.transform.position.x);
         Debug.Log(Obj.transform.position.z + 1 == player.transform.position.z);
-        Debug.Log(VerLineFuncs.CheckIfThereIsLine(Obj.transform.position, 1, Obj.transform.position + new Vector3(0, 0, 1)));
+        Debug.Log(VerLineFuncs.CheckIfThereIsLine(Obj.transform.position, 1, Obj.transform.position + new Vector3(0, 0, 1)));*/
         //Debug.Log(Obj.);
         //Debug.Log(Obj.transform.position);
        // Debug.Log(MotEnemyFuncs.CheckifPlayerInfrontofEnemy(player, Obj));

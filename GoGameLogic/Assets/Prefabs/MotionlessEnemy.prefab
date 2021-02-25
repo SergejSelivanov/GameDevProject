@@ -1277,7 +1277,7 @@ GameObject:
   - component: {fileID: 5145728229381682147}
   m_Layer: 0
   m_Name: MotionlessEnemy
-  m_TagString: Untagged
+  m_TagString: MotionlessEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1333,6 +1333,8 @@ MonoBehaviour:
   VerLineHandler: {fileID: 3909374896005532709, guid: 3fddd55953aa61d4281610c5e603d31e,
     type: 3}
   HorLineHandler: {fileID: 1412714778785145504, guid: f57651a598f055047891371001ff6990,
+    type: 3}
+  PlayerHandler: {fileID: 5566531523406394677, guid: 0ce728a5c7b35a146a93e57637250078,
     type: 3}
 --- !u!1 &2711178150110194616
 GameObject:

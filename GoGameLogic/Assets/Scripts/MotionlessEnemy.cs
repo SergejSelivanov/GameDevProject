@@ -6,8 +6,10 @@ public class MotionlessEnemy : MonoBehaviour
 {
 	public GameObject VerLineHandler;
 	public GameObject HorLineHandler;
+	public GameObject PlayerHandler;
 	private VerticalLine VerLineFuncs;
 	private HorizontalLine HorLineFuncs;
+	private Player PlayerFuncs;
 
 	public bool CheckIfFacing(GameObject player, GameObject Enemy)
 	{
@@ -104,6 +106,7 @@ public class MotionlessEnemy : MonoBehaviour
 	{
 		VerLineFuncs = VerLineHandler.GetComponent<VerticalLine>();
 		HorLineFuncs = HorLineHandler.GetComponent<HorizontalLine>();
+		PlayerFuncs = PlayerHandler.GetComponent<Player>();
 	}
 
 	// Update is called once per frame
@@ -114,7 +117,11 @@ public class MotionlessEnemy : MonoBehaviour
 		if (transform.position.x == player.transform.position.x
 		&& transform.position.z == player.transform.position.z
 		&& !CheckIfFacing(player))
+		{
 			Destroy(gameObject);
+			PlayerFuncs.SkillSetter += 0.5f;
+			//Debug.Log(PlayerFuncs.SkillSetter);
+		}
 		if (CheckifPlayerInfrontofEnemy(player))
 			Application.LoadLevel(0);
 	}
