@@ -281,6 +281,7 @@ public class LineMovingEnemy : MonoBehaviour
              TurnOtherWay(Obj);
              StartCoroutine("LineMovingEnemyWalk", Obj);
          }*/
+        //Debug.Log(Obj);
         StartCoroutine("LineMovingEnemyWalk", Obj);
     }
 

@@ -99,8 +99,5 @@ public class ThrowKnife : MonoBehaviour
         //Debug.Log(PlayerFuncs.SkillSetter);
         if (PlayerFuncs.SkillSetter == 1)
             ButtonUI.SetActive(true);
-        else
-            GUI.enabled = false;
-        
     }
 }

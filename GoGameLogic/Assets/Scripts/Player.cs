@@ -55,8 +55,10 @@ public class Player : MonoBehaviour
 		set
         {
 			//if (SkillReady < 1 && value != 0)
-			if (value <= 1)
+			//if (value <= 1)
 				SkillReady = value;
+			if (value > 1)
+				value = 1;
         }
 	}
 
@@ -71,16 +73,34 @@ public class Player : MonoBehaviour
 			//Debug.Log(ListOfMovingEnemies[i].isActiveAndEnabled);
 			if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
 				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
+			/*if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
+			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
+			&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
+			{
+				Destroy(ListOfMovingEnemies[i]);
+				//if (SkillReady < 1)
+					SkillReady += 0.5f;
+				if (SkillReady > 1)
+					SkillReady = 1;
+			}*/
+			//Debug.Log(ListOfMovingEnemies[i]);
+			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
+				Application.LoadLevel(0);
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
 			&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
 			{
 				Destroy(ListOfMovingEnemies[i]);
-				if (SkillReady < 1)
-					SkillReady += 0.5f;
+				//return;
+				//if (SkillReady < 1)
+				SkillReady += 0.5f;
+				if (SkillReady > 1)
+					SkillReady = 1;
+				continue;
+				//Start();
+				//ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
 			}
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
-				Application.LoadLevel(0);
+			//Debug.Log(LineMovingEnemyFuncs);
 			if (ListOfMovingEnemies[i] != null)
 				LineMovingEnemyFuncs.LineMovingEnemyMove(ListOfMovingEnemies[i]);
 			/*if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
@@ -145,7 +165,7 @@ public class Player : MonoBehaviour
 		transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
 		MoveEnemies();
 		//yield return null;
-		yield return new WaitForSeconds(2);
+		yield return new WaitForSeconds(10);
 	}
 
 	// Start is called before the first frame update
