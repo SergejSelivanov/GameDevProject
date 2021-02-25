@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
 	private LineMovingEnemy LineMovingEnemyFuncs;
 	private MotionlessEnemy MotionlessEnemyFuncs;
 
+	private GameObject FinalNode;
+
 	//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
 	//public bool IsMoving = false;
 
@@ -134,6 +136,7 @@ public class Player : MonoBehaviour
 		HorLineFuncs = HorLineHandler.GetComponent<HorizontalLine>();
 		LineMovingEnemyFuncs = LineMovingEnemyHandler.GetComponent<LineMovingEnemy>();
 		MotionlessEnemyFuncs = MotionlessEnemyHandler.GetComponent<MotionlessEnemy>();
+		FinalNode = GameObject.FindGameObjectWithTag("FinalNode");
 		//Debug.Log(LineMovingEnemyFuncs);
 		//LineMovingEnemyFuncs = LineMovingEnemyHandler.GetComponentInParent<LineMovingEnemy>();
 		
@@ -210,6 +213,7 @@ public class Player : MonoBehaviour
 			}
 			//IsMoving = false;
 		}
-
+		if (transform.position.x == FinalNode.transform.position.x && transform.position.z == FinalNode.transform.position.z)
+			Application.LoadLevel(0);
 	}
 }
