@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 	private LineMovingEnemy LineMovingEnemyFuncs;
 	private MotionlessEnemy MotionlessEnemyFuncs;
 	private float SkillReady = 0;
+	private int InvisibleSteps;
 
 	private GameObject FinalNode;
 
@@ -57,9 +58,22 @@ public class Player : MonoBehaviour
 			//if (SkillReady < 1 && value != 0)
 			//if (value <= 1)
 				SkillReady = value;
-			if (value > 1)
-				value = 1;
         }
+	}
+
+	public int Invisible
+    {
+        get
+        {
+			return InvisibleSteps;
+        }
+		set
+        {
+			InvisibleSteps = value;
+			if (InvisibleSteps < 0)
+				InvisibleSteps = 0;
+
+		}
 	}
 
 
@@ -84,7 +98,8 @@ public class Player : MonoBehaviour
 					SkillReady = 1;
 			}*/
 			//Debug.Log(ListOfMovingEnemies[i]);
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
+			//Debug.Log(InvisibleSteps);
+			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0)
 				Application.LoadLevel(0);
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
@@ -103,6 +118,7 @@ public class Player : MonoBehaviour
 			//Debug.Log(LineMovingEnemyFuncs);
 			if (ListOfMovingEnemies[i] != null)
 				LineMovingEnemyFuncs.LineMovingEnemyMove(ListOfMovingEnemies[i]);
+
 			/*if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
 				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);*/
 			/*if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
@@ -112,6 +128,7 @@ public class Player : MonoBehaviour
 			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
 				Application.LoadLevel(0);*/
 		}
+		InvisibleSteps--;
     }
 
 	IEnumerator WalkLeft()

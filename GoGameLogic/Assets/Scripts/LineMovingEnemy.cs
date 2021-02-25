@@ -8,11 +8,13 @@ public class LineMovingEnemy : MonoBehaviour
     public GameObject VerLineHandler;
     public GameObject HorLineHandler;
     public GameObject MotionlessEnemyHandler;
+    public GameObject PlayerHandler;
    // public GameObject PlayerHandler;
     private Node NodeFuncs;
     private VerticalLine VerLineFuncs;
     private HorizontalLine HorLineFuncs;
     private MotionlessEnemy MotEnemyFuncs;
+    private Player PlayerFuncs;
     //private Player PlayerFuncs;
 
     //  private char XorY;
@@ -159,7 +161,7 @@ public class LineMovingEnemy : MonoBehaviour
             && player.transform.position.z == Obj.transform.position.z
             && !MotEnemyFuncs.CheckIfFacing(player, Obj))
             Destroy(Obj);*/
-        if (CheckifPlayerInfrontofEnemy(player, Obj))
+        if (CheckifPlayerInfrontofEnemy(player, Obj) && PlayerFuncs.Invisible <= 0)
             Application.LoadLevel(0);
     }
 
@@ -317,6 +319,7 @@ public class LineMovingEnemy : MonoBehaviour
         VerLineFuncs = VerLineHandler.GetComponent<VerticalLine>();
         HorLineFuncs = HorLineHandler.GetComponent<HorizontalLine>();
         MotEnemyFuncs = MotionlessEnemyHandler.GetComponent<MotionlessEnemy>();
+        PlayerFuncs = PlayerHandler.GetComponent<Player>();
         //PlayerFuncs = PlayerHandler.GetComponent<Player>();
     }
 
