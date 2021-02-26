@@ -11,6 +11,50 @@ public class ThrowKnife : MonoBehaviour
     
     public int KillingRange = 2;
 
+    public bool CheckIfInRange(GameObject Enemy, GameObject Player)
+    {
+        for (int j = 1; j <= KillingRange; j++)
+        {
+            //for (int j = 0; j < KillingRange; j++)
+            // Debug.Log(ListOfEnemies[i].transform.position.z);
+            /* Debug.Log(Enemy.transform.position.x);
+             Debug.Log(Player.transform.position.x);
+         Debug.Log(Enemy.transform.position.z);
+         Debug.Log(Player.transform.position.z);*/
+            /*if (Player.transform.rotation.eulerAngles.y == 0
+                && Enemy.transform.position.x == Player.transform.position.x
+                && Enemy.transform.position.z - j == Player.transform.position.z)
+                {
+                    return true;
+                }
+                if (Player.transform.rotation.eulerAngles.y == 90
+                && Enemy.transform.position.z == Player.transform.position.z
+                && Enemy.transform.position.x - j == Player.transform.position.x)
+                {
+                    return true;
+                }
+                if (Player.transform.rotation.eulerAngles.y == 180
+                && Enemy.transform.position.x == Player.transform.position.x
+                && Enemy.transform.position.z + j == Player.transform.position.z)
+                {
+                    return true;
+                }
+                if (Player.transform.rotation.eulerAngles.y == 270
+                && Enemy.transform.position.z == Player.transform.position.z
+                && Enemy.transform.position.x + j == Player.transform.position.x)
+                {
+                    return true;
+                }*/
+            if (Enemy.transform.position.z == Player.transform.position.z 
+            && (Enemy.transform.position.x + j == Player.transform.position.x || Enemy.transform.position.x - j == Player.transform.position.x))
+                return true;
+            if (Enemy.transform.position.x == Player.transform.position.x
+            && (Enemy.transform.position.z + j == Player.transform.position.z || Enemy.transform.position.z - j == Player.transform.position.z))
+                return true;
+        }
+        return false;
+    }
+
     private GameObject[] InsertArrays(GameObject[] arr1, GameObject[] arr2)
     {
         GameObject[] RetArray = new GameObject[arr1.Length + arr2.Length];
@@ -30,13 +74,18 @@ public class ThrowKnife : MonoBehaviour
 
     public void Throwknife()
     {
+        PlayerFuncs.KnifeReady = true;
+
+
         GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
         GameObject[] ListOfMotionlessEnemies = GameObject.FindGameObjectsWithTag("MotionlessEnemy");
         //GameObject[] ListOfEnemies = new GameObject[ListOfMotionlessEnemies.Length + ListOfMovingEnemies.Length];
         GameObject[] ListOfEnemies = InsertArrays(ListOfMovingEnemies, ListOfMotionlessEnemies);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        // for (int i = 0; i < ListOfMovingEnemies.Length; i++)
-        for (int j = 1; j <= KillingRange; j++)
+
+        PlayerFuncs.IsPlayerMovable = false;
+        //for (int i = 0; i < ListOfMovingEnemies.Length; i++)
+        /*for (int j = 1; j <= KillingRange; j++)
         {
             //for (int j = 0; j < KillingRange; j++)
             for (int i = 0; i < ListOfEnemies.Length; i++)
@@ -79,9 +128,41 @@ public class ThrowKnife : MonoBehaviour
                     return;
                 }
             }
-        }
-       /* PlayerFuncs.SkillSetter = 0;
-        ButtonUI.SetActive(false);*/
+        }*/
+        /* PlayerFuncs.SkillSetter = 0;
+         ButtonUI.SetActive(false);*/
+        /*for (int j = 1; j <= KillingRange; j++)
+        {
+            //for (int j = 0; j < KillingRange; j++)
+            for (int i = 0; i < ListOfEnemies.Length; i++)
+            {
+                // Debug.Log(ListOfEnemies[i].transform.position.z);
+                if (player.transform.rotation.eulerAngles.y == 0
+                && ListOfEnemies[i].transform.position.x == player.transform.position.x
+                && ListOfEnemies[i].transform.position.z - j == player.transform.position.z)
+                {
+                    
+                }
+                if (player.transform.rotation.eulerAngles.y == 90
+                && ListOfEnemies[i].transform.position.z == player.transform.position.z
+                && ListOfEnemies[i].transform.position.x - j == player.transform.position.x)
+                {
+
+                }
+                if (player.transform.rotation.eulerAngles.y == 180
+                && ListOfEnemies[i].transform.position.x == player.transform.position.x
+                && ListOfEnemies[i].transform.position.z + j == player.transform.position.z)
+                {
+
+                }
+                if (player.transform.rotation.eulerAngles.y == 270
+                && ListOfEnemies[i].transform.position.z == player.transform.position.z
+                && ListOfEnemies[i].transform.position.x + j == player.transform.position.x)
+                {
+
+                }
+            }
+        }*/
     }
 
     // Start is called before the first frame update
@@ -101,5 +182,7 @@ public class ThrowKnife : MonoBehaviour
             ButtonUI.SetActive(true);
         else
             ButtonUI.SetActive(false);
+        if (Input.GetKeyDown("escape"))
+            PlayerFuncs.IsPlayerMovable = true;
     }
 }

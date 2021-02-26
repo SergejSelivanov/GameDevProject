@@ -7,11 +7,30 @@ public class MotionlessEnemy : MonoBehaviour
 	public GameObject VerLineHandler;
 	public GameObject HorLineHandler;
 	public GameObject PlayerHandler;
+	public GameObject KnifeHandler;
 	private VerticalLine VerLineFuncs;
 	private HorizontalLine HorLineFuncs;
 	private Player PlayerFuncs;
+	private ThrowKnife KnifeFuncs;
+	
 
-	public bool CheckIfFacing(GameObject player, GameObject Enemy)
+    private void OnMouseDown()
+    {
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		//Debug.Log("REGISTERED");
+		if (PlayerFuncs.KnifeReady == true)
+		{
+			if (KnifeFuncs.CheckIfInRange(gameObject, player))
+			{
+				Destroy(gameObject);
+				PlayerFuncs.SkillSetter = 0;
+				PlayerFuncs.IsPlayerMovable = true;
+			}
+			PlayerFuncs.KnifeReady = false;
+		}
+    }
+
+    public bool CheckIfFacing(GameObject player, GameObject Enemy)
 	{
 		if (Enemy.transform.rotation.eulerAngles.y == 0
 		&& player.transform.rotation.eulerAngles.y == Enemy.transform.rotation.y + 180)
@@ -107,6 +126,7 @@ public class MotionlessEnemy : MonoBehaviour
 		VerLineFuncs = VerLineHandler.GetComponent<VerticalLine>();
 		HorLineFuncs = HorLineHandler.GetComponent<HorizontalLine>();
 		PlayerFuncs = PlayerHandler.GetComponent<Player>();
+		KnifeFuncs = KnifeHandler.GetComponent<ThrowKnife>();
 	}
 
 	// Update is called once per frame

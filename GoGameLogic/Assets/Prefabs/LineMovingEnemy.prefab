@@ -1465,6 +1465,7 @@ GameObject:
   - component: {fileID: 3122096983856569374}
   - component: {fileID: 3122096983856569375}
   - component: {fileID: 3122096983856569372}
+  - component: {fileID: -4874846905694925802}
   m_Layer: 0
   m_Name: LineMovingEnemy
   m_TagString: LineMovingEnemy
@@ -1530,6 +1531,21 @@ MonoBehaviour:
     type: 3}
   PlayerHandler: {fileID: 5566531523406394677, guid: 0ce728a5c7b35a146a93e57637250078,
     type: 3}
+  KnifeHandler: {fileID: 4702589689684980890, guid: b27213c2deecb9f41adc6734a055e3b6,
+    type: 3}
+--- !u!65 &-4874846905694925802
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3122096983856569373}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3122096983863898212
 GameObject:
   m_ObjectHideFlags: 0

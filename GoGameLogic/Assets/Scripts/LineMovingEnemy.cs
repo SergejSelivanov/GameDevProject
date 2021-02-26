@@ -9,12 +9,14 @@ public class LineMovingEnemy : MonoBehaviour
     public GameObject HorLineHandler;
     public GameObject MotionlessEnemyHandler;
     public GameObject PlayerHandler;
-   // public GameObject PlayerHandler;
+    public GameObject KnifeHandler;
+    // public GameObject PlayerHandler;
     private Node NodeFuncs;
     private VerticalLine VerLineFuncs;
     private HorizontalLine HorLineFuncs;
     private MotionlessEnemy MotEnemyFuncs;
     private Player PlayerFuncs;
+    private ThrowKnife KnifeFuncs;
     //private Player PlayerFuncs;
 
     //  private char XorY;
@@ -115,6 +117,21 @@ public class LineMovingEnemy : MonoBehaviour
             StartCoroutine("LineMovingEnemyWalk");
         }
     }*/
+
+    private void OnMouseDown()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (PlayerFuncs.KnifeReady == true)
+        {
+            if (KnifeFuncs.CheckIfInRange(gameObject, player))
+            {
+                Destroy(gameObject);
+                PlayerFuncs.SkillSetter = 0;
+                PlayerFuncs.IsPlayerMovable = true;
+            }
+            PlayerFuncs.KnifeReady = false;
+        }
+    }
 
     public bool CheckifPlayerInfrontofEnemy(GameObject player, GameObject Enemy)
     {
@@ -320,6 +337,7 @@ public class LineMovingEnemy : MonoBehaviour
         HorLineFuncs = HorLineHandler.GetComponent<HorizontalLine>();
         MotEnemyFuncs = MotionlessEnemyHandler.GetComponent<MotionlessEnemy>();
         PlayerFuncs = PlayerHandler.GetComponent<Player>();
+        KnifeFuncs = KnifeHandler.GetComponent<ThrowKnife>();
         //PlayerFuncs = PlayerHandler.GetComponent<Player>();
     }
 

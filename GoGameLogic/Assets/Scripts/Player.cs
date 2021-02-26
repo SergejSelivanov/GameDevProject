@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 	private MotionlessEnemy MotionlessEnemyFuncs;
 	private float SkillReady = 0;
 	private int InvisibleSteps;
+	private bool KnifeIsReady = false;
+	private bool IsMovable = true;
 
 	private GameObject FinalNode;
 
@@ -46,6 +48,31 @@ public class Player : MonoBehaviour
 				Application.LoadLevel(0);
 		}
 	}*/
+
+	public bool IsPlayerMovable
+    { 
+		get
+        {
+			return IsMovable;
+        }
+		set
+        {
+			IsMovable = value;
+        }
+	}
+
+
+	public bool KnifeReady
+    {
+        get
+        {
+			return KnifeIsReady;
+        }
+        set
+        {
+			KnifeIsReady = value;
+        }
+    }
 
 	public float SkillSetter
     {
@@ -203,75 +230,78 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (Input.GetKeyDown("a"))
+		if (IsMovable == true)
 		{
-			//transform.position = FinalPos;
-			//Debug.Log(transform.position);
-			
-			if (NodeFuncs.CheckIfNodeExist(transform.position, 'x', -1)
-			&& HorLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(-1, 0, 0)))
+			if (Input.GetKeyDown("a"))
 			{
-				//IsMoving = true;
-				transform.rotation = Quaternion.Euler(0, 270, 0);
-				StartCoroutine("WalkLeft");
-				//CheckForDestroyAgain();
-				//MoveEnemies();
-				//LineMovingEnemyFuncs.LineMovingEnemyMove();
-				//transform.position += new Vector3(-1, 0, 0);
-			}
-			//IsMoving = false;
-		}
-		if (Input.GetKeyDown("d"))
-		{
-			
-			if (NodeFuncs.CheckIfNodeExist(transform.position, 'x', 1)
-			&& HorLineFuncs.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(1,0,0)))
-			{
-				//IsMoving = true;
-				transform.rotation = Quaternion.Euler(0, 90, 0);
-				//FinalPos = transform.position + new Vector3(1, 0, 0);
-				StartCoroutine("WalkRight");
-				//CheckForDestroyAgain();
-				//MoveEnemies();
-				//LineMovingEnemyFuncs.LineMovingEnemyMove();
-				//StopCoroutine("Walk");
+				//transform.position = FinalPos;
 				//Debug.Log(transform.position);
-				//Walk();
-				//transform.position += new Vector3(1, 0, 0);
+
+				if (NodeFuncs.CheckIfNodeExist(transform.position, 'x', -1)
+				&& HorLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(-1, 0, 0)))
+				{
+					//IsMoving = true;
+					transform.rotation = Quaternion.Euler(0, 270, 0);
+					StartCoroutine("WalkLeft");
+					//CheckForDestroyAgain();
+					//MoveEnemies();
+					//LineMovingEnemyFuncs.LineMovingEnemyMove();
+					//transform.position += new Vector3(-1, 0, 0);
+				}
+				//IsMoving = false;
 			}
-			//IsMoving = false;
-		}
-		if (Input.GetKeyDown("w"))
-		{
-			if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', 1) 
-			&& VerLineFuncs.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(0, 0, 1)))
+			if (Input.GetKeyDown("d"))
 			{
-				//IsMoving = true;
-				transform.rotation = Quaternion.Euler(0, 0, 0);
-				StartCoroutine("WalkUp");
-				//CheckForDestroyAgain();
-				//MoveEnemies();
-				//LineMovingEnemyFuncs.LineMovingEnemyMove();
-				//transform.position += new Vector3(0, 0, 1);
+
+				if (NodeFuncs.CheckIfNodeExist(transform.position, 'x', 1)
+				&& HorLineFuncs.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(1, 0, 0)))
+				{
+					//IsMoving = true;
+					transform.rotation = Quaternion.Euler(0, 90, 0);
+					//FinalPos = transform.position + new Vector3(1, 0, 0);
+					StartCoroutine("WalkRight");
+					//CheckForDestroyAgain();
+					//MoveEnemies();
+					//LineMovingEnemyFuncs.LineMovingEnemyMove();
+					//StopCoroutine("Walk");
+					//Debug.Log(transform.position);
+					//Walk();
+					//transform.position += new Vector3(1, 0, 0);
+				}
+				//IsMoving = false;
 			}
-			//IsMoving = false;
-		}
-		if (Input.GetKeyDown("s"))
-		{
-			
-			if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', -1) && VerLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(0, 0, -1)))
+			if (Input.GetKeyDown("w"))
 			{
-				//IsMoving = true;
-				transform.rotation = Quaternion.Euler(0, 180, 0);
-				StartCoroutine("WalkDown");
-				//CheckForDestroyAgain();
-				//MoveEnemies();
-				//LineMovingEnemyFuncs.LineMovingEnemyMove();
-				//transform.position += new Vector3(0, 0, -1);
+				if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', 1)
+				&& VerLineFuncs.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(0, 0, 1)))
+				{
+					//IsMoving = true;
+					transform.rotation = Quaternion.Euler(0, 0, 0);
+					StartCoroutine("WalkUp");
+					//CheckForDestroyAgain();
+					//MoveEnemies();
+					//LineMovingEnemyFuncs.LineMovingEnemyMove();
+					//transform.position += new Vector3(0, 0, 1);
+				}
+				//IsMoving = false;
 			}
-			//IsMoving = false;
+			if (Input.GetKeyDown("s"))
+			{
+
+				if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', -1) && VerLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(0, 0, -1)))
+				{
+					//IsMoving = true;
+					transform.rotation = Quaternion.Euler(0, 180, 0);
+					StartCoroutine("WalkDown");
+					//CheckForDestroyAgain();
+					//MoveEnemies();
+					//LineMovingEnemyFuncs.LineMovingEnemyMove();
+					//transform.position += new Vector3(0, 0, -1);
+				}
+				//IsMoving = false;
+			}
+			if (transform.position.x == FinalNode.transform.position.x && transform.position.z == FinalNode.transform.position.z)
+				Application.LoadLevel(0);
 		}
-		if (transform.position.x == FinalNode.transform.position.x && transform.position.z == FinalNode.transform.position.z)
-			Application.LoadLevel(0);
 	}
 }
