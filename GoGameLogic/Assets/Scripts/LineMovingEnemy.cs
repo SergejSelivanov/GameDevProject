@@ -157,10 +157,10 @@ public class LineMovingEnemy : MonoBehaviour
         //Debug.Log(Obj.);
         //Debug.Log(Obj.transform.position);
        // Debug.Log(MotEnemyFuncs.CheckifPlayerInfrontofEnemy(player, Obj));
-        /*if (player.transform.position.x == Obj.transform.position.x
+        if (player.transform.position.x == Obj.transform.position.x
             && player.transform.position.z == Obj.transform.position.z
-            && !MotEnemyFuncs.CheckIfFacing(player, Obj))
-            Destroy(Obj);*/
+            && (!MotEnemyFuncs.CheckIfFacing(player, Obj) || PlayerFuncs.Invisible >= 0))
+            Destroy(Obj);
         if (CheckifPlayerInfrontofEnemy(player, Obj) && PlayerFuncs.Invisible <= 0)
             Application.LoadLevel(0);
     }

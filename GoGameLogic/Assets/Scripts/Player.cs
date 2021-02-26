@@ -58,6 +58,8 @@ public class Player : MonoBehaviour
 			//if (SkillReady < 1 && value != 0)
 			//if (value <= 1)
 				SkillReady = value;
+			if (SkillReady > 1)
+				SkillReady = 1;
         }
 	}
 
@@ -70,8 +72,8 @@ public class Player : MonoBehaviour
 		set
         {
 			InvisibleSteps = value;
-			if (InvisibleSteps < 0)
-				InvisibleSteps = 0;
+			//if (InvisibleSteps < 0)
+				//InvisibleSteps = 0;
 
 		}
 	}
@@ -103,7 +105,7 @@ public class Player : MonoBehaviour
 				Application.LoadLevel(0);
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
+			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0))
 			{
 				Destroy(ListOfMovingEnemies[i]);
 				//return;
@@ -118,7 +120,6 @@ public class Player : MonoBehaviour
 			//Debug.Log(LineMovingEnemyFuncs);
 			if (ListOfMovingEnemies[i] != null)
 				LineMovingEnemyFuncs.LineMovingEnemyMove(ListOfMovingEnemies[i]);
-
 			/*if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
 				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);*/
 			/*if (transform.position.x == ListOfMovingEnemies[i].transform.position.x

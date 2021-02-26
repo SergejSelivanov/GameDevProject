@@ -113,16 +113,17 @@ public class MotionlessEnemy : MonoBehaviour
 	void Update()
 	{
 		//Transform PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+		//Debug.Log(PlayerFuncs.Invisible);
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		if (transform.position.x == player.transform.position.x
 		&& transform.position.z == player.transform.position.z
-		&& !CheckIfFacing(player))
+		&& (!CheckIfFacing(player) || PlayerFuncs.Invisible >= 0))
 		{
 			Destroy(gameObject);
 			PlayerFuncs.SkillSetter += 0.5f;
 			//Debug.Log(PlayerFuncs.SkillSetter);
 		}
-		if (CheckifPlayerInfrontofEnemy(player))
+		if (CheckifPlayerInfrontofEnemy(player) && PlayerFuncs.Invisible <= 0)
 			Application.LoadLevel(0);
 	}
 }
