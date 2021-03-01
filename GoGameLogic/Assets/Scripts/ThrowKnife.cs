@@ -55,7 +55,7 @@ public class ThrowKnife : MonoBehaviour
         return false;
     }
 
-    private GameObject[] InsertArrays(GameObject[] arr1, GameObject[] arr2)
+    /*private GameObject[] InsertArrays(GameObject[] arr1, GameObject[] arr2)
     {
         GameObject[] RetArray = new GameObject[arr1.Length + arr2.Length];
         int j = 0;
@@ -70,18 +70,25 @@ public class ThrowKnife : MonoBehaviour
             j++;
         }
         return RetArray;
-    }
+    }*/
 
     public void Throwknife()
     {
+        if (PlayerFuncs.IsPlayerMovable == false)
+        {
+            PlayerFuncs.KnifeReady = false;
+            PlayerFuncs.IsPlayerMovable = true;
+            return;
+        }
+
         PlayerFuncs.KnifeReady = true;
 
 
-        GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
-        GameObject[] ListOfMotionlessEnemies = GameObject.FindGameObjectsWithTag("MotionlessEnemy");
+        //GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
+        //GameObject[] ListOfMotionlessEnemies = GameObject.FindGameObjectsWithTag("MotionlessEnemy");
         //GameObject[] ListOfEnemies = new GameObject[ListOfMotionlessEnemies.Length + ListOfMovingEnemies.Length];
-        GameObject[] ListOfEnemies = InsertArrays(ListOfMovingEnemies, ListOfMotionlessEnemies);
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //GameObject[] ListOfEnemies = InsertArrays(ListOfMovingEnemies, ListOfMotionlessEnemies);
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         PlayerFuncs.IsPlayerMovable = false;
         //for (int i = 0; i < ListOfMovingEnemies.Length; i++)
@@ -182,7 +189,7 @@ public class ThrowKnife : MonoBehaviour
             ButtonUI.SetActive(true);
         else
             ButtonUI.SetActive(false);
-        if (Input.GetKeyDown("escape"))
-            PlayerFuncs.IsPlayerMovable = true;
+       // if (Input.GetKeyDown("escape"))
+         //   PlayerFuncs.IsPlayerMovable = true;
     }
 }
