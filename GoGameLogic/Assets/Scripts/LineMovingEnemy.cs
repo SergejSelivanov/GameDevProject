@@ -208,7 +208,54 @@ public class LineMovingEnemy : MonoBehaviour
         //Debug.Log(transform.rotation);
     }
 
-    IEnumerator LineMovingEnemyWalk(GameObject Obj)
+    public IEnumerator LineMovingEnemyWalk2(GameObject[] ListOfEnemies)
+    {
+        for (int j = 0; j < ListOfEnemies.Length; j++)
+        {
+            //Debug.Log(PlayerFuncs.Waiting);
+            if (ListOfEnemies[j] != null)
+            {
+                // Debug.Log(Obj);
+                for (float i = 0; i < 1; i += 0.2f)
+                {
+                    /*if (XorY == 'x')
+                    {
+                        Obj.transform.position += new Vector3(0.2f * increment, 0, 0);
+                    }
+                    if (XorY == 'y')
+                    {
+                        //Debug.Log(Obj);
+                        Obj.transform.position += new Vector3(0, 0, 0.2f * increment);
+                    }*/
+                    if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 0)
+                        ListOfEnemies[j].transform.position += new Vector3(0, 0, 0.2f);
+                    if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 90)
+                        ListOfEnemies[j].transform.position += new Vector3(0.2f, 0, 0);
+                    if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 180)
+                        ListOfEnemies[j].transform.position += new Vector3(0, 0, -0.2f);
+                    if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 270)
+                        ListOfEnemies[j].transform.position += new Vector3(-0.2f, 0, 0);
+                    yield return new WaitForSeconds(0.1f);
+                }
+                // Debug.Log(XorY);
+                if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 270 || ListOfEnemies[j].transform.rotation.eulerAngles.y == 90)
+                    ListOfEnemies[j].transform.position = new Vector3(Mathf.Round(ListOfEnemies[j].transform.position.x), ListOfEnemies[j].transform.position.y, ListOfEnemies[j].transform.position.z);
+                if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 0 || ListOfEnemies[j].transform.rotation.eulerAngles.y == 180)
+                    ListOfEnemies[j].transform.position = new Vector3(ListOfEnemies[j].transform.position.x, ListOfEnemies[j].transform.position.y, Mathf.Round(ListOfEnemies[j].transform.position.z));
+                DestroyIfClose(ListOfEnemies[j]);
+                // Debug.Log(Obj.transform.position);
+                /* if (XorY == 'x')
+                     Obj.transform.position = new Vector3(Mathf.Round(Obj.transform.position.x), Obj.transform.position.y, Obj.transform.position.z);
+                 if (XorY == 'y')
+                     Obj.transform.position = new Vector3(Obj.transform.position.x, Obj.transform.position.y, Mathf.Round(Obj.transform.position.z));*/
+            }
+        }
+       // Debug.Log("HERE");
+        PlayerFuncs.Waiting = false;
+        yield return null;
+    }
+
+    public IEnumerator LineMovingEnemyWalk(GameObject Obj)
     {
         // Debug.Log(Obj);
         for (float i = 0; i < 1; i += 0.2f)

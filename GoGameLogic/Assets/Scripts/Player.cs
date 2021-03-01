@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 	private int InvisibleSteps;
 	private bool KnifeIsReady = false;
 	private bool IsMovable = true;
+	private bool IsWaiting = false;
 
 	private GameObject FinalNode;
 
@@ -48,6 +49,19 @@ public class Player : MonoBehaviour
 				Application.LoadLevel(0);
 		}
 	}*/
+
+	public bool Waiting
+    {
+		get
+        {
+			return IsWaiting;
+        }
+		set
+        {
+			IsWaiting = value;
+        }
+    }
+
 
 	public bool IsPlayerMovable
     { 
@@ -159,58 +173,101 @@ public class Player : MonoBehaviour
 		InvisibleSteps--;
     }
 
+	private GameObject[] CheckEnemies()
+	{
+		GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
+		GameObject[] RetArray = new GameObject[ListOfMovingEnemies.Length];
+		for (int i = 0; i < ListOfMovingEnemies.Length; i++)
+		{
+			if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
+				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
+			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0)
+				Application.LoadLevel(0);
+			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
+			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
+			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0))
+			{
+				Destroy(ListOfMovingEnemies[i]);
+				SkillReady += 0.5f;
+				if (SkillReady > 1)
+					SkillReady = 1;
+				RetArray[i] = null;
+				continue;
+			}
+			if (ListOfMovingEnemies[i] != null)
+				RetArray[i] = ListOfMovingEnemies[i];
+				//LineMovingEnemyFuncs.LineMovingEnemyMove(ListOfMovingEnemies[i]);
+		}
+		InvisibleSteps--;
+		//IsWaiting = true;
+		return RetArray;
+	}
+
 	IEnumerator WalkLeft()
 	{
+		GameObject[] ListOfEnemies;
 		for (float i = 0; i < 1; i += 0.2f)
 		{
 			transform.position += new Vector3(-0.2f, 0, 0);
 			yield return new WaitForSeconds(0.1f);
 		}
 		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, transform.position.z);
-		MoveEnemies();
+		//MoveEnemies();
+		ListOfEnemies = CheckEnemies();
+		IsWaiting = true;
+		yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
 		//yield return null;
-		yield return new WaitForSeconds(2);
+		//yield return new WaitForSeconds(2);
 	}
 
 	IEnumerator WalkRight()
     {
-        for (float i = 0;  i < 1; i += 0.2f)
+		GameObject[] ListOfEnemies;
+		for (float i = 0;  i < 1; i += 0.2f)
         {
 			transform.position += new Vector3(0.2f, 0, 0);
 			yield return new WaitForSeconds(0.1f);
         }
 		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, transform.position.z);
-		MoveEnemies();
-		yield return new WaitForSeconds(2);
+		//MoveEnemies();
+		ListOfEnemies = CheckEnemies();
+		IsWaiting = true;
+		yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
 		//yield return null;
 	}
 
 	IEnumerator WalkUp()
 	{
-		
+		GameObject[] ListOfEnemies;
 		for (float i = 0; i < 1; i += 0.2f)
 		{
 			transform.position += new Vector3(0, 0, 0.2f);
 			yield return new WaitForSeconds(0.1f);
 		}
 		transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
-		MoveEnemies();
+		//MoveEnemies();
 		//IsMoving = false;
-		//yield return null;
-		yield return new WaitForSeconds(2);
+		ListOfEnemies = CheckEnemies();
+		IsWaiting = true;
+		yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		//yield return new WaitForSeconds(2);
+		//yield return LineMovingEnemyFuncs.LineMovingEnemyWalk()
 	}
 
 	IEnumerator WalkDown()
 	{
+		GameObject[] ListOfEnemies;
 		for (float i = 0; i < 1; i += 0.2f)
 		{
 			transform.position += new Vector3(0, 0, -0.2f);
 			yield return new WaitForSeconds(0.1f);
 		}
 		transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
-		MoveEnemies();
+		//MoveEnemies();
 		//yield return null;
-		yield return new WaitForSeconds(10);
+		ListOfEnemies = CheckEnemies();
+		IsWaiting = true;
+		yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
 	}
 
 	// Start is called before the first frame update
@@ -230,7 +287,7 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (IsMovable == true)
+		if (IsMovable == true && IsWaiting == false)
 		{
 			if (Input.GetKeyDown("a"))
 			{
@@ -242,7 +299,9 @@ public class Player : MonoBehaviour
 				{
 					//IsMoving = true;
 					transform.rotation = Quaternion.Euler(0, 270, 0);
+					IsWaiting = true;
 					StartCoroutine("WalkLeft");
+					//return;
 					//CheckForDestroyAgain();
 					//MoveEnemies();
 					//LineMovingEnemyFuncs.LineMovingEnemyMove();
@@ -258,8 +317,10 @@ public class Player : MonoBehaviour
 				{
 					//IsMoving = true;
 					transform.rotation = Quaternion.Euler(0, 90, 0);
+					IsWaiting = true;
 					//FinalPos = transform.position + new Vector3(1, 0, 0);
 					StartCoroutine("WalkRight");
+					//return;
 					//CheckForDestroyAgain();
 					//MoveEnemies();
 					//LineMovingEnemyFuncs.LineMovingEnemyMove();
@@ -277,7 +338,9 @@ public class Player : MonoBehaviour
 				{
 					//IsMoving = true;
 					transform.rotation = Quaternion.Euler(0, 0, 0);
+					IsWaiting = true;
 					StartCoroutine("WalkUp");
+					//return;
 					//CheckForDestroyAgain();
 					//MoveEnemies();
 					//LineMovingEnemyFuncs.LineMovingEnemyMove();
@@ -288,11 +351,14 @@ public class Player : MonoBehaviour
 			if (Input.GetKeyDown("s"))
 			{
 
-				if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', -1) && VerLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(0, 0, -1)))
+				if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', -1)
+				&& VerLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(0, 0, -1)))
 				{
 					//IsMoving = true;
 					transform.rotation = Quaternion.Euler(0, 180, 0);
+					IsWaiting = true;
 					StartCoroutine("WalkDown");
+					//return;
 					//CheckForDestroyAgain();
 					//MoveEnemies();
 					//LineMovingEnemyFuncs.LineMovingEnemyMove();
