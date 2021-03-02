@@ -50,6 +50,49 @@ public class Player : MonoBehaviour
 		}
 	}*/
 
+	public bool IsThereGate(Transform ObjCoord)
+    {
+		Object[] Gates = GameObject.FindGameObjectsWithTag("Gate");
+		RaycastHit Hit;
+		//Ray ray = new Ray(ObjCoord, ObjCoord);
+		//Ray ray;
+		/*if (ObjCoord.rotation.eulerAngles.y == 0)
+			ray = new Ray(ObjCoord.position, ObjCoord.transform.forward);
+		if (ObjCoord.rotation.eulerAngles.y == 180)
+			ray = new Ray(ObjCoord.position, ObjCoord.transform.forward);
+		if (ObjCoord.rotation.eulerAngles.y == 270)
+			ray = new Ray(ObjCoord.position, ObjCoord.transform.right);
+		else
+			ray = new Ray(ObjCoord.position, ObjCoord.transform.right);*/
+		Ray ray = new Ray(ObjCoord.position, ObjCoord.transform.forward);
+		//Ray ray = new Ray(ObjCoord.position, ObjCoord.transform.right);
+		//if (ObjCoord.rotation.eulerAngles.y == 0)
+		//Ray ray = new Ray(ObjCoord.position, ObjCoord.transform.forward);
+		//else
+		//ray = 
+		Physics.Raycast(ray, out Hit, 1);
+		//Debug.Log(Hit.collider);
+		if (Hit.collider != null)
+        {
+			//string a;
+			//a =  Hit.collider.ToString;
+            for (int i = 0; i < Gates.Length; i++)
+            {
+				//Debug.Log(Hit.collider.gameObject);
+				//Debug.Log(Hit.collider);
+				//Debug.Log(Gates[i]);
+				//if (Hit.collider == Gates[i])
+				if (Hit.collider.gameObject == Gates[i])
+				{
+					//Debug.Log("yess");
+					return true;
+				}
+            }
+        }
+		//if (Hit.collider.ToString == "fence_gate";
+		return false;
+    }
+
 	public bool Waiting
     {
 		get
@@ -287,6 +330,7 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		Quaternion OldRotation;
 		if (IsMovable == true && IsWaiting == false)
 		{
 			if (Input.GetKeyDown("a"))
@@ -298,9 +342,17 @@ public class Player : MonoBehaviour
 				&& HorLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(-1, 0, 0)))
 				{
 					//IsMoving = true;
+					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 270, 0);
-					IsWaiting = true;
-					StartCoroutine("WalkLeft");
+					if (!IsThereGate(transform))
+					{
+						IsWaiting = true;
+						StartCoroutine("WalkLeft");
+					}
+					else
+						transform.rotation = OldRotation;
+					//IsWaiting = true;
+					//StartCoroutine("WalkLeft");
 					//return;
 					//CheckForDestroyAgain();
 					//MoveEnemies();
@@ -316,10 +368,18 @@ public class Player : MonoBehaviour
 				&& HorLineFuncs.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(1, 0, 0)))
 				{
 					//IsMoving = true;
+					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 90, 0);
-					IsWaiting = true;
+					//IsWaiting = true;
 					//FinalPos = transform.position + new Vector3(1, 0, 0);
-					StartCoroutine("WalkRight");
+					//StartCoroutine("WalkRight");
+					if (!IsThereGate(transform))
+					{
+						IsWaiting = true;
+						StartCoroutine("WalkRight");
+					}
+					else
+						transform.rotation = OldRotation;
 					//return;
 					//CheckForDestroyAgain();
 					//MoveEnemies();
@@ -333,13 +393,22 @@ public class Player : MonoBehaviour
 			}
 			if (Input.GetKeyDown("w"))
 			{
+				//IsThereGate(transform);
 				if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', 1)
 				&& VerLineFuncs.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(0, 0, 1)))
 				{
 					//IsMoving = true;
+					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 0, 0);
-					IsWaiting = true;
-					StartCoroutine("WalkUp");
+					if (!IsThereGate(transform))
+					{
+						IsWaiting = true;
+						StartCoroutine("WalkUp");
+					}
+					else
+						transform.rotation = OldRotation;
+					//IsWaiting = true;
+					//StartCoroutine("WalkUp");
 					//return;
 					//CheckForDestroyAgain();
 					//MoveEnemies();
@@ -355,9 +424,15 @@ public class Player : MonoBehaviour
 				&& VerLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(0, 0, -1)))
 				{
 					//IsMoving = true;
+					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 180, 0);
-					IsWaiting = true;
-					StartCoroutine("WalkDown");
+					if (!IsThereGate(transform))
+					{
+						IsWaiting = true;
+						StartCoroutine("WalkDown");
+					}
+					else
+						transform.rotation = OldRotation;
 					//return;
 					//CheckForDestroyAgain();
 					//MoveEnemies();
