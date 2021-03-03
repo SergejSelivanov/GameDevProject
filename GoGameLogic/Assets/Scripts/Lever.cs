@@ -7,6 +7,7 @@ public class Lever : MonoBehaviour
     private float DistanceToLever = 0.25f;
     public GameObject ConnectedDoor;
     public int Angle = 90;
+    private bool IsOpen = false;
 
     /*private GameObject FindConnectedDoor()
     {
@@ -45,7 +46,17 @@ public class Lever : MonoBehaviour
                 if (player.transform.position.z - transform.position.z < DistanceToLever)
                 {
                     Debug.Log("YESS1");
-                    ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+                    //ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+                    if (IsOpen == false)
+                    {
+                        IsOpen = true;
+                        ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+                    }
+                    else
+                    {
+                        IsOpen = false;
+                        ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y - Angle, 0);
+                    }
                 }
             }
             else
@@ -53,7 +64,16 @@ public class Lever : MonoBehaviour
                 if (transform.position.z - player.transform.position.z < DistanceToLever)
                 {
                     Debug.Log("YESS2");
-                    ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+                    if (IsOpen == false)
+                    {
+                        IsOpen = true;
+                        ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+                    }
+                    else
+                    {
+                        IsOpen = false;
+                        ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y - Angle, 0);
+                    }
                 }
             }
        }
@@ -67,7 +87,17 @@ public class Lever : MonoBehaviour
                 if (player.transform.position.x - transform.position.x < DistanceToLever)
                 {
                     Debug.Log("YESS3");
-                    ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+                    //ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+                    if (IsOpen == false)
+                    {
+                        IsOpen = true;
+                        ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+                    }
+                    else
+                    {
+                        IsOpen = false;
+                        ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y - Angle, 0);
+                    }
                 }
             }
             else
@@ -75,7 +105,17 @@ public class Lever : MonoBehaviour
                 if (transform.position.x - player.transform.position.x < DistanceToLever)
                 {
                     Debug.Log("YESS4");
-                    ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+                    //ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+                    if (IsOpen == false)
+                    {
+                        IsOpen = true;
+                        ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+                    }
+                    else
+                    {
+                        IsOpen = false;
+                        ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y - Angle, 0);
+                    }
                 }
             }
         }
