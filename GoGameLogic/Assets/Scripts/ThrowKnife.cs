@@ -13,8 +13,33 @@ public class ThrowKnife : MonoBehaviour
 
     public bool CheckIfInRange(GameObject Enemy, GameObject Player)
     {
+        Object[] Gates = GameObject.FindGameObjectsWithTag("Gate");
         for (int j = 1; j <= KillingRange; j++)
         {
+            RaycastHit hit;
+            Ray ray = new Ray(Enemy.transform.position, Player.transform.position - Enemy.transform.position);
+            Physics.Raycast(ray, out hit, 2);
+            if (hit.collider != null)
+            {
+                //string a;
+                //a =  Hit.collider.ToString;
+                //Debug.Log(Hit.collider);
+                
+                for (int i = 0; i < Gates.Length; i++)
+                {
+                    //Debug.Log(Hit.collider.gameObject);
+                    //Debug.Log(Hit.collider);
+                    //Debug.Log(Gates[i]);
+                    //if (Hit.collider == Gates[i])
+                    if (hit.collider.gameObject == Gates[i])
+                    {
+                        //Debug.Log("LOL");
+                        //Debug.Log("yess");
+                        return false;
+                        //return true;
+                    }
+                }
+            }
             //for (int j = 0; j < KillingRange; j++)
             // Debug.Log(ListOfEnemies[i].transform.position.z);
             /* Debug.Log(Enemy.transform.position.x);
