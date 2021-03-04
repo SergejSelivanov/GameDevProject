@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         {
 			//string a;
 			//a =  Hit.collider.ToString;
-			Debug.Log(Hit.collider);
+			//Debug.Log(Hit.collider);
             for (int i = 0; i < Gates.Length; i++)
             {
 				//Debug.Log(Hit.collider.gameObject);
@@ -241,7 +241,7 @@ public class Player : MonoBehaviour
 			//Debug.Log(ListOfMovingEnemies[i].transform);
 			if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]) || IsThereGate(ListOfMovingEnemies[i].transform))
 				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0)
+			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0 && !IsThereGate(ListOfMovingEnemies[i].transform))
 				Application.LoadLevel(0);
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z

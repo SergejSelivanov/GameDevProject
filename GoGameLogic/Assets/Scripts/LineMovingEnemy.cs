@@ -178,7 +178,7 @@ public class LineMovingEnemy : MonoBehaviour
             && player.transform.position.z == Obj.transform.position.z
             && (!MotEnemyFuncs.CheckIfFacing(player, Obj) || PlayerFuncs.Invisible >= 0))
             Destroy(Obj);
-        if (CheckifPlayerInfrontofEnemy(player, Obj) && PlayerFuncs.Invisible <= 0)
+        if (CheckifPlayerInfrontofEnemy(player, Obj) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(Obj.transform))
             Application.LoadLevel(0);
     }
 
