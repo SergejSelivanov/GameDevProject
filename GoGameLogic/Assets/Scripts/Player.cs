@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
 
 	public bool IsThereGate(Transform ObjCoord)
     {
+		//Debug.Log(ObjCoord);
 		Object[] Gates = GameObject.FindGameObjectsWithTag("Gate");
 		RaycastHit Hit;
 		//Ray ray = new Ray(ObjCoord, ObjCoord);
@@ -64,18 +65,32 @@ public class Player : MonoBehaviour
 			ray = new Ray(ObjCoord.position, ObjCoord.transform.right);
 		else
 			ray = new Ray(ObjCoord.position, ObjCoord.transform.right);*/
-		Ray ray = new Ray(ObjCoord.position, ObjCoord.transform.forward);
-		//Ray ray = new Ray(ObjCoord.position, ObjCoord.transform.right);
-		//if (ObjCoord.rotation.eulerAngles.y == 0)
+		//Debug.Log(ObjCoord.position);
 		//Ray ray = new Ray(ObjCoord.position, ObjCoord.transform.forward);
-		//else
-		//ray = 
+		Ray ray = new Ray(ObjCoord.position, ObjCoord.forward);
+		//Debug.DrawRay(ObjCoord.position, ObjCoord.forward * 100, Color.yellow);
+		//Ray ray = new Ray(ObjCoord.position, ObjCoord.TransformDirection(Vector3.forward));
+		//Ray ray = new Ray(ObjCoord.position, Vector3.up, out Hit, 10);
+        //Ray ray = new Ray(ObjCoord.position, ObjCoord.right);
+        //Ray ray = new Ray(ObjCoord.position, ObjCoord.transform.right);
+        //if (ObjCoord.rotation.eulerAngles.y == 0)
+        //Ray ray = new Ray(ObjCoord.position, ObjCoord.transform.forward);
+        //else
+        //ray = 
+        //Debug.DrawRay(ObjCoord.position, ObjCoord.TransformDirection(Vector3.forward) * 1000, Color.red);
+		
 		Physics.Raycast(ray, out Hit, 1);
+		//Debug.DrawLine(ray.origin, Hit.point);
+		//Debug.DrawRay(ObjCoord.position, ObjCoord.transform.forward * 20, Color.red, 10);
+		//Physics.Raycast(ObjCoord.position, Vector3.up, out Hit, 10);
+		//Debug.DrawRay(ObjCoord.position, ObjCoord.transform.forward * 3, Color.red, 10);
+		//Debug.Log(Hit.collider.gameObject);
 		//Debug.Log(Hit.collider);
 		if (Hit.collider != null)
         {
 			//string a;
 			//a =  Hit.collider.ToString;
+			Debug.Log(Hit.collider);
             for (int i = 0; i < Gates.Length; i++)
             {
 				//Debug.Log(Hit.collider.gameObject);
@@ -171,6 +186,7 @@ public class Player : MonoBehaviour
         {
 			//Debug.Log(ListOfMovingEnemies[i]);
 			//Debug.Log(ListOfMovingEnemies[i].isActiveAndEnabled);
+			
 			if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
 				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
 			/*if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
@@ -222,7 +238,8 @@ public class Player : MonoBehaviour
 		GameObject[] RetArray = new GameObject[ListOfMovingEnemies.Length];
 		for (int i = 0; i < ListOfMovingEnemies.Length; i++)
 		{
-			if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
+			//Debug.Log(ListOfMovingEnemies[i].transform);
+			if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]) || IsThereGate(ListOfMovingEnemies[i].transform))
 				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
 			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0)
 				Application.LoadLevel(0);
