@@ -211,11 +211,21 @@ public class LineMovingEnemy : MonoBehaviour
     public IEnumerator LineMovingEnemyWalk2(GameObject[] ListOfEnemies)
     {
         //for (int j = 0; j < ListOfEnemies.Length; j++)
-       // {
-            //Debug.Log(PlayerFuncs.Waiting);
-            //if (ListOfEnemies[j] != null)
-            //{
-                // Debug.Log(Obj);
+        // {
+        //Debug.Log(PlayerFuncs.Waiting);
+        //if (ListOfEnemies[j] != null)
+        //{
+        // Debug.Log(Obj);
+        for (int i = 0; i < ListOfEnemies.Length; i++)
+        {
+            if (!CheckIfThereIsNodeToMove(ListOfEnemies[i]) 
+            || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform) 
+            || !(HorLineFuncs.CheckIfThereIsLine(ListOfEnemies[i].transform.position, -1, ListOfEnemies[i].transform.position + new Vector3(-1, 0, 0)) 
+            || HorLineFuncs.CheckIfThereIsLine(ListOfEnemies[i].transform.position, 1, ListOfEnemies[i].transform.position + new Vector3(1, 0, 0)) 
+            || VerLineFuncs.CheckIfThereIsLine(ListOfEnemies[i].transform.position, 1, ListOfEnemies[i].transform.position + new Vector3(0, 0, 1)) 
+            || VerLineFuncs.CheckIfThereIsLine(ListOfEnemies[i].transform.position, -1, ListOfEnemies[i].transform.position + new Vector3(0, 0, -1))))
+                ListOfEnemies[i] = null;
+        }
         for (float i = 0; i < 1; i += 0.2f)
         {
             /*if (XorY == 'x')

@@ -237,7 +237,7 @@ public class Player : MonoBehaviour
 		GameObject[] ListOfMotEnemies = GameObject.FindGameObjectsWithTag("MotionlessEnemy");
         for (int i = 0; i < ListOfMotEnemies.Length; i++)
         {
-			if (LineMovingEnemyFuncs.CheckifPlayerInfrontofEnemy(ListOfMotEnemies[i] , Obj))
+			if (LineMovingEnemyFuncs.CheckifPlayerInfrontofEnemy(ListOfMotEnemies[i], Obj))
 				return true;
         }
 		return false;
