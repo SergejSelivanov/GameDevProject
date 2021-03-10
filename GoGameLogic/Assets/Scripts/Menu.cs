@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
@@ -26,6 +27,18 @@ public class Menu : MonoBehaviour
         Panel.SetActive(false);
         MenuButton.SetActive(true);
         Time.timeScale = 1;
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+        
+    }
+
+    public void ChooseLevel()
+    {
+        SceneManager.LoadScene(1);
     }
 
     /*void Start()
