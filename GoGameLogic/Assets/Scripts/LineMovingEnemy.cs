@@ -120,16 +120,19 @@ public class LineMovingEnemy : MonoBehaviour
 
     private void OnMouseDown()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (PlayerFuncs.KnifeReady == true)
+        if (Time.timeScale == 1)
         {
-            if (KnifeFuncs.CheckIfInRange(gameObject, player))
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (PlayerFuncs.KnifeReady == true)
             {
-                Destroy(gameObject);
-                PlayerFuncs.SkillSetter = 0;
-                PlayerFuncs.IsPlayerMovable = true;
+                if (KnifeFuncs.CheckIfInRange(gameObject, player))
+                {
+                    Destroy(gameObject);
+                    PlayerFuncs.SkillSetter = 0;
+                    PlayerFuncs.IsPlayerMovable = true;
+                }
+                PlayerFuncs.KnifeReady = false;
             }
-            PlayerFuncs.KnifeReady = false;
         }
     }
 

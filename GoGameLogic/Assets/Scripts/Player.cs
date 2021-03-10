@@ -359,7 +359,7 @@ public class Player : MonoBehaviour
 	void Update()
 	{
 		Quaternion OldRotation;
-		if (IsMovable == true && IsWaiting == false)
+		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
 			if (Input.GetKeyDown("a"))
 			{

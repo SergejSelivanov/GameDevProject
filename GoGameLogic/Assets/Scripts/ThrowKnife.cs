@@ -99,102 +99,103 @@ public class ThrowKnife : MonoBehaviour
 
     public void Throwknife()
     {
-        if (PlayerFuncs.IsPlayerMovable == false)
-        {
-            PlayerFuncs.KnifeReady = false;
-            PlayerFuncs.IsPlayerMovable = true;
-            return;
-        }
 
-        PlayerFuncs.KnifeReady = true;
-
-
-        //GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
-        //GameObject[] ListOfMotionlessEnemies = GameObject.FindGameObjectsWithTag("MotionlessEnemy");
-        //GameObject[] ListOfEnemies = new GameObject[ListOfMotionlessEnemies.Length + ListOfMovingEnemies.Length];
-        //GameObject[] ListOfEnemies = InsertArrays(ListOfMovingEnemies, ListOfMotionlessEnemies);
-        //GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        PlayerFuncs.IsPlayerMovable = false;
-        //for (int i = 0; i < ListOfMovingEnemies.Length; i++)
-        /*for (int j = 1; j <= KillingRange; j++)
-        {
-            //for (int j = 0; j < KillingRange; j++)
-            for (int i = 0; i < ListOfEnemies.Length; i++)
+            if (PlayerFuncs.IsPlayerMovable == false)
             {
-               // Debug.Log(ListOfEnemies[i].transform.position.z);
-                if (player.transform.rotation.eulerAngles.y == 0
-                && ListOfEnemies[i].transform.position.x == player.transform.position.x
-                && ListOfEnemies[i].transform.position.z - j == player.transform.position.z)
-                {
-                    Destroy(ListOfEnemies[i]);
-                    PlayerFuncs.SkillSetter = 0;
-                    ButtonUI.SetActive(false);
-                    return;
-                }
-                if (player.transform.rotation.eulerAngles.y == 90
-                && ListOfEnemies[i].transform.position.z == player.transform.position.z
-                && ListOfEnemies[i].transform.position.x - j == player.transform.position.x)
-                {
-                    Destroy(ListOfEnemies[i]);
-                    PlayerFuncs.SkillSetter = 0;
-                    ButtonUI.SetActive(false);
-                    return;
-                }
-                if (player.transform.rotation.eulerAngles.y == 180
-                && ListOfEnemies[i].transform.position.x == player.transform.position.x
-                && ListOfEnemies[i].transform.position.z + j == player.transform.position.z)
-                {
-                    Destroy(ListOfEnemies[i]);
-                    PlayerFuncs.SkillSetter = 0;
-                    ButtonUI.SetActive(false);
-                    return;
-                }
-                if (player.transform.rotation.eulerAngles.y == 270
-                && ListOfEnemies[i].transform.position.z == player.transform.position.z
-                && ListOfEnemies[i].transform.position.x + j == player.transform.position.x)
-                {
-                    Destroy(ListOfEnemies[i]);
-                    PlayerFuncs.SkillSetter = 0;
-                    ButtonUI.SetActive(false);
-                    return;
-                }
+                PlayerFuncs.KnifeReady = false;
+                PlayerFuncs.IsPlayerMovable = true;
+                return;
             }
-        }*/
-        /* PlayerFuncs.SkillSetter = 0;
-         ButtonUI.SetActive(false);*/
-        /*for (int j = 1; j <= KillingRange; j++)
-        {
-            //for (int j = 0; j < KillingRange; j++)
-            for (int i = 0; i < ListOfEnemies.Length; i++)
+
+            PlayerFuncs.KnifeReady = true;
+
+
+            //GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
+            //GameObject[] ListOfMotionlessEnemies = GameObject.FindGameObjectsWithTag("MotionlessEnemy");
+            //GameObject[] ListOfEnemies = new GameObject[ListOfMotionlessEnemies.Length + ListOfMovingEnemies.Length];
+            //GameObject[] ListOfEnemies = InsertArrays(ListOfMovingEnemies, ListOfMotionlessEnemies);
+            //GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            PlayerFuncs.IsPlayerMovable = false;
+            //for (int i = 0; i < ListOfMovingEnemies.Length; i++)
+            /*for (int j = 1; j <= KillingRange; j++)
             {
-                // Debug.Log(ListOfEnemies[i].transform.position.z);
-                if (player.transform.rotation.eulerAngles.y == 0
-                && ListOfEnemies[i].transform.position.x == player.transform.position.x
-                && ListOfEnemies[i].transform.position.z - j == player.transform.position.z)
+                //for (int j = 0; j < KillingRange; j++)
+                for (int i = 0; i < ListOfEnemies.Length; i++)
                 {
-                    
+                   // Debug.Log(ListOfEnemies[i].transform.position.z);
+                    if (player.transform.rotation.eulerAngles.y == 0
+                    && ListOfEnemies[i].transform.position.x == player.transform.position.x
+                    && ListOfEnemies[i].transform.position.z - j == player.transform.position.z)
+                    {
+                        Destroy(ListOfEnemies[i]);
+                        PlayerFuncs.SkillSetter = 0;
+                        ButtonUI.SetActive(false);
+                        return;
+                    }
+                    if (player.transform.rotation.eulerAngles.y == 90
+                    && ListOfEnemies[i].transform.position.z == player.transform.position.z
+                    && ListOfEnemies[i].transform.position.x - j == player.transform.position.x)
+                    {
+                        Destroy(ListOfEnemies[i]);
+                        PlayerFuncs.SkillSetter = 0;
+                        ButtonUI.SetActive(false);
+                        return;
+                    }
+                    if (player.transform.rotation.eulerAngles.y == 180
+                    && ListOfEnemies[i].transform.position.x == player.transform.position.x
+                    && ListOfEnemies[i].transform.position.z + j == player.transform.position.z)
+                    {
+                        Destroy(ListOfEnemies[i]);
+                        PlayerFuncs.SkillSetter = 0;
+                        ButtonUI.SetActive(false);
+                        return;
+                    }
+                    if (player.transform.rotation.eulerAngles.y == 270
+                    && ListOfEnemies[i].transform.position.z == player.transform.position.z
+                    && ListOfEnemies[i].transform.position.x + j == player.transform.position.x)
+                    {
+                        Destroy(ListOfEnemies[i]);
+                        PlayerFuncs.SkillSetter = 0;
+                        ButtonUI.SetActive(false);
+                        return;
+                    }
                 }
-                if (player.transform.rotation.eulerAngles.y == 90
-                && ListOfEnemies[i].transform.position.z == player.transform.position.z
-                && ListOfEnemies[i].transform.position.x - j == player.transform.position.x)
+            }*/
+            /* PlayerFuncs.SkillSetter = 0;
+             ButtonUI.SetActive(false);*/
+            /*for (int j = 1; j <= KillingRange; j++)
+            {
+                //for (int j = 0; j < KillingRange; j++)
+                for (int i = 0; i < ListOfEnemies.Length; i++)
                 {
+                    // Debug.Log(ListOfEnemies[i].transform.position.z);
+                    if (player.transform.rotation.eulerAngles.y == 0
+                    && ListOfEnemies[i].transform.position.x == player.transform.position.x
+                    && ListOfEnemies[i].transform.position.z - j == player.transform.position.z)
+                    {
 
-                }
-                if (player.transform.rotation.eulerAngles.y == 180
-                && ListOfEnemies[i].transform.position.x == player.transform.position.x
-                && ListOfEnemies[i].transform.position.z + j == player.transform.position.z)
-                {
+                    }
+                    if (player.transform.rotation.eulerAngles.y == 90
+                    && ListOfEnemies[i].transform.position.z == player.transform.position.z
+                    && ListOfEnemies[i].transform.position.x - j == player.transform.position.x)
+                    {
 
-                }
-                if (player.transform.rotation.eulerAngles.y == 270
-                && ListOfEnemies[i].transform.position.z == player.transform.position.z
-                && ListOfEnemies[i].transform.position.x + j == player.transform.position.x)
-                {
+                    }
+                    if (player.transform.rotation.eulerAngles.y == 180
+                    && ListOfEnemies[i].transform.position.x == player.transform.position.x
+                    && ListOfEnemies[i].transform.position.z + j == player.transform.position.z)
+                    {
 
+                    }
+                    if (player.transform.rotation.eulerAngles.y == 270
+                    && ListOfEnemies[i].transform.position.z == player.transform.position.z
+                    && ListOfEnemies[i].transform.position.x + j == player.transform.position.x)
+                    {
+
+                    }
                 }
-            }
-        }*/
+            }*/
     }
 
     // Start is called before the first frame update
