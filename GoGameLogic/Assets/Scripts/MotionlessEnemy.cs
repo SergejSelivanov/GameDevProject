@@ -146,7 +146,7 @@ public class MotionlessEnemy : MonoBehaviour
 			PlayerFuncs.SkillSetter += 0.5f;
 			//Debug.Log(PlayerFuncs.SkillSetter);
 		}
-		if (CheckifPlayerInfrontofEnemy(player) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform))
+		if (CheckifPlayerInfrontofEnemy(player) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
 			Application.LoadLevel(0);
 	}
 }
