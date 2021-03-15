@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 	public GameObject HorLineHandler;
 	public GameObject LineMovingEnemyHandler;
 	public GameObject MotionlessEnemyHandler;
+	public GameObject Light;
 	private Node NodeFuncs;
 	private VerticalLine VerLineFuncs;
 	private HorizontalLine HorLineFuncs;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
 	private bool KnifeIsReady = false;
 	private bool IsMovable = true;
 	private bool IsWaiting = false;
+	private int LightsOffTurns = 0;
 
 	private GameObject FinalNode;
 
@@ -107,6 +109,18 @@ public class Player : MonoBehaviour
 		//if (Hit.collider.ToString == "fence_gate";
 		return false;
     }
+
+	public int LightOffTurns
+	{
+		get
+		{
+			return LightsOffTurns;
+		}
+		set
+		{
+			LightsOffTurns = value;
+		}
+	}
 
 	public bool Waiting
     {
@@ -230,7 +244,9 @@ public class Player : MonoBehaviour
 				Application.LoadLevel(0);*/
 		}
 		InvisibleSteps--;
-    }
+		//LightsOffTurns--;
+
+	}
 
 	public bool CheckIfThereIsMotEnemy(GameObject Obj)
     {
@@ -270,6 +286,7 @@ public class Player : MonoBehaviour
 				//LineMovingEnemyFuncs.LineMovingEnemyMove(ListOfMovingEnemies[i]);
 		}
 		InvisibleSteps--;
+		LightsOffTurns--;
 		//IsWaiting = true;
 		return RetArray;
 	}
@@ -286,7 +303,10 @@ public class Player : MonoBehaviour
 		//MoveEnemies();
 		ListOfEnemies = CheckEnemies();
 		IsWaiting = true;
-		yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		if (LightOffTurns <= 0)
+			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		else
+			IsWaiting = false;
 		//yield return null;
 		//yield return new WaitForSeconds(2);
 	}
@@ -303,7 +323,10 @@ public class Player : MonoBehaviour
 		//MoveEnemies();
 		ListOfEnemies = CheckEnemies();
 		IsWaiting = true;
-		yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		if (LightOffTurns <= 0)
+			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		else
+			IsWaiting = false;
 		//yield return null;
 	}
 
@@ -320,7 +343,10 @@ public class Player : MonoBehaviour
 		//IsMoving = false;
 		ListOfEnemies = CheckEnemies();
 		IsWaiting = true;
-		yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		if (LightOffTurns <= 0)
+			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		else
+			IsWaiting = false;
 		//yield return new WaitForSeconds(2);
 		//yield return LineMovingEnemyFuncs.LineMovingEnemyWalk()
 	}
@@ -338,7 +364,10 @@ public class Player : MonoBehaviour
 		//yield return null;
 		ListOfEnemies = CheckEnemies();
 		IsWaiting = true;
-		yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		if (LightOffTurns <= 0)
+			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		else
+			IsWaiting = false;
 	}
 
 	// Start is called before the first frame update
@@ -359,6 +388,8 @@ public class Player : MonoBehaviour
 	void Update()
 	{
 		Quaternion OldRotation;
+		if (LightOffTurns <= 0 && Light.activeSelf == false)
+			Light.SetActive(true);
 		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
 			if (Input.GetKeyDown("a"))
