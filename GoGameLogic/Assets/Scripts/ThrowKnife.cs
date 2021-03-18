@@ -99,7 +99,8 @@ public class ThrowKnife : MonoBehaviour
 
     public void Throwknife()
     {
-
+        if (PlayerFuncs.ProjectionActive == false)
+        {
             if (PlayerFuncs.IsPlayerMovable == false)
             {
                 PlayerFuncs.KnifeReady = false;
@@ -117,6 +118,7 @@ public class ThrowKnife : MonoBehaviour
             //GameObject player = GameObject.FindGameObjectWithTag("Player");
 
             PlayerFuncs.IsPlayerMovable = false;
+        }
             //for (int i = 0; i < ListOfMovingEnemies.Length; i++)
             /*for (int j = 1; j <= KillingRange; j++)
             {

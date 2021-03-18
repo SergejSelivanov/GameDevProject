@@ -57,7 +57,8 @@ public class ProjectionBehaviour : MonoBehaviour
 			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && !PlayerFuncs.IsThereGate(ListOfMovingEnemies[i].transform) && PlayerFuncs.LightOffTurns <= 0)
             //Application.LoadLevel(0);
             {
-				Destroy(gameObject);
+				//Destroy(gameObject);
+				gameObject.SetActive(false);
 				PlayerFuncs.ProjectionActive = false;
             }
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x

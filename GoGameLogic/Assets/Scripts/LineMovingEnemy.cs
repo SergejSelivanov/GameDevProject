@@ -196,8 +196,11 @@ public class LineMovingEnemy : MonoBehaviour
                 Destroy(Obj);
             if (CheckifPlayerInfrontofEnemy(Projection, Obj) && !PlayerFuncs.IsThereGate(Obj.transform))
             {
-                Destroy(Projection);
+                
                 PlayerFuncs.ProjectionActive = false;
+                //Destroy(Projection);
+                Projection.SetActive(false);
+                //return;
             }
         }
     }

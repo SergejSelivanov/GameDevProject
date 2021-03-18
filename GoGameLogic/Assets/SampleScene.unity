@@ -5866,6 +5866,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 103cc115ad040ef43b727da6fced1bd8, type: 3}
+--- !u!1 &2003815585 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5073815574942623458, guid: 103cc115ad040ef43b727da6fced1bd8,
+    type: 3}
+  m_PrefabInstance: {fileID: 523655320}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2035508302
 GameObject:
   m_ObjectHideFlags: 0
@@ -7165,7 +7171,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ConnectedDoor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2003815585}
     - target: {fileID: 3350158277288251521, guid: deb41e81d9772bc4e84e664720582134,
         type: 3}
       propertyPath: m_Name

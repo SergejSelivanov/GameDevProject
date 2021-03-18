@@ -13,9 +13,12 @@ public class LightOff : MonoBehaviour
     public void TurnOffLight()
     {
         //PlayerFuncs.LightOffTurns = TurnsToTurnLightsOff;
-        PlayerFuncs.LightOffTurns = 3;
-        ButtonUI.SetActive(false);
-        Light.SetActive(false);
+        if (PlayerFuncs.ProjectionActive == false)
+        {
+            PlayerFuncs.LightOffTurns = 3;
+            ButtonUI.SetActive(false);
+            Light.SetActive(false);
+        }
     }
 
     // Start is called before the first frame update
