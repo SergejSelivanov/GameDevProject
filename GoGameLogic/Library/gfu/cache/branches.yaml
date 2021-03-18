@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 2
-  lastUpdatedAtString: 2021-03-15T21:10:03.060+03:00
-  initializedAtString: 2021-03-15T20:09:25.119+03:00
+  lastUpdatedAtString: 2021-03-18T19:24:39.121+03:00
+  initializedAtString: 2021-03-18T15:08:11.645+03:00
   localBranches:
   - name: Danil
     tracking: origin/Danil
@@ -22,6 +22,8 @@ MonoBehaviour:
     tracking: origin/main
   - name: Sergej
     tracking: origin/Sergej
+  - name: Wjena
+    tracking: origin/Wjena
   remoteBranches:
   - name: origin/Danil
     tracking: '[None]'
@@ -46,6 +48,7 @@ MonoBehaviour:
     - Danil
     - main
     - Sergej
+    - Wjena
     values:
     - name: Danil
       remote:
@@ -62,6 +65,11 @@ MonoBehaviour:
         name: origin
         url: https://github.com/SergejSelivanov/GameDevProject.git
       trackingBranch: Sergej
+    - name: Wjena
+      remote:
+        name: origin
+        url: https://github.com/SergejSelivanov/GameDevProject.git
+      trackingBranch: Wjena
   remoteConfigBranches:
     keys:
     - origin

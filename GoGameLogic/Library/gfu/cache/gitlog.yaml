@@ -13,9 +13,581 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 3
-  lastUpdatedAtString: 2021-03-15T21:20:38.504+03:00
-  initializedAtString: 2021-03-15T20:20:18.197+03:00
+  lastUpdatedAtString: 2021-03-18T19:05:43.615+03:00
+  initializedAtString: 2021-03-18T17:14:26.845+03:00
   log:
+  - commitID: 36d0ab0f4dcc2766ec3614c6df845dfa7338028f
+    mergeA: 
+    mergeB: 
+    authorName: Festermo
+    authorEmail: 79100655+Festermo@users.noreply.github.com
+    commitEmail: 79100655+Festermo@users.noreply.github.com
+    commitName: Festermo
+    summary: "\u0412\u0440\u0430\u0433\u0438 \u043D\u0435 \u0443\u0431\u0438\u0432\u0430\u044E\u0442
+      \u0431\u0435\u0437 \u0441\u0432\u0435\u0442\u0430"
+    description: 
+    timeString: 2021-03-15T21:27:38.000+03:00
+    commitTimeString: 2021-03-15T21:27:38.000+03:00
+    changes:
+    - path: GoGameLogic\Assets\SampleScene.unity
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Assets\SampleScene.unity
+      projectPath: Assets\SampleScene.unity
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Assets\Scripts\MotionlessEnemy.cs
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Assets\Scripts\MotionlessEnemy.cs
+      projectPath: Assets\Scripts\MotionlessEnemy.cs
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Assets\Scripts\Player.cs
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Assets\Scripts\Player.cs
+      projectPath: Assets\Scripts\Player.cs
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\ArtifactDB
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\ArtifactDB
+      projectPath: Library\ArtifactDB
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\00\005c95507a9c900f1d62e3ed437607cb
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\00\005c95507a9c900f1d62e3ed437607cb
+      projectPath: Library\Artifacts\00\005c95507a9c900f1d62e3ed437607cb
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\09\09700ceb7b2f87f7584fb3f3909dbee6
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\09\09700ceb7b2f87f7584fb3f3909dbee6
+      projectPath: Library\Artifacts\09\09700ceb7b2f87f7584fb3f3909dbee6
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\14\140cd84e70ebcfd7475e34d0e4914977
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\14\140cd84e70ebcfd7475e34d0e4914977
+      projectPath: Library\Artifacts\14\140cd84e70ebcfd7475e34d0e4914977
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\17\1756d574d1ca74caba1734e4f0fc86fe
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\17\1756d574d1ca74caba1734e4f0fc86fe
+      projectPath: Library\Artifacts\17\1756d574d1ca74caba1734e4f0fc86fe
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\19\191b1b91dad1f223df0e144ec3cacc12
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\19\191b1b91dad1f223df0e144ec3cacc12
+      projectPath: Library\Artifacts\19\191b1b91dad1f223df0e144ec3cacc12
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\1c\1cdd667d9e7ef30530b6a01ee646b4a0
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\1c\1cdd667d9e7ef30530b6a01ee646b4a0
+      projectPath: Library\Artifacts\1c\1cdd667d9e7ef30530b6a01ee646b4a0
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\36\36b5fa01c19679001318affb648b08d7
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\36\36b5fa01c19679001318affb648b08d7
+      projectPath: Library\Artifacts\36\36b5fa01c19679001318affb648b08d7
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\3e\3e3e67d6134f7810253a9e13435bb7ff
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\3e\3e3e67d6134f7810253a9e13435bb7ff
+      projectPath: Library\Artifacts\3e\3e3e67d6134f7810253a9e13435bb7ff
+      originalPath: GoGameLogic\Library\Artifacts\f2\f24006f716f1e75c539d765069f86858
+      indexStatus: 6
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\46\46fb37693ddbb45877deb43c8c6f6a5b
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\46\46fb37693ddbb45877deb43c8c6f6a5b
+      projectPath: Library\Artifacts\46\46fb37693ddbb45877deb43c8c6f6a5b
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\4f\4f501e424368747ae2160c49006d8ad2
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\4f\4f501e424368747ae2160c49006d8ad2
+      projectPath: Library\Artifacts\4f\4f501e424368747ae2160c49006d8ad2
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\5a\5a82af6fb4532bccbdea7ec94a003353
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\5a\5a82af6fb4532bccbdea7ec94a003353
+      projectPath: Library\Artifacts\5a\5a82af6fb4532bccbdea7ec94a003353
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\7c\7c25bfec6194211e53cc70c3f7ba9280
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\7c\7c25bfec6194211e53cc70c3f7ba9280
+      projectPath: Library\Artifacts\7c\7c25bfec6194211e53cc70c3f7ba9280
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\83\831a2401fc714049fc2efab69eaaa1b9
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\83\831a2401fc714049fc2efab69eaaa1b9
+      projectPath: Library\Artifacts\83\831a2401fc714049fc2efab69eaaa1b9
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\84\8401cfdcc995d0641bffbcd9c606528c
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\84\8401cfdcc995d0641bffbcd9c606528c
+      projectPath: Library\Artifacts\84\8401cfdcc995d0641bffbcd9c606528c
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\8d\8d2c9b41d9f91ff6831577f7f1e545f5
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\8d\8d2c9b41d9f91ff6831577f7f1e545f5
+      projectPath: Library\Artifacts\8d\8d2c9b41d9f91ff6831577f7f1e545f5
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\ad\ad1f486afff0a00adfc063502909da46
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\ad\ad1f486afff0a00adfc063502909da46
+      projectPath: Library\Artifacts\ad\ad1f486afff0a00adfc063502909da46
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\b4\b4ef18c3ee8d3f8452d7a8ee6f9c72e1
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\b4\b4ef18c3ee8d3f8452d7a8ee6f9c72e1
+      projectPath: Library\Artifacts\b4\b4ef18c3ee8d3f8452d7a8ee6f9c72e1
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\d1\d1dacf9c872690a77c703bf76cf0d892
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\d1\d1dacf9c872690a77c703bf76cf0d892
+      projectPath: Library\Artifacts\d1\d1dacf9c872690a77c703bf76cf0d892
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\d3\d3a76514d7c2c88c21d9848cabb4f2df
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\d3\d3a76514d7c2c88c21d9848cabb4f2df
+      projectPath: Library\Artifacts\d3\d3a76514d7c2c88c21d9848cabb4f2df
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\eb\ebf4a6ecfa5bc817269c300981c32129
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\eb\ebf4a6ecfa5bc817269c300981c32129
+      projectPath: Library\Artifacts\eb\ebf4a6ecfa5bc817269c300981c32129
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\f7\f7542a1b9139715f0bf9d59fcaacfa5b
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\f7\f7542a1b9139715f0bf9d59fcaacfa5b
+      projectPath: Library\Artifacts\f7\f7542a1b9139715f0bf9d59fcaacfa5b
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\ScriptAssemblies\Assembly-CSharp.dll
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\ScriptAssemblies\Assembly-CSharp.dll
+      projectPath: Library\ScriptAssemblies\Assembly-CSharp.dll
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\ScriptAssemblies\Assembly-CSharp.pdb
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\ScriptAssemblies\Assembly-CSharp.pdb
+      projectPath: Library\ScriptAssemblies\Assembly-CSharp.pdb
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\SourceAssetDB
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\SourceAssetDB
+      projectPath: Library\SourceAssetDB
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\StateCache\SceneView\69b5db-mainStage.json
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\StateCache\SceneView\69b5db-mainStage.json
+      projectPath: Library\StateCache\SceneView\69b5db-mainStage.json
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\gfu\cache\gitlocks.yaml
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\gfu\cache\gitlocks.yaml
+      projectPath: Library\gfu\cache\gitlocks.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\gfu\cache\gitstatusentries.yaml
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\gfu\cache\gitstatusentries.yaml
+      projectPath: Library\gfu\cache\gitstatusentries.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\gfu\cache\gittrackingstatus.yaml
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\gfu\cache\gittrackingstatus.yaml
+      projectPath: Library\gfu\cache\gittrackingstatus.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\gfu\cache\repoinfo.yaml
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\gfu\cache\repoinfo.yaml
+      projectPath: Library\gfu\cache\repoinfo.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+  - commitID: 61250d3528bc3864ac9ff624b8e388253823ff53
+    mergeA: 
+    mergeB: 
+    authorName: Festermo
+    authorEmail: 79100655+Festermo@users.noreply.github.com
+    commitEmail: 79100655+Festermo@users.noreply.github.com
+    commitName: Festermo
+    summary: "\u0441\u0434\u0435\u043B\u0430\u043D\u0430 \u043F\u0438\u043A\u0430\u043F
+      \u0432\u044B\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u044F \u0441\u0432\u0435\u0442\u0430"
+    description: 
+    timeString: 2021-03-15T21:21:22.000+03:00
+    commitTimeString: 2021-03-15T21:21:22.000+03:00
+    changes:
+    - path: GoGameLogic\.vs\GoGameLogic\v16\.suo
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\.vs\GoGameLogic\v16\.suo
+      projectPath: .vs\GoGameLogic\v16\.suo
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Assembly-CSharp.csproj
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Assembly-CSharp.csproj
+      projectPath: Assembly-CSharp.csproj
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Assets\LightOff.cs
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Assets\LightOff.cs
+      projectPath: Assets\LightOff.cs
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Assets\LightOff.cs.meta
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Assets\LightOff.cs.meta
+      projectPath: Assets\LightOff.cs.meta
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Assets\Materials\LightOffMaterial.mat
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Assets\Materials\LightOffMaterial.mat
+      projectPath: Assets\Materials\LightOffMaterial.mat
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Assets\Materials\LightOffMaterial.mat.meta
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Assets\Materials\LightOffMaterial.mat.meta
+      projectPath: Assets\Materials\LightOffMaterial.mat.meta
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Assets\Prefabs\Bait.prefab
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Assets\Prefabs\Bait.prefab
+      projectPath: Assets\Prefabs\Bait.prefab
+      originalPath: GoGameLogic\Assets\Prefabs\Cube.prefab
+      indexStatus: 6
+      workTreeStatus: 0
+    - path: GoGameLogic\Assets\Prefabs\Bait.prefab.meta
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Assets\Prefabs\Bait.prefab.meta
+      projectPath: Assets\Prefabs\Bait.prefab.meta
+      originalPath: GoGameLogic\Assets\Prefabs\Cube.prefab.meta
+      indexStatus: 6
+      workTreeStatus: 0
+    - path: GoGameLogic\Assets\SampleScene.unity
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Assets\SampleScene.unity
+      projectPath: Assets\SampleScene.unity
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Assets\Scripts\Player.cs
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Assets\Scripts\Player.cs
+      projectPath: Assets\Scripts\Player.cs
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\ArtifactDB
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\ArtifactDB
+      projectPath: Library\ArtifactDB
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\00\005c95507a9c900f1d62e3ed437607cb
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\00\005c95507a9c900f1d62e3ed437607cb
+      projectPath: Library\Artifacts\00\005c95507a9c900f1d62e3ed437607cb
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\09\09700ceb7b2f87f7584fb3f3909dbee6
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\09\09700ceb7b2f87f7584fb3f3909dbee6
+      projectPath: Library\Artifacts\09\09700ceb7b2f87f7584fb3f3909dbee6
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\14\140cd84e70ebcfd7475e34d0e4914977
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\14\140cd84e70ebcfd7475e34d0e4914977
+      projectPath: Library\Artifacts\14\140cd84e70ebcfd7475e34d0e4914977
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\17\1756d574d1ca74caba1734e4f0fc86fe
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\17\1756d574d1ca74caba1734e4f0fc86fe
+      projectPath: Library\Artifacts\17\1756d574d1ca74caba1734e4f0fc86fe
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\19\191b1b91dad1f223df0e144ec3cacc12
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\19\191b1b91dad1f223df0e144ec3cacc12
+      projectPath: Library\Artifacts\19\191b1b91dad1f223df0e144ec3cacc12
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\1c\1cdd667d9e7ef30530b6a01ee646b4a0
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\1c\1cdd667d9e7ef30530b6a01ee646b4a0
+      projectPath: Library\Artifacts\1c\1cdd667d9e7ef30530b6a01ee646b4a0
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\24\2473929047e35e28bf012b87b1485d81
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\24\2473929047e35e28bf012b87b1485d81
+      projectPath: Library\Artifacts\24\2473929047e35e28bf012b87b1485d81
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\32\32e86ba1acaaed893deed5e48ab1296b
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\32\32e86ba1acaaed893deed5e48ab1296b
+      projectPath: Library\Artifacts\32\32e86ba1acaaed893deed5e48ab1296b
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\36\36b5fa01c19679001318affb648b08d7
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\36\36b5fa01c19679001318affb648b08d7
+      projectPath: Library\Artifacts\36\36b5fa01c19679001318affb648b08d7
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\46\46fb37693ddbb45877deb43c8c6f6a5b
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\46\46fb37693ddbb45877deb43c8c6f6a5b
+      projectPath: Library\Artifacts\46\46fb37693ddbb45877deb43c8c6f6a5b
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\4f\4f501e424368747ae2160c49006d8ad2
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\4f\4f501e424368747ae2160c49006d8ad2
+      projectPath: Library\Artifacts\4f\4f501e424368747ae2160c49006d8ad2
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\5a\5a82af6fb4532bccbdea7ec94a003353
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\5a\5a82af6fb4532bccbdea7ec94a003353
+      projectPath: Library\Artifacts\5a\5a82af6fb4532bccbdea7ec94a003353
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\69\69d6d041fefbb98179920c9f74c5f491
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\69\69d6d041fefbb98179920c9f74c5f491
+      projectPath: Library\Artifacts\69\69d6d041fefbb98179920c9f74c5f491
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\7c\7c25bfec6194211e53cc70c3f7ba9280
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\7c\7c25bfec6194211e53cc70c3f7ba9280
+      projectPath: Library\Artifacts\7c\7c25bfec6194211e53cc70c3f7ba9280
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\83\831a2401fc714049fc2efab69eaaa1b9
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\83\831a2401fc714049fc2efab69eaaa1b9
+      projectPath: Library\Artifacts\83\831a2401fc714049fc2efab69eaaa1b9
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\8b\8b82f9b5fc7a10bf823de86317a2b03e
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\8b\8b82f9b5fc7a10bf823de86317a2b03e
+      projectPath: Library\Artifacts\8b\8b82f9b5fc7a10bf823de86317a2b03e
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\8d\8d2c9b41d9f91ff6831577f7f1e545f5
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\8d\8d2c9b41d9f91ff6831577f7f1e545f5
+      projectPath: Library\Artifacts\8d\8d2c9b41d9f91ff6831577f7f1e545f5
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\a6\a64f2303d35fb2c980fca3cc3790a8a7
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\a6\a64f2303d35fb2c980fca3cc3790a8a7
+      projectPath: Library\Artifacts\a6\a64f2303d35fb2c980fca3cc3790a8a7
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\ad\ad1f486afff0a00adfc063502909da46
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\ad\ad1f486afff0a00adfc063502909da46
+      projectPath: Library\Artifacts\ad\ad1f486afff0a00adfc063502909da46
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\b4\b4ef18c3ee8d3f8452d7a8ee6f9c72e1
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\b4\b4ef18c3ee8d3f8452d7a8ee6f9c72e1
+      projectPath: Library\Artifacts\b4\b4ef18c3ee8d3f8452d7a8ee6f9c72e1
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\ca\ca5761ee5d85fab323efb0c8bfbd958a
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\ca\ca5761ee5d85fab323efb0c8bfbd958a
+      projectPath: Library\Artifacts\ca\ca5761ee5d85fab323efb0c8bfbd958a
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\d1\d1dacf9c872690a77c703bf76cf0d892
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\d1\d1dacf9c872690a77c703bf76cf0d892
+      projectPath: Library\Artifacts\d1\d1dacf9c872690a77c703bf76cf0d892
+      originalPath: GoGameLogic\Library\Artifacts\d2\d23273cb8ae0c3564fc499b8c1b1b41e
+      indexStatus: 6
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\dd\ddb4f9131db1158cbfbf4cd590b018e5
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\dd\ddb4f9131db1158cbfbf4cd590b018e5
+      projectPath: Library\Artifacts\dd\ddb4f9131db1158cbfbf4cd590b018e5
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\e5\e5cb8d82a4f69fa588372bca5e4c548e
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\e5\e5cb8d82a4f69fa588372bca5e4c548e
+      projectPath: Library\Artifacts\e5\e5cb8d82a4f69fa588372bca5e4c548e
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\eb\ebf4a6ecfa5bc817269c300981c32129
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\eb\ebf4a6ecfa5bc817269c300981c32129
+      projectPath: Library\Artifacts\eb\ebf4a6ecfa5bc817269c300981c32129
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\f2\f24006f716f1e75c539d765069f86858
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\f2\f24006f716f1e75c539d765069f86858
+      projectPath: Library\Artifacts\f2\f24006f716f1e75c539d765069f86858
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\f7\f7542a1b9139715f0bf9d59fcaacfa5b
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\f7\f7542a1b9139715f0bf9d59fcaacfa5b
+      projectPath: Library\Artifacts\f7\f7542a1b9139715f0bf9d59fcaacfa5b
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\Artifacts\fc\fc558293c99aaa4a344e584c66b7ee0c
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\Artifacts\fc\fc558293c99aaa4a344e584c66b7ee0c
+      projectPath: Library\Artifacts\fc\fc558293c99aaa4a344e584c66b7ee0c
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\CurrentLayout-default.dwlt
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\CurrentLayout-default.dwlt
+      projectPath: Library\CurrentLayout-default.dwlt
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\ScriptAssemblies\Assembly-CSharp.dll
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\ScriptAssemblies\Assembly-CSharp.dll
+      projectPath: Library\ScriptAssemblies\Assembly-CSharp.dll
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\ScriptAssemblies\Assembly-CSharp.pdb
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\ScriptAssemblies\Assembly-CSharp.pdb
+      projectPath: Library\ScriptAssemblies\Assembly-CSharp.pdb
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\ShaderCache\EditorEncounteredVariants
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\ShaderCache\EditorEncounteredVariants
+      projectPath: Library\ShaderCache\EditorEncounteredVariants
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\SourceAssetDB
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\SourceAssetDB
+      projectPath: Library\SourceAssetDB
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\StateCache\Hierarchy\c0221a-mainStage.json
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\StateCache\Hierarchy\c0221a-mainStage.json
+      projectPath: Library\StateCache\Hierarchy\c0221a-mainStage.json
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\StateCache\SceneView\69b5db-mainStage.json
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\StateCache\SceneView\69b5db-mainStage.json
+      projectPath: Library\StateCache\SceneView\69b5db-mainStage.json
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\expandedItems
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\expandedItems
+      projectPath: Library\expandedItems
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\gfu\cache\branches.yaml
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\gfu\cache\branches.yaml
+      projectPath: Library\gfu\cache\branches.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\gfu\cache\gitlocks.yaml
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\gfu\cache\gitlocks.yaml
+      projectPath: Library\gfu\cache\gitlocks.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\gfu\cache\gitlog.yaml
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\gfu\cache\gitlog.yaml
+      projectPath: Library\gfu\cache\gitlog.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\gfu\cache\gitstatusentries.yaml
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\gfu\cache\gitstatusentries.yaml
+      projectPath: Library\gfu\cache\gitstatusentries.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\gfu\cache\gittrackingstatus.yaml
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\gfu\cache\gittrackingstatus.yaml
+      projectPath: Library\gfu\cache\gittrackingstatus.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\gfu\cache\repoinfo.yaml
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\gfu\cache\repoinfo.yaml
+      projectPath: Library\gfu\cache\repoinfo.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\shadercompiler-UnityShaderCompiler.exe0.log
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\shadercompiler-UnityShaderCompiler.exe0.log
+      projectPath: Library\shadercompiler-UnityShaderCompiler.exe0.log
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\shadercompiler-UnityShaderCompiler.exe1.log
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\shadercompiler-UnityShaderCompiler.exe1.log
+      projectPath: Library\shadercompiler-UnityShaderCompiler.exe1.log
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\Library\shadercompiler-UnityShaderCompiler.exe2.log
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\Library\shadercompiler-UnityShaderCompiler.exe2.log
+      projectPath: Library\shadercompiler-UnityShaderCompiler.exe2.log
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: GoGameLogic\obj\Debug\Assembly-CSharp-Editor-firstpass.csprojAssemblyReference.cache
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\obj\Debug\Assembly-CSharp-Editor-firstpass.csprojAssemblyReference.cache
+      projectPath: obj\Debug\Assembly-CSharp-Editor-firstpass.csprojAssemblyReference.cache
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: GoGameLogic\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+      fullPath: C:\Users\Danil\Desktop\Mobile_Game\GameDevProject\GoGameLogic\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+      projectPath: obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
   - commitID: e7e593cbb266c73cf713acd34417843695dec54c
     mergeA: 
     mergeB: 

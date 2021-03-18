@@ -10,6 +10,7 @@ public class LineMovingEnemy : MonoBehaviour
     public GameObject MotionlessEnemyHandler;
     public GameObject PlayerHandler;
     public GameObject KnifeHandler;
+    public GameObject ProjectionBehaviourHandler;
     // public GameObject PlayerHandler;
     private Node NodeFuncs;
     private VerticalLine VerLineFuncs;
@@ -17,6 +18,8 @@ public class LineMovingEnemy : MonoBehaviour
     private MotionlessEnemy MotEnemyFuncs;
     private Player PlayerFuncs;
     private ThrowKnife KnifeFuncs;
+    private ProjectionBehaviour ProjectionBehaviourFuncs;
+    
     //private Player PlayerFuncs;
 
     //  private char XorY;
@@ -170,6 +173,8 @@ public class LineMovingEnemy : MonoBehaviour
     private void DestroyIfClose(GameObject Obj)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject Projection = GameObject.FindGameObjectWithTag("Projection");
+        //Debug.Log(Projection);
        /* Debug.Log(Obj.transform.rotation.eulerAngles.y == 0);
         Debug.Log(Obj.transform.position.x == player.transform.position.x);
         Debug.Log(Obj.transform.position.z + 1 == player.transform.position.z);
@@ -183,6 +188,18 @@ public class LineMovingEnemy : MonoBehaviour
             Destroy(Obj);
         if (CheckifPlayerInfrontofEnemy(player, Obj) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(Obj.transform))
             Application.LoadLevel(0);
+        if (Projection != null)
+        {
+            if (Projection.transform.position.x == Obj.transform.position.x
+                && Projection.transform.position.z == Obj.transform.position.z
+                && (!MotEnemyFuncs.CheckIfFacing(Projection, Obj)))
+                Destroy(Obj);
+            if (CheckifPlayerInfrontofEnemy(Projection, Obj) && !PlayerFuncs.IsThereGate(Obj.transform))
+            {
+                Destroy(Projection);
+                PlayerFuncs.ProjectionActive = false;
+            }
+        }
     }
 
     public void TurnOtherWay(GameObject Obj)
@@ -219,9 +236,11 @@ public class LineMovingEnemy : MonoBehaviour
         //if (ListOfEnemies[j] != null)
         //{
         // Debug.Log(Obj);
+       
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
-            if (!CheckIfThereIsNodeToMove(ListOfEnemies[i]) 
+            //Debug.Log(ListOfEnemies[i]);
+            if (ListOfEnemies[i] == null || !CheckIfThereIsNodeToMove(ListOfEnemies[i]) 
             || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform) 
             || !(HorLineFuncs.CheckIfThereIsLine(ListOfEnemies[i].transform.position, -1, ListOfEnemies[i].transform.position + new Vector3(-1, 0, 0)) 
             || HorLineFuncs.CheckIfThereIsLine(ListOfEnemies[i].transform.position, 1, ListOfEnemies[i].transform.position + new Vector3(1, 0, 0)) 
@@ -266,6 +285,7 @@ public class LineMovingEnemy : MonoBehaviour
                 if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 0 || ListOfEnemies[j].transform.rotation.eulerAngles.y == 180)
                     ListOfEnemies[j].transform.position = new Vector3(ListOfEnemies[j].transform.position.x, ListOfEnemies[j].transform.position.y, Mathf.Round(ListOfEnemies[j].transform.position.z));
                 DestroyIfClose(ListOfEnemies[j]);
+                //Debug.Log("HERE");
             }
         }
                 // Debug.Log(Obj.transform.position);
@@ -275,8 +295,11 @@ public class LineMovingEnemy : MonoBehaviour
                      Obj.transform.position = new Vector3(Obj.transform.position.x, Obj.transform.position.y, Mathf.Round(Obj.transform.position.z));*/
            // }
         //}
-       // Debug.Log("HERE");
+        //Debug.Log("HERE");
         PlayerFuncs.Waiting = false;
+       // Debug.Log(ProjectionBehaviourFuncs);
+        //if (ProjectionBehaviourHandler != null)
+        ProjectionBehaviourFuncs.Waiting = false;
         yield return null;
     }
 
@@ -410,6 +433,7 @@ public class LineMovingEnemy : MonoBehaviour
         MotEnemyFuncs = MotionlessEnemyHandler.GetComponent<MotionlessEnemy>();
         PlayerFuncs = PlayerHandler.GetComponent<Player>();
         KnifeFuncs = KnifeHandler.GetComponent<ThrowKnife>();
+        ProjectionBehaviourFuncs = ProjectionBehaviourHandler.GetComponent<ProjectionBehaviour>();
         //PlayerFuncs = PlayerHandler.GetComponent<Player>();
     }
 

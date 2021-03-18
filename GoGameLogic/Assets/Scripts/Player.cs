@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 	private bool IsMovable = true;
 	private bool IsWaiting = false;
 	private int LightsOffTurns = 0;
+	private bool ProjectionIsActive = false;
 
 	private GameObject FinalNode;
 
@@ -108,6 +109,18 @@ public class Player : MonoBehaviour
         }
 		//if (Hit.collider.ToString == "fence_gate";
 		return false;
+    }
+
+	public bool ProjectionActive
+    {
+		get
+        {
+			return ProjectionIsActive;
+        }
+        set
+        {
+			ProjectionIsActive = value;
+        }
     }
 
 	public int LightOffTurns
@@ -219,7 +232,7 @@ public class Player : MonoBehaviour
 				Application.LoadLevel(0);
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0))
+			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0 || LightOffTurns >= 0))
 			{
 				Destroy(ListOfMovingEnemies[i]);
 				//return;
@@ -272,7 +285,7 @@ public class Player : MonoBehaviour
 				Application.LoadLevel(0);
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0))
+			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0 || LightOffTurns >= 0))
 			{
 				Destroy(ListOfMovingEnemies[i]);
 				SkillReady += 0.5f;
@@ -390,7 +403,7 @@ public class Player : MonoBehaviour
 		Quaternion OldRotation;
 		if (LightOffTurns <= 0 && Light.activeSelf == false)
 			Light.SetActive(true);
-		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
+		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1 && ProjectionIsActive == false)
 		{
 			if (Input.GetKeyDown("a"))
 			{
