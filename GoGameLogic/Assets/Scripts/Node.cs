@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-
+    public GameObject PlayerHandler;
+    private Player PlayerFuncs;
     /*public GameObject playernhandler;
     private Player playern;*/
-    private bool flagGranade = true;
+    //private bool flagGranade = true;
 
-    public void ft_pressed_granade_button()
+    /*public void ft_pressed_granade_button()
     {
         //flagGranade = false;
         if (flagGranade == true)
@@ -24,12 +25,12 @@ public class Node : MonoBehaviour
             flagGranade = true;
         }
         //Debug.Log(flagGranade);
-    }
+    }*/
 
     private void OnMouseDown()
     {
-        Debug.Log(flagGranade);
-        if (flagGranade == false)
+        Debug.Log(PlayerFuncs.IsflagGranade);
+        if (PlayerFuncs.IsflagGranade == false)
         {
             Debug.Log(transform.position.x);
             Debug.Log(transform.position.y);
@@ -37,7 +38,7 @@ public class Node : MonoBehaviour
         }
     }
 
-    public bool IsflagGranade
+    /*public bool IsflagGranade
     {
         get
         {
@@ -47,7 +48,7 @@ public class Node : MonoBehaviour
         {
             flagGranade = value;
         }
-    }
+    }*/
 
     private Node[] GetListOfNodes()
     {
@@ -74,6 +75,7 @@ public class Node : MonoBehaviour
 
     void Start()
     {
+        PlayerFuncs = PlayerHandler.GetComponent<Player>();
         //playern = playernhandler.GetComponent<Player>();
     }
     // Update is called once per frame

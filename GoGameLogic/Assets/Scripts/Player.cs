@@ -19,8 +19,21 @@ public class Player : MonoBehaviour
 	private bool KnifeIsReady = false;
 	private bool IsMovable = true;
 	private bool IsWaiting = false;
+	private bool flagGranade = true;
 
 	private GameObject FinalNode;
+
+	public bool IsflagGranade
+	{
+		get
+		{
+			return flagGranade;
+		}
+		set
+		{
+			flagGranade = value;
+		}
+	}
 
 	//private bool flagGranade = true;
 
