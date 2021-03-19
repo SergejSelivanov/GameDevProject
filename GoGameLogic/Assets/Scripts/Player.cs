@@ -22,6 +22,33 @@ public class Player : MonoBehaviour
 
 	private GameObject FinalNode;
 
+	//private bool flagGranade = true;
+
+	/*public void ft_pressed_granade_button()
+    {
+		if (flagGranade == true)
+        {
+			Time.timeScale = 0;
+			flagGranade = false;
+        }
+		else if (flagGranade == false)
+        {
+			Time.timeScale = 1;
+			flagGranade = true;
+		}
+    }*/
+
+	/*public bool IsflagGranade
+	{
+		get
+		{
+			return flagGranade;
+		}
+		set
+		{
+			flagGranade = value;
+		}
+	}*/
 	//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
 	//public bool IsMoving = false;
 
