@@ -64,19 +64,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\LevelSelector.cs" />
-    <Compile Include="Assets\LightOff.cs" />
-    <Compile Include="Assets\PlayerMapMovement.cs" />
-    <Compile Include="Assets\Projection.cs" />
-    <Compile Include="Assets\ProjectionBehaviour.cs" />
     <Compile Include="Assets\Scripts\HorizontalLine.cs" />
     <Compile Include="Assets\Scripts\InvisibilityButton.cs" />
+    <Compile Include="Assets\Scripts\LevelSelector.cs" />
     <Compile Include="Assets\Scripts\Lever.cs" />
+    <Compile Include="Assets\Scripts\LightOff.cs" />
     <Compile Include="Assets\Scripts\LineMovingEnemy.cs" />
+    <Compile Include="Assets\Scripts\LineMovingEnemyAnim.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\MotionlessEnemy.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\PlayerMapMovement.cs" />
+    <Compile Include="Assets\Scripts\Projection.cs" />
+    <Compile Include="Assets\Scripts\ProjectionBehaviour.cs" />
     <Compile Include="Assets\Scripts\Settings.cs" />
     <Compile Include="Assets\Scripts\ThrowKnife.cs" />
     <Compile Include="Assets\Scripts\VerticalLine.cs" />

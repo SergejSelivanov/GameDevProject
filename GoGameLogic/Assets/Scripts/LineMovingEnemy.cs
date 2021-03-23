@@ -19,6 +19,8 @@ public class LineMovingEnemy : MonoBehaviour
     private Player PlayerFuncs;
     private ThrowKnife KnifeFuncs;
     private ProjectionBehaviour ProjectionBehaviourFuncs;
+
+    private Animator animator;
     
     //private Player PlayerFuncs;
 
@@ -239,7 +241,7 @@ public class LineMovingEnemy : MonoBehaviour
         //if (ListOfEnemies[j] != null)
         //{
         // Debug.Log(Obj);
-       
+        //animator.SetBool("IsRunning", true);
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
             //Debug.Log(ListOfEnemies[i]);
@@ -266,6 +268,13 @@ public class LineMovingEnemy : MonoBehaviour
             {
                 if (ListOfEnemies[j] != null)
                 {
+                    //animator.SetBool("IsRunning", true);
+                    //Debug.Log(animator.GetBool("IsRunning"));
+                    // animator.SetBool("IsRunning", false);
+                    //animator.SetTrigger("IsRunning");
+                    //Debug.Log("LOL");
+                    //animator.SetBool("IsRunning", false);
+                    ListOfEnemies[j].GetComponent<Animator>().SetBool("IsRunning", true);
                     if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 0)
                         ListOfEnemies[j].transform.position += new Vector3(0, 0, 0.2f);
                     if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 90)
@@ -278,11 +287,15 @@ public class LineMovingEnemy : MonoBehaviour
             }
             yield return new WaitForSeconds(0.1f);
         }
+        /*Debug.Log(animator.GetBool("IsRunning"));
+        animator.SetBool("IsRunning", false);
+        Debug.Log(animator.GetBool("IsRunning"));*/
         // Debug.Log(XorY);
         for (int j = 0; j < ListOfEnemies.Length; j++)
         {
             if (ListOfEnemies[j] != null)
             {
+                ListOfEnemies[j].GetComponent<Animator>().SetBool("IsRunning", false);
                 if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 270 || ListOfEnemies[j].transform.rotation.eulerAngles.y == 90)
                     ListOfEnemies[j].transform.position = new Vector3(Mathf.Round(ListOfEnemies[j].transform.position.x), ListOfEnemies[j].transform.position.y, ListOfEnemies[j].transform.position.z);
                 if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 0 || ListOfEnemies[j].transform.rotation.eulerAngles.y == 180)
@@ -320,6 +333,8 @@ public class LineMovingEnemy : MonoBehaviour
                 //Debug.Log(Obj);
                 Obj.transform.position += new Vector3(0, 0, 0.2f * increment);
             }*/
+           // animator.SetBool("IsRunning", true);
+           // Debug.Log(animator.GetNextAnimatorStateInfo(1));
             if (Obj.transform.rotation.eulerAngles.y == 0)
                 Obj.transform.position += new Vector3(0, 0, 0.2f);
             if (Obj.transform.rotation.eulerAngles.y == 90)
@@ -328,8 +343,10 @@ public class LineMovingEnemy : MonoBehaviour
                 Obj.transform.position += new Vector3(0, 0, -0.2f);
             if (Obj.transform.rotation.eulerAngles.y == 270)
                 Obj.transform.position += new Vector3(-0.2f , 0,0);
+            //animator.SetBool("IsRunning", false);
             yield return new WaitForSeconds(0.1f);
         }
+        //animator.SetBool("IsRunning", false);
         // Debug.Log(XorY);
         if (Obj.transform.rotation.eulerAngles.y == 270 || Obj.transform.rotation.eulerAngles.y == 90)
             Obj.transform.position = new Vector3(Mathf.Round(Obj.transform.position.x), Obj.transform.position.y, Obj.transform.position.z);
@@ -437,6 +454,7 @@ public class LineMovingEnemy : MonoBehaviour
         PlayerFuncs = PlayerHandler.GetComponent<Player>();
         KnifeFuncs = KnifeHandler.GetComponent<ThrowKnife>();
         ProjectionBehaviourFuncs = ProjectionBehaviourHandler.GetComponent<ProjectionBehaviour>();
+        animator = GetComponent<Animator>();
         //PlayerFuncs = PlayerHandler.GetComponent<Player>();
     }
 
