@@ -13,27 +13,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 2
-  lastUpdatedAtString: 2021-03-30T20:11:30.249+03:00
-  initializedAtString: 2021-03-30T13:23:23.235+03:00
-  localBranches:
-  - name: Danil
-    tracking: origin/Danil
-  - name: main
-    tracking: origin/main
-  - name: Sergej
-    tracking: origin/Sergej
-  - name: Wjena
-    tracking: origin/Wjena
+  lastUpdatedAtString: 2021-03-30T21:34:36.737+03:00
+  initializedAtString: 2021-03-30T20:31:33.225+03:00
+  localBranches: []
   remoteBranches:
   - name: origin/Danil
     tracking: '[None]'
   - name: origin/HEAD
-    tracking: '[None]'
-  - name: origin/main
-    tracking: '[None]'
-  - name: origin/Sergej
-    tracking: '[None]'
-  - name: origin/Wjena
     tracking: '[None]'
   remotes:
   - name: origin
@@ -44,32 +30,8 @@ MonoBehaviour:
     function: 0
     token: 
   localConfigBranches:
-    keys:
-    - Danil
-    - main
-    - Sergej
-    - Wjena
-    values:
-    - name: Danil
-      remote:
-        name: origin
-        url: https://github.com/SergejSelivanov/GameDevProject.git
-      trackingBranch: Danil
-    - name: main
-      remote:
-        name: origin
-        url: https://github.com/SergejSelivanov/GameDevProject.git
-      trackingBranch: main
-    - name: Sergej
-      remote:
-        name: origin
-        url: https://github.com/SergejSelivanov/GameDevProject.git
-      trackingBranch: Sergej
-    - name: Wjena
-      remote:
-        name: origin
-        url: https://github.com/SergejSelivanov/GameDevProject.git
-      trackingBranch: Wjena
+    keys: []
+    values: []
   remoteConfigBranches:
     keys:
     - origin
@@ -77,9 +39,6 @@ MonoBehaviour:
     - Values:
       - Danil
       - HEAD
-      - main
-      - Sergej
-      - Wjena
     subKeyValues:
     - Values:
       - name: Danil
@@ -88,21 +47,6 @@ MonoBehaviour:
           url: https://github.com/SergejSelivanov/GameDevProject.git
         trackingBranch: 
       - name: HEAD
-        remote:
-          name: origin
-          url: https://github.com/SergejSelivanov/GameDevProject.git
-        trackingBranch: 
-      - name: main
-        remote:
-          name: origin
-          url: https://github.com/SergejSelivanov/GameDevProject.git
-        trackingBranch: 
-      - name: Sergej
-        remote:
-          name: origin
-          url: https://github.com/SergejSelivanov/GameDevProject.git
-        trackingBranch: 
-      - name: Wjena
         remote:
           name: origin
           url: https://github.com/SergejSelivanov/GameDevProject.git

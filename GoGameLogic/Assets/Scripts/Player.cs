@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 	private bool ProjectionIsActive = false;
 
 	private GameObject FinalNode;
+	public GameObject EnemyTokill;
 
 	//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
 	//public bool IsMoving = false;
@@ -287,7 +288,10 @@ public class Player : MonoBehaviour
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
 			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0 || LightOffTurns >= 0))
 			{
-				Destroy(ListOfMovingEnemies[i]);
+				//animator
+				ListOfMovingEnemies[i].GetComponent<Animator>().SetBool("IsDead", true);
+				EnemyTokill = ListOfMovingEnemies[i];
+				//Destroy(ListOfMovingEnemies[i]);
 				SkillReady += 0.5f;
 				if (SkillReady > 1)
 					SkillReady = 1;
