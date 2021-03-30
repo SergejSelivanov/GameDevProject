@@ -235,6 +235,7 @@ public class LineMovingEnemy : MonoBehaviour
 
     public IEnumerator LineMovingEnemyWalk2(GameObject[] ListOfEnemies)
     {
+        Transform[] ListOfTransforms = new Transform[ListOfEnemies.Length];
         //for (int j = 0; j < ListOfEnemies.Length; j++)
         // {
         //Debug.Log(PlayerFuncs.Waiting);
@@ -244,6 +245,7 @@ public class LineMovingEnemy : MonoBehaviour
         //animator.SetBool("IsRunning", true);
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
+            
             //Debug.Log(ListOfEnemies[i]);
             if (ListOfEnemies[i] == null || !CheckIfThereIsNodeToMove(ListOfEnemies[i]) 
             || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform) 
@@ -253,7 +255,14 @@ public class LineMovingEnemy : MonoBehaviour
             || VerLineFuncs.CheckIfThereIsLine(ListOfEnemies[i].transform.position, -1, ListOfEnemies[i].transform.position + new Vector3(0, 0, -1))))
                 ListOfEnemies[i] = null;
         }
-        for (float i = 0; i < 1; i += 0.2f)
+        for (int i = 0; i < ListOfEnemies.Length; i++)
+        {
+            if (ListOfEnemies[i] != null)
+                ListOfTransforms[i] = ListOfEnemies[i].transform;
+            else
+                ListOfTransforms[i] = null;
+        }
+        for (float i = 0; i < 1; i += 0.01f)
         {
             /*if (XorY == 'x')
             {
@@ -268,24 +277,35 @@ public class LineMovingEnemy : MonoBehaviour
             {
                 if (ListOfEnemies[j] != null)
                 {
+                    ListOfEnemies[j].GetComponent<Animator>().SetBool("IsRunning", true);
                     //animator.SetBool("IsRunning", true);
                     //Debug.Log(animator.GetBool("IsRunning"));
                     // animator.SetBool("IsRunning", false);
                     //animator.SetTrigger("IsRunning");
                     //Debug.Log("LOL");
                     //animator.SetBool("IsRunning", false);
-                    ListOfEnemies[j].GetComponent<Animator>().SetBool("IsRunning", true);
-                    if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 0)
-                        ListOfEnemies[j].transform.position += new Vector3(0, 0, 0.2f);
+                    // ListOfEnemies[j].GetComponent<Animator>().SetBool("IsRunning", true);
+                    /* ListOfEnemies[j].GetComponent<Animator>().SetTarget(AvatarTarget.Root, 1.0f);
+                     ListOfEnemies[j].GetComponent<Animator>().Update(0);
+                     ListOfEnemies[j].transform.position = animator.targetPosition;*/
+                    //ListOfEnemies[j].GetComponent<Animation>()["mixamo_com"].speed = 1f;
+                    //if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 0)
+                    if (ListOfTransforms[j].rotation.eulerAngles.y == 0)
+                    {
+                         ListOfEnemies[j].transform.position += new Vector3(0, 0, 0.01f);
+                      //  Debug.Log(i);
+                       // ListOfEnemies[j].transform.position = new Vector3(ListOfTransforms[j].position.x, ListOfTransforms[j].position.y, ListOfTransforms[j].position.z + i / 2);
+                     //   ListOfEnemies[j].transform.rotation = Quaternion.Euler(0, ListOfTransforms[j].rotation.y, 0);
+                    }
                     if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 90)
-                        ListOfEnemies[j].transform.position += new Vector3(0.2f, 0, 0);
+                        ListOfEnemies[j].transform.position += new Vector3(0.01f, 0, 0);
                     if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 180)
-                        ListOfEnemies[j].transform.position += new Vector3(0, 0, -0.2f);
+                        ListOfEnemies[j].transform.position += new Vector3(0, 0, -0.01f);
                     if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 270)
-                        ListOfEnemies[j].transform.position += new Vector3(-0.2f, 0, 0);
+                        ListOfEnemies[j].transform.position += new Vector3(-0.01f, 0, 0);
                 }
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.01f);
         }
         /*Debug.Log(animator.GetBool("IsRunning"));
         animator.SetBool("IsRunning", false);
@@ -296,6 +316,13 @@ public class LineMovingEnemy : MonoBehaviour
             if (ListOfEnemies[j] != null)
             {
                 ListOfEnemies[j].GetComponent<Animator>().SetBool("IsRunning", false);
+
+                // Debug.Log(ListOfEnemies[j].GetComponent<Animator>().Ge);
+                //  ListOfEnemies[j].GetComponent<Animation>()["mixamo_com"].speed = 0f;
+                //ListOfEnemies[j].GetComponent<Animator>().["mixamo_com"].speed = 0;
+                // ListOfEnemies[j].GetComponent<Animator>().
+                //animator["mixamo_com"].speed = 0f;
+                //ListOfEnemies[j].transform.rotation = Quaternion.Euler(0, ListOfTransforms[j].rotation.y, 0);
                 if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 270 || ListOfEnemies[j].transform.rotation.eulerAngles.y == 90)
                     ListOfEnemies[j].transform.position = new Vector3(Mathf.Round(ListOfEnemies[j].transform.position.x), ListOfEnemies[j].transform.position.y, ListOfEnemies[j].transform.position.z);
                 if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 0 || ListOfEnemies[j].transform.rotation.eulerAngles.y == 180)
