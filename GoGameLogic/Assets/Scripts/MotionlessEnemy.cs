@@ -75,6 +75,14 @@ public class MotionlessEnemy : MonoBehaviour
 		Debug.Log(Enemy.transform.position.z);
 		Debug.Log("player:");
 		Debug.Log(player.transform.position.z);*/
+		/*if (Enemy.transform.rotation.eulerAngles.y == 90)
+		{
+			//Debug.Log(Enemy.transform.rotation.eulerAngles.y == 90);
+			Debug.Log(Enemy.transform.position.z == player.transform.position.z);
+			Debug.Log(Enemy.transform.position.x + 1 == player.transform.position.x);
+			Debug.Log(HorLineFuncs.CheckIfThereIsLine(Enemy.transform.position, 1, Enemy.transform.position + new Vector3(1, 0, 0)));
+		}*/
+		//Debug.Log(player.transform.position);
 		if (Enemy.transform.rotation.eulerAngles.y == 0
 		&& Enemy.transform.position.x == player.transform.position.x
 		&& Enemy.transform.position.z + 1 == player.transform.position.z
@@ -137,16 +145,37 @@ public class MotionlessEnemy : MonoBehaviour
 	{
 		//Transform PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 		//Debug.Log(PlayerFuncs.Invisible);
+		GameObject projection = GameObject.FindGameObjectWithTag("Projection");
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		if (transform.position.x == player.transform.position.x
 		&& transform.position.z == player.transform.position.z
-		&& (!CheckIfFacing(player) || PlayerFuncs.Invisible >= 0))
+		&& (!CheckIfFacing(player) || PlayerFuncs.Invisible >= 0 || PlayerFuncs.LightOffTurns >= 0))
 		{
-			Destroy(gameObject);
+			//Destroy(gameObject);
+			gameObject.GetComponent<Animator>().SetBool("IsDead", true);
+			PlayerFuncs.EnemyTokill = gameObject;
 			PlayerFuncs.SkillSetter += 0.5f;
 			//Debug.Log(PlayerFuncs.SkillSetter);
 		}
-		if (CheckifPlayerInfrontofEnemy(player) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform))
+		if (CheckifPlayerInfrontofEnemy(player) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
 			Application.LoadLevel(0);
+		if (projection != null)
+		{
+			if (transform.position.x == projection.transform.position.x
+			&& transform.position.z == projection.transform.position.z
+			&& (!CheckIfFacing(projection) || PlayerFuncs.LightOffTurns >= 0))
+			{
+				//Destroy(gameObject);
+				gameObject.GetComponent<Animator>().SetBool("IsDead", true);
+				PlayerFuncs.EnemyTokill = gameObject;
+				PlayerFuncs.SkillSetter += 0.5f;
+				//Debug.Log(PlayerFuncs.SkillSetter);
+			}
+			if (CheckifPlayerInfrontofEnemy(projection) && !PlayerFuncs.IsThereGate(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
+			{
+				PlayerFuncs.ProjectionActive = false;
+				projection.SetActive(false);
+			}
+		}
 	}
 }

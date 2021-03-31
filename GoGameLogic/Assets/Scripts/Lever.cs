@@ -21,7 +21,10 @@ public class Lever : MonoBehaviour
 
     private void OnMouseDown()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player;
+        player = GameObject.FindGameObjectWithTag("Projection");
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player");
         /* GameObject[] AllGates = GameObject.FindGameObjectsWithTag("Gate");
          for (int i = 0; i < AllGates.Length; i++)
          {

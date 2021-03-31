@@ -1500,7 +1500,7 @@ Animator:
   m_GameObject: {fileID: 3122096983856569373}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c7b68b4319c8eb841972625ac9d251a6, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 68d51487eb5e66544928ce7929694763, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1527,12 +1527,10 @@ MonoBehaviour:
     type: 3}
   HorLineHandler: {fileID: 1412714778785145504, guid: f57651a598f055047891371001ff6990,
     type: 3}
-  MotionlessEnemyHandler: {fileID: 2711178150110194614, guid: 58bb773abc024724ca6bfccffe052f8b,
-    type: 3}
-  PlayerHandler: {fileID: 5566531523406394677, guid: 0ce728a5c7b35a146a93e57637250078,
-    type: 3}
-  KnifeHandler: {fileID: 4702589689684980890, guid: b27213c2deecb9f41adc6734a055e3b6,
-    type: 3}
+  MotionlessEnemyHandler: {fileID: 0}
+  PlayerHandler: {fileID: 0}
+  KnifeHandler: {fileID: 0}
+  ProjectionBehaviourHandler: {fileID: 0}
 --- !u!65 &-4874846905694925802
 BoxCollider:
   m_ObjectHideFlags: 0
