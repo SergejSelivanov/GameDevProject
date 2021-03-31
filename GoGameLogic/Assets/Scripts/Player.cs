@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 	public GameObject LineMovingEnemyHandler;
 	public GameObject MotionlessEnemyHandler;
 	public GameObject Light;
+	//public GameObject animator;
 	private Node NodeFuncs;
 	private VerticalLine VerLineFuncs;
 	private HorizontalLine HorLineFuncs;
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
 
 	private GameObject FinalNode;
 	public GameObject EnemyTokill;
-
+	//private Animator animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
 	//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
 	//public bool IsMoving = false;
 
@@ -311,11 +312,15 @@ public class Player : MonoBehaviour
 	IEnumerator WalkLeft()
 	{
 		GameObject[] ListOfEnemies;
-		for (float i = 0; i < 1; i += 0.2f)
+		//animator.SetBool("IsRunning", true);
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+		for (float i = 0; i < 1; i += 0.01f)
 		{
-			transform.position += new Vector3(-0.2f, 0, 0);
-			yield return new WaitForSeconds(0.1f);
+			transform.position += new Vector3(-0.01f, 0, 0);
+			yield return new WaitForSeconds(0.01f);
 		}
+		//animator.SetBool("IsRunning", false);
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
 		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, transform.position.z);
 		//MoveEnemies();
 		ListOfEnemies = CheckEnemies();
@@ -331,11 +336,13 @@ public class Player : MonoBehaviour
 	IEnumerator WalkRight()
     {
 		GameObject[] ListOfEnemies;
-		for (float i = 0;  i < 1; i += 0.2f)
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+		for (float i = 0;  i < 1; i += 0.01f)
         {
-			transform.position += new Vector3(0.2f, 0, 0);
-			yield return new WaitForSeconds(0.1f);
+			transform.position += new Vector3(0.01f, 0, 0);
+			yield return new WaitForSeconds(0.01f);
         }
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
 		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, transform.position.z);
 		//MoveEnemies();
 		ListOfEnemies = CheckEnemies();
@@ -350,11 +357,13 @@ public class Player : MonoBehaviour
 	IEnumerator WalkUp()
 	{
 		GameObject[] ListOfEnemies;
-		for (float i = 0; i < 1; i += 0.2f)
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+		for (float i = 0; i < 1; i += 0.01f)
 		{
-			transform.position += new Vector3(0, 0, 0.2f);
-			yield return new WaitForSeconds(0.1f);
+			transform.position += new Vector3(0, 0, 0.01f);
+			yield return new WaitForSeconds(0.01f);
 		}
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
 		transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
 		//MoveEnemies();
 		//IsMoving = false;
@@ -371,11 +380,13 @@ public class Player : MonoBehaviour
 	IEnumerator WalkDown()
 	{
 		GameObject[] ListOfEnemies;
-		for (float i = 0; i < 1; i += 0.2f)
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+		for (float i = 0; i < 1; i += 0.01f)
 		{
-			transform.position += new Vector3(0, 0, -0.2f);
-			yield return new WaitForSeconds(0.1f);
+			transform.position += new Vector3(0, 0, -0.01f);
+			yield return new WaitForSeconds(0.01f);
 		}
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
 		transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
 		//MoveEnemies();
 		//yield return null;
@@ -404,11 +415,15 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		//Debug.Log(gameObject);
 		Quaternion OldRotation;
 		if (LightOffTurns <= 0 && Light.activeSelf == false)
 			Light.SetActive(true);
+		//Debug.Log(IsMovable);
+		//Debug.Log(IsWaiting);
 		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1 && ProjectionIsActive == false)
 		{
+			//Debug.Log("aa");
 			if (Input.GetKeyDown("a"))
 			{
 				//transform.position = FinalPos;

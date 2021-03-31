@@ -151,7 +151,9 @@ public class MotionlessEnemy : MonoBehaviour
 		&& transform.position.z == player.transform.position.z
 		&& (!CheckIfFacing(player) || PlayerFuncs.Invisible >= 0 || PlayerFuncs.LightOffTurns >= 0))
 		{
-			Destroy(gameObject);
+			//Destroy(gameObject);
+			gameObject.GetComponent<Animator>().SetBool("IsDead", true);
+			PlayerFuncs.EnemyTokill = gameObject;
 			PlayerFuncs.SkillSetter += 0.5f;
 			//Debug.Log(PlayerFuncs.SkillSetter);
 		}
@@ -163,7 +165,9 @@ public class MotionlessEnemy : MonoBehaviour
 			&& transform.position.z == projection.transform.position.z
 			&& (!CheckIfFacing(projection) || PlayerFuncs.LightOffTurns >= 0))
 			{
-				Destroy(gameObject);
+				//Destroy(gameObject);
+				gameObject.GetComponent<Animator>().SetBool("IsDead", true);
+				PlayerFuncs.EnemyTokill = gameObject;
 				PlayerFuncs.SkillSetter += 0.5f;
 				//Debug.Log(PlayerFuncs.SkillSetter);
 			}
