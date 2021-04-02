@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 	private bool IsWaiting = false;
 	private int LightsOffTurns = 0;
 	private bool ProjectionIsActive = false;
+	private bool FlagGranade = false;
 
 	private GameObject FinalNode;
 	public GameObject EnemyTokill;
@@ -123,6 +124,17 @@ public class Player : MonoBehaviour
         set
         {
 			ProjectionIsActive = value;
+        }
+    }
+	public bool IsflagGranade
+    {
+		get
+        {
+			return FlagGranade;
+        }
+        set
+        {
+			FlagGranade = value;
         }
     }
 
