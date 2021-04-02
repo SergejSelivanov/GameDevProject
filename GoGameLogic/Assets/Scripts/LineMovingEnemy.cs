@@ -342,7 +342,7 @@ public class LineMovingEnemy : MonoBehaviour
         PlayerFuncs.Waiting = false;
        // Debug.Log(ProjectionBehaviourFuncs);
         //if (ProjectionBehaviourHandler != null)
-        ProjectionBehaviourFuncs.Waiting = false;
+        //ProjectionBehaviourFuncs.Waiting = false;
         yield return null;
     }
 
