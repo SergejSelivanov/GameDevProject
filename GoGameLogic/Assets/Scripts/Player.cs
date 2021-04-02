@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
 
 	private GameObject FinalNode;
 	public GameObject EnemyTokill;
+	//тестрнг
 	//private Animator animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
 	//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
 	//public bool IsMoving = false;
