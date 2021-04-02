@@ -22,6 +22,12 @@ public class Player : MonoBehaviour
 	private bool flagGranade = true;
 
 	private GameObject FinalNode;
+	public GameObject Light;
+
+	private int LightsOffTurns = 0;
+	private bool ProjectionIsActive = false;
+
+	public GameObject EnemyTokill;
 
 	public bool IsflagGranade
 	{
@@ -34,6 +40,8 @@ public class Player : MonoBehaviour
 			flagGranade = value;
 		}
 	}
+
+
 
 	//private bool flagGranade = true;
 
@@ -147,6 +155,31 @@ public class Player : MonoBehaviour
 		//if (Hit.collider.ToString == "fence_gate";
 		return false;
     }
+
+	public bool ProjectionActive
+	{
+		get
+		{
+			return ProjectionIsActive;
+		}
+		set
+		{
+			ProjectionIsActive = value;
+		}
+	}
+
+	public int LightOffTurns
+	{
+		get
+		{
+			return LightsOffTurns;
+		}
+		set
+		{
+			LightsOffTurns = value;
+		}
+	}
+
 
 	public bool Waiting
     {
@@ -298,7 +331,9 @@ public class Player : MonoBehaviour
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
 			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0))
 			{
-				Destroy(ListOfMovingEnemies[i]);
+				//Destroy(ListOfMovingEnemies[i]);
+				ListOfMovingEnemies[i].GetComponent<Animator>().SetBool("IsDead", true);
+				EnemyTokill = ListOfMovingEnemies[i];
 				SkillReady += 0.5f;
 				if (SkillReady > 1)
 					SkillReady = 1;
@@ -317,11 +352,13 @@ public class Player : MonoBehaviour
 	IEnumerator WalkLeft()
 	{
 		GameObject[] ListOfEnemies;
-		for (float i = 0; i < 1; i += 0.2f)
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+		for (float i = 0; i < 1; i += 0.01f)
 		{
-			transform.position += new Vector3(-0.2f, 0, 0);
-			yield return new WaitForSeconds(0.1f);
+			transform.position += new Vector3(-0.01f, 0, 0);
+			yield return new WaitForSeconds(0.01f);
 		}
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
 		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, transform.position.z);
 		//MoveEnemies();
 		ListOfEnemies = CheckEnemies();
@@ -334,11 +371,13 @@ public class Player : MonoBehaviour
 	IEnumerator WalkRight()
     {
 		GameObject[] ListOfEnemies;
-		for (float i = 0;  i < 1; i += 0.2f)
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+		for (float i = 0;  i < 1; i += 0.01f)
         {
-			transform.position += new Vector3(0.2f, 0, 0);
-			yield return new WaitForSeconds(0.1f);
+			transform.position += new Vector3(0.01f, 0, 0);
+			yield return new WaitForSeconds(0.01f);
         }
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
 		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, transform.position.z);
 		//MoveEnemies();
 		ListOfEnemies = CheckEnemies();
@@ -350,11 +389,13 @@ public class Player : MonoBehaviour
 	IEnumerator WalkUp()
 	{
 		GameObject[] ListOfEnemies;
-		for (float i = 0; i < 1; i += 0.2f)
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+		for (float i = 0; i < 1; i += 0.01f)
 		{
-			transform.position += new Vector3(0, 0, 0.2f);
-			yield return new WaitForSeconds(0.1f);
+			transform.position += new Vector3(0, 0, 0.01f);
+			yield return new WaitForSeconds(0.01f);
 		}
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
 		transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
 		//MoveEnemies();
 		//IsMoving = false;
@@ -368,11 +409,13 @@ public class Player : MonoBehaviour
 	IEnumerator WalkDown()
 	{
 		GameObject[] ListOfEnemies;
-		for (float i = 0; i < 1; i += 0.2f)
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+		for (float i = 0; i < 1; i += 0.01f)
 		{
-			transform.position += new Vector3(0, 0, -0.2f);
-			yield return new WaitForSeconds(0.1f);
+			transform.position += new Vector3(0, 0, -0.01f);
+			yield return new WaitForSeconds(0.01f);
 		}
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
 		transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
 		//MoveEnemies();
 		//yield return null;
@@ -399,7 +442,9 @@ public class Player : MonoBehaviour
 	void Update()
 	{
 		Quaternion OldRotation;
-		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
+		if (LightOffTurns <= 0 && Light.activeSelf == false)
+			Light.SetActive(true);
+		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1 && ProjectionIsActive == false)
 		{
 			if (Input.GetKeyDown("a"))
 			{

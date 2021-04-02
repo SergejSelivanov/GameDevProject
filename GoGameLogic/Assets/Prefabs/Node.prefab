@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3389813451647896162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.01, z: 0.3}
+  m_LocalScale: {x: 0.1, y: 0.01, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -106,12 +106,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa541b5d8c9f36c4e92b2cd0c14fff1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerHandler: {fileID: 5566531523406394677, guid: 0ce728a5c7b35a146a93e57637250078,
+  PlayerHandler: {fileID: 3236470547125099135, guid: 276f4f792cdefe044aba32c0a87dd66c,
     type: 3}
   VerticalLineHandler: {fileID: 3909374896005532709, guid: 3fddd55953aa61d4281610c5e603d31e,
     type: 3}
   HorizontalLineHandler: {fileID: 1412714778785145504, guid: f57651a598f055047891371001ff6990,
     type: 3}
-  ButtonUI: {fileID: 8343843745923862726, guid: ef9b8bf2fff8fcd4e8765a7ff971c171,
+  ButtonUI: {fileID: 7847085773168176356, guid: 596e7acb8d8eb724a8bd69a702aca00c,
     type: 3}
   distance: 3

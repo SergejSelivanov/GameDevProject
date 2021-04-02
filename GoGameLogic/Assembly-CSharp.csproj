@@ -64,21 +64,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\LevelSelector.cs" />
-    <Compile Include="Assets\PlayerMapMovement.cs" />
     <Compile Include="Assets\Scripts\HorizontalLine.cs" />
     <Compile Include="Assets\Scripts\InvisibilityButton.cs" />
+    <Compile Include="Assets\Scripts\LevelSelector.cs" />
     <Compile Include="Assets\Scripts\Lever.cs" />
+    <Compile Include="Assets\Scripts\LightOff.cs" />
     <Compile Include="Assets\Scripts\LineMovingEnemy.cs" />
+    <Compile Include="Assets\Scripts\LineMovingEnemyAnim.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\MotionlessEnemy.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\PlayerMapMovement.cs" />
+    <Compile Include="Assets\Scripts\Projection.cs" />
+    <Compile Include="Assets\Scripts\ProjectionBehaviour.cs" />
     <Compile Include="Assets\Scripts\Settings.cs" />
     <Compile Include="Assets\Scripts\ThrowKnife.cs" />
     <Compile Include="Assets\Scripts\VerticalLine.cs" />
     <Compile Include="Assets\Scripts\Wjena\GranadeButton.cs" />
     <Compile Include="Assets\Scripts\Wjena\SkillPickUp.cs" />
+    <Compile Include="Assets\Smth.cs" />
+    <None Include="Assets\PolygonSciFiCity\Shaders\Polygon_Triplanar.shader" />
+    <None Include="Assets\PolygonSciFiCity\Shaders\Polygon_UVScroll.shader" />
     <Reference Include="UnityEngine">
       <HintPath>E:/Projects on unity/2019.4.20f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
