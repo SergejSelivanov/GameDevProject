@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
 	public GameObject HorLineHandler;
 	public GameObject LineMovingEnemyHandler;
 	public GameObject MotionlessEnemyHandler;
+	public GameObject Light;
+	//public GameObject animator;
 	private Node NodeFuncs;
 	private VerticalLine VerLineFuncs;
 	private HorizontalLine HorLineFuncs;
@@ -19,57 +21,12 @@ public class Player : MonoBehaviour
 	private bool KnifeIsReady = false;
 	private bool IsMovable = true;
 	private bool IsWaiting = false;
-	private bool flagGranade = true;
-
-	private GameObject FinalNode;
-	public GameObject Light;
-
 	private int LightsOffTurns = 0;
 	private bool ProjectionIsActive = false;
 
+	private GameObject FinalNode;
 	public GameObject EnemyTokill;
-
-	public bool IsflagGranade
-	{
-		get
-		{
-			return flagGranade;
-		}
-		set
-		{
-			flagGranade = value;
-		}
-	}
-
-
-
-	//private bool flagGranade = true;
-
-	/*public void ft_pressed_granade_button()
-    {
-		if (flagGranade == true)
-        {
-			Time.timeScale = 0;
-			flagGranade = false;
-        }
-		else if (flagGranade == false)
-        {
-			Time.timeScale = 1;
-			flagGranade = true;
-		}
-    }*/
-
-	/*public bool IsflagGranade
-	{
-		get
-		{
-			return flagGranade;
-		}
-		set
-		{
-			flagGranade = value;
-		}
-	}*/
+	//private Animator animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
 	//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
 	//public bool IsMoving = false;
 
@@ -97,6 +54,7 @@ public class Player : MonoBehaviour
 				Application.LoadLevel(0);
 		}
 	}*/
+
 
 	public bool IsThereGate(Transform ObjCoord)
     {
@@ -157,16 +115,16 @@ public class Player : MonoBehaviour
     }
 
 	public bool ProjectionActive
-	{
+    {
 		get
-		{
+        {
 			return ProjectionIsActive;
-		}
-		set
-		{
+        }
+        set
+        {
 			ProjectionIsActive = value;
-		}
-	}
+        }
+    }
 
 	public int LightOffTurns
 	{
@@ -179,7 +137,6 @@ public class Player : MonoBehaviour
 			LightsOffTurns = value;
 		}
 	}
-
 
 	public bool Waiting
     {
@@ -278,7 +235,7 @@ public class Player : MonoBehaviour
 				Application.LoadLevel(0);
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0))
+			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0 || LightOffTurns >= 0))
 			{
 				Destroy(ListOfMovingEnemies[i]);
 				//return;
@@ -303,7 +260,9 @@ public class Player : MonoBehaviour
 				Application.LoadLevel(0);*/
 		}
 		InvisibleSteps--;
-    }
+		//LightsOffTurns--;
+
+	}
 
 	public bool CheckIfThereIsMotEnemy(GameObject Obj)
     {
@@ -325,15 +284,16 @@ public class Player : MonoBehaviour
 			//Debug.Log(ListOfMovingEnemies[i].transform);
 			if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]) || IsThereGate(ListOfMovingEnemies[i].transform) || CheckIfThereIsMotEnemy(ListOfMovingEnemies[i]))
 				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0 && !IsThereGate(ListOfMovingEnemies[i].transform))
+			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0 && !IsThereGate(ListOfMovingEnemies[i].transform) && LightOffTurns <= 0)
 				Application.LoadLevel(0);
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0))
+			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0 || LightOffTurns >= 0))
 			{
-				//Destroy(ListOfMovingEnemies[i]);
+				//animator
 				ListOfMovingEnemies[i].GetComponent<Animator>().SetBool("IsDead", true);
 				EnemyTokill = ListOfMovingEnemies[i];
+				//Destroy(ListOfMovingEnemies[i]);
 				SkillReady += 0.5f;
 				if (SkillReady > 1)
 					SkillReady = 1;
@@ -345,25 +305,246 @@ public class Player : MonoBehaviour
 				//LineMovingEnemyFuncs.LineMovingEnemyMove(ListOfMovingEnemies[i]);
 		}
 		InvisibleSteps--;
+		LightsOffTurns--;
 		//IsWaiting = true;
 		return RetArray;
 	}
 
+	IEnumerator Rotate(int RequiredAngle)
+    {
+		int playerangle = (int)gameObject.transform.rotation.eulerAngles.y;
+		int Diff = playerangle - RequiredAngle;
+		if (playerangle == 0)
+        {
+			if (RequiredAngle == 0)
+			{
+				StartCoroutine("WalkUp");
+				yield return null;
+			}
+			if (RequiredAngle == 90)
+            {
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 1);
+                for (int i = 0; i < 30; i++)
+                {
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 3, 0);
+					yield return new WaitForSeconds(0.0333f);
+                }
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+				StartCoroutine("WalkRight");
+				yield return null;
+			}
+			if (RequiredAngle == 180)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 3);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 6, 0);
+					yield return new WaitForSeconds(0.0333f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+				StartCoroutine("WalkDown");
+				yield return null;
+			}
+			if (RequiredAngle == 270)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 3, 0);
+					yield return new WaitForSeconds(0.0333f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 270, 0);
+				StartCoroutine("WalkLeft");
+				yield return null;
+			}
+		}
+		if (playerangle == 90)
+		{
+			if (RequiredAngle == 90)
+			{
+				StartCoroutine("WalkRight");
+				yield return null;
+			}
+			if (RequiredAngle == 0)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 3, 0);
+					yield return new WaitForSeconds(0.0333f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+				StartCoroutine("WalkUp");
+				yield return null;
+			}
+			if (RequiredAngle == 180)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 1);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 3, 0);
+					yield return new WaitForSeconds(0.0333f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+				StartCoroutine("WalkDown");
+				yield return null;
+			}
+			if (RequiredAngle == 270)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 3);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 6, 0);
+					yield return new WaitForSeconds(0.0333f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 270, 0);
+				StartCoroutine("WalkLeft");
+				yield return null;
+			}
+		}
+		if (playerangle == 180)
+		{
+			//Debug.Log("aaa");
+			if (RequiredAngle == 180)
+			{
+				StartCoroutine("WalkDown");
+				yield return null;
+			}
+			if (RequiredAngle == 0)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 3);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 6, 0);
+					yield return new WaitForSeconds(0.0333f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+				StartCoroutine("WalkUp");
+				yield return null;
+			}
+			if (RequiredAngle == 90)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 3, 0);
+					yield return new WaitForSeconds(0.0333f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+				StartCoroutine("WalkRight");
+				yield return null;
+			}
+			if (RequiredAngle == 270)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 1);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y +3, 0);
+					yield return new WaitForSeconds(0.0333f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 270, 0);
+				StartCoroutine("WalkLeft");
+				yield return null;
+			}
+		}
+		if (playerangle == 270)
+		{
+			//Debug.Log("aaa");
+			if (RequiredAngle == 270)
+			{
+				StartCoroutine("WalkLeft");
+				yield return null;
+			}
+			if (RequiredAngle == 0)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 1);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 3, 0);
+					yield return new WaitForSeconds(0.0333f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+				StartCoroutine("WalkUp");
+				yield return null;
+			}
+			if (RequiredAngle == 90)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 3);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 6, 0);
+					yield return new WaitForSeconds(0.0333f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+				StartCoroutine("WalkRight");
+				yield return null;
+			}
+			if (RequiredAngle == 180)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 3, 0);
+					yield return new WaitForSeconds(0.0333f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+				StartCoroutine("WalkDown");
+				yield return null;
+			}
+		}
+		//Debug.Log(Diff);
+		yield return null;
+       /* for (int i = 0; i < length; i++)
+        {
+
+        }*/
+    }
+
 	IEnumerator WalkLeft()
 	{
 		GameObject[] ListOfEnemies;
+		//animator.SetBool("IsRunning", true);
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
 		for (float i = 0; i < 1; i += 0.01f)
 		{
 			transform.position += new Vector3(-0.01f, 0, 0);
 			yield return new WaitForSeconds(0.01f);
 		}
+		//animator.SetBool("IsRunning", false);
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
 		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, transform.position.z);
 		//MoveEnemies();
 		ListOfEnemies = CheckEnemies();
 		IsWaiting = true;
-		yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		if (LightOffTurns <= 0)
+			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		else
+			IsWaiting = false;
+		//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
 		//yield return null;
 		//yield return new WaitForSeconds(2);
 	}
@@ -382,7 +563,10 @@ public class Player : MonoBehaviour
 		//MoveEnemies();
 		ListOfEnemies = CheckEnemies();
 		IsWaiting = true;
-		yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		if (LightOffTurns <= 0)
+			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		else
+			IsWaiting = false;
 		//yield return null;
 	}
 
@@ -401,7 +585,10 @@ public class Player : MonoBehaviour
 		//IsMoving = false;
 		ListOfEnemies = CheckEnemies();
 		IsWaiting = true;
-		yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		if (LightOffTurns <= 0)
+			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		else
+			IsWaiting = false;
 		//yield return new WaitForSeconds(2);
 		//yield return LineMovingEnemyFuncs.LineMovingEnemyWalk()
 	}
@@ -421,7 +608,11 @@ public class Player : MonoBehaviour
 		//yield return null;
 		ListOfEnemies = CheckEnemies();
 		IsWaiting = true;
-		yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		if (LightOffTurns <= 0)
+			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
+		else
+			IsWaiting = false;
+		
 	}
 
 	// Start is called before the first frame update
@@ -441,11 +632,17 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		//Time.timeScale = 0.1f;
+		//Debug.Log(gameObject);
 		Quaternion OldRotation;
 		if (LightOffTurns <= 0 && Light.activeSelf == false)
 			Light.SetActive(true);
+		//Debug.Log(IsMovable);
+		//Debug.Log(IsWaiting);
+		//if (IsMovable == true && IsWaiting == false && ProjectionIsActive == false)
 		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1 && ProjectionIsActive == false)
 		{
+			//Debug.Log("aa");
 			if (Input.GetKeyDown("a"))
 			{
 				//transform.position = FinalPos;
@@ -456,11 +653,15 @@ public class Player : MonoBehaviour
 				{
 					//IsMoving = true;
 					OldRotation = transform.rotation;
+					
 					transform.rotation = Quaternion.Euler(0, 270, 0);
 					if (!IsThereGate(transform))
 					{
+						transform.rotation = OldRotation;
+						//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
 						IsWaiting = true;
-						StartCoroutine("WalkLeft");
+						StartCoroutine("Rotate", 270);
+						//StartCoroutine("WalkLeft");
 					}
 					else
 						transform.rotation = OldRotation;
@@ -488,8 +689,11 @@ public class Player : MonoBehaviour
 					//StartCoroutine("WalkRight");
 					if (!IsThereGate(transform))
 					{
+						transform.rotation = OldRotation;
 						IsWaiting = true;
-						StartCoroutine("WalkRight");
+						StartCoroutine("Rotate", 90);
+						
+						//StartCoroutine("WalkRight");
 					}
 					else
 						transform.rotation = OldRotation;
@@ -515,8 +719,11 @@ public class Player : MonoBehaviour
 					transform.rotation = Quaternion.Euler(0, 0, 0);
 					if (!IsThereGate(transform))
 					{
+						transform.rotation = OldRotation;
 						IsWaiting = true;
-						StartCoroutine("WalkUp");
+						StartCoroutine("Rotate", 0);
+						
+						//StartCoroutine("WalkUp");
 					}
 					else
 						transform.rotation = OldRotation;
@@ -541,8 +748,11 @@ public class Player : MonoBehaviour
 					transform.rotation = Quaternion.Euler(0, 180, 0);
 					if (!IsThereGate(transform))
 					{
+						transform.rotation = OldRotation;
 						IsWaiting = true;
-						StartCoroutine("WalkDown");
+						StartCoroutine("Rotate", 180);
+						
+						//StartCoroutine("WalkDown");
 					}
 					else
 						transform.rotation = OldRotation;
