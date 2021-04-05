@@ -207,6 +207,35 @@ public class LineMovingEnemy : MonoBehaviour
         }
     }
 
+    public int Opposite(GameObject Obj)
+    {
+        if (Obj.transform.rotation.eulerAngles.y == 0)
+        {
+            // increment = -1;
+           // Obj.transform.rotation = Quaternion.Euler(0, 180, 0);
+            return (180);
+        }
+        else if (Obj.transform.rotation.eulerAngles.y == 90)
+        {
+            //    increment = -1;
+            //Obj.transform.rotation = Quaternion.Euler(0, 270, 0);
+            return (270);
+        }
+        else if (Obj.transform.rotation.eulerAngles.y == 180)
+        {
+            //   increment = 1;
+           // Obj.transform.rotation = Quaternion.Euler(0, 0, 0);
+            return (0);
+        }
+        else if (Obj.transform.rotation.eulerAngles.y == 270)
+        {
+            // increment = 1;
+           // Obj.transform.rotation = Quaternion.Euler(0, 90, 0);
+            return (90);
+        }
+        return (0);
+    }
+
     public void TurnOtherWay(GameObject Obj)
     {
         // Debug.Log(transform.rotation);
@@ -245,10 +274,24 @@ public class LineMovingEnemy : MonoBehaviour
         //animator.SetBool("IsRunning", true);
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
+           // Debug.Log(ListOfEnemies[i]);
+           // Debug.Log(CheckIfThereIsNodeToMove(ListOfEnemies[i]));
+           // Debug.Log(PlayerFuncs.IsThereGate(ListOfEnemies[i].transform));
+            //Debug.Log(PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i]));
+            if (ListOfEnemies[i] != null && (!CheckIfThereIsNodeToMove(ListOfEnemies[i]) || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform) || PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
+            {
+                //Debug.Log("HERE");
+                PlayerFuncs.StartCoroutine("RotateEnemies", ListOfEnemies[i]);
+            }
+        }
+        yield return new WaitForSeconds(1.5f);
+        for (int i = 0; i < ListOfEnemies.Length; i++)
+        {
             
             //Debug.Log(ListOfEnemies[i]);
             if (ListOfEnemies[i] == null || !CheckIfThereIsNodeToMove(ListOfEnemies[i]) 
-            || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform) 
+            || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform)
+            || PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i])
             || !(HorLineFuncs.CheckIfThereIsLine(ListOfEnemies[i].transform.position, -1, ListOfEnemies[i].transform.position + new Vector3(-1, 0, 0)) 
             || HorLineFuncs.CheckIfThereIsLine(ListOfEnemies[i].transform.position, 1, ListOfEnemies[i].transform.position + new Vector3(1, 0, 0)) 
             || VerLineFuncs.CheckIfThereIsLine(ListOfEnemies[i].transform.position, 1, ListOfEnemies[i].transform.position + new Vector3(0, 0, 1)) 
@@ -262,6 +305,11 @@ public class LineMovingEnemy : MonoBehaviour
             else
                 ListOfTransforms[i] = null;
         }
+     /*   for (int i = 0; i < ListOfEnemies.Length; i++)
+        {
+            if (ListOfEnemies[i] != null && (!CheckIfThereIsNodeToMove(ListOfEnemies[i]) || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform) || PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
+                PlayerFuncs.StartCoroutine("RotateEnemies", ListOfEnemies[i]);
+        }*/
         for (float i = 0; i < 1; i += 0.01f)
         {
             /*if (XorY == 'x')
@@ -486,8 +534,8 @@ public class LineMovingEnemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+   // void Update()
+   // {
         /*   if (CheckIfThereIsNodeToMove())
                StartCoroutine("LineMovingEnemyWalk");
            else
@@ -512,5 +560,5 @@ public class LineMovingEnemy : MonoBehaviour
             Destroy(gameObject);
         if (MotEnemyFuncs.CheckifPlayerInfrontofEnemy(player))
             Application.LoadLevel(0);*/
-    }
+    //}
 }
