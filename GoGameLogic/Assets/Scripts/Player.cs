@@ -343,7 +343,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				//ObjectToRotate.GetComponent<Animator>().SetInteger("IsRotating", 0);
 				ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
@@ -359,7 +359,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 6, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				//ObjectToRotate.GetComponent<Animator>().SetInteger("IsRotating", 0);
 				ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
@@ -375,7 +375,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y - 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				//ObjectToRotate.GetComponent<Animator>().SetInteger("IsRotating", 0);
 				ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 2);
@@ -399,7 +399,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y - 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				//ObjectToRotate.GetComponent<Animator>().SetInteger("IsRotating", 0);
 				ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
@@ -415,7 +415,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				//ObjectToRotate.GetComponent<Animator>().SetInteger("IsRotating", 0);
 				ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
@@ -431,7 +431,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y - 6, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				//ObjectToRotate.GetComponent<Animator>().SetInteger("IsRotating", 0);
 				ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
@@ -456,7 +456,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 6, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				//ObjectToRotate.GetComponent<Animator>().SetInteger("IsRotating", 0);
 				ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
@@ -472,7 +472,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y - 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				//ObjectToRotate.GetComponent<Animator>().SetInteger("IsRotating", 0);
 				ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
@@ -488,7 +488,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				//ObjectToRotate.GetComponent<Animator>().SetInteger("IsRotating", 0);
 				ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
@@ -513,7 +513,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				//ObjectToRotate.GetComponent<Animator>().SetInteger("IsRotating", 0);
 				ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
@@ -529,7 +529,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y - 6, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				//ObjectToRotate.GetComponent<Animator>().SetInteger("IsRotating", 0);
 				ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
@@ -545,7 +545,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y - 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				//ObjectToRotate.GetComponent<Animator>().SetInteger("IsRotating", 0);
 				ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
@@ -580,7 +580,7 @@ public class Player : MonoBehaviour
                 for (int i = 0; i < 30; i++)
                 {
 					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
                 }
 				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
 				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
@@ -594,7 +594,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 6, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
 				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
@@ -608,7 +608,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
 				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
@@ -630,7 +630,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
 				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
@@ -644,7 +644,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
 				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
@@ -658,7 +658,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 6, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
 				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
@@ -681,7 +681,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 6, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
 				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
@@ -695,7 +695,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
 				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
@@ -709,7 +709,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y +3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
 				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
@@ -732,7 +732,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
 				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
@@ -746,7 +746,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 6, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
 				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
@@ -760,7 +760,7 @@ public class Player : MonoBehaviour
 				for (int i = 0; i < 30; i++)
 				{
 					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 3, 0);
-					yield return new WaitForSeconds(0.0333f);
+					yield return new WaitForSeconds(0.0133f);
 				}
 				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
 				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
@@ -786,7 +786,7 @@ public class Player : MonoBehaviour
 		for (float i = 0; i < 1; i += 0.01f)
 		{
 			transform.position += new Vector3(-0.01f, 0, 0);
-			yield return new WaitForSeconds(0.01f);
+			yield return new WaitForSeconds(0.004f);
 		}
 		//animator.SetBool("IsRunning", false);
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
@@ -811,7 +811,7 @@ public class Player : MonoBehaviour
 		for (float i = 0;  i < 1; i += 0.01f)
         {
 			transform.position += new Vector3(0.01f, 0, 0);
-			yield return new WaitForSeconds(0.01f);
+			yield return new WaitForSeconds(0.004f);
         }
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
 		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, transform.position.z);
@@ -832,7 +832,7 @@ public class Player : MonoBehaviour
 		for (float i = 0; i < 1; i += 0.01f)
 		{
 			transform.position += new Vector3(0, 0, 0.01f);
-			yield return new WaitForSeconds(0.01f);
+			yield return new WaitForSeconds(0.004f);
 		}
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
 		transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
@@ -855,7 +855,7 @@ public class Player : MonoBehaviour
 		for (float i = 0; i < 1; i += 0.01f)
 		{
 			transform.position += new Vector3(0, 0, -0.01f);
-			yield return new WaitForSeconds(0.01f);
+			yield return new WaitForSeconds(0.004f);
 		}
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
 		transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
