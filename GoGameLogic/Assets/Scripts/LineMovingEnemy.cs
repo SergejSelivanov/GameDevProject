@@ -532,7 +532,7 @@ public class LineMovingEnemy : MonoBehaviour
                 PlayerFuncs.StartCoroutine("RotateEnemies", ListOfEnemies[i]);
             }
         }
-        yield return new WaitForSeconds(0.45f);
+        yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
             
