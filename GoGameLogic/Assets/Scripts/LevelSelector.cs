@@ -8,6 +8,8 @@ public class LevelSelector : MonoBehaviour
     GameObject player;
     public int Level = 0;
 
+    
+
     private void OnMouseDown()
     {
         if (Mathf.Abs(transform.position.x - player.transform.position.x) <= 2 && Mathf.Abs(transform.position.z - player.transform.position.z) <= 2)
