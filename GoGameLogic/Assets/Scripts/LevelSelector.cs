@@ -12,8 +12,11 @@ public class LevelSelector : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (Mathf.Abs(transform.position.x - player.transform.position.x) <= 2 && Mathf.Abs(transform.position.z - player.transform.position.z) <= 2)
-            SceneManager.LoadScene(Level);
+        if (Time.timeScale == 1)
+        {
+            if (Mathf.Abs(transform.position.x - player.transform.position.x) <= 2 && Mathf.Abs(transform.position.z - player.transform.position.z) <= 2)
+                SceneManager.LoadScene(Level);
+        }
         /* if ((transform.position.x - player.transform.position.x <= 2
          || player.transform.position.x - transform.position.x <= 2)
          && (transform.position.z - player.transform.position.z <= 2
