@@ -79,7 +79,6 @@
     <Compile Include="Assets\Scripts\Projection.cs" />
     <Compile Include="Assets\Scripts\ProjectionBehaviour.cs" />
     <Compile Include="Assets\Scripts\Settings.cs" />
-    <Compile Include="Assets\Scripts\Smth.cs" />
     <Compile Include="Assets\Scripts\ThrowKnife.cs" />
     <Compile Include="Assets\Scripts\VerticalLine.cs" />
     <Compile Include="Assets\Scripts\Wjena\CamReplaceScript.cs" />
@@ -89,6 +88,7 @@
     <Compile Include="Assets\Scripts\Wjena\PlayerMapMovement.cs" />
     <Compile Include="Assets\Scripts\Wjena\SettingsControl.cs" />
     <Compile Include="Assets\Scripts\Wjena\SkillPickUp.cs" />
+    <Compile Include="Assets\Smth.cs" />
     <None Include="Assets\PolygonSciFiCity\Shaders\Polygon_Triplanar.shader" />
     <None Include="Assets\PolygonSciFiCity\Shaders\Polygon_UVScroll.shader" />
     <Reference Include="UnityEngine">
@@ -123,12 +123,6 @@
     </Reference>
     <Reference Include="UnityEngine.ClusterRendererModule">
       <HintPath>E:/Projects on unity/2019.4.20f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ClusterInputModule">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.20f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ClusterRendererModule">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.20f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>E:/Projects on unity/2019.4.20f1/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
