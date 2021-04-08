@@ -303,7 +303,9 @@ public class Player : MonoBehaviour
 			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0 || LightOffTurns >= 0))
 			{
 				//animator
-				ListOfMovingEnemies[i].GetComponent<Animator>().SetBool("IsDead", true);
+				//Debug.Log("AUE");
+				Debug.Log(ListOfMovingEnemies[i].transform.GetChild(0).gameObject);
+				ListOfMovingEnemies[i].transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsDead", true);
 				EnemyTokill = ListOfMovingEnemies[i];
 				//Destroy(ListOfMovingEnemies[i]);
 				SkillReady += 0.5f;
