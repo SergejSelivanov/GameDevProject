@@ -1044,7 +1044,7 @@ public class Player : MonoBehaviour
 				//IsMoving = false;
 			}
 			if (transform.position.x == FinalNode.transform.position.x && transform.position.z == FinalNode.transform.position.z)
-				Application.LoadLevel(0);
+				Application.LoadLevel(1);
 		}
 	}
 }
