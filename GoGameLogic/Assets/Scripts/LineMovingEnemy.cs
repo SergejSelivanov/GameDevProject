@@ -390,10 +390,10 @@ public class LineMovingEnemy : MonoBehaviour
                 m++;
             }
         }
-        for (int i = 0; i < LastArray.Length; i++)
+       /* for (int i = 0; i < LastArray.Length; i++)
         {
             Debug.Log(LastArray[i]);
-        }
+        }*/
         return LastArray;
     }
 
@@ -468,32 +468,32 @@ public class LineMovingEnemy : MonoBehaviour
                 //if (Mathf.Abs(ListOfEnemies[i].transform.GetChild(0).position.x - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x)) > 0)
                 if (ListOfEnemies[i].transform.GetChild(0).position.x - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x) < 0)
                 {
-                    Debug.Log(ListOfEnemies[i]);
-                    Debug.Log(1);
+                  //  Debug.Log(ListOfEnemies[i]);
+                   // Debug.Log(1);
                     //ListOfEnemies[i].transform.GetChild(0).position = new Vector3(Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x), ListOfEnemies[i].transform.GetChild(0).position.y, ListOfEnemies[i].transform.GetChild(0).position.z);
                     StartCoroutine("ReturnToX", ListOfEnemies[i]);
                 }
                 if (ListOfEnemies[i].transform.GetChild(0).position.x - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x) > 0)
                 {
-                    Debug.Log(ListOfEnemies[i]);
-                    Debug.Log(2);
+                   // Debug.Log(ListOfEnemies[i]);
+                    //Debug.Log(2);
                     StartCoroutine("ReturnToMinusX", ListOfEnemies[i]);
                 }
                 //ListOfEnemies[i].transform.GetChild(0).position = new Vector3(Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x), ListOfEnemies[i].transform.GetChild(0).position.y, ListOfEnemies[i].transform.GetChild(0).position.z);
                 //if (Mathf.Abs(ListOfEnemies[i].transform.GetChild(0).position.z - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z)) > 0)
                 if (ListOfEnemies[i].transform.GetChild(0).position.z - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z) < 0)
                 {
-                    Debug.Log(ListOfEnemies[i]);
-                    Debug.Log(3);
+                  //  Debug.Log(ListOfEnemies[i]);
+                    //Debug.Log(3);
                     StartCoroutine("ReturnToY", ListOfEnemies[i]);
                 }
                 // ListOfEnemies[i].transform.GetChild(0).position = new Vector3(ListOfEnemies[i].transform.GetChild(0).position.x, ListOfEnemies[i].transform.GetChild(0).position.y, Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z));
                 if (ListOfEnemies[i].transform.GetChild(0).position.z - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z) > 0)
                 {
-                    Debug.Log(ListOfEnemies[i]);
-                    Debug.Log(4);
-                    Debug.Log(ListOfEnemies[i].transform.GetChild(0).position.z);
-                    Debug.Log(Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z));
+                   // Debug.Log(ListOfEnemies[i]);
+                    //Debug.Log(4);
+                    //Debug.Log(ListOfEnemies[i].transform.GetChild(0).position.z);
+                    //Debug.Log(Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z));
                     StartCoroutine("ReturnToMinusY", ListOfEnemies[i]);
                 }
                     // ListOfEnemies[i].transform.GetChild(0).position = new Vector3(ListOfEnemies[i].transform.GetChild(0).position.x, ListOfEnemies[i].transform.GetChild(0).position.y, Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z));
