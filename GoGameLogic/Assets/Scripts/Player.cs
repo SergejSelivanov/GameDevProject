@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 	private bool FlagGranade = false;
 
 	private GameObject FinalNode;
-	public GameObject EnemyTokill;
+	private GameObject[] EnemiesTokill;
 	//private Animator animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
 	//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
 	//public bool IsMoving = false;
@@ -116,14 +116,26 @@ public class Player : MonoBehaviour
     }
 
 	public bool ProjectionActive
+	{
+		get
+		{
+			return ProjectionIsActive;
+		}
+		set
+		{
+			ProjectionIsActive = value;
+		}
+	}
+
+	public GameObject[] EnemiesKill
     {
 		get
         {
-			return ProjectionIsActive;
+			return EnemiesTokill;
         }
         set
         {
-			ProjectionIsActive = value;
+			EnemiesTokill = value;
         }
     }
 	public bool IsflagGranade
@@ -291,6 +303,7 @@ public class Player : MonoBehaviour
 	{
 		GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
 		GameObject[] RetArray = new GameObject[ListOfMovingEnemies.Length];
+		EnemiesTokill = new GameObject[ListOfMovingEnemies.Length];
 		for (int i = 0; i < ListOfMovingEnemies.Length; i++)
 		{
 			//Debug.Log(ListOfMovingEnemies[i].transform);
@@ -304,9 +317,18 @@ public class Player : MonoBehaviour
 			{
 				//animator
 				//Debug.Log("AUE");
-				Debug.Log(ListOfMovingEnemies[i].transform.GetChild(0).gameObject);
+				//Debug.Log(ListOfMovingEnemies[i].transform.GetChild(0).gameObject);
 				ListOfMovingEnemies[i].transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsDead", true);
-				EnemyTokill = ListOfMovingEnemies[i];
+                for (int j = 0; j < EnemiesTokill.Length; j++)
+                {
+					if (EnemiesTokill[j] == null)
+                    {
+						//Debug.Log("AA");
+						EnemiesTokill[j] = ListOfMovingEnemies[i];
+						break;
+                    }
+                }
+				//EnemyTokill = ListOfMovingEnemies[i];
 				//Destroy(ListOfMovingEnemies[i]);
 				SkillReady += 0.5f;
 				if (SkillReady > 1)

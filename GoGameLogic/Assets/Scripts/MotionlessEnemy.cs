@@ -153,7 +153,15 @@ public class MotionlessEnemy : MonoBehaviour
 		{
 			//Destroy(gameObject);
 			gameObject.GetComponent<Animator>().SetBool("IsDead", true);
-			PlayerFuncs.EnemyTokill = gameObject;
+			for (int j = 0; j < PlayerFuncs.EnemiesKill.Length; j++)
+			{
+				if (PlayerFuncs.EnemiesKill[j] == null)
+				{
+					PlayerFuncs.EnemiesKill[j] = gameObject;
+					break;
+				}
+			}
+			//PlayerFuncs.EnemiesKill = gameObject;
 			PlayerFuncs.SkillSetter += 0.5f;
 			//Debug.Log(PlayerFuncs.SkillSetter);
 		}
@@ -167,7 +175,15 @@ public class MotionlessEnemy : MonoBehaviour
 			{
 				//Destroy(gameObject);
 				gameObject.GetComponent<Animator>().SetBool("IsDead", true);
-				PlayerFuncs.EnemyTokill = gameObject;
+				for (int j = 0; j < PlayerFuncs.EnemiesKill.Length; j++)
+				{
+					if (PlayerFuncs.EnemiesKill[j] == null)
+					{
+						PlayerFuncs.EnemiesKill[j] = gameObject;
+						break;
+					}
+				}
+				//PlayerFuncs.EnemiesKill = gameObject;
 				PlayerFuncs.SkillSetter += 0.5f;
 				//Debug.Log(PlayerFuncs.SkillSetter);
 			}
