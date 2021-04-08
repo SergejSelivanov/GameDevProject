@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
-    private float DistanceToLever = 0.25f;
+    private float DistanceToLever = 0.4f;
     public GameObject ConnectedDoor;
-    public int Angle = 90;
+    //public int Angle = 90;
     private bool IsOpen = false;
+    private bool IsWaiting = false;
 
     /*private GameObject FindConnectedDoor()
     {
@@ -18,6 +19,98 @@ public class Lever : MonoBehaviour
             return Hit.collider.gameObject;
         return null;
     }*/
+
+    IEnumerator CloseDoors(int WhichCase)
+    {
+        if (WhichCase == 0)
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                // ConnectedDoor.transform.position += new Vector3(-0.01f, 0, 0);
+                ConnectedDoor.transform.GetChild(0).position += new Vector3(0.016f, 0, 0);
+                ConnectedDoor.transform.position += new Vector3(-0.008f, 0, 0);
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
+        else if (WhichCase == 1)
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                // ConnectedDoor.transform.position += new Vector3(-0.01f, 0, 0);
+                ConnectedDoor.transform.GetChild(0).position += new Vector3(0, 0, -0.016f);
+                ConnectedDoor.transform.position += new Vector3(0, 0, 0.008f);
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
+        else if (WhichCase == 2)
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                // ConnectedDoor.transform.position += new Vector3(-0.01f, 0, 0);
+                ConnectedDoor.transform.GetChild(0).position += new Vector3(-0.016f, 0, 0);
+                ConnectedDoor.transform.position += new Vector3(0.008f, 0, 0);
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                // ConnectedDoor.transform.position += new Vector3(-0.01f, 0, 0);
+                ConnectedDoor.transform.GetChild(0).position += new Vector3(0, 0, 0.016f);
+                ConnectedDoor.transform.position += new Vector3(0, 0, -0.008f);
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
+        IsWaiting = false;
+        yield return null;
+    }
+
+    IEnumerator OpenDoors(int WhichCase)
+    {
+        if (WhichCase == 0)
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                // ConnectedDoor.transform.position += new Vector3(-0.01f, 0, 0);
+                ConnectedDoor.transform.GetChild(0).position += new Vector3(-0.016f, 0, 0);
+                ConnectedDoor.transform.position += new Vector3(0.008f, 0, 0);
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
+        else if (WhichCase == 1)
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                // ConnectedDoor.transform.position += new Vector3(-0.01f, 0, 0);
+                ConnectedDoor.transform.GetChild(0).position += new Vector3(0, 0, 0.016f);
+                ConnectedDoor.transform.position += new Vector3(0, 0, -0.008f);
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
+        else if (WhichCase == 2)
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                // ConnectedDoor.transform.position += new Vector3(-0.01f, 0, 0);
+                ConnectedDoor.transform.GetChild(0).position += new Vector3(0.016f, 0, 0);
+                ConnectedDoor.transform.position += new Vector3(-0.008f, 0, 0);
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                // ConnectedDoor.transform.position += new Vector3(-0.01f, 0, 0);
+                ConnectedDoor.transform.GetChild(0).position += new Vector3(0, 0, -0.016f);
+                ConnectedDoor.transform.position += new Vector3(0, 0, 0.008f);
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
+        IsWaiting = false;
+        yield return null;
+    }
 
     private void OnMouseDown()
     {
@@ -39,7 +132,84 @@ public class Lever : MonoBehaviour
              || player.transform.position.x + DistanceToLever == AllGates[i].transform.position.x))
                  Debug.Log("YESS");
          }*/
-       if (player.transform.position.x == transform.position.x)
+        if (Mathf.Abs(player.transform.position.x - transform.position.x) <= DistanceToLever && Mathf.Abs(player.transform.position.z - transform.position.z) <= DistanceToLever)
+        {
+            if (ConnectedDoor.transform.rotation.eulerAngles.y == 0)
+            {
+                if (IsOpen == false && IsWaiting == false)
+                {
+                    IsWaiting = true;
+                    IsOpen = true;
+                    StartCoroutine("OpenDoors", 0);
+                    
+                    //ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+
+                }
+                else if (IsOpen == true && IsWaiting == false)
+                {
+                    IsWaiting = true;
+                    IsOpen = false;
+                    //ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y - Angle, 0);
+                    StartCoroutine("CloseDoors", 0);
+                }
+            }
+            if (ConnectedDoor.transform.rotation.eulerAngles.y == 90)
+            {
+                if (IsOpen == false && IsWaiting == false)
+                {
+                    IsWaiting = true;
+                    IsOpen = true;
+                    StartCoroutine("OpenDoors", 1);
+                    //ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+
+                }
+                else if (IsOpen == true && IsWaiting == false)
+                {
+                    IsWaiting = true;
+                    IsOpen = false;
+                    //ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y - Angle, 0);
+                    StartCoroutine("CloseDoors", 1);
+                }
+            }
+            if (ConnectedDoor.transform.rotation.eulerAngles.y == 180)
+            {
+                if (IsOpen == false && IsWaiting == false)
+                {
+                    IsWaiting = true;
+                    IsOpen = true;
+                    StartCoroutine("OpenDoors", 2);
+                    //ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+
+                }
+                else if (IsOpen == true && IsWaiting == false)
+                {
+                    IsWaiting = true;
+                    IsOpen = false;
+                    //ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y - Angle, 0);
+                    StartCoroutine("CloseDoors", 2);
+                }
+            }
+            if (ConnectedDoor.transform.rotation.eulerAngles.y == 270)
+            {
+                if (IsOpen == false && IsWaiting == false)
+                {
+                    IsWaiting = true;
+                    IsOpen = true;
+                    StartCoroutine("OpenDoors", 3);
+                    //ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+
+                }
+                else if (IsOpen == true && IsWaiting == false)
+                {
+                    IsWaiting = true;
+                    IsOpen = false;
+                    //ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y - Angle, 0);
+                    StartCoroutine("CloseDoors", 3);
+                }
+            }
+        }
+
+      /* if (player.transform.position.x == transform.position.x)
        {
             
             if (player.transform.position.z > transform.position.z)
@@ -53,12 +223,12 @@ public class Lever : MonoBehaviour
                     if (IsOpen == false)
                     {
                         IsOpen = true;
-                        ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+                       // ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
                     }
                     else
                     {
                         IsOpen = false;
-                        ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y - Angle, 0);
+                       // ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y - Angle, 0);
                     }
                 }
             }
@@ -112,16 +282,19 @@ public class Lever : MonoBehaviour
                     if (IsOpen == false)
                     {
                         IsOpen = true;
-                        ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+                        StartCoroutine("OpenDoors");
+                        //ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y + Angle, 0);
+                        
                     }
                     else
                     {
                         IsOpen = false;
-                        ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y - Angle, 0);
+                        //ConnectedDoor.transform.rotation = Quaternion.Euler(0, ConnectedDoor.transform.rotation.eulerAngles.y - Angle, 0);
+                        StartCoroutine("CloseDoors");
                     }
                 }
             }
-        }
+        }*/
             //Debug.Log("HERE");
     }
 

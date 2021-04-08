@@ -10,9 +10,14 @@ public class Smth : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //    
-        GameObject Enemy = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemyTokill;
+        for (int i = 0; i < GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill.Length; i++)
+        {
+            if (GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i] != null)
+                Destroy(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i]);
+        }
+        //GameObject Enemy = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[0];
         //GameObject.Destroy();
-        Destroy(Enemy);
+       // Destroy(Enemy);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
