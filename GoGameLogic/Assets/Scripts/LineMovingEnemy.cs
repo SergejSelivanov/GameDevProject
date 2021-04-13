@@ -843,34 +843,39 @@ public class LineMovingEnemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
-       /* GameObject[] ListOfEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
-        for (int i = 0; i < ListOfEnemies.Length; i++)
-        {
-            for (int j = 0; j < ListOfEnemies.Length; j++)
-            {
-                if (i != j)
-                {
-                    //if (ListOfEnemies[i].transform.position.x == ListOfEnemies[j].transform.position.x && ListOfEnemies[i].transform.position.z == ListOfEnemies[j].transform.position.z)
-                    if (Mathf.Abs(ListOfEnemies[i].transform.position.x - ListOfEnemies[j].transform.position.x) <= 0.4f && Mathf.Abs(ListOfEnemies[i].transform.position.z - ListOfEnemies[j].transform.position.z) <= 0.4f)
-                    {
-                        //ListOfEnemies[i].GetComponentInChildren<Transform>().localPosition = ListOfEnemies[i].transform.position + new Vector3(0.5f, 0, 0);
-                        if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 0)
-                            ListOfEnemies[i].transform.GetChild(0).position = ListOfEnemies[i].transform.position + new Vector3(0, 0, -0.2f);
-                        if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 90)
-                            ListOfEnemies[i].transform.GetChild(0).position = ListOfEnemies[i].transform.position + new Vector3(-0.2f, 0, 0);
-                        if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 180)
-                            ListOfEnemies[i].transform.GetChild(0).position = ListOfEnemies[i].transform.position + new Vector3(0, 0, 0.2f);
-                        if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 270)
-                            ListOfEnemies[i].transform.GetChild(0).position = ListOfEnemies[i].transform.position + new Vector3(0.2f, 0, 0);
-                        //ListOfEnemies[i].transform.GetChild(0).position = ListOfEnemies[i].transform.position + new Vector3(0.5f, 0, 0);
-                        // Debug.Log(ListOfEnemies[i].GetComponentInChildren<Transform>().gameObject) ;
-                    }
-                }
-            }
-        }*/
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject projection = GameObject.FindGameObjectWithTag("Projection");
+        if (MotEnemyFuncs.CheckifPlayerInfrontofEnemy(player, gameObject) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
+            Application.LoadLevel(0);
+        if (projection != null &&  MotEnemyFuncs.CheckifPlayerInfrontofEnemy(projection, gameObject) && !PlayerFuncs.IsThereGate(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
+            Application.LoadLevel(0);
+        /* GameObject[] ListOfEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
+         for (int i = 0; i < ListOfEnemies.Length; i++)
+         {
+             for (int j = 0; j < ListOfEnemies.Length; j++)
+             {
+                 if (i != j)
+                 {
+                     //if (ListOfEnemies[i].transform.position.x == ListOfEnemies[j].transform.position.x && ListOfEnemies[i].transform.position.z == ListOfEnemies[j].transform.position.z)
+                     if (Mathf.Abs(ListOfEnemies[i].transform.position.x - ListOfEnemies[j].transform.position.x) <= 0.4f && Mathf.Abs(ListOfEnemies[i].transform.position.z - ListOfEnemies[j].transform.position.z) <= 0.4f)
+                     {
+                         //ListOfEnemies[i].GetComponentInChildren<Transform>().localPosition = ListOfEnemies[i].transform.position + new Vector3(0.5f, 0, 0);
+                         if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 0)
+                             ListOfEnemies[i].transform.GetChild(0).position = ListOfEnemies[i].transform.position + new Vector3(0, 0, -0.2f);
+                         if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 90)
+                             ListOfEnemies[i].transform.GetChild(0).position = ListOfEnemies[i].transform.position + new Vector3(-0.2f, 0, 0);
+                         if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 180)
+                             ListOfEnemies[i].transform.GetChild(0).position = ListOfEnemies[i].transform.position + new Vector3(0, 0, 0.2f);
+                         if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 270)
+                             ListOfEnemies[i].transform.GetChild(0).position = ListOfEnemies[i].transform.position + new Vector3(0.2f, 0, 0);
+                         //ListOfEnemies[i].transform.GetChild(0).position = ListOfEnemies[i].transform.position + new Vector3(0.5f, 0, 0);
+                         // Debug.Log(ListOfEnemies[i].GetComponentInChildren<Transform>().gameObject) ;
+                     }
+                 }
+             }
+         }*/
         //gameObject.transform.rotation = gameObject.
         /*   if (CheckIfThereIsNodeToMove())
                StartCoroutine("LineMovingEnemyWalk");
