@@ -481,44 +481,52 @@ public class LineMovingEnemy : MonoBehaviour
 
                 if (flag == false && ListOfEnemies[i] != null)
                 {
+                if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 0)
+                    ListOfEnemies[i].transform.GetChild(0).rotation = Quaternion.Euler(0, -12.6f, 0);
+                if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 90)
+                    ListOfEnemies[i].transform.GetChild(0).rotation = Quaternion.Euler(0, 77.4f, 0);
+                if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 180)
+                    ListOfEnemies[i].transform.GetChild(0).rotation = Quaternion.Euler(0, 167.4f, 0);
+                if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 270)
+                    ListOfEnemies[i].transform.GetChild(0).rotation = Quaternion.Euler(0, 257.4f, 0);
                 //  Debug.Log("HERE");
                 //Debug.Log(ListOfEnemies[i]);
                 // if (Mathf.Abs(ListOfEnemies[i].transform.GetChild(0).position.x - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x)) > 0 || Mathf.Abs(ListOfEnemies[i].transform.GetChild(0).position.z - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z)) > 0)
                 //if (Mathf.Abs(ListOfEnemies[i].transform.GetChild(0).position.x - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x)) > 0)
                 if (ListOfEnemies[i].transform.GetChild(0).position.x - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x) < 0)
-                {
-                  //  Debug.Log(ListOfEnemies[i]);
-                   // Debug.Log(1);
+                    {
+                      //  Debug.Log(ListOfEnemies[i]);
+                       // Debug.Log(1);
+                        //ListOfEnemies[i].transform.GetChild(0).position = new Vector3(Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x), ListOfEnemies[i].transform.GetChild(0).position.y, ListOfEnemies[i].transform.GetChild(0).position.z);
+                        StartCoroutine("ReturnToX", ListOfEnemies[i]);
+                    }
+                    if (ListOfEnemies[i].transform.GetChild(0).position.x - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x) > 0)
+                    {
+                       // Debug.Log(ListOfEnemies[i]);
+                        //Debug.Log(2);
+                        StartCoroutine("ReturnToMinusX", ListOfEnemies[i]);
+                    }
                     //ListOfEnemies[i].transform.GetChild(0).position = new Vector3(Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x), ListOfEnemies[i].transform.GetChild(0).position.y, ListOfEnemies[i].transform.GetChild(0).position.z);
-                    StartCoroutine("ReturnToX", ListOfEnemies[i]);
-                }
-                if (ListOfEnemies[i].transform.GetChild(0).position.x - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x) > 0)
-                {
-                   // Debug.Log(ListOfEnemies[i]);
-                    //Debug.Log(2);
-                    StartCoroutine("ReturnToMinusX", ListOfEnemies[i]);
-                }
-                //ListOfEnemies[i].transform.GetChild(0).position = new Vector3(Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x), ListOfEnemies[i].transform.GetChild(0).position.y, ListOfEnemies[i].transform.GetChild(0).position.z);
-                //if (Mathf.Abs(ListOfEnemies[i].transform.GetChild(0).position.z - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z)) > 0)
-                if (ListOfEnemies[i].transform.GetChild(0).position.z - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z) < 0)
-                {
-                  //  Debug.Log(ListOfEnemies[i]);
-                    //Debug.Log(3);
-                    StartCoroutine("ReturnToY", ListOfEnemies[i]);
-                }
-                // ListOfEnemies[i].transform.GetChild(0).position = new Vector3(ListOfEnemies[i].transform.GetChild(0).position.x, ListOfEnemies[i].transform.GetChild(0).position.y, Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z));
-                if (ListOfEnemies[i].transform.GetChild(0).position.z - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z) > 0)
-                {
-                   // Debug.Log(ListOfEnemies[i]);
-                    //Debug.Log(4);
-                    //Debug.Log(ListOfEnemies[i].transform.GetChild(0).position.z);
-                    //Debug.Log(Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z));
-                    StartCoroutine("ReturnToMinusY", ListOfEnemies[i]);
-                }
+                    //if (Mathf.Abs(ListOfEnemies[i].transform.GetChild(0).position.z - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z)) > 0)
+                    if (ListOfEnemies[i].transform.GetChild(0).position.z - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z) < 0)
+                    {
+                      //  Debug.Log(ListOfEnemies[i]);
+                        //Debug.Log(3);
+                        StartCoroutine("ReturnToY", ListOfEnemies[i]);
+                    }
                     // ListOfEnemies[i].transform.GetChild(0).position = new Vector3(ListOfEnemies[i].transform.GetChild(0).position.x, ListOfEnemies[i].transform.GetChild(0).position.y, Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z));
-                    //ListOfEnemies[i].transform.GetChild(0).position = new Vector3(Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x), ListOfEnemies[i].transform.GetChild(0).position.y, Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z));
-                    // if (ListOfEnemies[i].transform.GetChild(0).position.z - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z) >= 0.01f)
-                    //   ListOfEnemies[i].transform.GetChild(0).position = new Vector3(ListOfEnemies[i].transform.GetChild(0).position.x, ListOfEnemies[i].transform.GetChild(0).position.y, Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z));
+                    if (ListOfEnemies[i].transform.GetChild(0).position.z - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z) > 0)
+                    {
+                       // Debug.Log(ListOfEnemies[i]);
+                        //Debug.Log(4);
+                        //Debug.Log(ListOfEnemies[i].transform.GetChild(0).position.z);
+                        //Debug.Log(Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z));
+                        StartCoroutine("ReturnToMinusY", ListOfEnemies[i]);
+                    }
+                        // ListOfEnemies[i].transform.GetChild(0).position = new Vector3(ListOfEnemies[i].transform.GetChild(0).position.x, ListOfEnemies[i].transform.GetChild(0).position.y, Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z));
+                        //ListOfEnemies[i].transform.GetChild(0).position = new Vector3(Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x), ListOfEnemies[i].transform.GetChild(0).position.y, Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z));
+                        // if (ListOfEnemies[i].transform.GetChild(0).position.z - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z) >= 0.01f)
+                        //   ListOfEnemies[i].transform.GetChild(0).position = new Vector3(ListOfEnemies[i].transform.GetChild(0).position.x, ListOfEnemies[i].transform.GetChild(0).position.y, Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.z));
                 }
             }
     }
@@ -527,31 +535,56 @@ public class LineMovingEnemy : MonoBehaviour
     {
         //Time.timeScale = 0.05f;
         //for (float i = 0; i < 0.25f; i += 0.01f)
-        for (float i = 0; i < 1; i += 0.01f)
+       // Debug.Log(Mathf.Abs(Enemy.transform.GetChild(0).position.x - Mathf.Round(Enemy.transform.GetChild(0).position.x)));
+       // Debug.Log(Mathf.Abs(Enemy.transform.GetChild(0).position.z - Mathf.Round(Enemy.transform.GetChild(0).position.z)));
+        if (!(Mathf.Abs(Enemy.transform.GetChild(0).position.x - Mathf.Round(Enemy.transform.GetChild(0).position.x)) > 0.2f) && !(Mathf.Abs(Enemy.transform.GetChild(0).position.z - Mathf.Round(Enemy.transform.GetChild(0).position.z)) > 0.2f))
         {
-            if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 0)
+            for (float i = 0; i < 1; i += 0.01f)
             {
-                //Enemy.transform.GetChild(0).position += new Vector3(0.01f, 0, -0.01f);
-                //Enemy.transform.GetChild(0).rotation = Quaternion.Euler(0, 12.6f, 0);
-                Enemy.transform.GetChild(0).position += new Vector3(0.0028f, 0, -0.0028f);
+                //if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 0)
+                if (Enemy.transform.rotation.eulerAngles.y == 0)
+                {
+                    Enemy.transform.GetChild(0).rotation = Quaternion.Euler(0, 12.6f, 0);
+                    //Enemy.transform.GetChild(0).position += new Vector3(0.01f, 0, -0.01f);
+                    //Enemy.transform.GetChild(0).rotation = Quaternion.Euler(0, 12.6f, 0);
+                    Enemy.transform.GetChild(0).position += new Vector3(0.0028f, 0, -0.0028f);
+                }
+                //if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 90)
+                if (Enemy.transform.rotation.eulerAngles.y == 90)
+                {
+                    Enemy.transform.GetChild(0).rotation = Quaternion.Euler(0, 102.6f, 0);
+                    //Enemy.transform.GetChild(0).position += new Vector3(-0.01f, 0, -0.01f);
+                    Enemy.transform.GetChild(0).position += new Vector3(-0.0028f, 0, -0.0028f);
+                }
+                //if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 180)
+                if (Enemy.transform.rotation.eulerAngles.y == 180)
+                {
+                    Enemy.transform.GetChild(0).rotation = Quaternion.Euler(0, 192.6f, 0);
+                    //Enemy.transform.GetChild(0).position += new Vector3(-0.01f, 0, 0.01f);
+                    Enemy.transform.GetChild(0).position += new Vector3(-0.0028f, 0, 0.0028f);
+                }
+                //if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 270)
+                if (Enemy.transform.rotation.eulerAngles.y == 270)
+                {
+                    Enemy.transform.GetChild(0).rotation = Quaternion.Euler(0, 282.6f, 0);
+                    //Enemy.transform.GetChild(0).position += new Vector3(0.01f, 0, 0.01f);
+                    Enemy.transform.GetChild(0).position += new Vector3(0.0028f, 0, 0.0028f);
+                }
+                yield return new WaitForSeconds(0.004f);
             }
-            if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 90)
-            {
-                //Enemy.transform.GetChild(0).position += new Vector3(-0.01f, 0, -0.01f);
-                Enemy.transform.GetChild(0).position += new Vector3(-0.0028f, 0, -0.0028f);
-            }
-            if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 180)
-            {
-                //Enemy.transform.GetChild(0).position += new Vector3(-0.01f, 0, 0.01f);
-                Enemy.transform.GetChild(0).position += new Vector3(-0.0028f, 0, 0.0028f);
-            }
-            if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 270)
-            {
-                //Enemy.transform.GetChild(0).position += new Vector3(0.01f, 0, 0.01f);
-                Enemy.transform.GetChild(0).position += new Vector3(0.0028f, 0, 0.0028f);
-            }
-            yield return new WaitForSeconds(0.004f);
         }
+        //if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 12.6f)
+        if (Mathf.Abs(Enemy.transform.GetChild(0).rotation.eulerAngles.y - 12.6f) < 0.1f)
+            Enemy.transform.GetChild(0).rotation = Quaternion.Euler(0, 0, 0);
+        //if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 102.6f)
+        if (Mathf.Abs(Enemy.transform.GetChild(0).rotation.eulerAngles.y - 102.6f) < 0.1f)
+            Enemy.transform.GetChild(0).rotation = Quaternion.Euler(0, 90, 0);
+        //if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 192.6f)
+        if (Mathf.Abs(Enemy.transform.GetChild(0).rotation.eulerAngles.y - 192.6f) < 0.1f)
+            Enemy.transform.GetChild(0).rotation = Quaternion.Euler(0, 180, 0);
+        //if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 282.6f)
+        if (Mathf.Abs(Enemy.transform.GetChild(0).rotation.eulerAngles.y - 282.6f) < 0.1f)
+            Enemy.transform.GetChild(0).rotation = Quaternion.Euler(0, 270, 0);
         yield return null;
     }
 
@@ -580,7 +613,6 @@ public class LineMovingEnemy : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
-            
             //Debug.Log(ListOfEnemies[i]);
             if (ListOfEnemies[i] == null || !CheckIfThereIsNodeToMove(ListOfEnemies[i]) 
             || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform)
@@ -662,6 +694,23 @@ public class LineMovingEnemy : MonoBehaviour
                 }
             }
             yield return new WaitForSeconds(0.004f);
+        }
+        for (int i = 0; i < ListOfEnemies.Length; i++)
+        {
+            if (ListOfEnemies[i] != null)
+            {
+                if (Mathf.Abs(ListOfEnemies[i].transform.GetChild(0).rotation.eulerAngles.y - 347.4f) < 0.1f)
+                    ListOfEnemies[i].transform.GetChild(0).rotation = Quaternion.Euler(0, 0, 0);
+                //if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 102.6f)
+                if (Mathf.Abs(ListOfEnemies[i].transform.GetChild(0).rotation.eulerAngles.y - 77.4f) < 0.1f)
+                    ListOfEnemies[i].transform.GetChild(0).rotation = Quaternion.Euler(0, 90, 0);
+                //if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 192.6f)
+                if (Mathf.Abs(ListOfEnemies[i].transform.GetChild(0).rotation.eulerAngles.y - 167.4f) < 0.1f)
+                    ListOfEnemies[i].transform.GetChild(0).rotation = Quaternion.Euler(0, 180, 0);
+                //if (Enemy.transform.GetChild(0).rotation.eulerAngles.y == 282.6f)
+                if (Mathf.Abs(ListOfEnemies[i].transform.GetChild(0).rotation.eulerAngles.y - 257.4f) < 0.1f)
+                    ListOfEnemies[i].transform.GetChild(0).rotation = Quaternion.Euler(0, 270, 0);
+            }
         }
         /*Debug.Log(animator.GetBool("IsRunning"));
         animator.SetBool("IsRunning", false);
