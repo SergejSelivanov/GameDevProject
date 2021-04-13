@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+//using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class LineMovingEnemy : MonoBehaviour
 {
@@ -144,9 +145,10 @@ public class LineMovingEnemy : MonoBehaviour
 
     public bool CheckifPlayerInfrontofEnemy(GameObject player, GameObject Enemy)
     {
-        /*Debug.Log("ENemy:");
-		Debug.Log(Enemy);
-		Debug.Log(Enemy.transform.position.z);
+        //Debug.Log("ENemy:");
+		//Debug.Log(Enemy);
+        //Debug.Log();
+		/*Debug.Log(Enemy.transform.position.z);
 		Debug.Log("player:");
 		Debug.Log(player.transform.position.z);*/
         if (Enemy.transform.rotation.eulerAngles.y == 0
@@ -178,24 +180,41 @@ public class LineMovingEnemy : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject Projection = GameObject.FindGameObjectWithTag("Projection");
         //Debug.Log(Projection);
-       /* Debug.Log(Obj.transform.rotation.eulerAngles.y == 0);
-        Debug.Log(Obj.transform.position.x == player.transform.position.x);
-        Debug.Log(Obj.transform.position.z + 1 == player.transform.position.z);
-        Debug.Log(VerLineFuncs.CheckIfThereIsLine(Obj.transform.position, 1, Obj.transform.position + new Vector3(0, 0, 1)));*/
+        /* Debug.Log(Obj.transform.rotation.eulerAngles.y == 0);
+         Debug.Log(Obj.transform.position.x == player.transform.position.x);
+         Debug.Log(Obj.transform.position.z + 1 == player.transform.position.z);
+         Debug.Log(VerLineFuncs.CheckIfThereIsLine(Obj.transform.position, 1, Obj.transform.position + new Vector3(0, 0, 1)));*/
         //Debug.Log(Obj.);
         //Debug.Log(Obj.transform.position);
-       // Debug.Log(MotEnemyFuncs.CheckifPlayerInfrontofEnemy(player, Obj));
+        // Debug.Log(MotEnemyFuncs.CheckifPlayerInfrontofEnemy(player, Obj));
+        // Debug.Log(CheckifPlayerInfrontofEnemy(player, Obj));
+        //Debug.Log(Obj);
+        //Debug.Log(MotEnemyFuncs.CheckIfFacing(player,Obj));
+        if ((CheckifPlayerInfrontofEnemy(player, Obj) || (player.transform.position.x == Obj.transform.position.x && player.transform.position.z == Obj.transform.position.z)) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(Obj.transform))
+        {
+            SceneManager.LoadScene(0);
+            //Application.LoadLevel(0);
+        }
         if (player.transform.position.x == Obj.transform.position.x
+            && player.transform.position.z == Obj.transform.position.z && PlayerFuncs.Invisible >= 0)
+            Destroy(Obj);
+     /*   if (player.transform.position.x == Obj.transform.position.x
             && player.transform.position.z == Obj.transform.position.z
             && (!MotEnemyFuncs.CheckIfFacing(player, Obj) || PlayerFuncs.Invisible >= 0))
+        {
+           // Debug.Log("BRUH?");
             Destroy(Obj);
-        if (CheckifPlayerInfrontofEnemy(player, Obj) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(Obj.transform))
-            Application.LoadLevel(0);
+        }*/
+       // Debug.Log(CheckifPlayerInfrontofEnemy(player, Obj));
+
         if (Projection != null)
         {
+            /* if (Projection.transform.position.x == Obj.transform.position.x
+                 && Projection.transform.position.z == Obj.transform.position.z
+                 && (!MotEnemyFuncs.CheckIfFacing(Projection, Obj)))
+                 Destroy(Obj);*/
             if (Projection.transform.position.x == Obj.transform.position.x
-                && Projection.transform.position.z == Obj.transform.position.z
-                && (!MotEnemyFuncs.CheckIfFacing(Projection, Obj)))
+            && Projection.transform.position.z == Obj.transform.position.z && PlayerFuncs.Invisible >= 0)
                 Destroy(Obj);
             if (CheckifPlayerInfrontofEnemy(Projection, Obj) && !PlayerFuncs.IsThereGate(Obj.transform))
             {
@@ -664,6 +683,7 @@ public class LineMovingEnemy : MonoBehaviour
                     ListOfEnemies[j].transform.position = new Vector3(Mathf.Round(ListOfEnemies[j].transform.position.x), ListOfEnemies[j].transform.position.y, ListOfEnemies[j].transform.position.z);
                 if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 0 || ListOfEnemies[j].transform.rotation.eulerAngles.y == 180)
                     ListOfEnemies[j].transform.position = new Vector3(ListOfEnemies[j].transform.position.x, ListOfEnemies[j].transform.position.y, Mathf.Round(ListOfEnemies[j].transform.position.z));
+                //Debug.Log(ListOfEnemies[j]);
                 DestroyIfClose(ListOfEnemies[j]);
                 //Debug.Log("HERE");
             }

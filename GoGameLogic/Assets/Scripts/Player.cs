@@ -237,10 +237,10 @@ public class Player : MonoBehaviour
 		//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
 		GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
 		for (int i = 0; i < ListOfMovingEnemies.Length; i++)
-        {
+		{
 			//Debug.Log(ListOfMovingEnemies[i]);
 			//Debug.Log(ListOfMovingEnemies[i].isActiveAndEnabled);
-			
+
 			if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
 				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
 			/*if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
