@@ -6,7 +6,7 @@ public class LightOff : MonoBehaviour
 {
     public GameObject PlayerHandler;
     public GameObject ButtonUI;
-    public GameObject Light;
+    //public GameObject Light;
     private Player PlayerFuncs;
     public int TurnsToTurnLightsOff = 2;
 
@@ -17,7 +17,8 @@ public class LightOff : MonoBehaviour
         {
             PlayerFuncs.LightOffTurns = 3;
             ButtonUI.SetActive(false);
-            Light.SetActive(false);
+            //Light.SetActive(false);
+            PlayerFuncs.ChangeLights();
         }
     }
 

@@ -9,7 +9,11 @@ public class Player : MonoBehaviour
 	public GameObject HorLineHandler;
 	public GameObject LineMovingEnemyHandler;
 	public GameObject MotionlessEnemyHandler;
-	public GameObject Light;
+	//public GameObject Light;
+	//public bool LightsNeeded = false;
+	public GameObject[] Lights;
+	public GameObject[] LightsToChange;
+
 	//public GameObject animator;
 	private Node NodeFuncs;
 	private VerticalLine VerLineFuncs;
@@ -27,37 +31,37 @@ public class Player : MonoBehaviour
 
 	private GameObject FinalNode;
 	private GameObject[] EnemiesTokill;
-	//private Animator animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
-	//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
-	//public bool IsMoving = false;
+//private Animator animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
+//public bool IsMoving = false;
 
-	/*public void CheckForDestroyAgain()
+/*public void CheckForDestroyAgain()
+{
+	GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
+	for (int i = 0; i < ListOfMovingEnemies.Length; i++)
 	{
-		GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
-		for (int i = 0; i < ListOfMovingEnemies.Length; i++)
-		{
-		//	Debug.Log(ListOfMovingEnemies[i]);
-			//Debug.Log(ListOfMovingEnemies[i].isActiveAndEnabled);
-			//Debug.Log(ListOfMovingEnemies[i].transform.position);
-			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
-			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
-				Destroy(ListOfMovingEnemies[i]);
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
-				Application.LoadLevel(0);
-			if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
-				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
-			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
-			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
-				Destroy(ListOfMovingEnemies[i]);
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
-				Application.LoadLevel(0);
-		}
-	}*/
+	//	Debug.Log(ListOfMovingEnemies[i]);
+		//Debug.Log(ListOfMovingEnemies[i].isActiveAndEnabled);
+		//Debug.Log(ListOfMovingEnemies[i].transform.position);
+		if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
+		&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
+		&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
+			Destroy(ListOfMovingEnemies[i]);
+		if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
+			Application.LoadLevel(0);
+		if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
+			LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
+		if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
+		&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
+		&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
+			Destroy(ListOfMovingEnemies[i]);
+		if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
+			Application.LoadLevel(0);
+	}
+}*/
 
 
-	public bool IsThereGate(Transform ObjCoord)
+public bool IsThereGate(Transform ObjCoord)
     {
 		//Debug.Log(ObjCoord);
 		Object[] Gates = GameObject.FindGameObjectsWithTag("Gate");
@@ -894,6 +898,32 @@ public class Player : MonoBehaviour
 		
 	}
 
+	public void ChangeLights()
+	{
+		if (Lights[0].activeSelf == true)
+		{
+			for (int i = 0; i < Lights.Length; i++)
+			{
+				Lights[i].SetActive(false);
+			}
+			for (int i = 0; i < LightsToChange.Length; i++)
+			{
+				LightsToChange[i].SetActive(true);
+			}
+		}
+		else
+		{
+			for (int i = 0; i < Lights.Length; i++)
+			{
+				Lights[i].SetActive(true);
+			}
+			for (int i = 0; i < LightsToChange.Length; i++)
+			{
+				LightsToChange[i].SetActive(false);
+			}
+		}
+	}
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -914,8 +944,11 @@ public class Player : MonoBehaviour
 		//Time.timeScale = 0.1f;
 		//Debug.Log(gameObject);
 		Quaternion OldRotation;
-		if (LightOffTurns <= 0 && Light.activeSelf == false)
-			Light.SetActive(true);
+			if (LightOffTurns <= 0 && Lights[0] != null && Lights[0].activeSelf == false)
+			{
+				ChangeLights();
+			}
+			//Light.SetActive(true);
 		//Debug.Log(IsMovable);
 		//Debug.Log(IsWaiting);
 		//if (IsMovable == true && IsWaiting == false && ProjectionIsActive == false)
