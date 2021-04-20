@@ -944,7 +944,7 @@ public bool IsThereGate(Transform ObjCoord)
 		//Time.timeScale = 0.1f;
 		//Debug.Log(gameObject);
 		Quaternion OldRotation;
-			if (LightOffTurns <= 0 && Lights[0] != null && Lights[0].activeSelf == false)
+			if (LightOffTurns <= 0 && Lights.Length != 0 && Lights[0].activeSelf == false)
 			{
 				ChangeLights();
 			}
