@@ -148,7 +148,7 @@ public class MotionlessEnemy : MonoBehaviour
 		GameObject projection = GameObject.FindGameObjectWithTag("Projection");
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		//Debug.Log(PlayerFuncs.LightOffTurns >= 0);
-		Debug.Log(PlayerFuncs.LightOffTurns);
+		//Debug.Log(PlayerFuncs.LightOffTurns);
 		if (transform.position.x == player.transform.position.x
 		&& transform.position.z == player.transform.position.z
 		&& (!CheckIfFacing(player) || PlayerFuncs.Invisible >= 0 || PlayerFuncs.LightOffTurns >= 0))

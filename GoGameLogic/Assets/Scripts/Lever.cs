@@ -114,6 +114,7 @@ public class Lever : MonoBehaviour
 
     private void OnMouseDown()
     {
+        //Debug.Log("AAAA");
         GameObject player;
         player = GameObject.FindGameObjectWithTag("Projection");
         if (player == null)
