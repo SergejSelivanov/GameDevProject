@@ -9,7 +9,12 @@ public class Player : MonoBehaviour
 	public GameObject HorLineHandler;
 	public GameObject LineMovingEnemyHandler;
 	public GameObject MotionlessEnemyHandler;
-	public GameObject Light;
+	//public GameObject Light;
+	//public bool LightsNeeded = false;
+	public GameObject[] Lights;
+	public GameObject[] LightsToChange;
+	public Texture2D[] SomeLightmaps;
+
 	//public GameObject animator;
 	private Node NodeFuncs;
 	private VerticalLine VerLineFuncs;
@@ -24,40 +29,128 @@ public class Player : MonoBehaviour
 	private int LightsOffTurns = 0;
 	private bool ProjectionIsActive = false;
 	private bool FlagGranade = false;
+	private LightmapData[] LightMapBuf;
+	private bool LightsOff = false;
 
 	private GameObject FinalNode;
 	private GameObject[] EnemiesTokill;
-	//private Animator animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
-	//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
-	//public bool IsMoving = false;
+//private Animator animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
+//public bool IsMoving = false;
 
-	/*public void CheckForDestroyAgain()
+/*public void CheckForDestroyAgain()
+{
+	GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
+	for (int i = 0; i < ListOfMovingEnemies.Length; i++)
 	{
-		GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
-		for (int i = 0; i < ListOfMovingEnemies.Length; i++)
+	//	Debug.Log(ListOfMovingEnemies[i]);
+		//Debug.Log(ListOfMovingEnemies[i].isActiveAndEnabled);
+		//Debug.Log(ListOfMovingEnemies[i].transform.position);
+		if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
+		&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
+		&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
+			Destroy(ListOfMovingEnemies[i]);
+		if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
+			Application.LoadLevel(0);
+		if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
+			LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
+		if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
+		&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
+		&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
+			Destroy(ListOfMovingEnemies[i]);
+		if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
+			Application.LoadLevel(0);
+	}
+}*/
+
+	//private GameObject FindNode(GameObject[] Nodes, int X, int Z)
+	private GameObject FindNode(Node [] Nodes, int X, int Z)
+    {
+        for (int i = 0; i < Nodes.Length; i++)
+        {
+			if (Nodes[i].transform.position.x == X && Nodes[i].transform.position.z == Z)
+				return (Nodes[i].gameObject);
+        }
+		return (null);
+    }
+
+	public GameObject GetStairwayNodePositionY(GameObject Obj)
+	//public float GetStairwayNodePositionY(GameObject Obj)
+	{
+		//GameObject[] Nodes = GameObject.FindGameObjectsWithTag("Node");
+		//GameObject[] Nodes = NodeFuncs.FindObjectsOfType<Node>;
+		Node[] Nodes = GameObject.FindObjectsOfType<Node>();
+        /*for (int i = 0; i < Nodes.Length; i++)
+        {
+			Debug.Log(Nodes[i]);
+        }*/
+		GameObject DefiniteNode;
+		if (Obj.transform.rotation.eulerAngles.y == 0)
+        {
+			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x, (int)Obj.transform.position.z + 1);
+        }
+		else if(Obj.transform.rotation.eulerAngles.y == 90)
+
 		{
-		//	Debug.Log(ListOfMovingEnemies[i]);
-			//Debug.Log(ListOfMovingEnemies[i].isActiveAndEnabled);
-			//Debug.Log(ListOfMovingEnemies[i].transform.position);
-			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
-			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
-				Destroy(ListOfMovingEnemies[i]);
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
-				Application.LoadLevel(0);
-			if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
-				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
-			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
-			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
-				Destroy(ListOfMovingEnemies[i]);
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
-				Application.LoadLevel(0);
+			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x + 1, (int)Obj.transform.position.z);
 		}
-	}*/
+		else if(Obj.transform.rotation.eulerAngles.y == 180)
+
+		{
+			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x, (int)Obj.transform.position.z - 1);
+		}
+		else
+
+		{
+			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x - 1, (int)Obj.transform.position.z + 1);
+		}
+		return DefiniteNode;
+		//if (DefiniteNode == null)
+			//return -500;
+		//return DefiniteNode.transform.position.y;
+	}
+
+	IEnumerator WalkUpright(int sign, GameObject Obj, GameObject Node)
+    {
+		float diff = Mathf.Abs(Obj.transform.position.y - Node.transform.position.y);
+        for (float i = 0; i < 1; i += 0.01f)
+        {
+			//Obj.transform.position += new Vector3(0, 0.007f * sign, 0);
+			//Obj.transform.position += new Vector3(0, Mathf.Abs(Obj.transform.position.y - Node.transform.position.y) / 100 * sign, 0);
+			 Obj.transform.position += new Vector3(0, diff / 100 * sign, 0);
+			yield return new WaitForSeconds(0.004f);
+        }
+    }
+
+	public void CheckIfThereIsStairway(GameObject Obj)
+    {
+		GameObject DefiniteNode = GetStairwayNodePositionY(Obj);
+		if (DefiniteNode == null)
+			return;
+		float NodePositionY = DefiniteNode.transform.position.y;
+		//float NodePositionY = GetStairwayNodePositionY(Obj);
+		//if (NodePositionY == -500)
+			//return;
+		float ObjPositionY = Obj.transform.position.y;
+		Debug.Log(Mathf.Abs(NodePositionY - ObjPositionY));
+		if (Mathf.Abs(NodePositionY - ObjPositionY) > 0.1f)
+        {
+			Debug.Log("YES");
+			if (NodePositionY > ObjPositionY)
+            {
+				StartCoroutine(WalkUpright(1, Obj, DefiniteNode));
+            }
+            else
+            {
+				StartCoroutine(WalkUpright(-1, Obj, DefiniteNode));
+			}
+        }
+
+    }
 
 
-	public bool IsThereGate(Transform ObjCoord)
+
+public bool IsThereGate(Transform ObjCoord)
     {
 		//Debug.Log(ObjCoord);
 		Object[] Gates = GameObject.FindGameObjectsWithTag("Gate");
@@ -803,6 +896,7 @@ public class Player : MonoBehaviour
 
 	IEnumerator WalkLeft()
 	{
+		CheckIfThereIsStairway(gameObject);
 		GameObject[] ListOfEnemies;
 		//animator.SetBool("IsRunning", true);
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
@@ -830,6 +924,7 @@ public class Player : MonoBehaviour
 
 	IEnumerator WalkRight()
     {
+		CheckIfThereIsStairway(gameObject);
 		GameObject[] ListOfEnemies;
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
 		for (float i = 0;  i < 1; i += 0.01f)
@@ -851,6 +946,7 @@ public class Player : MonoBehaviour
 
 	IEnumerator WalkUp()
 	{
+		CheckIfThereIsStairway(gameObject);
 		GameObject[] ListOfEnemies;
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
 		for (float i = 0; i < 1; i += 0.01f)
@@ -874,6 +970,7 @@ public class Player : MonoBehaviour
 
 	IEnumerator WalkDown()
 	{
+		CheckIfThereIsStairway(gameObject);
 		GameObject[] ListOfEnemies;
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
 		for (float i = 0; i < 1; i += 0.01f)
@@ -894,6 +991,53 @@ public class Player : MonoBehaviour
 		
 	}
 
+	public void ChangeLights()
+	{
+		/*if (Lights[0].activeSelf == true)
+		{
+			for (int i = 0; i < Lights.Length; i++)
+			{
+				Lights[i].SetActive(false);
+			}
+			for (int i = 0; i < LightsToChange.Length; i++)
+			{
+				LightsToChange[i].SetActive(true);
+			}
+		}
+		else
+		{
+			for (int i = 0; i < Lights.Length; i++)
+			{
+				Lights[i].SetActive(true);
+			}
+			for (int i = 0; i < LightsToChange.Length; i++)
+			{
+				LightsToChange[i].SetActive(false);
+			}
+		}*/
+		LightmapData[] LmData = new LightmapData[1];
+		LmData[0] = new LightmapData();
+		if (LightsOff == false)
+		{
+			LmData[0] = LightmapSettings.lightmaps[0];
+			LmData[0].lightmapDir = SomeLightmaps[1];
+			LmData[0].lightmapColor = SomeLightmaps[0];
+			LightmapSettings.lightmaps = LmData;
+			LightsOff = true;
+		}
+		else
+		{
+			Debug.Log("ueeeee");
+			/*LmData[0] = LightmapSettings.lightmaps[0];
+			LmData[0].lightmapDir = SomeLightmaps[2];
+			LmData[0].lightmapColor = SomeLightmaps[3];
+			LightmapSettings.lightmaps = LmData;
+			LightsOff = false;*/
+			LightmapSettings.lightmaps = LightMapBuf;
+			LightsOff = false;
+		}
+	}
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -903,9 +1047,10 @@ public class Player : MonoBehaviour
 		LineMovingEnemyFuncs = LineMovingEnemyHandler.GetComponent<LineMovingEnemy>();
 		MotionlessEnemyFuncs = MotionlessEnemyHandler.GetComponent<MotionlessEnemy>();
 		FinalNode = GameObject.FindGameObjectWithTag("FinalNode");
+		LightMapBuf = LightmapSettings.lightmaps;
 		//Debug.Log(LineMovingEnemyFuncs);
 		//LineMovingEnemyFuncs = LineMovingEnemyHandler.GetComponentInParent<LineMovingEnemy>();
-		
+
 	}
 
 	// Update is called once per frame
@@ -914,8 +1059,15 @@ public class Player : MonoBehaviour
 		//Time.timeScale = 0.1f;
 		//Debug.Log(gameObject);
 		Quaternion OldRotation;
-		if (LightOffTurns <= 0 && Light.activeSelf == false)
-			Light.SetActive(true);
+		/*if (LightOffTurns <= 0 && Lights.Length != 0 && Lights[0].activeSelf == false)
+		{
+			ChangeLights();
+		}*/
+		if (LightOffTurns <= 0 && SomeLightmaps.Length != 0 && LightsOff == true)
+		{
+			ChangeLights();
+		}
+		//Light.SetActive(true);
 		//Debug.Log(IsMovable);
 		//Debug.Log(IsWaiting);
 		//if (IsMovable == true && IsWaiting == false && ProjectionIsActive == false)
