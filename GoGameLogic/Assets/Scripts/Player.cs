@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 	//public bool LightsNeeded = false;
 	public GameObject[] Lights;
 	public GameObject[] LightsToChange;
+	public Texture2D[] SomeLightmaps;
 
 	//public GameObject animator;
 	private Node NodeFuncs;
@@ -28,6 +29,8 @@ public class Player : MonoBehaviour
 	private int LightsOffTurns = 0;
 	private bool ProjectionIsActive = false;
 	private bool FlagGranade = false;
+	private LightmapData[] LightMapBuf;
+	private bool LightsOff = false;
 
 	private GameObject FinalNode;
 	private GameObject[] EnemiesTokill;
@@ -990,7 +993,7 @@ public bool IsThereGate(Transform ObjCoord)
 
 	public void ChangeLights()
 	{
-		if (Lights[0].activeSelf == true)
+		/*if (Lights[0].activeSelf == true)
 		{
 			for (int i = 0; i < Lights.Length; i++)
 			{
@@ -1011,6 +1014,27 @@ public bool IsThereGate(Transform ObjCoord)
 			{
 				LightsToChange[i].SetActive(false);
 			}
+		}*/
+		LightmapData[] LmData = new LightmapData[1];
+		LmData[0] = new LightmapData();
+		if (LightsOff == false)
+		{
+			LmData[0] = LightmapSettings.lightmaps[0];
+			LmData[0].lightmapDir = SomeLightmaps[1];
+			LmData[0].lightmapColor = SomeLightmaps[0];
+			LightmapSettings.lightmaps = LmData;
+			LightsOff = true;
+		}
+		else
+		{
+			Debug.Log("ueeeee");
+			/*LmData[0] = LightmapSettings.lightmaps[0];
+			LmData[0].lightmapDir = SomeLightmaps[2];
+			LmData[0].lightmapColor = SomeLightmaps[3];
+			LightmapSettings.lightmaps = LmData;
+			LightsOff = false;*/
+			LightmapSettings.lightmaps = LightMapBuf;
+			LightsOff = false;
 		}
 	}
 
@@ -1023,9 +1047,10 @@ public bool IsThereGate(Transform ObjCoord)
 		LineMovingEnemyFuncs = LineMovingEnemyHandler.GetComponent<LineMovingEnemy>();
 		MotionlessEnemyFuncs = MotionlessEnemyHandler.GetComponent<MotionlessEnemy>();
 		FinalNode = GameObject.FindGameObjectWithTag("FinalNode");
+		LightMapBuf = LightmapSettings.lightmaps;
 		//Debug.Log(LineMovingEnemyFuncs);
 		//LineMovingEnemyFuncs = LineMovingEnemyHandler.GetComponentInParent<LineMovingEnemy>();
-		
+
 	}
 
 	// Update is called once per frame
@@ -1034,11 +1059,15 @@ public bool IsThereGate(Transform ObjCoord)
 		//Time.timeScale = 0.1f;
 		//Debug.Log(gameObject);
 		Quaternion OldRotation;
-			if (LightOffTurns <= 0 && Lights.Length != 0 && Lights[0].activeSelf == false)
-			{
-				ChangeLights();
-			}
-			//Light.SetActive(true);
+		/*if (LightOffTurns <= 0 && Lights.Length != 0 && Lights[0].activeSelf == false)
+		{
+			ChangeLights();
+		}*/
+		if (LightOffTurns <= 0 && SomeLightmaps.Length != 0 && LightsOff == true)
+		{
+			ChangeLights();
+		}
+		//Light.SetActive(true);
 		//Debug.Log(IsMovable);
 		//Debug.Log(IsWaiting);
 		//if (IsMovable == true && IsWaiting == false && ProjectionIsActive == false)

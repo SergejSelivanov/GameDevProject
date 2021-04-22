@@ -636,11 +636,16 @@ public class LineMovingEnemy : MonoBehaviour
         {
             StartCoroutine("GettingSlower", ListOfEnemies[Indexes[i]]);
         }
-     /*   for (int i = 0; i < ListOfEnemies.Length; i++)
+        /*   for (int i = 0; i < ListOfEnemies.Length; i++)
+           {
+               if (ListOfEnemies[i] != null && (!CheckIfThereIsNodeToMove(ListOfEnemies[i]) || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform) || PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
+                   PlayerFuncs.StartCoroutine("RotateEnemies", ListOfEnemies[i]);
+           }*/
+        for (int i = 0; i < ListOfEnemies.Length; i++)
         {
-            if (ListOfEnemies[i] != null && (!CheckIfThereIsNodeToMove(ListOfEnemies[i]) || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform) || PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
-                PlayerFuncs.StartCoroutine("RotateEnemies", ListOfEnemies[i]);
-        }*/
+            if (ListOfEnemies[i] != null)
+                PlayerFuncs.CheckIfThereIsStairway(ListOfEnemies[i]);
+        }
         for (float i = 0; i < 1; i += 0.01f)
         {
             /*if (XorY == 'x')
@@ -665,7 +670,7 @@ public class LineMovingEnemy : MonoBehaviour
                          ListOfEnemies[j].GetComponentInChildren<Animator>().SetBool("IsRunning", true);
                      }*/
                     ListOfEnemies[j].GetComponentInChildren<Animator>().SetBool("IsRunning", true);
-                   // Debug.Log(ListOfEnemies[j].GetComponentInChildren<Animator>().gameObject);
+                    // Debug.Log(ListOfEnemies[j].GetComponentInChildren<Animator>().gameObject);
                     //animator.SetBool("IsRunning", true);
                     //Debug.Log(animator.GetBool("IsRunning"));
                     // animator.SetBool("IsRunning", false);
@@ -678,6 +683,7 @@ public class LineMovingEnemy : MonoBehaviour
                      ListOfEnemies[j].transform.position = animator.targetPosition;*/
                     //ListOfEnemies[j].GetComponent<Animation>()["mixamo_com"].speed = 1f;
                     //if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 0)
+                    
                     if (ListOfTransforms[j].rotation.eulerAngles.y == 0)
                     {
                          ListOfEnemies[j].transform.position += new Vector3(0, 0, 0.01f);
