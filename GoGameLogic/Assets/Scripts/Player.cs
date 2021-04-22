@@ -60,6 +60,92 @@ public class Player : MonoBehaviour
 	}
 }*/
 
+	//private GameObject FindNode(GameObject[] Nodes, int X, int Z)
+	private GameObject FindNode(Node [] Nodes, int X, int Z)
+    {
+        for (int i = 0; i < Nodes.Length; i++)
+        {
+			if (Nodes[i].transform.position.x == X && Nodes[i].transform.position.z == Z)
+				return (Nodes[i].gameObject);
+        }
+		return (null);
+    }
+
+	public GameObject GetStairwayNodePositionY(GameObject Obj)
+	//public float GetStairwayNodePositionY(GameObject Obj)
+	{
+		//GameObject[] Nodes = GameObject.FindGameObjectsWithTag("Node");
+		//GameObject[] Nodes = NodeFuncs.FindObjectsOfType<Node>;
+		Node[] Nodes = GameObject.FindObjectsOfType<Node>();
+        /*for (int i = 0; i < Nodes.Length; i++)
+        {
+			Debug.Log(Nodes[i]);
+        }*/
+		GameObject DefiniteNode;
+		if (Obj.transform.rotation.eulerAngles.y == 0)
+        {
+			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x, (int)Obj.transform.position.z + 1);
+        }
+		else if(Obj.transform.rotation.eulerAngles.y == 90)
+
+		{
+			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x + 1, (int)Obj.transform.position.z);
+		}
+		else if(Obj.transform.rotation.eulerAngles.y == 180)
+
+		{
+			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x, (int)Obj.transform.position.z - 1);
+		}
+		else
+
+		{
+			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x - 1, (int)Obj.transform.position.z + 1);
+		}
+		return DefiniteNode;
+		//if (DefiniteNode == null)
+			//return -500;
+		//return DefiniteNode.transform.position.y;
+	}
+
+	IEnumerator WalkUpright(int sign, GameObject Obj, GameObject Node)
+    {
+		float diff = Mathf.Abs(Obj.transform.position.y - Node.transform.position.y);
+        for (float i = 0; i < 1; i += 0.01f)
+        {
+			//Obj.transform.position += new Vector3(0, 0.007f * sign, 0);
+			//Obj.transform.position += new Vector3(0, Mathf.Abs(Obj.transform.position.y - Node.transform.position.y) / 100 * sign, 0);
+			 Obj.transform.position += new Vector3(0, diff / 100 * sign, 0);
+			yield return new WaitForSeconds(0.004f);
+        }
+    }
+
+	public void CheckIfThereIsStairway(GameObject Obj)
+    {
+		GameObject DefiniteNode = GetStairwayNodePositionY(Obj);
+		if (DefiniteNode == null)
+			return;
+		float NodePositionY = DefiniteNode.transform.position.y;
+		//float NodePositionY = GetStairwayNodePositionY(Obj);
+		//if (NodePositionY == -500)
+			//return;
+		float ObjPositionY = Obj.transform.position.y;
+		Debug.Log(Mathf.Abs(NodePositionY - ObjPositionY));
+		if (Mathf.Abs(NodePositionY - ObjPositionY) > 0.1f)
+        {
+			Debug.Log("YES");
+			if (NodePositionY > ObjPositionY)
+            {
+				StartCoroutine(WalkUpright(1, Obj, DefiniteNode));
+            }
+            else
+            {
+				StartCoroutine(WalkUpright(-1, Obj, DefiniteNode));
+			}
+        }
+
+    }
+
+
 
 public bool IsThereGate(Transform ObjCoord)
     {
@@ -807,6 +893,7 @@ public bool IsThereGate(Transform ObjCoord)
 
 	IEnumerator WalkLeft()
 	{
+		CheckIfThereIsStairway(gameObject);
 		GameObject[] ListOfEnemies;
 		//animator.SetBool("IsRunning", true);
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
@@ -834,6 +921,7 @@ public bool IsThereGate(Transform ObjCoord)
 
 	IEnumerator WalkRight()
     {
+		CheckIfThereIsStairway(gameObject);
 		GameObject[] ListOfEnemies;
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
 		for (float i = 0;  i < 1; i += 0.01f)
@@ -855,6 +943,7 @@ public bool IsThereGate(Transform ObjCoord)
 
 	IEnumerator WalkUp()
 	{
+		CheckIfThereIsStairway(gameObject);
 		GameObject[] ListOfEnemies;
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
 		for (float i = 0; i < 1; i += 0.01f)
@@ -878,6 +967,7 @@ public bool IsThereGate(Transform ObjCoord)
 
 	IEnumerator WalkDown()
 	{
+		CheckIfThereIsStairway(gameObject);
 		GameObject[] ListOfEnemies;
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
 		for (float i = 0; i < 1; i += 0.01f)
