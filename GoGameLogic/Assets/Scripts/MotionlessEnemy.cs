@@ -108,7 +108,12 @@ public class MotionlessEnemy : MonoBehaviour
 
 	public bool CheckifPlayerInfrontofEnemy(GameObject player)
 	{
-		//Debug.Log(gameObject);
+		/*Debug.Log(gameObject);
+		//Debug.Log("HERE");
+		Debug.Log(gameObject.transform.rotation.eulerAngles.y == 0);
+		Debug.Log(gameObject.transform.position.x == player.transform.position.x);
+		Debug.Log(gameObject.transform.position.z + 1 == player.transform.position.z);
+		Debug.Log(VerLineFuncs.CheckIfThereIsLine(gameObject.transform.position, 1, gameObject.transform.position + new Vector3(0, 0, 1)));*/
 		if (gameObject.transform.rotation.eulerAngles.y == 0 
 		&& gameObject.transform.position.x == player.transform.position.x 
 		&& gameObject.transform.position.z + 1 == player.transform.position.z
@@ -148,7 +153,7 @@ public class MotionlessEnemy : MonoBehaviour
 		GameObject projection = GameObject.FindGameObjectWithTag("Projection");
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		//Debug.Log(PlayerFuncs.LightOffTurns >= 0);
-		Debug.Log(PlayerFuncs.LightOffTurns);
+		//Debug.Log(PlayerFuncs.LightOffTurns);
 		if (transform.position.x == player.transform.position.x
 		&& transform.position.z == player.transform.position.z
 		&& (!CheckIfFacing(player) || PlayerFuncs.Invisible >= 0 || PlayerFuncs.LightOffTurns >= 0))
@@ -167,6 +172,10 @@ public class MotionlessEnemy : MonoBehaviour
 			PlayerFuncs.SkillSetter += 0.5f;
 			//Debug.Log(PlayerFuncs.SkillSetter);
 		}
+		//Debug.Log(CheckifPlayerInfrontofEnemy(player));
+		//Debug.Log(PlayerFuncs.Invisible <= 0);
+		//Debug.Log(!PlayerFuncs.IsThereGate(gameObject.transform));
+		//Debug.Log(PlayerFuncs.LightOffTurns <= 0);
 		if (CheckifPlayerInfrontofEnemy(player) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
 			Application.LoadLevel(0);
 		if (projection != null)
