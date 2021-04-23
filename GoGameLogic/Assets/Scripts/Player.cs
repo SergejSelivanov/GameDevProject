@@ -11,9 +11,10 @@ public class Player : MonoBehaviour
 	public GameObject MotionlessEnemyHandler;
 	//public GameObject Light;
 	//public bool LightsNeeded = false;
-	public GameObject[] Lights;
-	public GameObject[] LightsToChange;
+	//public GameObject[] Lights;
+	//public GameObject[] LightsToChange;
 	public Texture2D[] SomeLightmaps;
+	//public static LightmapData[] lightmaps;
 
 	//public GameObject animator;
 	private Node NodeFuncs;
