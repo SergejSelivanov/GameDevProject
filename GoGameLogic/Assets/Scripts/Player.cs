@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
 		else
 
 		{
-			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x - 1, (int)Obj.transform.position.z + 1);
+			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x - 1, (int)Obj.transform.position.z);
 		}
 		return DefiniteNode;
 		//if (DefiniteNode == null)

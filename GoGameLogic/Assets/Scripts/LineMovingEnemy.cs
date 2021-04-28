@@ -722,7 +722,7 @@ public class LineMovingEnemy : MonoBehaviour
                     ListOfEnemies[i].transform.GetChild(0).rotation = Quaternion.Euler(0, 180, 0);
                 if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 235)
                     ListOfEnemies[i].transform.GetChild(0).rotation = Quaternion.Euler(0, 270, 0);
-                ListBuf[i].transform.GetChild(0).GetComponent<Animator>().SetBool("SetRunning", false);
+                ListBuf[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsRunning", false);
             }
         }
         // ReturnPositions(ListBuf, Indexes);
