@@ -11,9 +11,10 @@ public class Player : MonoBehaviour
 	public GameObject MotionlessEnemyHandler;
 	//public GameObject Light;
 	//public bool LightsNeeded = false;
-	public GameObject[] Lights;
-	public GameObject[] LightsToChange;
+	//public GameObject[] Lights;
+	//public GameObject[] LightsToChange;
 	public Texture2D[] SomeLightmaps;
+	//public static LightmapData[] lightmaps;
 
 	//public GameObject animator;
 	private Node NodeFuncs;
@@ -102,7 +103,7 @@ public class Player : MonoBehaviour
 		else
 
 		{
-			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x - 1, (int)Obj.transform.position.z + 1);
+			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x - 1, (int)Obj.transform.position.z);
 		}
 		return DefiniteNode;
 		//if (DefiniteNode == null)
@@ -132,10 +133,10 @@ public class Player : MonoBehaviour
 		//if (NodePositionY == -500)
 			//return;
 		float ObjPositionY = Obj.transform.position.y;
-		Debug.Log(Mathf.Abs(NodePositionY - ObjPositionY));
+		//Debug.Log(Mathf.Abs(NodePositionY - ObjPositionY));
 		if (Mathf.Abs(NodePositionY - ObjPositionY) > 0.1f)
         {
-			Debug.Log("YES");
+			//Debug.Log("YES");
 			if (NodePositionY > ObjPositionY)
             {
 				StartCoroutine(WalkUpright(1, Obj, DefiniteNode));
@@ -1027,7 +1028,7 @@ public bool IsThereGate(Transform ObjCoord)
 		}
 		else
 		{
-			Debug.Log("ueeeee");
+			//Debug.Log("ueeeee");
 			/*LmData[0] = LightmapSettings.lightmaps[0];
 			LmData[0].lightmapDir = SomeLightmaps[2];
 			LmData[0].lightmapColor = SomeLightmaps[3];

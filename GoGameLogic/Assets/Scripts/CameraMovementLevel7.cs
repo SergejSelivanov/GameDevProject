@@ -18,6 +18,7 @@ public class CameraMovementLevel7 : MonoBehaviour
         Vector3 MainPosition = MainCamera.transform.position;
         float FovDiff = (MainFOV - StartFOV) / 500;
         float RotationDiffX = (StartRotation.eulerAngles.x - MainRotation.eulerAngles.x) / 500;
+        float RotationDiffY = (StartRotation.eulerAngles.y - MainRotation.eulerAngles.y) / 500;
         //float RotationDiffY = (StartRotation.eulerAngles.y - MainRotation.eulerAngles.y) / 500;
         //float RotationDiffZ = (StartRotation.eulerAngles.z - MainRotation.eulerAngles.z) / 500;
         //Quaternion RotationDiff = Quaternion.Euler(StartRotation.eulerAngles.x - MainRotation.eulerAngles.x / 500, StartRotation.eulerAngles.y - MainRotation.eulerAngles.y / 500, StartRotation.eulerAngles.z - MainRotation.eulerAngles.z / 500);
@@ -28,7 +29,8 @@ public class CameraMovementLevel7 : MonoBehaviour
              StartCamera.transform.rotation = Quaternion.Euler(StartCamera.transform.rotation.eulerAngles.x - Mathf.Abs(MainRotation.x - StartRotation.x) / 500, 0, 0);
              StartPosition += MainPosition / 500;*/
             StartCamera.GetComponent<Camera>().fieldOfView += FovDiff;
-            StartCamera.transform.rotation = Quaternion.Euler(StartCamera.transform.rotation.eulerAngles.x - RotationDiffX, 0, 0);
+            //StartCamera.transform.rotation = Quaternion.Euler(StartCamera.transform.rotation.eulerAngles.x - RotationDiffX, 0, 0);
+            StartCamera.transform.rotation = Quaternion.Euler(StartCamera.transform.rotation.eulerAngles.x - RotationDiffX, StartCamera.transform.rotation.eulerAngles.y - RotationDiffY, 0);
             StartCamera.transform.position += PositionDiff;
             yield return new WaitForSeconds(0.01f);
         }
