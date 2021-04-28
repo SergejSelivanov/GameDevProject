@@ -133,10 +133,10 @@ public class Player : MonoBehaviour
 		//if (NodePositionY == -500)
 			//return;
 		float ObjPositionY = Obj.transform.position.y;
-		Debug.Log(Mathf.Abs(NodePositionY - ObjPositionY));
+		//Debug.Log(Mathf.Abs(NodePositionY - ObjPositionY));
 		if (Mathf.Abs(NodePositionY - ObjPositionY) > 0.1f)
         {
-			Debug.Log("YES");
+			//Debug.Log("YES");
 			if (NodePositionY > ObjPositionY)
             {
 				StartCoroutine(WalkUpright(1, Obj, DefiniteNode));
@@ -1028,7 +1028,7 @@ public bool IsThereGate(Transform ObjCoord)
 		}
 		else
 		{
-			Debug.Log("ueeeee");
+			//Debug.Log("ueeeee");
 			/*LmData[0] = LightmapSettings.lightmaps[0];
 			LmData[0].lightmapDir = SomeLightmaps[2];
 			LmData[0].lightmapColor = SomeLightmaps[3];
