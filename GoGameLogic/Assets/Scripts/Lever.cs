@@ -6,6 +6,7 @@ public class Lever : MonoBehaviour
 {
     private float DistanceToLever = 0.4f;
     public GameObject ConnectedDoor;
+    public GameObject PlaneToTurnOff;
     //public int Angle = 90;
     private bool IsOpen = false;
     private bool IsWaiting = false;
@@ -22,6 +23,8 @@ public class Lever : MonoBehaviour
 
     IEnumerator CloseDoors(int WhichCase)
     {
+        if (PlaneToTurnOff != null)
+            PlaneToTurnOff.SetActive(true);
         if (WhichCase == 0)
         {
             for (int i = 0; i < 30; i++)
@@ -68,6 +71,8 @@ public class Lever : MonoBehaviour
 
     IEnumerator OpenDoors(int WhichCase)
     {
+        if (PlaneToTurnOff != null)
+            PlaneToTurnOff.SetActive(false);
         if (WhichCase == 0)
         {
             for (int i = 0; i < 30; i++)
