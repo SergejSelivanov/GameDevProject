@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 	private bool LightsOff = false;
 
 	private GameObject FinalNode;
-	private GameObject[] EnemiesTokill;
+	private static GameObject[] EnemiesTokill;
 //private Animator animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
 //LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
 //public bool IsMoving = false;
@@ -397,7 +397,8 @@ public bool IsThereGate(Transform ObjCoord)
 	{
 		GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
 		GameObject[] RetArray = new GameObject[ListOfMovingEnemies.Length];
-		EnemiesTokill = new GameObject[ListOfMovingEnemies.Length];
+		if (EnemiesTokill == null)
+			EnemiesTokill = new GameObject[ListOfMovingEnemies.Length];
 		for (int i = 0; i < ListOfMovingEnemies.Length; i++)
 		{
 			//Debug.Log(ListOfMovingEnemies[i].transform);
