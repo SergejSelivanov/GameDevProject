@@ -3036,6 +3036,7 @@ GameObject:
   - component: {fileID: 3234273684526177757}
   - component: {fileID: 3296526055596637377}
   - component: {fileID: 3237030442007616512}
+  - component: {fileID: 3630696550989080381}
   m_Layer: 0
   m_Name: PlayerNew
   m_TagString: Player
@@ -3114,8 +3115,20 @@ MonoBehaviour:
   HorLineHandler: {fileID: 0}
   LineMovingEnemyHandler: {fileID: 0}
   MotionlessEnemyHandler: {fileID: 0}
-  Light: {fileID: 0}
-  EnemyTokill: {fileID: 0}
+  SomeLightmaps: []
+--- !u!65 &3630696550989080381
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3236470547125099135}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.94670963, y: 2.513226, z: 0.76368654}
+  m_Center: {x: -0.026645184, y: 0.756613, z: -0.010497034}
 --- !u!1 &3236479168736073069
 GameObject:
   m_ObjectHideFlags: 0

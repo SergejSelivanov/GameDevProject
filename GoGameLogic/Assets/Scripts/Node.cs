@@ -269,14 +269,19 @@ public class Node : MonoBehaviour
     {
         string Sight;
         //Debug.Log(PlayerFuncs.IsflagGranade);
-        if (PlayerFuncs.IsflagGranade == false)
+        //if (PlayerFuncs.IsflagGranade == false)
+       // Debug.Log("PRESSED");
+        if (PlayerFuncs.IsflagGranade == true)
         {
             //ft_Throw_Granade(transform.position);
             Sight = ft_check_hero_on_line(transform.position, PlayerFuncs.transform.position);
+            //Debug.Log(ft_check_hero_sight(Sight));
+            //Debug.Log(Sight);
             if (ft_check_hero_sight(Sight))
             {
                 ft_check_mob_on_Line();
-                PlayerFuncs.IsflagGranade = true;
+                // PlayerFuncs.IsflagGranade = true;
+                PlayerFuncs.IsflagGranade = false;
                 Time.timeScale = 1;
                 GameObject.FindGameObjectWithTag("GranadeButton").SetActive(false);
             }

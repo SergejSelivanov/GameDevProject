@@ -64,12 +64,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CameraEnemy.cs" />
     <Compile Include="Assets\Scripts\CameraMove.cs" />
     <Compile Include="Assets\Scripts\CameraMovementLevel7.cs" />
     <Compile Include="Assets\Scripts\Dialog.cs" />
     <Compile Include="Assets\Scripts\DialogManager.cs" />
     <Compile Include="Assets\Scripts\HorizontalLine.cs" />
     <Compile Include="Assets\Scripts\InvisibilityButton.cs" />
+    <Compile Include="Assets\Scripts\KnifeFill.cs" />
     <Compile Include="Assets\Scripts\LaserDoorLever.cs" />
     <Compile Include="Assets\Scripts\LevelSelector.cs" />
     <Compile Include="Assets\Scripts\Lever.cs" />

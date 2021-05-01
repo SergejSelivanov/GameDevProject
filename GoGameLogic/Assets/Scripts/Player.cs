@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
 	private bool FlagGranade = false;
 	private LightmapData[] LightMapBuf;
 	private bool LightsOff = false;
+	private CameraEnemy[] CameraEnemies;
 
 	private GameObject FinalNode;
 	private static GameObject[] EnemiesTokill;
@@ -149,63 +150,37 @@ public class Player : MonoBehaviour
 
     }
 
-
+	public bool IsThereCamera(Transform ObjCoord)
+    {
+		Object[] Cameras = GameObject.FindGameObjectsWithTag("CameraEnemy");
+		RaycastHit Hit;
+		Ray ray = new Ray(ObjCoord.position, ObjCoord.forward);
+		Physics.Raycast(ray, out Hit, 1);
+		if (Hit.collider != null)
+        {
+			for (int i = 0; i < Cameras.Length; i++)
+			{
+				if (Hit.collider.gameObject == Cameras[i])
+					return true;
+			}
+		}
+		return false;
+    }
 
 public bool IsThereGate(Transform ObjCoord)
     {
-		//Debug.Log(ObjCoord);
 		Object[] Gates = GameObject.FindGameObjectsWithTag("Gate");
 		RaycastHit Hit;
-		//Ray ray = new Ray(ObjCoord, ObjCoord);
-		//Ray ray;
-		/*if (ObjCoord.rotation.eulerAngles.y == 0)
-			ray = new Ray(ObjCoord.position, ObjCoord.transform.forward);
-		if (ObjCoord.rotation.eulerAngles.y == 180)
-			ray = new Ray(ObjCoord.position, ObjCoord.transform.forward);
-		if (ObjCoord.rotation.eulerAngles.y == 270)
-			ray = new Ray(ObjCoord.position, ObjCoord.transform.right);
-		else
-			ray = new Ray(ObjCoord.position, ObjCoord.transform.right);*/
-		//Debug.Log(ObjCoord.position);
-		//Ray ray = new Ray(ObjCoord.position, ObjCoord.transform.forward);
 		Ray ray = new Ray(ObjCoord.position, ObjCoord.forward);
-		//Debug.DrawRay(ObjCoord.position, ObjCoord.forward * 100, Color.yellow);
-		//Ray ray = new Ray(ObjCoord.position, ObjCoord.TransformDirection(Vector3.forward));
-		//Ray ray = new Ray(ObjCoord.position, Vector3.up, out Hit, 10);
-        //Ray ray = new Ray(ObjCoord.position, ObjCoord.right);
-        //Ray ray = new Ray(ObjCoord.position, ObjCoord.transform.right);
-        //if (ObjCoord.rotation.eulerAngles.y == 0)
-        //Ray ray = new Ray(ObjCoord.position, ObjCoord.transform.forward);
-        //else
-        //ray = 
-        //Debug.DrawRay(ObjCoord.position, ObjCoord.TransformDirection(Vector3.forward) * 1000, Color.red);
-		
 		Physics.Raycast(ray, out Hit, 1);
-		//Debug.DrawLine(ray.origin, Hit.point);
-		//Debug.DrawRay(ObjCoord.position, ObjCoord.transform.forward * 20, Color.red, 10);
-		//Physics.Raycast(ObjCoord.position, Vector3.up, out Hit, 10);
-		//Debug.DrawRay(ObjCoord.position, ObjCoord.transform.forward * 3, Color.red, 10);
-		//Debug.Log(Hit.collider.gameObject);
-		//Debug.Log(Hit.collider);
 		if (Hit.collider != null)
         {
-			//string a;
-			//a =  Hit.collider.ToString;
-			//Debug.Log(Hit.collider);
             for (int i = 0; i < Gates.Length; i++)
             {
-				//Debug.Log(Hit.collider.gameObject);
-				//Debug.Log(Hit.collider);
-				//Debug.Log(Gates[i]);
-				//if (Hit.collider == Gates[i])
 				if (Hit.collider.gameObject == Gates[i])
-				{
-					//Debug.Log("yess");
 					return true;
-				}
             }
         }
-		//if (Hit.collider.ToString == "fence_gate";
 		return false;
     }
 
@@ -404,7 +379,7 @@ public bool IsThereGate(Transform ObjCoord)
 			//Debug.Log(ListOfMovingEnemies[i].transform);
 		//	if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]) || IsThereGate(ListOfMovingEnemies[i].transform) || CheckIfThereIsMotEnemy(ListOfMovingEnemies[i]))
 			//	LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0 && !IsThereGate(ListOfMovingEnemies[i].transform) && LightOffTurns <= 0)
+			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0 && !IsThereGate(ListOfMovingEnemies[i].transform) && !IsThereCamera(ListOfMovingEnemies[i].transform) && LightOffTurns <= 0)
 				Application.LoadLevel(0);
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
@@ -913,6 +888,10 @@ public bool IsThereGate(Transform ObjCoord)
 		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, transform.position.z);
 		//MoveEnemies();
 		ListOfEnemies = CheckEnemies();
+		for (int i = 0; i < CameraEnemies.Length; i++)
+		{
+			CameraEnemies[i].MoveCamera();
+		}
 		IsWaiting = true;
 		if (LightOffTurns <= 0)
 			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
@@ -938,6 +917,10 @@ public bool IsThereGate(Transform ObjCoord)
 		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, transform.position.z);
 		//MoveEnemies();
 		ListOfEnemies = CheckEnemies();
+		for (int i = 0; i < CameraEnemies.Length; i++)
+		{
+			CameraEnemies[i].MoveCamera();
+		}
 		IsWaiting = true;
 		if (LightOffTurns <= 0)
 			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
@@ -961,6 +944,10 @@ public bool IsThereGate(Transform ObjCoord)
 		//MoveEnemies();
 		//IsMoving = false;
 		ListOfEnemies = CheckEnemies();
+		for (int i = 0; i < CameraEnemies.Length; i++)
+		{
+			CameraEnemies[i].MoveCamera();
+		}
 		IsWaiting = true;
 		if (LightOffTurns <= 0)
 			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
@@ -985,6 +972,10 @@ public bool IsThereGate(Transform ObjCoord)
 		//MoveEnemies();
 		//yield return null;
 		ListOfEnemies = CheckEnemies();
+		for (int i = 0; i < CameraEnemies.Length; i++)
+		{
+			CameraEnemies[i].MoveCamera();
+		}
 		IsWaiting = true;
 		if (LightOffTurns <= 0)
 			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
@@ -1050,6 +1041,8 @@ public bool IsThereGate(Transform ObjCoord)
 		MotionlessEnemyFuncs = MotionlessEnemyHandler.GetComponent<MotionlessEnemy>();
 		FinalNode = GameObject.FindGameObjectWithTag("FinalNode");
 		LightMapBuf = LightmapSettings.lightmaps;
+		//CameraEnemies = GameObject.FindGameObjectsWithTag("CameraEnemy");
+		CameraEnemies = GameObject.FindObjectsOfType<CameraEnemy>();
 		//Debug.Log(LineMovingEnemyFuncs);
 		//LineMovingEnemyFuncs = LineMovingEnemyHandler.GetComponentInParent<LineMovingEnemy>();
 
@@ -1088,12 +1081,17 @@ public bool IsThereGate(Transform ObjCoord)
 					OldRotation = transform.rotation;
 					
 					transform.rotation = Quaternion.Euler(0, 270, 0);
-					if (!IsThereGate(transform))
+					if (!IsThereGate(transform) && !IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
 						//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
 						IsWaiting = true;
 						StartCoroutine("Rotate", 270);
+						/*for (int i = 0; i < CameraEnemies.Length; i++)
+						{
+							CameraEnemies[i].MoveCamera();
+						}*/
+						//CameraEnemy.MoveCamera();
 						//StartCoroutine("WalkLeft");
 					}
 					else
@@ -1120,12 +1118,11 @@ public bool IsThereGate(Transform ObjCoord)
 					//IsWaiting = true;
 					//FinalPos = transform.position + new Vector3(1, 0, 0);
 					//StartCoroutine("WalkRight");
-					if (!IsThereGate(transform))
+					if (!IsThereGate(transform) && !IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
 						StartCoroutine("Rotate", 90);
-						
 						//StartCoroutine("WalkRight");
 					}
 					else
@@ -1150,12 +1147,12 @@ public bool IsThereGate(Transform ObjCoord)
 					//IsMoving = true;
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 0, 0);
-					if (!IsThereGate(transform))
+					if (!IsThereGate(transform) && !IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
 						StartCoroutine("Rotate", 0);
-						
+
 						//StartCoroutine("WalkUp");
 					}
 					else
@@ -1179,7 +1176,7 @@ public bool IsThereGate(Transform ObjCoord)
 					//IsMoving = true;
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 180, 0);
-					if (!IsThereGate(transform))
+					if (!IsThereGate(transform) && !IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
