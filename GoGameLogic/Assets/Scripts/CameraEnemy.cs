@@ -15,7 +15,7 @@ public class CameraEnemy : MonoBehaviour
         Physics.Raycast(ray, out Hit, 1);
         if (Hit.collider != null)
         {
-            Debug.Log(Hit.collider.gameObject);
+            //Debug.Log(Hit.collider.gameObject);
             if (Hit.collider.gameObject == player)
                 return true;
         }
