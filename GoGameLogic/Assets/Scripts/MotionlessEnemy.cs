@@ -176,7 +176,7 @@ public class MotionlessEnemy : MonoBehaviour
 		//Debug.Log(PlayerFuncs.Invisible <= 0);
 		//Debug.Log(!PlayerFuncs.IsThereGate(gameObject.transform));
 		//Debug.Log(PlayerFuncs.LightOffTurns <= 0);
-		if (CheckifPlayerInfrontofEnemy(player) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
+		if (CheckifPlayerInfrontofEnemy(player) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
 			Application.LoadLevel(0);
 		if (projection != null)
 		{
@@ -198,7 +198,7 @@ public class MotionlessEnemy : MonoBehaviour
 				PlayerFuncs.SkillSetter += 0.5f;
 				//Debug.Log(PlayerFuncs.SkillSetter);
 			}
-			if (CheckifPlayerInfrontofEnemy(projection) && !PlayerFuncs.IsThereGate(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
+			if (CheckifPlayerInfrontofEnemy(projection) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
 			{
 				PlayerFuncs.ProjectionActive = false;
 				projection.SetActive(false);

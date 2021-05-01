@@ -741,7 +741,7 @@ public class LineMovingEnemy : MonoBehaviour
         //animator.SetBool("IsRunning", true);
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
-            if (ListOfEnemies[i] != null && (!CheckIfThereIsNodeToMove(ListOfEnemies[i]) || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform) || PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
+            if (ListOfEnemies[i] != null && (!CheckIfThereIsNodeToMove(ListOfEnemies[i]) || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform) || PlayerFuncs.IsThereCamera(ListOfEnemies[i].transform) || PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
             {
                 //ListBuf[i] = null;///gavno
             }
@@ -811,7 +811,7 @@ public class LineMovingEnemy : MonoBehaviour
            // Debug.Log(CheckIfThereIsNodeToMove(ListOfEnemies[i]));
            // Debug.Log(PlayerFuncs.IsThereGate(ListOfEnemies[i].transform));
             //Debug.Log(PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i]));
-            if (ListOfEnemies[i] != null && (!CheckIfThereIsNodeToMove(ListOfEnemies[i]) || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform) || PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
+            if (ListOfEnemies[i] != null && (!CheckIfThereIsNodeToMove(ListOfEnemies[i]) || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform) || PlayerFuncs.IsThereCamera(ListOfEnemies[i].transform) || PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
             {
                 //Debug.Log("HERE");
                 PlayerFuncs.StartCoroutine("RotateEnemies", ListOfEnemies[i]);
@@ -823,6 +823,7 @@ public class LineMovingEnemy : MonoBehaviour
             //Debug.Log(ListOfEnemies[i]);
             if (ListOfEnemies[i] == null || !CheckIfThereIsNodeToMove(ListOfEnemies[i]) 
             || PlayerFuncs.IsThereGate(ListOfEnemies[i].transform)
+            || PlayerFuncs.IsThereCamera(ListOfEnemies[i].transform)
             || PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i])
             || !(HorLineFuncs.CheckIfThereIsLine(ListOfEnemies[i].transform.position, -1, ListOfEnemies[i].transform.position + new Vector3(-1, 0, 0)) 
             || HorLineFuncs.CheckIfThereIsLine(ListOfEnemies[i].transform.position, 1, ListOfEnemies[i].transform.position + new Vector3(1, 0, 0)) 
@@ -1116,9 +1117,9 @@ public class LineMovingEnemy : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject projection = GameObject.FindGameObjectWithTag("Projection");
-        if (MotEnemyFuncs.CheckifPlayerInfrontofEnemy(player, gameObject) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
+        if (MotEnemyFuncs.CheckifPlayerInfrontofEnemy(player, gameObject) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
             Application.LoadLevel(0);
-        if (projection != null &&  MotEnemyFuncs.CheckifPlayerInfrontofEnemy(projection, gameObject) && !PlayerFuncs.IsThereGate(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
+        if (projection != null &&  MotEnemyFuncs.CheckifPlayerInfrontofEnemy(projection, gameObject) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
             Application.LoadLevel(0);
         /* GameObject[] ListOfEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
          for (int i = 0; i < ListOfEnemies.Length; i++)
