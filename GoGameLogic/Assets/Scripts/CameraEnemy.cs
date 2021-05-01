@@ -15,7 +15,7 @@ public class CameraEnemy : MonoBehaviour
         Physics.Raycast(ray, out Hit, 1);
         if (Hit.collider != null)
         {
-           // Debug.Log(Hit.collider.gameObject);
+            Debug.Log(Hit.collider.gameObject);
             if (Hit.collider.gameObject == player)
                 return true;
         }
@@ -49,8 +49,9 @@ public class CameraEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CheckIfPlayerInfrontOfCamera())
-            //SceneManager.LoadScene(SceneManager.GetActiveScene());
-            Debug.Log("YOU'RE DEAD");
+        if (gameObject.transform.rotation.eulerAngles.y % 90 == 0 && CheckIfPlayerInfrontOfCamera())
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
+            SceneManager.LoadScene(0);
+            //Debug.Log("YOU'RE DEAD");
     }
 }
