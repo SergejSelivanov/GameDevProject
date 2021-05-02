@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MotionlessEnemy : MonoBehaviour
 {
@@ -25,7 +26,9 @@ public class MotionlessEnemy : MonoBehaviour
 				if (KnifeFuncs.CheckIfInRange(gameObject, player))
 				{
 					Destroy(gameObject);
-					PlayerFuncs.SkillSetter = 0;
+					if (GameObject.FindObjectOfType<FillKnife>() != null)
+						GameObject.FindObjectOfType<FillKnife>().GetComponent<Image>().fillAmount = 0; 
+					//PlayerFuncs.SkillSetter = 0;
 					PlayerFuncs.IsPlayerMovable = true;
 				}
 				PlayerFuncs.KnifeReady = false;
@@ -169,7 +172,9 @@ public class MotionlessEnemy : MonoBehaviour
 				}
 			}
 			//PlayerFuncs.EnemiesKill = gameObject;
-			PlayerFuncs.SkillSetter += 0.5f;
+			//PlayerFuncs.SkillSetter += 0.5f;
+			if (GameObject.FindObjectOfType<FillKnife>() != null)
+				GameObject.FindObjectOfType<FillKnife>().StartCoroutine("FillButton");
 			//Debug.Log(PlayerFuncs.SkillSetter);
 		}
 		//Debug.Log(CheckifPlayerInfrontofEnemy(player));
@@ -195,7 +200,9 @@ public class MotionlessEnemy : MonoBehaviour
 					}
 				}
 				//PlayerFuncs.EnemiesKill = gameObject;
-				PlayerFuncs.SkillSetter += 0.5f;
+				//PlayerFuncs.SkillSetter += 0.5f;
+				if (GameObject.FindObjectOfType<FillKnife>() != null)
+					GameObject.FindObjectOfType<FillKnife>().StartCoroutine("FillButton");
 				//Debug.Log(PlayerFuncs.SkillSetter);
 			}
 			if (CheckifPlayerInfrontofEnemy(projection) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)

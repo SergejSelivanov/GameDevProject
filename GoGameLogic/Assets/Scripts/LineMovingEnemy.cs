@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LineMovingEnemy : MonoBehaviour
 {
@@ -135,7 +136,9 @@ public class LineMovingEnemy : MonoBehaviour
                 if (KnifeFuncs.CheckIfInRange(gameObject, player))
                 {
                     Destroy(gameObject);
-                    PlayerFuncs.SkillSetter = 0;
+                    if (GameObject.FindObjectOfType<FillKnife>() != null)
+                        GameObject.FindObjectOfType<FillKnife>().GetComponent<Image>().fillAmount = 0;
+                    //PlayerFuncs.SkillSetter = 0;
                     PlayerFuncs.IsPlayerMovable = true;
                 }
                 PlayerFuncs.KnifeReady = false;

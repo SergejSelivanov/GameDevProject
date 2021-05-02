@@ -204,7 +204,7 @@ public class ThrowKnife : MonoBehaviour
     void Start()
     {
         PlayerFuncs = PlayerHandler.GetComponent<Player>();
-        ButtonUI.SetActive(false);
+       // ButtonUI.SetActive(false);
          //GUI.enabled = false;
         //GUI.enabled = true;
     }
@@ -213,10 +213,10 @@ public class ThrowKnife : MonoBehaviour
     void Update()
     {
         //Debug.Log(PlayerFuncs.SkillSetter);
-        if (PlayerFuncs.SkillSetter == 1)
+       /* if (PlayerFuncs.SkillSetter == 1)
             ButtonUI.SetActive(true);
         else
-            ButtonUI.SetActive(false);
+            ButtonUI.SetActive(false);*/
        // if (Input.GetKeyDown("escape"))
          //   PlayerFuncs.IsPlayerMovable = true;
     }
