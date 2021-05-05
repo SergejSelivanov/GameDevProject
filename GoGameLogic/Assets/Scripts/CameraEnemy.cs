@@ -6,6 +6,19 @@ using UnityEngine.SceneManagement;
 public class CameraEnemy : MonoBehaviour
 {
     // Start is called before the first frame update
+    private int MovingClockwise = 1;
+
+    public int IsClockwise
+    {
+        get
+        {
+            return MovingClockwise;
+        }
+        set
+        {
+            MovingClockwise = value;
+        }
+    }
 
     private bool CheckIfPlayerInfrontOfCamera()
     {
@@ -27,7 +40,7 @@ public class CameraEnemy : MonoBehaviour
         for (int i = 0; i < 90; i++)
         {
             //gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 1, 0);
-            gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y + 1, 0);
+            gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y + 1 * MovingClockwise, 0);
             yield return new WaitForSeconds(0.00444f);
             //yield return new WaitForSeconds(0.0133f);
         }
