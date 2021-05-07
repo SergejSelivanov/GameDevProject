@@ -1050,12 +1050,13 @@ public bool IsThereGate(Transform ObjCoord)
 		CameraEnemies = GameObject.FindObjectsOfType<CameraEnemy>();
 		//Debug.Log(LineMovingEnemyFuncs);
 		//LineMovingEnemyFuncs = LineMovingEnemyHandler.GetComponentInParent<LineMovingEnemy>();
-
+		//FindObjectOfType<AudioManager>().Play("Kill");
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		//FindObjectOfType<AudioManager>().Play("Theme");
 		//Time.timeScale = 0.1f;
 		//Debug.Log(gameObject);
 		Quaternion OldRotation;
