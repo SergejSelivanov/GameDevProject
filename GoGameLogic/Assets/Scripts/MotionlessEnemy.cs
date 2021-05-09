@@ -168,6 +168,7 @@ public class MotionlessEnemy : MonoBehaviour
 				if (PlayerFuncs.EnemiesKill[j] == null)
 				{
 					PlayerFuncs.EnemiesKill[j] = gameObject;
+					FindObjectOfType<AudioManager>().Play("Kill");
 					break;
 				}
 			}

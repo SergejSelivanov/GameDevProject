@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class CameraEnemy : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int MovingClockwise = 1;
+    public int MovingClockwise = 1;
 
     public int IsClockwise
     {
