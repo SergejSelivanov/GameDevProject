@@ -7,7 +7,7 @@ public class LaserDoorLever : MonoBehaviour
     private float DistanceToLever = 0.4f;
     public GameObject ConnectedDoor;
     public GameObject PlaneToTurnOff;
-    private bool IsOpen = false;
+    public bool IsOpen = false;
     private bool IsWaiting = false;
 
     void CloseDoors()
@@ -59,6 +59,7 @@ public class LaserDoorLever : MonoBehaviour
             }
             else if (IsOpen == true && IsWaiting == false)
             {
+                Debug.Log("AUE");
                 IsWaiting = true;
                 IsOpen = false;
                 CloseDoors();
