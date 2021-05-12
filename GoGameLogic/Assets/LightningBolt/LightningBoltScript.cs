@@ -49,7 +49,8 @@ namespace DigitalRuby.LightningBolt
         public Vector3 StartPosition;
 
         [Tooltip("The game object where the lightning will end at. If null, EndPosition is used.")]
-        public GameObject EndObject;
+        //public GameObject EndObject = GameObject.FindGameObjectWithTag("Player").transform.Find("Spine_02").gameObject;
+        private GameObject EndObject;
 
         [Tooltip("The end position where the lightning will end at. This is in world space if EndObject is null, otherwise this is offset from EndObject position.")]
         public Vector3 EndPosition;
@@ -284,8 +285,34 @@ namespace DigitalRuby.LightningBolt
             SelectOffsetFromAnimationMode();
         }
 
+       // private void Awake()
+        //{
+          //  EndObject = GameObject.FindGameObjectWithTag("Player").transform.Find("Spine_02").gameObject;
+        //}
+
         private void Start()
         {
+            //Debug.Log(GameObject.FindGameObjectWithTag("Player").transform.Find("Spine_02").gameObject);
+            //Debug.Log(GameObject.Find("Spine_Main").gameObject);
+            /* try
+             {
+                 EndObject = GameObject.FindGameObjectWithTag("Player").transform.Find("Spine_02").gameObject;
+             }
+             catch
+             {
+                 EndObject = null;
+             }*/
+            //EndObject = (GameObject.Find("Spine_Main").gameObject);
+            /*try
+             {
+                 //Debug.Log(GameObject.FindGameObjectWithTag("Player").transform.Find("Spine_02").gameObject);
+                 Debug.Log(GameObject.Find("PlayerNew/Root/Hips/Spine_01/Spine_02"));
+             }
+             catch
+             {
+                 Debug.Log("Dafuq");
+             }*/
+            EndObject = GameObject.Find("PlayerNew/Root/Hips/Spine_01/Spine_02");
             orthographic = (Camera.main != null && Camera.main.orthographic);
             lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.positionCount = 0;

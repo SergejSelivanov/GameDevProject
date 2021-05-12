@@ -327,8 +327,15 @@ public bool IsThereGate(Transform ObjCoord)
 			//Debug.Log(InvisibleSteps);
 			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0)
 			{
-				Debug.Log("SRAN'");
-				Application.LoadLevel(0);
+				ListOfMovingEnemies[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
+				//StopAllCoroutines();
+				StartCoroutine("KillingAnimation", ListOfMovingEnemies[i]);
+				//ListOfMovingEnemies[i].transform.GetChild(1).gameObject.SetActive(true);
+				//Debug.Log(ListOfMovingEnemies[i].transform.GetChild(1));
+				//ListOfMovingEnemies[i].transform.GetChild(1).
+				return;
+				//Debug.Log("SRAN'");
+				//Application.LoadLevel(0);
 			}
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z

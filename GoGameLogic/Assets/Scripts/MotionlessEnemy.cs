@@ -140,7 +140,7 @@ public class MotionlessEnemy : MonoBehaviour
 		return false;
 	}
 
-	void Start()
+    void Start()
 	{
 		VerLineFuncs = VerLineHandler.GetComponent<VerticalLine>();
 		HorLineFuncs = HorLineHandler.GetComponent<HorizontalLine>();

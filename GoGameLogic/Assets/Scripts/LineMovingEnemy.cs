@@ -1123,7 +1123,14 @@ public class LineMovingEnemy : MonoBehaviour
         GameObject projection = GameObject.FindGameObjectWithTag("Projection");
         if (MotEnemyFuncs.CheckifPlayerInfrontofEnemy(player, gameObject) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
         {
-           //Debug.Log("AUE");
+            gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
+            //StopAllCoroutines();
+            PlayerFuncs.StartCoroutine("KillingAnimation", gameObject);
+            //ListOfMovingEnemies[i].transform.GetChild(1).gameObject.SetActive(true);
+            //Debug.Log(ListOfMovingEnemies[i].transform.GetChild(1));
+            //ListOfMovingEnemies[i].transform.GetChild(1).
+            //return null;
+            //Debug.Log("AUE");
             //Application.LoadLevel(0);
         }
         if (projection != null &&  MotEnemyFuncs.CheckifPlayerInfrontofEnemy(projection, gameObject) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)

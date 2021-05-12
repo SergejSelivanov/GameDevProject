@@ -1395,6 +1395,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimpleLightningBoltPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 106988, guid: 15dec7b07032b2f4aa6f855bfbe120f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 490088, guid: 15dec7b07032b2f4aa6f855bfbe120f7, type: 3}
       propertyPath: m_RootOrder
       value: 64
@@ -6843,7 +6847,7 @@ PrefabInstance:
     - target: {fileID: 3970488926516600097, guid: c2acb397c6ab40b4291676b6d657677e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2acb397c6ab40b4291676b6d657677e, type: 3}
@@ -8282,6 +8286,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerNew
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236672802936674757, guid: 276f4f792cdefe044aba32c0a87dd66c,
+        type: 3}
+      propertyPath: m_Name
+      value: Spine_Main
       objectReference: {fileID: 0}
     - target: {fileID: 3237030442007616512, guid: 276f4f792cdefe044aba32c0a87dd66c,
         type: 3}
