@@ -1049,17 +1049,233 @@ public bool IsThereGate(Transform ObjCoord)
 
 	}
 
+	IEnumerator RotateAndKill(int RequiredAngle)
+	{
+		int playerangle = (int)gameObject.transform.rotation.eulerAngles.y;
+		int Diff = playerangle - RequiredAngle;
+		if (playerangle == 0)
+		{
+			if (RequiredAngle == 0)
+			{
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+			if (RequiredAngle == 90)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 1);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+			if (RequiredAngle == 180)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 3);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 6, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+			if (RequiredAngle == 270)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 270, 0);
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+		}
+		if (playerangle == 90)
+		{
+			if (RequiredAngle == 90)
+			{
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+			if (RequiredAngle == 0)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+			if (RequiredAngle == 180)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 1);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+			if (RequiredAngle == 270)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 3);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 6, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 270, 0);
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+		}
+		if (playerangle == 180)
+		{
+			//Debug.Log("aaa");
+			if (RequiredAngle == 180)
+			{
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+			if (RequiredAngle == 0)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 3);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 6, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+			if (RequiredAngle == 90)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+			if (RequiredAngle == 270)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 1);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 270, 0);
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+		}
+		if (playerangle == 270)
+		{
+			//Debug.Log("aaa");
+			if (RequiredAngle == 270)
+			{
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+			if (RequiredAngle == 0)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 1);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+			if (RequiredAngle == 90)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 3);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 6, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+			if (RequiredAngle == 180)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
+				for (int i = 0; i < 30; i++)
+				{
+					gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y - 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
+				//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+				gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+				StartCoroutine("KillEnemy");
+				yield return null;
+			}
+		}
+		//Debug.Log(Diff);
+		yield return null;
+		/* for (int i = 0; i < length; i++)
+		 {
+
+		 }*/
+	}
+
+
 	private GameObject[] FindEnemies()
     {
 		GameObject[] MotEnemies =  GameObject.FindGameObjectsWithTag("MotionlessEnemy");
 		GameObject[] MovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
 		GameObject[] Enemies = new GameObject[MotEnemies.Length + MovingEnemies.Length];
 		Vector3 NewPos = gameObject.transform.position + gameObject.transform.forward;
-
+		//Debug.Log(NewPos);
 		for (int i = 0; i < MotEnemies.Length; i++)
         {
-			if (NewPos.x == MotEnemies[i].transform.position.x && NewPos.z == MotEnemies[i].transform.position.z)
+			if (Mathf.Round(NewPos.x) == MotEnemies[i].transform.position.x && Mathf.Round(NewPos.z) == MotEnemies[i].transform.position.z)
             {
+				//Debug.Log("aa");
                 for (int j = 0; j < Enemies.Length; j++)
                 {
 					if (Enemies[j] == null)
@@ -1072,7 +1288,7 @@ public bool IsThereGate(Transform ObjCoord)
         }
 		for (int i = 0; i < MovingEnemies.Length; i++)
 		{
-			if (NewPos.x == MovingEnemies[i].transform.position.x && NewPos.z == MovingEnemies[i].transform.position.z)
+			if (Mathf.Round(NewPos.x) == MovingEnemies[i].transform.position.x && Mathf.Round(NewPos.z) == MovingEnemies[i].transform.position.z)
 			{
 				for (int j = 0; j < Enemies.Length; j++)
 				{
@@ -1216,7 +1432,17 @@ public bool IsThereGate(Transform ObjCoord)
 					OldRotation = transform.rotation;
 					
 					transform.rotation = Quaternion.Euler(0, 270, 0);
-					if (!IsThereGate(transform) && !IsThereCamera(transform))
+					if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+					{
+						//Debug.Log("HERE");
+						//gameObject.GetComponent<Animator>().SetBool("IsKilling", true);
+						transform.rotation = OldRotation;
+						//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
+						IsWaiting = true;
+						StartCoroutine("RotateAndKill", 270);
+						//StartCoroutine("KillEnemy");
+					}
+					else if (!IsThereGate(transform) && !IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
 						//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
@@ -1257,8 +1483,12 @@ public bool IsThereGate(Transform ObjCoord)
                     {
 						//Debug.Log("HERE");
 						//gameObject.GetComponent<Animator>().SetBool("IsKilling", true);
-						StartCoroutine("KillEnemy");
-                    }
+						//StartCoroutine("KillEnemy");
+						transform.rotation = OldRotation;
+						//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
+						IsWaiting = true;
+						StartCoroutine("RotateAndKill", 90);
+					}
 					else if (!IsThereGate(transform) && !IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
@@ -1288,7 +1518,17 @@ public bool IsThereGate(Transform ObjCoord)
 					//IsMoving = true;
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 0, 0);
-					if (!IsThereGate(transform) && !IsThereCamera(transform))
+					if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+					{
+						//Debug.Log("HERE");
+						//gameObject.GetComponent<Animator>().SetBool("IsKilling", true);
+						//StartCoroutine("KillEnemy");
+						transform.rotation = OldRotation;
+						//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
+						IsWaiting = true;
+						StartCoroutine("RotateAndKill", 0);
+					}
+					else if (!IsThereGate(transform) && !IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
@@ -1317,7 +1557,17 @@ public bool IsThereGate(Transform ObjCoord)
 					//IsMoving = true;
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 180, 0);
-					if (!IsThereGate(transform) && !IsThereCamera(transform))
+					if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+					{
+						//Debug.Log("HERE");
+						//gameObject.GetComponent<Animator>().SetBool("IsKilling", true);
+						//StartCoroutine("KillEnemy");
+						transform.rotation = OldRotation;
+						//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
+						IsWaiting = true;
+						StartCoroutine("RotateAndKill", 180);
+					}
+					else if (!IsThereGate(transform) && !IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
