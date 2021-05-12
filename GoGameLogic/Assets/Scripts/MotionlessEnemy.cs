@@ -162,7 +162,7 @@ public class MotionlessEnemy : MonoBehaviour
 		&& (!CheckIfFacing(player) || PlayerFuncs.Invisible >= 0 || PlayerFuncs.LightOffTurns >= 0))
 		{
 			//Destroy(gameObject);
-			gameObject.GetComponent<Animator>().SetBool("IsDead", true);
+			/*gameObject.GetComponent<Animator>().SetBool("IsDead", true);
 			for (int j = 0; j < PlayerFuncs.EnemiesKill.Length; j++)
 			{
 				if (PlayerFuncs.EnemiesKill[j] == null)
@@ -171,7 +171,7 @@ public class MotionlessEnemy : MonoBehaviour
 					FindObjectOfType<AudioManager>().Play("Kill");
 					break;
 				}
-			}
+			}*/
 			//PlayerFuncs.EnemiesKill = gameObject;
 			//PlayerFuncs.SkillSetter += 0.5f;
 			if (GameObject.FindObjectOfType<FillKnife>() != null)
