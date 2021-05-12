@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\LightningBolt\LightningBoltScript.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\CameraEnemy.cs" />
     <Compile Include="Assets\Scripts\CameraMove.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Assets\Scripts\Wjena\SettingsControl.cs" />
     <Compile Include="Assets\Scripts\Wjena\SkillPickUp.cs" />
     <Compile Include="Assets\Smth.cs" />
+    <None Include="Assets\LightningBolt\Readme.txt" />
     <None Include="Assets\PolygonSciFiCity\Shaders\Polygon_Triplanar.shader" />
     <None Include="Assets\PolygonSciFiCity\Shaders\Polygon_UVScroll.shader" />
     <Reference Include="UnityEngine">

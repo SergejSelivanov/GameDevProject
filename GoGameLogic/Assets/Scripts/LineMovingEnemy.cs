@@ -195,6 +195,7 @@ public class LineMovingEnemy : MonoBehaviour
         //Debug.Log(MotEnemyFuncs.CheckIfFacing(player,Obj));
         if ((CheckifPlayerInfrontofEnemy(player, Obj) || (player.transform.position.x == Obj.transform.position.x && player.transform.position.z == Obj.transform.position.z)) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(Obj.transform))
         {
+            Debug.Log("HEHE");
             SceneManager.LoadScene(0);
             //Application.LoadLevel(0);
         }
@@ -1121,7 +1122,10 @@ public class LineMovingEnemy : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject projection = GameObject.FindGameObjectWithTag("Projection");
         if (MotEnemyFuncs.CheckifPlayerInfrontofEnemy(player, gameObject) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
-            Application.LoadLevel(0);
+        {
+           //Debug.Log("AUE");
+            //Application.LoadLevel(0);
+        }
         if (projection != null &&  MotEnemyFuncs.CheckifPlayerInfrontofEnemy(projection, gameObject) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
             Application.LoadLevel(0);
         /* GameObject[] ListOfEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");

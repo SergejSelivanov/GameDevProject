@@ -183,7 +183,19 @@ public class MotionlessEnemy : MonoBehaviour
 		//Debug.Log(!PlayerFuncs.IsThereGate(gameObject.transform));
 		//Debug.Log(PlayerFuncs.LightOffTurns <= 0);
 		if (CheckifPlayerInfrontofEnemy(player) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
-			Application.LoadLevel(0);
+		{
+			//Application.LoadLevel(0);
+				//Debug.Log("LOLIKS");
+				gameObject.GetComponent<Animator>().SetBool("IsKilling", true);
+				//StopAllCoroutines();
+				PlayerFuncs.StartCoroutine("KillingAnimation", gameObject);
+				//ListOfMovingEnemies[i].transform.GetChild(1).gameObject.SetActive(true);
+				//Debug.Log(ListOfMovingEnemies[i].transform.GetChild(1));
+				//ListOfMovingEnemies[i].transform.GetChild(1).
+				//return null;
+				//this.enabled = false;
+				//Application.LoadLevel(0);
+		}
 		if (projection != null)
 		{
 			if (transform.position.x == projection.transform.position.x
