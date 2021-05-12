@@ -1337,7 +1337,7 @@ public bool IsThereGate(Transform ObjCoord)
 					if (EnemiesTokill[j] == null)
 					{
 						EnemiesTokill[j] = KilledEnemies[i];
-						FindObjectOfType<AudioManager>().Play("Kill");
+						//FindObjectOfType<AudioManager>().Play("Kill");
 						break;
 					}
 				}
