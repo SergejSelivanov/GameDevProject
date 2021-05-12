@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -325,7 +326,17 @@ public bool IsThereGate(Transform ObjCoord)
 			//Debug.Log(ListOfMovingEnemies[i]);
 			//Debug.Log(InvisibleSteps);
 			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0)
-				Application.LoadLevel(0);
+			{
+				ListOfMovingEnemies[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
+				//StopAllCoroutines();
+				StartCoroutine("KillingAnimation", ListOfMovingEnemies[i]);
+				//ListOfMovingEnemies[i].transform.GetChild(1).gameObject.SetActive(true);
+				//Debug.Log(ListOfMovingEnemies[i].transform.GetChild(1));
+				//ListOfMovingEnemies[i].transform.GetChild(1).
+				return;
+				//Debug.Log("SRAN'");
+				//Application.LoadLevel(0);
+			}
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
 			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0 || LightOffTurns >= 0))
@@ -381,6 +392,17 @@ public bool IsThereGate(Transform ObjCoord)
 		return false;
     }
 
+	IEnumerator KillingAnimation(GameObject Enemy)
+    {
+		yield return new WaitForSeconds(0.6f);
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsKilled", true);
+		//gameObject.GetComponent<Animator>().SetBool("IsKilled", true);
+		Enemy.transform.GetChild(1).gameObject.SetActive(true);
+		yield return new WaitForSeconds(1.5f);
+		SceneManager.LoadScene(0);
+		yield return null;
+	}
+
 	private GameObject[] CheckEnemies()
 	{
 		GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
@@ -390,10 +412,21 @@ public bool IsThereGate(Transform ObjCoord)
 		for (int i = 0; i < ListOfMovingEnemies.Length; i++)
 		{
 			//Debug.Log(ListOfMovingEnemies[i].transform);
-		//	if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]) || IsThereGate(ListOfMovingEnemies[i].transform) || CheckIfThereIsMotEnemy(ListOfMovingEnemies[i]))
+			//	if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]) || IsThereGate(ListOfMovingEnemies[i].transform) || CheckIfThereIsMotEnemy(ListOfMovingEnemies[i]))
 			//	LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
 			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0 && !IsThereGate(ListOfMovingEnemies[i].transform) && !IsThereCamera(ListOfMovingEnemies[i].transform) && LightOffTurns <= 0)
-				Application.LoadLevel(0);
+			{
+				//Debug.Log("LOLIKS");
+				ListOfMovingEnemies[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
+				//StopAllCoroutines();
+				StartCoroutine("KillingAnimation", ListOfMovingEnemies[i]);
+				//ListOfMovingEnemies[i].transform.GetChild(1).gameObject.SetActive(true);
+				//Debug.Log(ListOfMovingEnemies[i].transform.GetChild(1));
+				//ListOfMovingEnemies[i].transform.GetChild(1).
+				return null;
+				//this.enabled = false;
+				//Application.LoadLevel(0);
+			}
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
 			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0 || LightOffTurns >= 0))
@@ -909,7 +942,7 @@ public bool IsThereGate(Transform ObjCoord)
 			CameraEnemies[i].MoveCamera();
 		}
 		IsWaiting = true;
-		if (LightOffTurns <= 0)
+		if (LightOffTurns <= 0 && ListOfEnemies != null)
 			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
 			//yield return StartCoroutine("RotateEnemies", 
 		else
@@ -938,7 +971,7 @@ public bool IsThereGate(Transform ObjCoord)
 			CameraEnemies[i].MoveCamera();
 		}
 		IsWaiting = true;
-		if (LightOffTurns <= 0)
+		if (LightOffTurns <= 0 && ListOfEnemies != null)
 			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
 		else
 			IsWaiting = false;
@@ -965,7 +998,7 @@ public bool IsThereGate(Transform ObjCoord)
 			CameraEnemies[i].MoveCamera();
 		}
 		IsWaiting = true;
-		if (LightOffTurns <= 0)
+		if (LightOffTurns <= 0 && ListOfEnemies != null)
 			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
 		else
 			IsWaiting = false;
@@ -1042,7 +1075,7 @@ public bool IsThereGate(Transform ObjCoord)
 			CameraEnemies[i].MoveCamera();
 		}
 		IsWaiting = true;
-		if (LightOffTurns <= 0)
+		if (LightOffTurns <= 0 && ListOfEnemies != null)
 			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
 		else
 			IsWaiting = false;
