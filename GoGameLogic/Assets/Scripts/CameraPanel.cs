@@ -15,7 +15,7 @@ public class CameraPanel : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Projection");
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player");
-        if (Mathf.Abs(player.transform.position.x - transform.position.x) <= DistanceToPanel && Mathf.Abs(player.transform.position.z - transform.position.z) <= DistanceToPanel)
+        if (Mathf.Abs(player.transform.position.x - transform.position.x) <= DistanceToPanel && Mathf.Abs(player.transform.position.z - transform.position.z) <= DistanceToPanel && GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Waiting == false)
         {
             /*if (IsOpen == false && IsWaiting == false)
             {
@@ -29,7 +29,7 @@ public class CameraPanel : MonoBehaviour
                 IsOpen = false;
                 CloseDoors();
             }*/
-            ConnectedCamera.GetComponent<CameraEnemy>().IsClockwise *= -1;
+            ConnectedCamera.transform.GetChild(0).GetComponent<CameraEnemy>().IsClockwise *= -1;
         }
     }
 
