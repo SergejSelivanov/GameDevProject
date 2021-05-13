@@ -3420,6 +3420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ConnectedDoor: {fileID: 556217350}
   PlaneToTurnOff: {fileID: 269791426}
+  IsOpen: 0
 --- !u!1001 &497862813
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5004,6 +5005,11 @@ PrefabInstance:
       propertyPath: PlaneToTurnOff
       value: 
       objectReference: {fileID: 1089330188}
+    - target: {fileID: 5662665296837507265, guid: bc6d99e3c502bad4181a090bd3a0c57a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f7a372f704c8304b8a21850a8f36301, type: 2}
     m_RemovedComponents:
     - {fileID: 3309337462669714956, guid: bc6d99e3c502bad4181a090bd3a0c57a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bc6d99e3c502bad4181a090bd3a0c57a, type: 3}
@@ -5027,6 +5033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ConnectedDoor: {fileID: 1686554571}
   PlaneToTurnOff: {fileID: 1089330188}
+  IsOpen: 0
 --- !u!1001 &735995522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6520,6 +6527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ConnectedDoor: {fileID: 307695026}
   PlaneToTurnOff: {fileID: 2015648757}
+  IsOpen: 0
 --- !u!4 &1030457568 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4362548979880988, guid: 285bab2f8ffd9f3478a1e2eda34ee33e,
@@ -9813,6 +9821,11 @@ PrefabInstance:
       propertyPath: ConnectedDoor
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5662665296837507265, guid: bc6d99e3c502bad4181a090bd3a0c57a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e8f6e4a3a7a430c4c8dd3ed686e59fbf, type: 2}
     m_RemovedComponents:
     - {fileID: 3309337462669714956, guid: bc6d99e3c502bad4181a090bd3a0c57a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bc6d99e3c502bad4181a090bd3a0c57a, type: 3}
