@@ -13,7 +13,11 @@ public class Smth : StateMachineBehaviour
         for (int i = 0; i < GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill.Length; i++)
         {
             if (GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i] != null)
+            {
+                //GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i].transform.GetChild(22).gameObject.SetActive(true);
+                //Debug.Log(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i].transform.GetChild(22).gameObject);
                 Destroy(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i]);
+            }
         }
         //GameObject Enemy = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[0];
         //GameObject.Destroy();
