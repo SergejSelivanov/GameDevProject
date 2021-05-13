@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
 
 	private GameObject FinalNode;
 	private static GameObject[] EnemiesTokill;
+	//private bool StopTheCoroutines = false;
 //private Animator animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
 //LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
 //public bool IsMoving = false;
@@ -184,6 +185,18 @@ public bool IsThereGate(Transform ObjCoord)
         }
 		return false;
     }
+
+	/*public bool stopCoroutines
+	{
+		get
+		{
+			return StopTheCoroutines;
+		}
+		set
+		{
+			StopTheCoroutines = value;
+		}
+	}*/
 
 	public bool ProjectionActive
 	{
@@ -1434,6 +1447,12 @@ public bool IsThereGate(Transform ObjCoord)
 	// Update is called once per frame
 	void Update()
 	{
+		/*if (StopTheCoroutines == true)
+		{
+			StopTheCoroutines = false;
+			StopAllCoroutines();
+		}*/
+
 		//FindObjectOfType<AudioManager>().Play("Theme");
 		//Time.timeScale = 0.1f;
 		//Debug.Log(gameObject);

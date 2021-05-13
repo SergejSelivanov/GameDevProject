@@ -195,8 +195,27 @@ public class LineMovingEnemy : MonoBehaviour
         //Debug.Log(MotEnemyFuncs.CheckIfFacing(player,Obj));
         if ((CheckifPlayerInfrontofEnemy(player, Obj) || (player.transform.position.x == Obj.transform.position.x && player.transform.position.z == Obj.transform.position.z)) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(Obj.transform))
         {
-            Debug.Log("HEHE");
-            SceneManager.LoadScene(0);
+            //SceneManager.LoadScene(0);
+            /*for (int i = 0; 0 < GameObject.FindGameObjectsWithTag("LineMovingEnemy").Length; i++)
+            {
+                GameObject.FindGameObjectsWithTag("LineMovingEnemy")[i].GetComponent<LineMovingEnemy>().StopAllCoroutines();
+            }
+            PlayerFuncs.GetComponent<Player>().StopAllCoroutines();*/
+            Obj.transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
+            //StopAllCoroutines();
+            //PlayerFuncs.StopAllCoroutines();
+            //PlayerFuncs.stopCoroutines = true;
+            //GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().StopAllCoroutines();
+            //stopCoroutinesStopAllCoroutines();
+            //this.StopAllCoroutines();
+            //Obj.GetComponent<LineMovingEnemy>().StopAllCoroutines();
+            PlayerFuncs.StartCoroutine("KillingAnimation", Obj);
+            //ListOfMovingEnemies[i].transform.GetChild(1).gameObject.SetActive(true);
+            //Debug.Log(ListOfMovingEnemies[i].transform.GetChild(1));
+            //ListOfMovingEnemies[i].transform.GetChild(1).
+            //return null;
+            //StopAllCoroutines();
+            return;
             //Application.LoadLevel(0);
         }
         if (player.transform.position.x == Obj.transform.position.x
@@ -959,6 +978,7 @@ public class LineMovingEnemy : MonoBehaviour
                     ListOfEnemies[j].transform.position = new Vector3(ListOfEnemies[j].transform.position.x, ListOfEnemies[j].transform.position.y, Mathf.Round(ListOfEnemies[j].transform.position.z));
                 //Debug.Log(ListOfEnemies[j]);
                 DestroyIfClose(ListOfEnemies[j]);
+                //StopAllCoroutines();
                 //Debug.Log("HERE");
             }
         }
@@ -1124,6 +1144,11 @@ public class LineMovingEnemy : MonoBehaviour
         if (MotEnemyFuncs.CheckifPlayerInfrontofEnemy(player, gameObject) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
         {
             gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
+            for (int i = 0; i < GameObject.FindGameObjectsWithTag("LineMovingEnemy").Length ; i++)
+            {
+                if (GameObject.FindGameObjectsWithTag("LineMovingEnemy")[i] != null)
+                    GameObject.FindGameObjectsWithTag("LineMovingEnemy")[i].GetComponent<LineMovingEnemy>().StopAllCoroutines();
+            }
             //StopAllCoroutines();
             PlayerFuncs.StartCoroutine("KillingAnimation", gameObject);
             //ListOfMovingEnemies[i].transform.GetChild(1).gameObject.SetActive(true);
@@ -1133,8 +1158,11 @@ public class LineMovingEnemy : MonoBehaviour
             //Debug.Log("AUE");
             //Application.LoadLevel(0);
         }
-        if (projection != null &&  MotEnemyFuncs.CheckifPlayerInfrontofEnemy(projection, gameObject) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
+        if (projection != null && MotEnemyFuncs.CheckifPlayerInfrontofEnemy(projection, gameObject) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
+        {
+            Debug.Log("aa");
             Application.LoadLevel(0);
+        }
         /* GameObject[] ListOfEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
          for (int i = 0; i < ListOfEnemies.Length; i++)
          {
