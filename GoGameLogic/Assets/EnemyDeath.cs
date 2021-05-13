@@ -19,10 +19,18 @@ public class EnemyDeath : StateMachineBehaviour
         {
             if (GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i] != null)
             {
+                //Debug.Log(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i].transform.Find("Character_Cop_01/Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head"));
                 //GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i].transform.Find("")
                 // Debug.Log("Hey");
                 //GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i].transform.GetChild(22).gameObject.SetActive(true);
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i].transform.Find("Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head").GetChild(2).gameObject.SetActive(true);
+                try
+                {
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i].transform.Find("Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head").GetChild(2).gameObject.SetActive(true);
+                }
+                catch
+                {
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i].transform.Find("Character_Cop_01/Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head").GetChild(2).gameObject.SetActive(true);
+                }
                 //new WaitForSeconds(1);
                 //Debug.Log(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i].transform.GetChild(22).gameObject);
                // Destroy(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i]);
