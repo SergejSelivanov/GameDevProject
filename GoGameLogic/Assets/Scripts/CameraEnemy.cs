@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CameraEnemy : MonoBehaviour
 {
     // Start is called before the first frame update
     public int MovingClockwise = 1;
+    private bool PlayerFound = false;
 
     public int IsClockwise
     {
@@ -54,6 +56,26 @@ public class CameraEnemy : MonoBehaviour
         //gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y + 90, 0);
     }
 
+    IEnumerator redAlert()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            Debug.Log(FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255,0,0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0065f));
+            yield return new WaitForSeconds(0.008f);
+        }
+        for (int i = 0; i < 100; i++)
+        {
+            Debug.Log(FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a - 0.0065f));
+            yield return new WaitForSeconds(0.008f);
+        }
+        for (int i = 0; i < 100; i++)
+        {
+            Debug.Log(FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0065f));
+            yield return new WaitForSeconds(0.008f);
+        }
+        SceneManager.LoadScene(0);
+    }
+
     void Start()
     {
         
@@ -62,9 +84,13 @@ public class CameraEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.rotation.eulerAngles.y % 90 == 0 && CheckIfPlayerInfrontOfCamera())
+        if (gameObject.transform.rotation.eulerAngles.y % 90 == 0 && CheckIfPlayerInfrontOfCamera() && PlayerFound == false)
+        {
+            PlayerFound = true;
+            StartCoroutine("redAlert");
             //SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
-            SceneManager.LoadScene(0);
+            //SceneManager.LoadScene(0);
             //Debug.Log("YOU'RE DEAD");
+        }
     }
 }
