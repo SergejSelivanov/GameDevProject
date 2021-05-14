@@ -11,6 +11,7 @@ public class CameraPanel : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Debug.Log("aaa");
         GameObject player;
         player = GameObject.FindGameObjectWithTag("Projection");
         if (player == null)
