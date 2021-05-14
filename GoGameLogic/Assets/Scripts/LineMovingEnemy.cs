@@ -126,6 +126,11 @@ public class LineMovingEnemy : MonoBehaviour
         }
     }*/
 
+   /* IEnumerator RotateAndKill()
+    {
+        
+    }*/
+
     private void OnMouseDown()
     {
         if (Time.timeScale == 1)
@@ -135,6 +140,8 @@ public class LineMovingEnemy : MonoBehaviour
             {
                 if (KnifeFuncs.CheckIfInRange(gameObject, player))
                 {
+                    //GameObject.FindObjectOfType<ThrowKnife>().StartCoroutine("RotateAndKill", gameObject);
+                    //GetComponent<ThrowKnife>().StartCoroutine("RotateAndKill", gameObject);
                     Destroy(gameObject);
                     if (GameObject.FindObjectOfType<FillKnife>() != null)
                         GameObject.FindObjectOfType<FillKnife>().GetComponent<Image>().fillAmount = 0;
@@ -1160,7 +1167,7 @@ public class LineMovingEnemy : MonoBehaviour
         }
         if (projection != null && MotEnemyFuncs.CheckifPlayerInfrontofEnemy(projection, gameObject) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
         {
-            Debug.Log("aa");
+            //Debug.Log("aa");
             Application.LoadLevel(0);
         }
         /* GameObject[] ListOfEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");

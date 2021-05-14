@@ -60,17 +60,17 @@ public class CameraEnemy : MonoBehaviour
     {
         for (int i = 0; i < 100; i++)
         {
-            Debug.Log(FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255,0,0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0065f));
+            FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255,0,0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0065f);
             yield return new WaitForSeconds(0.008f);
         }
         for (int i = 0; i < 100; i++)
         {
-            Debug.Log(FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a - 0.0065f));
+            FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a - 0.0065f);
             yield return new WaitForSeconds(0.008f);
         }
         for (int i = 0; i < 100; i++)
         {
-            Debug.Log(FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0065f));
+            FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0065f);
             yield return new WaitForSeconds(0.008f);
         }
         SceneManager.LoadScene(0);

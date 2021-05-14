@@ -31,9 +31,11 @@ public class EnemyDeath : StateMachineBehaviour
                 {
                     GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i].transform.Find("Character_Cop_01/Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head").GetChild(2).gameObject.SetActive(true);
                 }
+                if (GameObject.FindObjectOfType<FillKnife>() != null)
+                    GameObject.FindObjectOfType<FillKnife>().StartCoroutine("FillButton");
                 //new WaitForSeconds(1);
                 //Debug.Log(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i].transform.GetChild(22).gameObject);
-               // Destroy(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i]);
+                // Destroy(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i]);
             }
         }
         //    

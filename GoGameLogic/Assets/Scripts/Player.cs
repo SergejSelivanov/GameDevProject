@@ -360,8 +360,8 @@ public bool IsThereGate(Transform ObjCoord)
 				/*SkillReady += 0.5f;
 				if (SkillReady > 1)
 					SkillReady = 1;*/
-				if (GameObject.FindObjectOfType<FillKnife>() != null)
-					GameObject.FindObjectOfType<FillKnife>().StartCoroutine("FillButton");
+				//if (GameObject.FindObjectOfType<FillKnife>() != null)
+					//GameObject.FindObjectOfType<FillKnife>().StartCoroutine("FillButton");
 				continue;
 				//Start();
 				//ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
@@ -463,8 +463,8 @@ public bool IsThereGate(Transform ObjCoord)
 				if (SkillReady > 1)
 					SkillReady = 1;*/
 				//Debug.Log("KILL");
-				if (GameObject.FindObjectOfType<FillKnife>() != null)
-					GameObject.FindObjectOfType<FillKnife>().StartCoroutine("FillButton");
+				//if (GameObject.FindObjectOfType<FillKnife>() != null)
+					//GameObject.FindObjectOfType<FillKnife>().StartCoroutine("FillButton");
 				RetArray[i] = null;
 				continue;
 			}

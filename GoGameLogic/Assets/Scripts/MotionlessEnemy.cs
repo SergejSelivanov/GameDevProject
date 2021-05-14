@@ -17,15 +17,18 @@ public class MotionlessEnemy : MonoBehaviour
 
     private void OnMouseDown()
     {
+		//Debug.Log("REGISTERED");
 		if (Time.timeScale == 1)
 		{
 			GameObject player = GameObject.FindGameObjectWithTag("Player");
-			//Debug.Log("REGISTERED");
+			
 			if (PlayerFuncs.KnifeReady == true)
 			{
+				
 				if (KnifeFuncs.CheckIfInRange(gameObject, player))
 				{
-					Destroy(gameObject);
+					//GameObject.FindObjectOfType<ThrowKnife>().StartCoroutine("RotateAndKill", gameObject);
+					//Destroy(gameObject);
 					if (GameObject.FindObjectOfType<FillKnife>() != null)
 						GameObject.FindObjectOfType<FillKnife>().GetComponent<Image>().fillAmount = 0; 
 					//PlayerFuncs.SkillSetter = 0;
@@ -174,8 +177,8 @@ public class MotionlessEnemy : MonoBehaviour
 			}*/
 			//PlayerFuncs.EnemiesKill = gameObject;
 			//PlayerFuncs.SkillSetter += 0.5f;
-			if (GameObject.FindObjectOfType<FillKnife>() != null)
-				GameObject.FindObjectOfType<FillKnife>().StartCoroutine("FillButton");
+			//if (GameObject.FindObjectOfType<FillKnife>() != null)
+				//GameObject.FindObjectOfType<FillKnife>().StartCoroutine("FillButton");
 			//Debug.Log(PlayerFuncs.SkillSetter);
 		}
 		//Debug.Log(CheckifPlayerInfrontofEnemy(player));
@@ -214,8 +217,8 @@ public class MotionlessEnemy : MonoBehaviour
 				}
 				//PlayerFuncs.EnemiesKill = gameObject;
 				//PlayerFuncs.SkillSetter += 0.5f;
-				if (GameObject.FindObjectOfType<FillKnife>() != null)
-					GameObject.FindObjectOfType<FillKnife>().StartCoroutine("FillButton");
+			//	if (GameObject.FindObjectOfType<FillKnife>() != null)
+				//	GameObject.FindObjectOfType<FillKnife>().StartCoroutine("FillButton");
 				//Debug.Log(PlayerFuncs.SkillSetter);
 			}
 			if (CheckifPlayerInfrontofEnemy(projection) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
