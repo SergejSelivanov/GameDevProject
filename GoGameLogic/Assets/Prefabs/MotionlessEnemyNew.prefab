@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 3965474084302685007}
   - component: {fileID: 3912812649337268977}
   - component: {fileID: 3970388854418506308}
+  - component: {fileID: 2677613958404201223}
   m_Layer: 0
   m_Name: MotionlessEnemyNew
   m_TagString: MotionlessEnemy
@@ -119,6 +120,19 @@ MonoBehaviour:
   HorLineHandler: {fileID: 0}
   PlayerHandler: {fileID: 0}
   KnifeHandler: {fileID: 0}
+--- !u!65 &2677613958404201223
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3970488926516600097}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8898063, y: 2.2956705, z: 0.91591406}
+  m_Center: {x: 0.009554625, y: 0.7709327, z: -0.02031064}
 --- !u!1 &3970503781555239849
 GameObject:
   m_ObjectHideFlags: 0
