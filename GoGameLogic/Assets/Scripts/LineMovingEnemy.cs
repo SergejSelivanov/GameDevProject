@@ -24,7 +24,7 @@ public class LineMovingEnemy : MonoBehaviour
     private ProjectionBehaviour ProjectionBehaviourFuncs;
 
     private Animator animator;
-    
+
     //private Player PlayerFuncs;
 
     //  private char XorY;
@@ -126,10 +126,31 @@ public class LineMovingEnemy : MonoBehaviour
         }
     }*/
 
-   /* IEnumerator RotateAndKill()
+    /* IEnumerator RotateAndKill()
+     {
+
+     }*/
+
+    IEnumerator StopBreaking()
     {
-        
-    }*/
+        yield return new WaitForSeconds(1);
+        for (int i = 0; i < PlayerFuncs.EnemiesKill.Length; i++)
+        {
+            if (PlayerFuncs.EnemiesKill[i] == null)
+            {
+                PlayerFuncs.EnemiesKill[i] = gameObject;
+                break;
+            }
+        }
+        gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("IsDead", true);
+        //yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 0.6f;
+        PlayerHandler.GetComponent<Animator>().SetBool("IsTaunting", false);
+        yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 1;
+        yield return null;
+    }
 
     private void OnMouseDown()
     {
@@ -140,9 +161,12 @@ public class LineMovingEnemy : MonoBehaviour
             {
                 if (KnifeFuncs.CheckIfInRange(gameObject, player))
                 {
+                    Time.timeScale = 0.99f;
+                    PlayerFuncs.gameObject.GetComponent<Animator>().SetBool("IsTaunting", true);
+                    StartCoroutine("StopBreaking");
                     //GameObject.FindObjectOfType<ThrowKnife>().StartCoroutine("RotateAndKill", gameObject);
                     //GetComponent<ThrowKnife>().StartCoroutine("RotateAndKill", gameObject);
-                    Destroy(gameObject);
+                    //Destroy(gameObject);
                     if (GameObject.FindObjectOfType<FillKnife>() != null)
                         GameObject.FindObjectOfType<FillKnife>().GetComponent<Image>().fillAmount = 0;
                     //PlayerFuncs.SkillSetter = 0;
