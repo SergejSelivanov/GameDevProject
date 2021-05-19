@@ -28,7 +28,10 @@ public class FillKnife : MonoBehaviour
     {
         //gameObject.GetComponent<Image>().fillAmount += 0.001f;
         if (gameObject.GetComponent<Image>().fillAmount == 1)
+        {
+           // Debug.Log("aa");
             gameObject.GetComponent<Button>().interactable = true;
+        }
         else
             gameObject.GetComponent<Button>().interactable = false;
     }
