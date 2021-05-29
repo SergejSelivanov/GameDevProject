@@ -16,6 +16,200 @@ public class MotionlessEnemy : MonoBehaviour
 	
 	IEnumerator StopBreaking()
     {
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		int RequiredAngle = 0;
+
+		if (player.transform.position.x > gameObject.transform.position.x)
+			RequiredAngle = 270;
+		else if (player.transform.position.x < gameObject.transform.position.x)
+			RequiredAngle = 90;
+		else if (player.transform.position.z > gameObject.transform.position.z)
+			RequiredAngle = 180;
+		else
+			RequiredAngle = 0;
+
+
+		//int RequiredAngle = LineMovingEnemyFuncs.Opposite(ObjectToRotate);
+		int playerangle = (int)player.transform.rotation.eulerAngles.y;
+		//string EnemyTag = "MotionlessEnemy";
+		if (playerangle == 0)
+		{
+			if (RequiredAngle == 0)
+			{
+				yield return null;
+			}
+			if (RequiredAngle == 90)
+			{
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1);
+				for (int i = 0; i < 30; i++)
+				{
+					player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
+				player.transform.rotation = Quaternion.Euler(0, 90, 0);
+				yield return null;
+			}
+			if (RequiredAngle == 180)
+			{
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 3);
+				for (int i = 0; i < 30; i++)
+				{
+					player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + 6, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
+				player.transform.rotation = Quaternion.Euler(0, 180, 0);
+				yield return null;
+			}
+			if (RequiredAngle == 270)
+			{
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 2);
+				for (int i = 0; i < 30; i++)
+				{
+					player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y - 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 2);
+				player.transform.rotation = Quaternion.Euler(0, 270, 0);
+				yield return null;
+			}
+		}
+		if (playerangle == 90)
+		{
+			if (RequiredAngle == 90)
+			{
+				yield return null;
+			}
+			if (RequiredAngle == 0)
+			{
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 2);
+				for (int i = 0; i < 30; i++)
+				{
+					player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y - 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
+				player.transform.rotation = Quaternion.Euler(0, 0, 0);
+				yield return null;
+			}
+			if (RequiredAngle == 180)
+			{
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1);
+				for (int i = 0; i < 30; i++)
+				{
+					player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
+				player.transform.rotation = Quaternion.Euler(0, 180, 0);
+				yield return null;
+			}
+			if (RequiredAngle == 270)
+			{
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 3);
+				for (int i = 0; i < 30; i++)
+				{
+					player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y - 6, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
+				player.transform.rotation = Quaternion.Euler(0, 270, 0);
+				yield return null;
+			}
+		}
+		if (playerangle == 180)
+		{
+			if (RequiredAngle == 180)
+			{
+				yield return null;
+			}
+			if (RequiredAngle == 0)
+			{
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 3);
+				for (int i = 0; i < 30; i++)
+				{
+					player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + 6, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
+				player.transform.rotation = Quaternion.Euler(0, 0, 0);
+				yield return null;
+			}
+			if (RequiredAngle == 90)
+			{
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 2);
+				for (int i = 0; i < 30; i++)
+				{
+					player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y - 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
+				player.transform.rotation = Quaternion.Euler(0, 90, 0);
+				yield return null;
+			}
+			if (RequiredAngle == 270)
+			{
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1);
+				for (int i = 0; i < 30; i++)
+				{
+					player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
+				player.transform.rotation = Quaternion.Euler(0, 270, 0);
+				yield return null;
+			}
+		}
+		if (playerangle == 270)
+		{
+			if (RequiredAngle == 270)
+			{
+				yield return null;
+			}
+			if (RequiredAngle == 0)
+			{
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1);
+				for (int i = 0; i < 30; i++)
+				{
+					player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
+				player.transform.rotation = Quaternion.Euler(0, 0, 0);
+				yield return null;
+			}
+			if (RequiredAngle == 90)
+			{
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 3);
+				for (int i = 0; i < 30; i++)
+				{
+					player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y - 6, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
+				player.transform.rotation = Quaternion.Euler(0, 90, 0);
+				yield return null;
+			}
+			if (RequiredAngle == 180)
+			{
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 2);
+				for (int i = 0; i < 30; i++)
+				{
+					player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y - 3, 0);
+					yield return new WaitForSeconds(0.0133f);
+				}
+				player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
+				player.transform.rotation = Quaternion.Euler(0, 180, 0);
+				yield return null;
+			}
+		}
+		//yield return null;
+
+
+
+
+
 		yield return new WaitForSeconds(1);
 		for (int i = 0; i < PlayerFuncs.EnemiesKill.Length; i++)
 		{
