@@ -24,6 +24,7 @@ public class CameraSwitch : MonoBehaviour
         //float RotationDiffZ = (StartRotation.eulerAngles.z - MainRotation.eulerAngles.z) / 500;
         //Quaternion RotationDiff = Quaternion.Euler(StartRotation.eulerAngles.x - MainRotation.eulerAngles.x / 500, StartRotation.eulerAngles.y - MainRotation.eulerAngles.y / 500, StartRotation.eulerAngles.z - MainRotation.eulerAngles.z / 500);
         Vector3 PositionDiff = (MainPosition - StartPosition) / 100;
+        //Debug.Log((MainFOV - StartFOV) / 100);
         for (int i = 0; i < 100; i++)
         {
             //StartCamera.GetComponent<Camera>().fieldOfView += FovDiff;
@@ -38,14 +39,16 @@ public class CameraSwitch : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       // Debug.Log(other);
+        // Debug.Log(other);
         //Debug.Log("HUH");
-        if (player.transform.rotation.eulerAngles.y == gameObject.transform.rotation.eulerAngles.y)
+        //Debug.Log(Camera.main.gameObject);
+        if (player.transform.rotation.eulerAngles.y == gameObject.transform.rotation.eulerAngles.y || Mathf.Abs(player.transform.rotation.eulerAngles.y - gameObject.transform.rotation.eulerAngles.y) < 0.1f)
         {
             //CameraNow.SetActive(false);
             // CameraToSwap.SetActive(true);
             //StartCoroutine("MoveCamera", Camera.main, CameraToSwap);
             //MoveCamera(Camera.main.gameObject, CameraToSwap);
+           // Debug.Log("Yes");
             StartCoroutine(MoveCamera(Camera.main.gameObject, CameraToSwap));
         }
         else
