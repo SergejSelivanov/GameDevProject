@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HorLine : Lines
+public class HorLine : MonoBehaviour
 {
-    public override bool CheckIfThereIsLine(Vector3 PlayerPos, int sign, Vector3 FinalPos)
+    public static bool CheckIfThereIsLine(Vector3 PlayerPos, int sign, Vector3 FinalPos)
     {
         HorLine[] ListOfLines = GameObject.FindObjectsOfType<HorLine>();
         for (int i = 0; i < ListOfLines.Length; i++)

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class WalkingHumanoid : Humanoid
 {
-    protected abstract void WalkUp();
+    public abstract void WalkUp();
 
-    protected abstract void WalkDown();
+    public abstract void WalkDown();
 
-    protected abstract void WalkRight();
+    public abstract void WalkRight();
 
-    protected abstract void WalkLeft();
+    public abstract void WalkLeft();
 }

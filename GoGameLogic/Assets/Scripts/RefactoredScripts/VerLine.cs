@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VerLine : Lines
+public class VerLine : MonoBehaviour
 {
-    public override bool CheckIfThereIsLine(Vector3 PlayerPos, int sign, Vector3 FinalPos)
+    public static bool CheckIfThereIsLine(Vector3 PlayerPos, int sign, Vector3 FinalPos)
     {
         VerLine[] ListOfLines = GameObject.FindObjectsOfType<VerLine>();
         for (int i = 0; i < ListOfLines.Length; i++)
