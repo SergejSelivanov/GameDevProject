@@ -10,14 +10,7 @@ public class Player : MonoBehaviour
 	public GameObject HorLineHandler;
 	public GameObject LineMovingEnemyHandler;
 	public GameObject MotionlessEnemyHandler;
-	//public GameObject Light;
-	//public bool LightsNeeded = false;
-	//public GameObject[] Lights;
-	//public GameObject[] LightsToChange;
 	public Texture2D[] SomeLightmaps;
-	//public static LightmapData[] lightmaps;
-
-	//public GameObject animator;
 	private Node NodeFuncs;
 	private VerticalLine VerLineFuncs;
 	private HorizontalLine HorLineFuncs;
@@ -37,37 +30,7 @@ public class Player : MonoBehaviour
 
 	private GameObject FinalNode;
 	private static GameObject[] EnemiesTokill;
-	//private bool StopTheCoroutines = false;
-//private Animator animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
-//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
-//public bool IsMoving = false;
 
-/*public void CheckForDestroyAgain()
-{
-	GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
-	for (int i = 0; i < ListOfMovingEnemies.Length; i++)
-	{
-	//	Debug.Log(ListOfMovingEnemies[i]);
-		//Debug.Log(ListOfMovingEnemies[i].isActiveAndEnabled);
-		//Debug.Log(ListOfMovingEnemies[i].transform.position);
-		if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
-		&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-		&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
-			Destroy(ListOfMovingEnemies[i]);
-		if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
-			Application.LoadLevel(0);
-		if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
-			LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
-		if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
-		&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-		&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
-			Destroy(ListOfMovingEnemies[i]);
-		if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
-			Application.LoadLevel(0);
-	}
-}*/
-
-	//private GameObject FindNode(GameObject[] Nodes, int X, int Z)
 	private GameObject FindNode(Node [] Nodes, int X, int Z)
     {
         for (int i = 0; i < Nodes.Length; i++)
@@ -79,15 +42,8 @@ public class Player : MonoBehaviour
     }
 
 	public GameObject GetStairwayNodePositionY(GameObject Obj)
-	//public float GetStairwayNodePositionY(GameObject Obj)
 	{
-		//GameObject[] Nodes = GameObject.FindGameObjectsWithTag("Node");
-		//GameObject[] Nodes = NodeFuncs.FindObjectsOfType<Node>;
 		Node[] Nodes = GameObject.FindObjectsOfType<Node>();
-        /*for (int i = 0; i < Nodes.Length; i++)
-        {
-			Debug.Log(Nodes[i]);
-        }*/
 		GameObject DefiniteNode;
 		if (Obj.transform.rotation.eulerAngles.y == 0)
         {
@@ -109,9 +65,6 @@ public class Player : MonoBehaviour
 			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x - 1, (int)Obj.transform.position.z);
 		}
 		return DefiniteNode;
-		//if (DefiniteNode == null)
-			//return -500;
-		//return DefiniteNode.transform.position.y;
 	}
 
 	IEnumerator WalkUpright(int sign, GameObject Obj, GameObject Node)
@@ -119,8 +72,6 @@ public class Player : MonoBehaviour
 		float diff = Mathf.Abs(Obj.transform.position.y - Node.transform.position.y);
         for (float i = 0; i < 1; i += 0.01f)
         {
-			//Obj.transform.position += new Vector3(0, 0.007f * sign, 0);
-			//Obj.transform.position += new Vector3(0, Mathf.Abs(Obj.transform.position.y - Node.transform.position.y) / 100 * sign, 0);
 			 Obj.transform.position += new Vector3(0, diff / 100 * sign, 0);
 			yield return new WaitForSeconds(0.004f);
         }
@@ -132,14 +83,9 @@ public class Player : MonoBehaviour
 		if (DefiniteNode == null)
 			return;
 		float NodePositionY = DefiniteNode.transform.position.y;
-		//float NodePositionY = GetStairwayNodePositionY(Obj);
-		//if (NodePositionY == -500)
-			//return;
 		float ObjPositionY = Obj.transform.position.y;
-		//Debug.Log(Mathf.Abs(NodePositionY - ObjPositionY));
 		if (Mathf.Abs(NodePositionY - ObjPositionY) > 0.1f)
         {
-			//Debug.Log("YES");
 			if (NodePositionY > ObjPositionY)
             {
 				StartCoroutine(WalkUpright(1, Obj, DefiniteNode));
@@ -149,7 +95,6 @@ public class Player : MonoBehaviour
 				StartCoroutine(WalkUpright(-1, Obj, DefiniteNode));
 			}
         }
-
     }
 
 	public bool IsThereCamera(Transform ObjCoord)
@@ -185,18 +130,6 @@ public bool IsThereGate(Transform ObjCoord)
         }
 		return false;
     }
-
-	/*public bool stopCoroutines
-	{
-		get
-		{
-			return StopTheCoroutines;
-		}
-		set
-		{
-			StopTheCoroutines = value;
-		}
-	}*/
 
 	public bool ProjectionActive
 	{
@@ -291,8 +224,6 @@ public bool IsThereGate(Transform ObjCoord)
         }
 		set
         {
-			//if (SkillReady < 1 && value != 0)
-			//if (value <= 1)
 				SkillReady = value;
 			if (SkillReady > 1)
 				SkillReady = 1;
@@ -308,78 +239,34 @@ public bool IsThereGate(Transform ObjCoord)
 		set
         {
 			InvisibleSteps = value;
-			//if (InvisibleSteps < 0)
-				//InvisibleSteps = 0;
-
 		}
 	}
 
 
 	private void MoveEnemies()
     {
-		//LineMovingEnemy[] ListOfMovingEnemies = GameObject.FindObjectsOfType<LineMovingEnemy>();
 		GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
 		for (int i = 0; i < ListOfMovingEnemies.Length; i++)
 		{
-			//Debug.Log(ListOfMovingEnemies[i]);
-			//Debug.Log(ListOfMovingEnemies[i].isActiveAndEnabled);
-
 			if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
 				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
-			/*if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
-			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
-			{
-				Destroy(ListOfMovingEnemies[i]);
-				//if (SkillReady < 1)
-					SkillReady += 0.5f;
-				if (SkillReady > 1)
-					SkillReady = 1;
-			}*/
-			//Debug.Log(ListOfMovingEnemies[i]);
-			//Debug.Log(InvisibleSteps);
 			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0)
 			{
 				ListOfMovingEnemies[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
-				//StopAllCoroutines();
 				StartCoroutine("KillingAnimation", ListOfMovingEnemies[i]);
-				//ListOfMovingEnemies[i].transform.GetChild(1).gameObject.SetActive(true);
-				//Debug.Log(ListOfMovingEnemies[i].transform.GetChild(1));
-				//ListOfMovingEnemies[i].transform.GetChild(1).
 				return;
-				//Debug.Log("SRAN'");
-				//Application.LoadLevel(0);
 			}
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
 			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0 || LightOffTurns >= 0))
 			{
 				Destroy(ListOfMovingEnemies[i]);
-				//return;
-				//if (SkillReady < 1)
-				/*SkillReady += 0.5f;
-				if (SkillReady > 1)
-					SkillReady = 1;*/
-				//if (GameObject.FindObjectOfType<FillKnife>() != null)
-					//GameObject.FindObjectOfType<FillKnife>().StartCoroutine("FillButton");
 				continue;
-				//Start();
-				//ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
 			}
-			//Debug.Log(LineMovingEnemyFuncs);
 			if (ListOfMovingEnemies[i] != null)
 				LineMovingEnemyFuncs.LineMovingEnemyMove(ListOfMovingEnemies[i]);
-			/*if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
-				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);*/
-			/*if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
-			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& !MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]))
-				Destroy(ListOfMovingEnemies[i]);
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
-				Application.LoadLevel(0);*/
 		}
 		InvisibleSteps--;
-		//LightsOffTurns--;
 
 	}
 
@@ -409,7 +296,6 @@ public bool IsThereGate(Transform ObjCoord)
     {
 		yield return new WaitForSeconds(0.6f);
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsKilled", true);
-		//gameObject.GetComponent<Animator>().SetBool("IsKilled", true);
 		Enemy.transform.GetChild(1).gameObject.SetActive(true);
 		yield return new WaitForSeconds(1.5f);
 		SceneManager.LoadScene(0);
@@ -424,57 +310,34 @@ public bool IsThereGate(Transform ObjCoord)
 			EnemiesTokill = new GameObject[ListOfMovingEnemies.Length];
 		for (int i = 0; i < ListOfMovingEnemies.Length; i++)
 		{
-			//Debug.Log(ListOfMovingEnemies[i].transform);
-			//	if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]) || IsThereGate(ListOfMovingEnemies[i].transform) || CheckIfThereIsMotEnemy(ListOfMovingEnemies[i]))
-			//	LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0 && !IsThereGate(ListOfMovingEnemies[i].transform) && !IsThereCamera(ListOfMovingEnemies[i].transform) && LightOffTurns <= 0)
+			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0 
+			&& !IsThereGate(ListOfMovingEnemies[i].transform) && !IsThereCamera(ListOfMovingEnemies[i].transform) && LightOffTurns <= 0)
 			{
-				//Debug.Log("LOLIKS");
 				ListOfMovingEnemies[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
-				//StopAllCoroutines();
 				StartCoroutine("KillingAnimation", ListOfMovingEnemies[i]);
-				//ListOfMovingEnemies[i].transform.GetChild(1).gameObject.SetActive(true);
-				//Debug.Log(ListOfMovingEnemies[i].transform.GetChild(1));
-				//ListOfMovingEnemies[i].transform.GetChild(1).
 				return null;
-				//this.enabled = false;
-				//Application.LoadLevel(0);
 			}
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
 			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0 || LightOffTurns >= 0))
 			{
-				//animator
-				//Debug.Log("AUE");
-				//Debug.Log(ListOfMovingEnemies[i].transform.GetChild(0).gameObject);
 				ListOfMovingEnemies[i].transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsDead", true);
                 for (int j = 0; j < EnemiesTokill.Length; j++)
                 {
 					if (EnemiesTokill[j] == null)
                     {
-						//Debug.Log("AA");
 						EnemiesTokill[j] = ListOfMovingEnemies[i];
 						break;
                     }
                 }
-				//EnemyTokill = ListOfMovingEnemies[i];
-				//Destroy(ListOfMovingEnemies[i]);
-				/*SkillReady += 0.5f;
-				if (SkillReady > 1)
-					SkillReady = 1;*/
-				//Debug.Log("KILL");
-				//if (GameObject.FindObjectOfType<FillKnife>() != null)
-					//GameObject.FindObjectOfType<FillKnife>().StartCoroutine("FillButton");
 				RetArray[i] = null;
 				continue;
 			}
 			if (ListOfMovingEnemies[i] != null)
 				RetArray[i] = ListOfMovingEnemies[i];
-				//LineMovingEnemyFuncs.LineMovingEnemyMove(ListOfMovingEnemies[i]);
 		}
 		InvisibleSteps--;
 		LightsOffTurns--;
-		//IsWaiting = true;
 		return RetArray;
 	}
 
@@ -516,10 +379,6 @@ public bool IsThereGate(Transform ObjCoord)
 			StartCoroutine("Walk", RequiredAngle);
 		else
 			StartCoroutine("KillEnemy");
-		//if (NeedToKill == false)
-			//StartCoroutine(Move(RequiredAngle));
-		//else
-			//StartCoroutine(KillEnemy());
 		yield return null;
 	}
 
@@ -556,28 +415,6 @@ public bool IsThereGate(Transform ObjCoord)
 
 	public void ChangeLights()
 	{
-		/*if (Lights[0].activeSelf == true)
-		{
-			for (int i = 0; i < Lights.Length; i++)
-			{
-				Lights[i].SetActive(false);
-			}
-			for (int i = 0; i < LightsToChange.Length; i++)
-			{
-				LightsToChange[i].SetActive(true);
-			}
-		}
-		else
-		{
-			for (int i = 0; i < Lights.Length; i++)
-			{
-				Lights[i].SetActive(true);
-			}
-			for (int i = 0; i < LightsToChange.Length; i++)
-			{
-				LightsToChange[i].SetActive(false);
-			}
-		}*/
 		LightmapData[] LmData = new LightmapData[1];
 		LmData[0] = new LightmapData();
 		if (LightsOff == false)
@@ -590,12 +427,6 @@ public bool IsThereGate(Transform ObjCoord)
 		}
 		else
 		{
-			//Debug.Log("ueeeee");
-			/*LmData[0] = LightmapSettings.lightmaps[0];
-			LmData[0].lightmapDir = SomeLightmaps[2];
-			LmData[0].lightmapColor = SomeLightmaps[3];
-			LightmapSettings.lightmaps = LmData;
-			LightsOff = false;*/
 			LightmapSettings.lightmaps = LightMapBuf;
 			LightsOff = false;
 		}
@@ -607,12 +438,10 @@ public bool IsThereGate(Transform ObjCoord)
 		GameObject[] MovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
 		GameObject[] Enemies = new GameObject[MotEnemies.Length + MovingEnemies.Length];
 		Vector3 NewPos = gameObject.transform.position + gameObject.transform.forward;
-		//Debug.Log(NewPos);
 		for (int i = 0; i < MotEnemies.Length; i++)
         {
 			if (Mathf.Round(NewPos.x) == MotEnemies[i].transform.position.x && Mathf.Round(NewPos.z) == MotEnemies[i].transform.position.z)
             {
-				//Debug.Log("aa");
                 for (int j = 0; j < Enemies.Length; j++)
                 {
 					if (Enemies[j] == null)
@@ -643,21 +472,15 @@ public bool IsThereGate(Transform ObjCoord)
 	IEnumerator KillEnemy()
     {
 		GameObject[] KilledEnemies = FindEnemies();
-        /*for (int i = 0; i < KilledEnemies.Length; i++)
-        {
-			Debug.Log(KilledEnemies[i]);
-        }*/
 		CheckIfThereIsStairway(gameObject);
 		GameObject[] ListOfEnemies;
 		ListOfEnemies = CheckEnemies();
-		//////////
 		gameObject.GetComponent<Animator>().SetInteger("KillingWalk",1);
 		for (int i = 0; i < 42; i++)
         {
 			gameObject.transform.position += gameObject.transform.forward / 100;
 			yield return new WaitForSeconds(0.01f);
         }
-		
 		gameObject.GetComponent<Animator>().SetInteger("KillingWalk", 0);
 		yield return null;
 		gameObject.GetComponent<Animator>().SetBool("IsKilling", true);
@@ -666,15 +489,11 @@ public bool IsThereGate(Transform ObjCoord)
 		{
 			if (KilledEnemies[i] != null)
 			{
-				//KilledEnemies[i].GetComponent<Animator>().SetBool("IsDead", true);
-				//KilledEnemies[i].GetComponent<Animator>().
 				for (int j = 0; j < EnemiesKill.Length; j++)
 				{
-
 					if (EnemiesTokill[j] == null)
 					{
 						EnemiesTokill[j] = KilledEnemies[i];
-						//FindObjectOfType<AudioManager>().Play("Kill");
 						break;
 					}
 				}
@@ -696,19 +515,13 @@ public bool IsThereGate(Transform ObjCoord)
 		{
 			gameObject.transform.position += gameObject.transform.forward / 100;
 			yield return new WaitForSeconds(0.01f);
-			
 		}
 		gameObject.GetComponent<Animator>().SetInteger("KillingWalk", 0);
 		gameObject.transform.position = new Vector3(Mathf.Round(gameObject.transform.position.x), gameObject.transform.position.y, Mathf.Round(gameObject.transform.position.z));
 		
 		transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
-		//MoveEnemies();
-		//yield return null;
-		//ListOfEnemies = CheckEnemies();
 		for (int i = 0; i < CameraEnemies.Length; i++)
-		{
 			CameraEnemies[i].MoveCamera();
-		}
 		IsWaiting = true;
 		if (LightOffTurns <= 0)
 			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
@@ -831,7 +644,6 @@ public bool IsThereGate(Transform ObjCoord)
 		}
 	}
 
-	// Start is called before the first frame update
 	void Start()
 	{
 		NodeFuncs = NodeHandler.GetComponent<Node>();
@@ -841,89 +653,40 @@ public bool IsThereGate(Transform ObjCoord)
 		MotionlessEnemyFuncs = MotionlessEnemyHandler.GetComponent<MotionlessEnemy>();
 		FinalNode = GameObject.FindGameObjectWithTag("FinalNode");
 		LightMapBuf = LightmapSettings.lightmaps;
-		//CameraEnemies = GameObject.FindGameObjectsWithTag("CameraEnemy");
 		CameraEnemies = GameObject.FindObjectsOfType<CameraEnemy>();
-		//Debug.Log(LineMovingEnemyFuncs);
-		//LineMovingEnemyFuncs = LineMovingEnemyHandler.GetComponentInParent<LineMovingEnemy>();
-		//FindObjectOfType<AudioManager>().Play("Kill");
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
-		/*if (StopTheCoroutines == true)
-		{
-			StopTheCoroutines = false;
-			StopAllCoroutines();
-		}*/
-
-		//FindObjectOfType<AudioManager>().Play("Theme");
-		//Time.timeScale = 0.1f;
-		//Debug.Log(gameObject);
 		Quaternion OldRotation;
-		/*if (LightOffTurns <= 0 && Lights.Length != 0 && Lights[0].activeSelf == false)
-		{
-			ChangeLights();
-		}*/
 		if (LightOffTurns <= 0 && SomeLightmaps.Length != 0 && LightsOff == true)
 		{
 			ChangeLights();
 		}
-		//Light.SetActive(true);
-		//Debug.Log(IsMovable);
-		//Debug.Log(IsWaiting);
-		//if (IsMovable == true && IsWaiting == false && ProjectionIsActive == false)
 		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1 && ProjectionIsActive == false)
 		{
-			//Debug.Log("aa");
 			if (Input.GetKeyDown("a"))
 			{
-				//transform.position = FinalPos;
-				//Debug.Log(transform.position);
-
 				if (NodeFuncs.CheckIfNodeExist(transform.position, 'x', -1)
 				&& HorLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(-1, 0, 0)))
 				{
-					//IsMoving = true;
 					OldRotation = transform.rotation;
-					
 					transform.rotation = Quaternion.Euler(0, 270, 0);
 					if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
 					{
-						//Debug.Log("HERE");
-						//gameObject.GetComponent<Animator>().SetBool("IsKilling", true);
 						transform.rotation = OldRotation;
-						//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
 						IsWaiting = true;
-						//StartCoroutine("RotateAndKill", 270);
 						StartCoroutine(Rotate(270, true));
-						//StartCoroutine("KillEnemy");
 					}
 					else if (!IsThereGate(transform) && !IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
-						//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
 						IsWaiting = true;
-						//StartCoroutine("Rotate", 270);
 						StartCoroutine(Rotate(270, false));
-						/*for (int i = 0; i < CameraEnemies.Length; i++)
-						{
-							CameraEnemies[i].MoveCamera();
-						}*/
-						//CameraEnemy.MoveCamera();
-						//StartCoroutine("WalkLeft");
 					}
 					else
 						transform.rotation = OldRotation;
-					//IsWaiting = true;
-					//StartCoroutine("WalkLeft");
-					//return;
-					//CheckForDestroyAgain();
-					//MoveEnemies();
-					//LineMovingEnemyFuncs.LineMovingEnemyMove();
-					//transform.position += new Vector3(-1, 0, 0);
 				}
-				//IsMoving = false;
 			}
 			if (Input.GetKeyDown("d"))
 			{
@@ -931,21 +694,12 @@ public bool IsThereGate(Transform ObjCoord)
 				if (NodeFuncs.CheckIfNodeExist(transform.position, 'x', 1)
 				&& HorLineFuncs.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(1, 0, 0)))
 				{
-					//IsMoving = true;
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 90, 0);
-					//IsWaiting = true;
-					//FinalPos = transform.position + new Vector3(1, 0, 0);
-					//StartCoroutine("WalkRight");
 					if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
                     {
-						//Debug.Log("HERE");
-						//gameObject.GetComponent<Animator>().SetBool("IsKilling", true);
-						//StartCoroutine("KillEnemy");
 						transform.rotation = OldRotation;
-						//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
 						IsWaiting = true;
-						//StartCoroutine("RotateAndKill", 90);
 						StartCoroutine(Rotate(90, true));
 					}
 					else if (!IsThereGate(transform) && !IsThereCamera(transform))
@@ -953,99 +707,56 @@ public bool IsThereGate(Transform ObjCoord)
 						transform.rotation = OldRotation;
 						IsWaiting = true;
 						StartCoroutine(Rotate(90, false));
-						//StartCoroutine("Rotate", 90);
-						//StartCoroutine("WalkRight");
 					}
 					else
 						transform.rotation = OldRotation;
-					//return;
-					//CheckForDestroyAgain();
-					//MoveEnemies();
-					//LineMovingEnemyFuncs.LineMovingEnemyMove();
-					//StopCoroutine("Walk");
-					//Debug.Log(transform.position);
-					//Walk();
-					//transform.position += new Vector3(1, 0, 0);
 				}
-				//IsMoving = false;
 			}
 			if (Input.GetKeyDown("w"))
 			{
-				//IsThereGate(transform);
 				if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', 1)
 				&& VerLineFuncs.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(0, 0, 1)))
 				{
-					//IsMoving = true;
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 0, 0);
 					if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
 					{
-						//Debug.Log("HERE");
-						//gameObject.GetComponent<Animator>().SetBool("IsKilling", true);
-						//StartCoroutine("KillEnemy");
 						transform.rotation = OldRotation;
-						//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
 						IsWaiting = true;
-						//StartCoroutine("RotateAndKill", 0);
 						StartCoroutine(Rotate(0, true));
 					}
 					else if (!IsThereGate(transform) && !IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
-						//StartCoroutine("Rotate", 0);
 						StartCoroutine(Rotate(0, false));
-						//StartCoroutine("WalkUp");
 					}
 					else
 						transform.rotation = OldRotation;
-					//IsWaiting = true;
-					//StartCoroutine("WalkUp");
-					//return;
-					//CheckForDestroyAgain();
-					//MoveEnemies();
-					//LineMovingEnemyFuncs.LineMovingEnemyMove();
-					//transform.position += new Vector3(0, 0, 1);
 				}
-				//IsMoving = false;
 			}
 			if (Input.GetKeyDown("s"))
 			{
-
 				if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', -1)
 				&& VerLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(0, 0, -1)))
 				{
-					//IsMoving = true;
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 180, 0);
 					if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
 					{
-						//Debug.Log("HERE");
-						//gameObject.GetComponent<Animator>().SetBool("IsKilling", true);
-						//StartCoroutine("KillEnemy");
 						transform.rotation = OldRotation;
-						//GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 2);
 						IsWaiting = true;
-						//StartCoroutine("RotateAndKill", 180);
 						StartCoroutine(Rotate(180, true));
 					}
 					else if (!IsThereGate(transform) && !IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
-						//StartCoroutine("Rotate", 180);
 						StartCoroutine(Rotate(180, false));
-						//StartCoroutine("WalkDown");
 					}
 					else
 						transform.rotation = OldRotation;
-					//return;
-					//CheckForDestroyAgain();
-					//MoveEnemies();
-					//LineMovingEnemyFuncs.LineMovingEnemyMove();
-					//transform.position += new Vector3(0, 0, -1);
 				}
-				//IsMoving = false;
 			}
 			if (transform.position.x == FinalNode.transform.position.x && transform.position.z == FinalNode.transform.position.z)
 				Application.LoadLevel(1);
