@@ -521,7 +521,6 @@ public class MainCharacter : WalkingHumanoid
 		}
 		playerAnimator.SetBool("IsRunning", false);
 		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, Mathf.Round(transform.position.z));
-		//MoveEnemies();
 		ListOfEnemies = CheckEnemies();
 		for (int i = 0; i < CameraEnemies.Length; i++)
 			CameraEnemies[i].MoveCamera();
@@ -530,12 +529,6 @@ public class MainCharacter : WalkingHumanoid
 			yield return StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
 		else
 			IsWaiting = false;
-		/*IsWaiting = true;
-		if (LightOffTurns <= 0 && ListOfEnemies != null)
-			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
-		else*/
-		//IsWaiting = false;
-		//yield return null;
 	}
 
 	IEnumerator RotateEnemies(GameObject ObjectToRotate)
