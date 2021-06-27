@@ -39,14 +39,14 @@ public class ThrowKnife : MonoBehaviour
 
     public void Throwknife()
     {
-            if (PlayerFuncs.IsPlayerMovable == false)
+            if (PlayerFuncs.IsMovable == false)
             {
-                PlayerFuncs.KnifeReady = false;
-                PlayerFuncs.IsPlayerMovable = true;
+                PlayerFuncs.KnifeIsReady = false;
+                PlayerFuncs.IsMovable = true;
                 return;
             }
-            PlayerFuncs.KnifeReady = true;
-            PlayerFuncs.IsPlayerMovable = false;
+            PlayerFuncs.KnifeIsReady = true;
+            PlayerFuncs.IsMovable = false;
     }
 
     void Start()

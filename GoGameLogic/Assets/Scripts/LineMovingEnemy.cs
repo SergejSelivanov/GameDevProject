@@ -44,11 +44,11 @@ public class LineMovingEnemy : MonoBehaviour
             player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1);
             for (int i = 0; i < 30; i++)
             {
-                gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + Diff / 30, 0);
+                player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + Diff / 30, 0);
                 yield return new WaitForSeconds(0.0133f);
             }
             player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
-            gameObject.transform.rotation = Quaternion.Euler(0, RequiredAngle, 0);
+            player.transform.rotation = Quaternion.Euler(0, RequiredAngle, 0);
         }
         yield return new WaitForSeconds(1);
         for (int i = 0; i < PlayerFuncs.EnemiesKill.Length; i++)
@@ -73,7 +73,7 @@ public class LineMovingEnemy : MonoBehaviour
         if (Time.timeScale == 1)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (PlayerFuncs.KnifeReady == true)
+            if (PlayerFuncs.KnifeIsReady == true)
             {
                 if (KnifeFuncs.CheckIfInRange(gameObject, player))
                 {
@@ -82,9 +82,9 @@ public class LineMovingEnemy : MonoBehaviour
                     StartCoroutine("StopBreaking");
                     if (GameObject.FindObjectOfType<FillKnife>() != null)
                         GameObject.FindObjectOfType<FillKnife>().GetComponent<Image>().fillAmount = 0;
-                    PlayerFuncs.IsPlayerMovable = true;
+                    PlayerFuncs.IsMovable = true;
                 }
-                PlayerFuncs.KnifeReady = false;
+                PlayerFuncs.KnifeIsReady = false;
             }
         }
     }
@@ -118,14 +118,14 @@ public class LineMovingEnemy : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
        // GameObject Projection = GameObject.FindGameObjectWithTag("Projection");
-        if ((CheckifPlayerInfrontofEnemy(player, Obj) || (player.transform.position.x == Obj.transform.position.x && player.transform.position.z == Obj.transform.position.z)) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(Obj.transform))
+        if ((CheckifPlayerInfrontofEnemy(player, Obj) || (player.transform.position.x == Obj.transform.position.x && player.transform.position.z == Obj.transform.position.z)) && !PlayerFuncs.IsThereGate(Obj.transform))
         {
             Obj.transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
             PlayerFuncs.StartCoroutine("KillingAnimation", Obj);
             return;
         }
         if (player.transform.position.x == Obj.transform.position.x
-            && player.transform.position.z == Obj.transform.position.z && PlayerFuncs.Invisible >= 0)
+            && player.transform.position.z == Obj.transform.position.z)
             Destroy(Obj);
         /*if (Projection != null)
         {
@@ -580,7 +580,7 @@ public class LineMovingEnemy : MonoBehaviour
                 DestroyIfClose(ListOfEnemies[j]);
             }
         }
-        PlayerFuncs.Waiting = false;
+        PlayerFuncs.IsWaiting = false;
         yield return null;
     }
 
@@ -658,7 +658,7 @@ public class LineMovingEnemy : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         //GameObject projection = GameObject.FindGameObjectWithTag("Projection");
-        if (MotEnemyFuncs.CheckifPlayerInfrontofEnemy(player, gameObject) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
+        if (MotEnemyFuncs.CheckifPlayerInfrontofEnemy(player, gameObject) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightsOffTurns <= 0)
         {
             gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
             for (int i = 0; i < GameObject.FindGameObjectsWithTag("LineMovingEnemy").Length ; i++)

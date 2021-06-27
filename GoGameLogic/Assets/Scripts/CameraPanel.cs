@@ -16,7 +16,7 @@ public class CameraPanel : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Projection");
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player");
-        if (Mathf.Abs(player.transform.position.x - transform.position.x) <= DistanceToPanel && Mathf.Abs(player.transform.position.z - transform.position.z) <= DistanceToPanel && GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Waiting == false)
+        if (Mathf.Abs(player.transform.position.x - transform.position.x) <= DistanceToPanel && Mathf.Abs(player.transform.position.z - transform.position.z) <= DistanceToPanel && GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().IsWaiting == false)
         {
             /*if (IsOpen == false && IsWaiting == false)
             {

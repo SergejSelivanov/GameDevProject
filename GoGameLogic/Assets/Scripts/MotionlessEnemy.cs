@@ -35,11 +35,11 @@ public class MotionlessEnemy : MonoBehaviour
 			player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1);
 			for (int i = 0; i < 30; i++)
 			{
-				gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + Diff / 30, 0);
+				player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + Diff / 30, 0);
 				yield return new WaitForSeconds(0.0133f);
 			}
 			player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
-			gameObject.transform.rotation = Quaternion.Euler(0, RequiredAngle, 0);
+			player.transform.rotation = Quaternion.Euler(0, RequiredAngle, 0);
 		}
 		yield return new WaitForSeconds(1);
 		for (int i = 0; i < PlayerFuncs.EnemiesKill.Length; i++)
@@ -65,7 +65,7 @@ public class MotionlessEnemy : MonoBehaviour
 		{
 			GameObject player = GameObject.FindGameObjectWithTag("Player");
 			
-			if (PlayerFuncs.KnifeReady == true)
+			if (PlayerFuncs.KnifeIsReady == true)
 			{
 				
 				if (KnifeFuncs.CheckIfInRange(gameObject, player))
@@ -75,9 +75,9 @@ public class MotionlessEnemy : MonoBehaviour
 					StartCoroutine("StopBreaking");
 					if (GameObject.FindObjectOfType<FillKnife>() != null)
 						GameObject.FindObjectOfType<FillKnife>().GetComponent<Image>().fillAmount = 0; 
-					PlayerFuncs.IsPlayerMovable = true;
+					PlayerFuncs.IsMovable = true;
 				}
-				PlayerFuncs.KnifeReady = false;
+				PlayerFuncs.KnifeIsReady = false;
 			}
 		}
     }
@@ -180,10 +180,10 @@ public class MotionlessEnemy : MonoBehaviour
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		if (transform.position.x == player.transform.position.x
 		&& transform.position.z == player.transform.position.z
-		&& (!CheckIfFacing(player) || PlayerFuncs.Invisible >= 0 || PlayerFuncs.LightOffTurns >= 0))
+		&& (!CheckIfFacing(player) || PlayerFuncs.LightsOffTurns >= 0))
 		{
 		}
-		if (CheckifPlayerInfrontofEnemy(player) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
+		if (CheckifPlayerInfrontofEnemy(player) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightsOffTurns <= 0)
 		{
 				gameObject.GetComponent<Animator>().SetBool("IsKilling", true);
 				PlayerFuncs.StartCoroutine("KillingAnimation", gameObject);

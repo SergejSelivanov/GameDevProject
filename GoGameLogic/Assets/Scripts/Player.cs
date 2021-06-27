@@ -16,20 +16,29 @@ public class Player : MonoBehaviour
 	private HorizontalLine HorLineFuncs;
 	private LineMovingEnemy LineMovingEnemyFuncs;
 	private MotionlessEnemy MotionlessEnemyFuncs;
-	private float SkillReady = 0;
-	private int InvisibleSteps;
-	private bool KnifeIsReady = false;
-	private bool IsMovable = true;
-	private bool IsWaiting = false;
-	private int LightsOffTurns = 0;
-	private bool FlagGranade = false;
+	public bool KnifeIsReady { get; set; }
+	public bool IsMovable { get; set; }
+	public bool IsWaiting { get; set; }
+	public int LightsOffTurns { get; set; }
 	private LightmapData[] LightMapBuf;
 	private bool LightsOff = false;
-	//public bool LightOff{
 	private CameraEnemy[] CameraEnemies;
 
 	private GameObject FinalNode;
 	private static GameObject[] EnemiesTokill;
+
+
+	public GameObject[] EnemiesKill
+	{
+		get
+		{
+			return EnemiesTokill;
+		}
+		set
+		{
+			EnemiesTokill = value;
+		}
+	}
 
 	private GameObject FindNode(Node [] Nodes, int X, int Z)
     {
@@ -131,106 +140,6 @@ public bool IsThereGate(Transform ObjCoord)
 		return false;
     }
 
-	public GameObject[] EnemiesKill
-    {
-		get
-        {
-			return EnemiesTokill;
-        }
-        set
-        {
-			EnemiesTokill = value;
-        }
-    }
-	public bool IsflagGranade
-    {
-		get
-        {
-			return FlagGranade;
-        }
-        set
-        {
-			FlagGranade = value;
-        }
-    }
-
-	public int LightOffTurns
-	{
-		get
-		{
-			return LightsOffTurns;
-		}
-		set
-		{
-			LightsOffTurns = value;
-		}
-	}
-
-	public bool Waiting
-    {
-		get
-        {
-			return IsWaiting;
-        }
-		set
-        {
-			IsWaiting = value;
-        }
-    }
-
-
-	public bool IsPlayerMovable
-    { 
-		get
-        {
-			return IsMovable;
-        }
-		set
-        {
-			IsMovable = value;
-        }
-	}
-
-
-	public bool KnifeReady
-    {
-        get
-        {
-			return KnifeIsReady;
-        }
-        set
-        {
-			KnifeIsReady = value;
-        }
-    }
-
-	public float SkillSetter
-    {
-		get
-        {
-			return SkillReady;
-        }
-		set
-        {
-				SkillReady = value;
-			if (SkillReady > 1)
-				SkillReady = 1;
-        }
-	}
-
-	public int Invisible
-    {
-        get
-        {
-			return InvisibleSteps;
-        }
-		set
-        {
-			InvisibleSteps = value;
-		}
-	}
-
-
 	private void MoveEnemies()
     {
 		GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
@@ -238,7 +147,7 @@ public bool IsThereGate(Transform ObjCoord)
 		{
 			if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
 				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0)
+			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
 			{
 				ListOfMovingEnemies[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
 				StartCoroutine("KillingAnimation", ListOfMovingEnemies[i]);
@@ -246,7 +155,7 @@ public bool IsThereGate(Transform ObjCoord)
 			}
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0 || LightOffTurns >= 0))
+			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || LightsOffTurns >= 0))
 			{
 				Destroy(ListOfMovingEnemies[i]);
 				continue;
@@ -254,8 +163,6 @@ public bool IsThereGate(Transform ObjCoord)
 			if (ListOfMovingEnemies[i] != null)
 				LineMovingEnemyFuncs.LineMovingEnemyMove(ListOfMovingEnemies[i]);
 		}
-		InvisibleSteps--;
-
 	}
 
 	public bool CheckIfThereIsMovingEnemy(GameObject Obj)
@@ -298,8 +205,8 @@ public bool IsThereGate(Transform ObjCoord)
 			EnemiesTokill = new GameObject[ListOfMovingEnemies.Length];
 		for (int i = 0; i < ListOfMovingEnemies.Length; i++)
 		{
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) && InvisibleSteps <= 0 
-			&& !IsThereGate(ListOfMovingEnemies[i].transform) && !IsThereCamera(ListOfMovingEnemies[i].transform) && LightOffTurns <= 0)
+			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) 
+			&& !IsThereGate(ListOfMovingEnemies[i].transform) && !IsThereCamera(ListOfMovingEnemies[i].transform) && LightsOffTurns <= 0)
 			{
 				ListOfMovingEnemies[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
 				StartCoroutine("KillingAnimation", ListOfMovingEnemies[i]);
@@ -307,7 +214,7 @@ public bool IsThereGate(Transform ObjCoord)
 			}
 			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
 			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || InvisibleSteps >= 0 || LightOffTurns >= 0))
+			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || LightsOffTurns >= 0))
 			{
 				ListOfMovingEnemies[i].transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsDead", true);
                 for (int j = 0; j < EnemiesTokill.Length; j++)
@@ -324,7 +231,6 @@ public bool IsThereGate(Transform ObjCoord)
 			if (ListOfMovingEnemies[i] != null)
 				RetArray[i] = ListOfMovingEnemies[i];
 		}
-		InvisibleSteps--;
 		LightsOffTurns--;
 		return RetArray;
 	}
@@ -511,7 +417,7 @@ public bool IsThereGate(Transform ObjCoord)
 		for (int i = 0; i < CameraEnemies.Length; i++)
 			CameraEnemies[i].MoveCamera();
 		IsWaiting = true;
-		if (LightOffTurns <= 0)
+		if (LightsOffTurns <= 0)
 			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
 		else
 			IsWaiting = false;
@@ -632,7 +538,12 @@ public bool IsThereGate(Transform ObjCoord)
 		}
 	}
 
-	void Start()
+    private void Awake()
+    {
+		IsMovable = true;
+    }
+
+    void Start()
 	{
 		NodeFuncs = NodeHandler.GetComponent<Node>();
 		VerLineFuncs = VerLineHandler.GetComponent<VerticalLine>();
@@ -647,7 +558,7 @@ public bool IsThereGate(Transform ObjCoord)
 	void Update()
 	{
 		Quaternion OldRotation;
-		if (LightOffTurns <= 0 && SomeLightmaps.Length != 0 && LightsOff == true)
+		if (LightsOffTurns <= 0 && SomeLightmaps.Length != 0 && LightsOff == true)
 		{
 			ChangeLights();
 		}

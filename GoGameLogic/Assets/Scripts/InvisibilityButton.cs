@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InvisibilityButton : MonoBehaviour
+/*public class InvisibilityButton : MonoBehaviour
 {
     public GameObject PlayerHandler;
     public GameObject ButtonUI;
@@ -29,4 +29,4 @@ public class InvisibilityButton : MonoBehaviour
         else
             ButtonUI.SetActive(false);
     }
-}
+}*/
