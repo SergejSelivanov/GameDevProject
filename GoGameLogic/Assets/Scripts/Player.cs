@@ -22,10 +22,10 @@ public class Player : MonoBehaviour
 	private bool IsMovable = true;
 	private bool IsWaiting = false;
 	private int LightsOffTurns = 0;
-	//private bool ProjectionIsActive = false;
 	private bool FlagGranade = false;
 	private LightmapData[] LightMapBuf;
 	private bool LightsOff = false;
+	//public bool LightOff{
 	private CameraEnemy[] CameraEnemies;
 
 	private GameObject FinalNode;
@@ -130,18 +130,6 @@ public bool IsThereGate(Transform ObjCoord)
         }
 		return false;
     }
-
-	/*public bool ProjectionActive
-	{
-		get
-		{
-			return ProjectionIsActive;
-		}
-		set
-		{
-			ProjectionIsActive = value;
-		}
-	}*/
 
 	public GameObject[] EnemiesKill
     {
