@@ -11,22 +11,17 @@ public class InvisibilityButton : MonoBehaviour
 
     public void GetInvisible()
     {
-        if (PlayerFuncs.ProjectionActive == false)
-        {
-            PlayerFuncs.SkillSetter = 0;
-            ButtonUI.SetActive(false);
-            PlayerFuncs.Invisible = StepsInInvisibilty;
-        }
+        PlayerFuncs.SkillSetter = 0;
+        ButtonUI.SetActive(false);
+        PlayerFuncs.Invisible = StepsInInvisibilty;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         PlayerFuncs = PlayerHandler.GetComponent<Player>();
         ButtonUI.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (PlayerFuncs.SkillSetter == 1)

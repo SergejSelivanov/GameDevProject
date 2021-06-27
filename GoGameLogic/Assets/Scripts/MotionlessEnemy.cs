@@ -176,7 +176,7 @@ public class MotionlessEnemy : MonoBehaviour
 
 	void Update()
 	{
-		GameObject projection = GameObject.FindGameObjectWithTag("Projection");
+		//GameObject projection = GameObject.FindGameObjectWithTag("Projection");
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		if (transform.position.x == player.transform.position.x
 		&& transform.position.z == player.transform.position.z
@@ -188,7 +188,7 @@ public class MotionlessEnemy : MonoBehaviour
 				gameObject.GetComponent<Animator>().SetBool("IsKilling", true);
 				PlayerFuncs.StartCoroutine("KillingAnimation", gameObject);
 		}
-		if (projection != null)
+		/*if (projection != null)
 		{
 			if (transform.position.x == projection.transform.position.x
 			&& transform.position.z == projection.transform.position.z
@@ -203,12 +203,12 @@ public class MotionlessEnemy : MonoBehaviour
 						break;
 					}
 				}
-			}
-			if (CheckifPlayerInfrontofEnemy(projection) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
+			}*/
+			/*if (CheckifPlayerInfrontofEnemy(projection) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
 			{
 				PlayerFuncs.ProjectionActive = false;
 				projection.SetActive(false);
 			}
-		}
+		}*/
 	}
 }

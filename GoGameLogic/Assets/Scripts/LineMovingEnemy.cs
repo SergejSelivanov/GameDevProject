@@ -12,7 +12,7 @@ public class LineMovingEnemy : MonoBehaviour
     public GameObject MotionlessEnemyHandler;
     public GameObject PlayerHandler;
     public GameObject KnifeHandler;
-    public GameObject ProjectionBehaviourHandler;
+   // public GameObject ProjectionBehaviourHandler;
     // public GameObject PlayerHandler;
     private Node NodeFuncs;
     private VerticalLine VerLineFuncs;
@@ -20,7 +20,7 @@ public class LineMovingEnemy : MonoBehaviour
     private MotionlessEnemy MotEnemyFuncs;
     private Player PlayerFuncs;
     private ThrowKnife KnifeFuncs;
-    private ProjectionBehaviour ProjectionBehaviourFuncs;
+    //private ProjectionBehaviour ProjectionBehaviourFuncs;
     private Animator animator;
 
     IEnumerator StopBreaking()
@@ -117,7 +117,7 @@ public class LineMovingEnemy : MonoBehaviour
     private void DestroyIfClose(GameObject Obj)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        GameObject Projection = GameObject.FindGameObjectWithTag("Projection");
+       // GameObject Projection = GameObject.FindGameObjectWithTag("Projection");
         if ((CheckifPlayerInfrontofEnemy(player, Obj) || (player.transform.position.x == Obj.transform.position.x && player.transform.position.z == Obj.transform.position.z)) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(Obj.transform))
         {
             Obj.transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
@@ -127,7 +127,7 @@ public class LineMovingEnemy : MonoBehaviour
         if (player.transform.position.x == Obj.transform.position.x
             && player.transform.position.z == Obj.transform.position.z && PlayerFuncs.Invisible >= 0)
             Destroy(Obj);
-        if (Projection != null)
+        /*if (Projection != null)
         {
             if (Projection.transform.position.x == Obj.transform.position.x
             && Projection.transform.position.z == Obj.transform.position.z && PlayerFuncs.Invisible >= 0)
@@ -137,7 +137,7 @@ public class LineMovingEnemy : MonoBehaviour
                 PlayerFuncs.ProjectionActive = false;
                 Projection.SetActive(false);
             }
-        }
+        }*/
     }
 
     public int Opposite(GameObject Obj)
@@ -650,14 +650,14 @@ public class LineMovingEnemy : MonoBehaviour
         MotEnemyFuncs = MotionlessEnemyHandler.GetComponent<MotionlessEnemy>();
         PlayerFuncs = PlayerHandler.GetComponent<Player>();
         KnifeFuncs = KnifeHandler.GetComponent<ThrowKnife>();
-        ProjectionBehaviourFuncs = ProjectionBehaviourHandler.GetComponent<ProjectionBehaviour>();
+      //  ProjectionBehaviourFuncs = ProjectionBehaviourHandler.GetComponent<ProjectionBehaviour>();
         animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        GameObject projection = GameObject.FindGameObjectWithTag("Projection");
+        //GameObject projection = GameObject.FindGameObjectWithTag("Projection");
         if (MotEnemyFuncs.CheckifPlayerInfrontofEnemy(player, gameObject) && PlayerFuncs.Invisible <= 0 && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
         {
             gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
@@ -668,9 +668,9 @@ public class LineMovingEnemy : MonoBehaviour
             }
             PlayerFuncs.StartCoroutine("KillingAnimation", gameObject);
         }
-        if (projection != null && MotEnemyFuncs.CheckifPlayerInfrontofEnemy(projection, gameObject) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
+        /*if (projection != null && MotEnemyFuncs.CheckifPlayerInfrontofEnemy(projection, gameObject) && !PlayerFuncs.IsThereGate(gameObject.transform) && !PlayerFuncs.IsThereCamera(gameObject.transform) && PlayerFuncs.LightOffTurns <= 0)
         {
             Application.LoadLevel(0);
-        }
+        }*/
     }
 }

@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 	private bool IsMovable = true;
 	private bool IsWaiting = false;
 	private int LightsOffTurns = 0;
-	private bool ProjectionIsActive = false;
+	//private bool ProjectionIsActive = false;
 	private bool FlagGranade = false;
 	private LightmapData[] LightMapBuf;
 	private bool LightsOff = false;
@@ -131,7 +131,7 @@ public bool IsThereGate(Transform ObjCoord)
 		return false;
     }
 
-	public bool ProjectionActive
+	/*public bool ProjectionActive
 	{
 		get
 		{
@@ -141,7 +141,7 @@ public bool IsThereGate(Transform ObjCoord)
 		{
 			ProjectionIsActive = value;
 		}
-	}
+	}*/
 
 	public GameObject[] EnemiesKill
     {
@@ -534,7 +534,7 @@ public bool IsThereGate(Transform ObjCoord)
     public void Up()
     {
 		Quaternion OldRotation;
-		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1 && ProjectionIsActive == false)
+		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
 			if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', 1)
 		&& VerLineFuncs.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(0, 0, 1)))
@@ -562,7 +562,7 @@ public bool IsThereGate(Transform ObjCoord)
     public void Down()
     {
 		Quaternion OldRotation;
-		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1 && ProjectionIsActive == false)
+		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
 			if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', -1)
 				 && VerLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(0, 0, -1)))
@@ -591,7 +591,7 @@ public bool IsThereGate(Transform ObjCoord)
 	public void Right()
     {
 		Quaternion OldRotation;
-		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1 && ProjectionIsActive == false)
+		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
 			if (NodeFuncs.CheckIfNodeExist(transform.position, 'x', 1)
 		&& HorLineFuncs.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(1, 0, 0)))
@@ -619,7 +619,7 @@ public bool IsThereGate(Transform ObjCoord)
 	public void Left()
     {
 		Quaternion OldRotation;
-		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1 && ProjectionIsActive == false)
+		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
 			if (NodeFuncs.CheckIfNodeExist(transform.position, 'x', -1)
 		&& HorLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(-1, 0, 0)))
@@ -663,7 +663,7 @@ public bool IsThereGate(Transform ObjCoord)
 		{
 			ChangeLights();
 		}
-		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1 && ProjectionIsActive == false)
+		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
 			if (Input.GetKeyDown("a"))
 			{
