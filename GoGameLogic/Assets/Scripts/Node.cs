@@ -4,26 +4,48 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    public GameObject PlayerHandler;
-    public GameObject VerticalLineHandler;
-    public GameObject HorizontalLineHandler;
-    private Player PlayerFuncs;
-    private VerticalLine verticalLine;
-    private HorizontalLine horizontalLine;
-
-    public GameObject ButtonUI;
-
-    public int distance = 3;
-
-    private Node[] GetListOfNodes()
+    public static GameObject FindNode(Node[] Nodes, int X, int Z)
     {
-        Node[] ListOfNodes = GameObject.FindObjectsOfType<Node>();
-        return ListOfNodes;
+        for (int i = 0; i < Nodes.Length; i++)
+        {
+            if (Nodes[i].transform.position.x == X && Nodes[i].transform.position.z == Z)
+                return (Nodes[i].gameObject);
+        }
+        return (null);
     }
 
-    public bool CheckIfNodeExist(Vector3 PlayerCoord, char XorY, int increment)
+    public static bool CheckIfThereIsNodeToMove(GameObject Obj)
     {
-        Node[] ListOfNodes = GetListOfNodes();
+        if (Obj.transform.rotation.eulerAngles.y == 0)
+        {
+            if (Node.CheckIfNodeExist(Obj.transform.position, 'y', 1)
+            && VerticalLine.CheckIfThereIsLine(Obj.transform.position, 1, Obj.transform.position + new Vector3(0, 0, 1)))
+                return true;
+        }
+        if (Obj.transform.rotation.eulerAngles.y == 90)
+        {
+            if (Node.CheckIfNodeExist(Obj.transform.position, 'x', 1)
+            && HorizontalLine.CheckIfThereIsLine(Obj.transform.position, 1, Obj.transform.position + new Vector3(1, 0, 0)))
+                return true;
+        }
+        if (Obj.transform.rotation.eulerAngles.y == 180)
+        {
+            if (Node.CheckIfNodeExist(Obj.transform.position, 'y', -1)
+            && VerticalLine.CheckIfThereIsLine(Obj.transform.position, -1, Obj.transform.position + new Vector3(0, 0, -1)))
+                return true;
+        }
+        if (Obj.transform.rotation.eulerAngles.y == 270)
+        {
+            if (Node.CheckIfNodeExist(Obj.transform.position, 'x', -1)
+            && HorizontalLine.CheckIfThereIsLine(Obj.transform.position, -1, Obj.transform.position + new Vector3(-1, 0, 0)))
+                return true;
+        }
+        return false;
+    }
+
+    public static bool CheckIfNodeExist(Vector3 PlayerCoord, char XorY, int increment)
+    {
+        Node[] ListOfNodes = GameObject.FindObjectsOfType<Node>();
         for (int i = 0; i < ListOfNodes.Length; i++)
         {
             if (XorY == 'x')
@@ -36,12 +58,5 @@ public class Node : MonoBehaviour
                     return true;
         }
         return false;
-    }
-
-    void Start()
-    {
-        PlayerFuncs = PlayerHandler.GetComponent<Player>();
-        verticalLine = VerticalLineHandler.GetComponent<VerticalLine>();
-        horizontalLine = HorizontalLineHandler.GetComponent<HorizontalLine>();
     }
 }

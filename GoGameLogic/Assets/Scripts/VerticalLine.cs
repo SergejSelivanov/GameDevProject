@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class VerticalLine : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    private VerticalLine[] GetListOfVerLines()
+    public static bool CheckIfThereIsLine(Vector3 PlayerPos, int sign, Vector3 FinalPos)
     {
         VerticalLine[] ListOfLines = GameObject.FindObjectsOfType<VerticalLine>();
-        return ListOfLines;
-    }
-
-    public bool CheckIfThereIsLine(Vector3 PlayerPos, int sign, Vector3 FinalPos)
-    {
-        VerticalLine[] ListOfLines = GetListOfVerLines();
         for (int i = 0; i < ListOfLines.Length; i++)
         {
             if (ListOfLines[i].transform.position.z - 0.5 * sign == PlayerPos.z 
@@ -24,15 +16,4 @@ public class VerticalLine : MonoBehaviour
         }
         return false;
     }
-
-    /*void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }*/
 }

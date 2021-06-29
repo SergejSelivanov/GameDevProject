@@ -5,17 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-	public GameObject NodeHandler;
-	public GameObject VerLineHandler;
-	public GameObject HorLineHandler;
-	public GameObject LineMovingEnemyHandler;
-	public GameObject MotionlessEnemyHandler;
 	public Texture2D[] SomeLightmaps;
-	private Node NodeFuncs;
-	private VerticalLine VerLineFuncs;
-	private HorizontalLine HorLineFuncs;
-	private LineMovingEnemy LineMovingEnemyFuncs;
-	private MotionlessEnemy MotionlessEnemyFuncs;
 	public bool KnifeIsReady { get; set; }
 	public bool IsMovable { get; set; }
 	public bool IsWaiting { get; set; }
@@ -23,10 +13,10 @@ public class Player : MonoBehaviour
 	private LightmapData[] LightMapBuf;
 	private bool LightsOff = false;
 	private CameraEnemy[] CameraEnemies;
-
 	private GameObject FinalNode;
 	private static GameObject[] EnemiesTokill;
-
+	public GameObject turnManagerHandler;
+	private TurnManager turnManager;
 
 	public GameObject[] EnemiesKill
 	{
@@ -40,39 +30,18 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	private GameObject FindNode(Node [] Nodes, int X, int Z)
-    {
-        for (int i = 0; i < Nodes.Length; i++)
-        {
-			if (Nodes[i].transform.position.x == X && Nodes[i].transform.position.z == Z)
-				return (Nodes[i].gameObject);
-        }
-		return (null);
-    }
-
 	public GameObject GetStairwayNodePositionY(GameObject Obj)
 	{
 		Node[] Nodes = GameObject.FindObjectsOfType<Node>();
 		GameObject DefiniteNode;
 		if (Obj.transform.rotation.eulerAngles.y == 0)
-        {
-			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x, (int)Obj.transform.position.z + 1);
-        }
+			DefiniteNode = Node.FindNode(Nodes, (int)Obj.transform.position.x, (int)Obj.transform.position.z + 1);
 		else if(Obj.transform.rotation.eulerAngles.y == 90)
-
-		{
-			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x + 1, (int)Obj.transform.position.z);
-		}
+			DefiniteNode = Node.FindNode(Nodes, (int)Obj.transform.position.x + 1, (int)Obj.transform.position.z);
 		else if(Obj.transform.rotation.eulerAngles.y == 180)
-
-		{
-			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x, (int)Obj.transform.position.z - 1);
-		}
+			DefiniteNode = Node.FindNode(Nodes, (int)Obj.transform.position.x, (int)Obj.transform.position.z - 1);
 		else
-
-		{
-			DefiniteNode = FindNode(Nodes, (int)Obj.transform.position.x - 1, (int)Obj.transform.position.z);
-		}
+			DefiniteNode = Node.FindNode(Nodes, (int)Obj.transform.position.x - 1, (int)Obj.transform.position.z);
 		return DefiniteNode;
 	}
 
@@ -81,7 +50,7 @@ public class Player : MonoBehaviour
 		float diff = Mathf.Abs(Obj.transform.position.y - Node.transform.position.y);
         for (float i = 0; i < 1; i += 0.01f)
         {
-			 Obj.transform.position += new Vector3(0, diff / 100 * sign, 0);
+			Obj.transform.position += new Vector3(0, diff / 100 * sign, 0);
 			yield return new WaitForSeconds(0.004f);
         }
     }
@@ -96,81 +65,18 @@ public class Player : MonoBehaviour
 		if (Mathf.Abs(NodePositionY - ObjPositionY) > 0.1f)
         {
 			if (NodePositionY > ObjPositionY)
-            {
 				StartCoroutine(WalkUpright(1, Obj, DefiniteNode));
-            }
             else
-            {
 				StartCoroutine(WalkUpright(-1, Obj, DefiniteNode));
-			}
         }
     }
-
-	public bool IsThereCamera(Transform ObjCoord)
-    {
-		Object[] Cameras = GameObject.FindGameObjectsWithTag("CameraEnemy");
-		RaycastHit Hit;
-		Ray ray = new Ray(ObjCoord.position, ObjCoord.forward);
-		Physics.Raycast(ray, out Hit, 1);
-		if (Hit.collider != null)
-        {
-			for (int i = 0; i < Cameras.Length; i++)
-			{
-				if (Hit.collider.gameObject == Cameras[i])
-					return true;
-			}
-		}
-		return false;
-    }
-
-public bool IsThereGate(Transform ObjCoord)
-    {
-		Object[] Gates = GameObject.FindGameObjectsWithTag("Gate");
-		RaycastHit Hit;
-		Ray ray = new Ray(ObjCoord.position, ObjCoord.forward);
-		Physics.Raycast(ray, out Hit, 1);
-		if (Hit.collider != null)
-        {
-            for (int i = 0; i < Gates.Length; i++)
-            {
-				if (Hit.collider.gameObject == Gates[i])
-					return true;
-            }
-        }
-		return false;
-    }
-
-	private void MoveEnemies()
-    {
-		GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
-		for (int i = 0; i < ListOfMovingEnemies.Length; i++)
-		{
-			if (!LineMovingEnemyFuncs.CheckIfThereIsNodeToMove(ListOfMovingEnemies[i]))
-				LineMovingEnemyFuncs.TurnOtherWay(ListOfMovingEnemies[i]);
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]))
-			{
-				ListOfMovingEnemies[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
-				StartCoroutine("KillingAnimation", ListOfMovingEnemies[i]);
-				return;
-			}
-			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
-			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || LightsOffTurns >= 0))
-			{
-				Destroy(ListOfMovingEnemies[i]);
-				continue;
-			}
-			if (ListOfMovingEnemies[i] != null)
-				LineMovingEnemyFuncs.LineMovingEnemyMove(ListOfMovingEnemies[i]);
-		}
-	}
 
 	public bool CheckIfThereIsMovingEnemy(GameObject Obj)
 	{
 		GameObject[] ListOfMotEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
 		for (int i = 0; i < ListOfMotEnemies.Length; i++)
 		{
-			if (LineMovingEnemyFuncs.CheckifPlayerInfrontofEnemy(ListOfMotEnemies[i], Obj))
+			if (Utilities.CheckifPlayerInfrontofEnemy(ListOfMotEnemies[i], Obj))
 				return true;
 		}
 		return false;
@@ -181,7 +87,7 @@ public bool IsThereGate(Transform ObjCoord)
 		GameObject[] ListOfMotEnemies = GameObject.FindGameObjectsWithTag("MotionlessEnemy");
         for (int i = 0; i < ListOfMotEnemies.Length; i++)
         {
-			if (LineMovingEnemyFuncs.CheckifPlayerInfrontofEnemy(ListOfMotEnemies[i], Obj))
+			if (Utilities.CheckifPlayerInfrontofEnemy(ListOfMotEnemies[i], Obj))
 				return true;
         }
 		return false;
@@ -197,49 +103,20 @@ public bool IsThereGate(Transform ObjCoord)
 		yield return null;
 	}
 
-	private GameObject[] CheckEnemies()
+	private void InitDeathArr()
 	{
 		GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
-		GameObject[] RetArray = new GameObject[ListOfMovingEnemies.Length];
+		GameObject[] ListOfMotEnemies = GameObject.FindGameObjectsWithTag("MotionlessEnemy");
 		if (EnemiesTokill == null)
-			EnemiesTokill = new GameObject[ListOfMovingEnemies.Length];
-		for (int i = 0; i < ListOfMovingEnemies.Length; i++)
-		{
-			if (MotionlessEnemyFuncs.CheckifPlayerInfrontofEnemy(gameObject, ListOfMovingEnemies[i]) 
-			&& !IsThereGate(ListOfMovingEnemies[i].transform) && !IsThereCamera(ListOfMovingEnemies[i].transform) && LightsOffTurns <= 0)
-			{
-				ListOfMovingEnemies[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
-				StartCoroutine("KillingAnimation", ListOfMovingEnemies[i]);
-				return null;
-			}
-			if (transform.position.x == ListOfMovingEnemies[i].transform.position.x
-			&& transform.position.z == ListOfMovingEnemies[i].transform.position.z
-			&& (!MotionlessEnemyFuncs.CheckIfFacing(gameObject, ListOfMovingEnemies[i]) || LightsOffTurns >= 0))
-			{
-				ListOfMovingEnemies[i].transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsDead", true);
-                for (int j = 0; j < EnemiesTokill.Length; j++)
-                {
-					if (EnemiesTokill[j] == null)
-                    {
-						EnemiesTokill[j] = ListOfMovingEnemies[i];
-						break;
-                    }
-                }
-				RetArray[i] = null;
-				continue;
-			}
-			if (ListOfMovingEnemies[i] != null)
-				RetArray[i] = ListOfMovingEnemies[i];
-		}
+			EnemiesTokill = new GameObject[ListOfMovingEnemies.Length + ListOfMotEnemies.Length];
 		LightsOffTurns--;
-		return RetArray;
 	}
 
 	IEnumerator RotateEnemies(GameObject ObjectToRotate)
 	{
 		if (ObjectToRotate != null)
 		{
-			int requiredAngle = LineMovingEnemyFuncs.Opposite(ObjectToRotate);
+			int requiredAngle = Utilities.Opposite(ObjectToRotate);
 			ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1);
 			for (int i = 0; i < 30; i++)
 			{
@@ -288,7 +165,6 @@ public bool IsThereGate(Transform ObjCoord)
 		if (requiredAngle == 180 || requiredAngle == 270)
 			sign = -1;
 		CheckIfThereIsStairway(gameObject);
-		GameObject[] ListOfEnemies;
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
 		for (float i = 0; i < 1; i += 0.01f)
 		{
@@ -297,14 +173,11 @@ public bool IsThereGate(Transform ObjCoord)
 		}
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
 		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, Mathf.Round(transform.position.z));
-		ListOfEnemies = CheckEnemies();
+		InitDeathArr();
 		for (int i = 0; i < CameraEnemies.Length; i++)
 			CameraEnemies[i].MoveCamera();
 		IsWaiting = true;
-		if (LightsOffTurns <= 0 && ListOfEnemies != null)
-			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
-		else
-			IsWaiting = false;
+		turnManager.EndPlayersTurn();
 	}
 
 	public void ChangeLights()
@@ -367,8 +240,7 @@ public bool IsThereGate(Transform ObjCoord)
     {
 		GameObject[] KilledEnemies = FindEnemies();
 		CheckIfThereIsStairway(gameObject);
-		GameObject[] ListOfEnemies;
-		ListOfEnemies = CheckEnemies();
+		InitDeathArr();
 		gameObject.GetComponent<Animator>().SetInteger("KillingWalk",1);
 		for (int i = 0; i < 42; i++)
         {
@@ -417,11 +289,7 @@ public bool IsThereGate(Transform ObjCoord)
 		for (int i = 0; i < CameraEnemies.Length; i++)
 			CameraEnemies[i].MoveCamera();
 		IsWaiting = true;
-		if (LightsOffTurns <= 0)
-			yield return LineMovingEnemyFuncs.StartCoroutine("LineMovingEnemyWalk2", ListOfEnemies);
-		else
-			IsWaiting = false;
-
+		turnManager.EndPlayersTurn();
 		yield return null;
 	}
 
@@ -430,18 +298,18 @@ public bool IsThereGate(Transform ObjCoord)
 		Quaternion OldRotation;
 		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
-			if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', 1)
-		&& VerLineFuncs.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(0, 0, 1)))
+			if (Node.CheckIfNodeExist(transform.position, 'y', 1)
+			&& VerticalLine.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(0, 0, 1)))
 			{
 				OldRotation = transform.rotation;
 				transform.rotation = Quaternion.Euler(0, 0, 0);
-				if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+				if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
 					StartCoroutine("RotateAndKill", 0);
 				}
-				else if (!IsThereGate(transform) && !IsThereCamera(transform))
+				else if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
@@ -458,18 +326,18 @@ public bool IsThereGate(Transform ObjCoord)
 		Quaternion OldRotation;
 		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
-			if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', -1)
-				 && VerLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(0, 0, -1)))
+			if (Node.CheckIfNodeExist(transform.position, 'y', -1)
+				 && VerticalLine.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(0, 0, -1)))
 			{
 				OldRotation = transform.rotation;
 				transform.rotation = Quaternion.Euler(0, 180, 0);
-				if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+				if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
 					StartCoroutine("RotateAndKill", 180);
 				}
-				else if (!IsThereGate(transform) && !IsThereCamera(transform))
+				else if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
@@ -487,18 +355,18 @@ public bool IsThereGate(Transform ObjCoord)
 		Quaternion OldRotation;
 		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
-			if (NodeFuncs.CheckIfNodeExist(transform.position, 'x', 1)
-		&& HorLineFuncs.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(1, 0, 0)))
+			if (Node.CheckIfNodeExist(transform.position, 'x', 1)
+			&& HorizontalLine.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(1, 0, 0)))
 			{
 				OldRotation = transform.rotation;
 				transform.rotation = Quaternion.Euler(0, 90, 0);
-				if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+				if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
 					StartCoroutine("RotateAndKill", 90);
 				}
-				else if (!IsThereGate(transform) && !IsThereCamera(transform))
+				else if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
@@ -515,18 +383,18 @@ public bool IsThereGate(Transform ObjCoord)
 		Quaternion OldRotation;
 		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
-			if (NodeFuncs.CheckIfNodeExist(transform.position, 'x', -1)
-		&& HorLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(-1, 0, 0)))
+			if (Node.CheckIfNodeExist(transform.position, 'x', -1)
+			&& HorizontalLine.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(-1, 0, 0)))
 			{
 				OldRotation = transform.rotation;
 				transform.rotation = Quaternion.Euler(0, 270, 0);
-				if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+				if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
 					StartCoroutine("RotateAndKill", 270);
 				}
-				else if (!IsThereGate(transform) && !IsThereCamera(transform))
+				else if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
@@ -541,18 +409,10 @@ public bool IsThereGate(Transform ObjCoord)
     private void Awake()
     {
 		IsMovable = true;
-    }
-
-    void Start()
-	{
-		NodeFuncs = NodeHandler.GetComponent<Node>();
-		VerLineFuncs = VerLineHandler.GetComponent<VerticalLine>();
-		HorLineFuncs = HorLineHandler.GetComponent<HorizontalLine>();
-		LineMovingEnemyFuncs = LineMovingEnemyHandler.GetComponent<LineMovingEnemy>();
-		MotionlessEnemyFuncs = MotionlessEnemyHandler.GetComponent<MotionlessEnemy>();
 		FinalNode = GameObject.FindGameObjectWithTag("FinalNode");
 		LightMapBuf = LightmapSettings.lightmaps;
 		CameraEnemies = GameObject.FindObjectsOfType<CameraEnemy>();
+		turnManager = turnManagerHandler.GetComponent<TurnManager>();
 	}
 
 	void Update()
@@ -566,18 +426,18 @@ public bool IsThereGate(Transform ObjCoord)
 		{
 			if (Input.GetKeyDown("a"))
 			{
-				if (NodeFuncs.CheckIfNodeExist(transform.position, 'x', -1)
-				&& HorLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(-1, 0, 0)))
+				if (Node.CheckIfNodeExist(transform.position, 'x', -1)
+				&& HorizontalLine.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(-1, 0, 0)))
 				{
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 270, 0);
-					if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+					if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
 						StartCoroutine(Rotate(270, true));
 					}
-					else if (!IsThereGate(transform) && !IsThereCamera(transform))
+					else if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
@@ -590,18 +450,18 @@ public bool IsThereGate(Transform ObjCoord)
 			if (Input.GetKeyDown("d"))
 			{
 
-				if (NodeFuncs.CheckIfNodeExist(transform.position, 'x', 1)
-				&& HorLineFuncs.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(1, 0, 0)))
+				if (Node.CheckIfNodeExist(transform.position, 'x', 1)
+				&& HorizontalLine.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(1, 0, 0)))
 				{
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 90, 0);
-					if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+					if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
                     {
 						transform.rotation = OldRotation;
 						IsWaiting = true;
 						StartCoroutine(Rotate(90, true));
 					}
-					else if (!IsThereGate(transform) && !IsThereCamera(transform))
+					else if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
@@ -613,18 +473,18 @@ public bool IsThereGate(Transform ObjCoord)
 			}
 			if (Input.GetKeyDown("w"))
 			{
-				if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', 1)
-				&& VerLineFuncs.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(0, 0, 1)))
+				if (Node.CheckIfNodeExist(transform.position, 'y', 1)
+				&& VerticalLine.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(0, 0, 1)))
 				{
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 0, 0);
-					if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+					if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
 						StartCoroutine(Rotate(0, true));
 					}
-					else if (!IsThereGate(transform) && !IsThereCamera(transform))
+					else if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
@@ -636,18 +496,18 @@ public bool IsThereGate(Transform ObjCoord)
 			}
 			if (Input.GetKeyDown("s"))
 			{
-				if (NodeFuncs.CheckIfNodeExist(transform.position, 'y', -1)
-				&& VerLineFuncs.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(0, 0, -1)))
+				if (Node.CheckIfNodeExist(transform.position, 'y', -1)
+				&& VerticalLine.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(0, 0, -1)))
 				{
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 180, 0);
-					if (!IsThereGate(transform) && !IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+					if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
 						StartCoroutine(Rotate(180, true));
 					}
-					else if (!IsThereGate(transform) && !IsThereCamera(transform))
+					else if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
