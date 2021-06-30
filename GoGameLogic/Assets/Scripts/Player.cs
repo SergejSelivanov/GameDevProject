@@ -71,26 +71,9 @@ public class Player : MonoBehaviour
         }
     }
 
-	public bool CheckIfThereIsMovingEnemy(GameObject Obj)
-	{
-		GameObject[] ListOfMotEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
-		for (int i = 0; i < ListOfMotEnemies.Length; i++)
-		{
-			if (Utilities.CheckifPlayerInfrontofEnemy(ListOfMotEnemies[i], Obj))
-				return true;
-		}
-		return false;
-	}
-
-	public bool CheckIfThereIsMotEnemy(GameObject Obj)
+	public void StartKillingCoroutine(GameObject Enemy)
     {
-		GameObject[] ListOfMotEnemies = GameObject.FindGameObjectsWithTag("MotionlessEnemy");
-        for (int i = 0; i < ListOfMotEnemies.Length; i++)
-        {
-			if (Utilities.CheckifPlayerInfrontofEnemy(ListOfMotEnemies[i], Obj))
-				return true;
-        }
-		return false;
+		StartCoroutine(KillingAnimation(Enemy));
     }
 
 	IEnumerator KillingAnimation(GameObject Enemy)
@@ -303,7 +286,7 @@ public class Player : MonoBehaviour
 			{
 				OldRotation = transform.rotation;
 				transform.rotation = Quaternion.Euler(0, 0, 0);
-				if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+				if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (Utilities.CheckIfThereIsMotEnemy(gameObject) || Utilities.CheckIfThereIsMovingEnemy(gameObject)))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
@@ -331,7 +314,7 @@ public class Player : MonoBehaviour
 			{
 				OldRotation = transform.rotation;
 				transform.rotation = Quaternion.Euler(0, 180, 0);
-				if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+				if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (Utilities.CheckIfThereIsMotEnemy(gameObject) || Utilities.CheckIfThereIsMovingEnemy(gameObject)))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
@@ -360,7 +343,7 @@ public class Player : MonoBehaviour
 			{
 				OldRotation = transform.rotation;
 				transform.rotation = Quaternion.Euler(0, 90, 0);
-				if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+				if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (Utilities.CheckIfThereIsMotEnemy(gameObject) || Utilities.CheckIfThereIsMovingEnemy(gameObject)))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
@@ -388,7 +371,7 @@ public class Player : MonoBehaviour
 			{
 				OldRotation = transform.rotation;
 				transform.rotation = Quaternion.Euler(0, 270, 0);
-				if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+				if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (Utilities.CheckIfThereIsMotEnemy(gameObject) || Utilities.CheckIfThereIsMovingEnemy(gameObject)))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
@@ -431,7 +414,7 @@ public class Player : MonoBehaviour
 				{
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 270, 0);
-					if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+					if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (Utilities.CheckIfThereIsMotEnemy(gameObject) || Utilities.CheckIfThereIsMovingEnemy(gameObject)))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
@@ -455,7 +438,7 @@ public class Player : MonoBehaviour
 				{
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 90, 0);
-					if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+					if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (Utilities.CheckIfThereIsMotEnemy(gameObject) || Utilities.CheckIfThereIsMovingEnemy(gameObject)))
                     {
 						transform.rotation = OldRotation;
 						IsWaiting = true;
@@ -478,7 +461,7 @@ public class Player : MonoBehaviour
 				{
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 0, 0);
-					if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+					if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (Utilities.CheckIfThereIsMotEnemy(gameObject) || Utilities.CheckIfThereIsMovingEnemy(gameObject)))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;
@@ -501,7 +484,7 @@ public class Player : MonoBehaviour
 				{
 					OldRotation = transform.rotation;
 					transform.rotation = Quaternion.Euler(0, 180, 0);
-					if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (CheckIfThereIsMotEnemy(gameObject) || CheckIfThereIsMovingEnemy(gameObject)))
+					if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform) && (Utilities.CheckIfThereIsMotEnemy(gameObject) || Utilities.CheckIfThereIsMovingEnemy(gameObject)))
 					{
 						transform.rotation = OldRotation;
 						IsWaiting = true;

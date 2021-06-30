@@ -4,6 +4,28 @@ using UnityEngine;
 
 public static class Utilities
 {
+	public static bool CheckIfThereIsMovingEnemy(GameObject Obj)
+	{
+		GameObject[] ListOfMotEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
+		for (int i = 0; i < ListOfMotEnemies.Length; i++)
+		{
+			if (Utilities.CheckifPlayerInfrontofEnemy(ListOfMotEnemies[i], Obj))
+				return true;
+		}
+		return false;
+	}
+
+	public static bool CheckIfThereIsMotEnemy(GameObject Obj)
+	{
+		GameObject[] ListOfMotEnemies = GameObject.FindGameObjectsWithTag("MotionlessEnemy");
+		for (int i = 0; i < ListOfMotEnemies.Length; i++)
+		{
+			if (Utilities.CheckifPlayerInfrontofEnemy(ListOfMotEnemies[i], Obj))
+				return true;
+		}
+		return false;
+	}
+
 	public static bool IsThereGate(Transform ObjCoord)
 	{
 		Object[] Gates = GameObject.FindGameObjectsWithTag("Gate");

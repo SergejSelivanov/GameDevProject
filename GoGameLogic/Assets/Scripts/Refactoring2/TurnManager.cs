@@ -10,13 +10,15 @@ public class TurnManager : MonoBehaviour
 
     public void EndPlayersTurn() //передаю ход врагам
     {
+        GameObject[] LocalEnemiesList = new GameObject[EnemiesList.Length];
+        EnemiesList.CopyTo(LocalEnemiesList, 0);
         if (player.LightsOffTurns <= 0 && enemiesList.Length != 0)
         {
             for (int i = 0; i < enemiesList.Length; i++)
             {
                 if (enemiesList[i] != null)
                 {
-                    StartCoroutine(enemiesList[i].LineMovingEnemyWalk2(EnemiesList));
+                    StartCoroutine(enemiesList[i].LineMovingEnemyWalk2(LocalEnemiesList));
                     break;
                 }
                 else

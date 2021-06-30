@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class LineMovingEnemy : MonoBehaviour
 {
-    public GameObject PlayerHandler;
+    //public GameObject PlayerHandler;
     public GameObject KnifeHandler;
     private Player PlayerFuncs;
     private ThrowKnife KnifeFuncs;
+    private Player player;
+    GameObject player2;
 
     public int[] IsCrossing(GameObject[] ListOfEnemies)
     {
@@ -170,7 +172,6 @@ public class LineMovingEnemy : MonoBehaviour
                     break;
                 }
             }
-
             if (flag == false && ListOfEnemies[i] != null)
             {
                 if (ListOfEnemies[i].transform.GetChild(0).position.x - Mathf.Round(ListOfEnemies[i].transform.GetChild(0).position.x) < 0)
@@ -344,7 +345,7 @@ public class LineMovingEnemy : MonoBehaviour
         gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("IsDead", true);
         yield return new WaitForSeconds(0.5f);
         Time.timeScale = 0.6f;
-        PlayerHandler.GetComponent<Animator>().SetBool("IsTaunting", false);
+        player.GetComponent<Animator>().SetBool("IsTaunting", false);
         yield return new WaitForSeconds(0.5f);
         Time.timeScale = 1;
         yield return null;
@@ -378,7 +379,7 @@ public class LineMovingEnemy : MonoBehaviour
         ListOfEnemies.CopyTo(ListBuf , 0);
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
-            if (ListOfEnemies[i] != null && (!Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) || Utilities.IsThereGate(ListOfEnemies[i].transform) || Utilities.IsThereCamera(ListOfEnemies[i].transform) || PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
+            if (ListOfEnemies[i] != null && (!Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) || Utilities.IsThereGate(ListOfEnemies[i].transform) || Utilities.IsThereCamera(ListOfEnemies[i].transform) || Utilities.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
             {
                 //ListBuf[i] = null;///gavno
             }
@@ -407,22 +408,25 @@ public class LineMovingEnemy : MonoBehaviour
         }
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
-            if (ListOfEnemies[i] != null && (!Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) || Utilities.IsThereGate(ListOfEnemies[i].transform) || Utilities.IsThereCamera(ListOfEnemies[i].transform) || PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
+            if (ListOfEnemies[i] != null && (!Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) || Utilities.IsThereGate(ListOfEnemies[i].transform) || Utilities.IsThereCamera(ListOfEnemies[i].transform) || Utilities.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
                 PlayerFuncs.StartCoroutine("RotateEnemies", ListOfEnemies[i]);
         }
-        yield return new WaitForSeconds(0.5f);
+        // yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
+        ////prover' potom vremya
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
             if (ListOfEnemies[i] == null || !Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) 
             || Utilities.IsThereGate(ListOfEnemies[i].transform)
             || Utilities.IsThereCamera(ListOfEnemies[i].transform)
-            || PlayerFuncs.CheckIfThereIsMotEnemy(ListOfEnemies[i])
+            || Utilities.CheckIfThereIsMotEnemy(ListOfEnemies[i])
             || !(HorizontalLine.CheckIfThereIsLine(ListOfEnemies[i].transform.position, -1, ListOfEnemies[i].transform.position + new Vector3(-1, 0, 0)) 
             || HorizontalLine.CheckIfThereIsLine(ListOfEnemies[i].transform.position, 1, ListOfEnemies[i].transform.position + new Vector3(1, 0, 0)) 
             || VerticalLine.CheckIfThereIsLine(ListOfEnemies[i].transform.position, 1, ListOfEnemies[i].transform.position + new Vector3(0, 0, 1)) 
             || VerticalLine.CheckIfThereIsLine(ListOfEnemies[i].transform.position, -1, ListOfEnemies[i].transform.position + new Vector3(0, 0, -1))))
                 ListOfEnemies[i] = null;
         }
+        //Debug.Log(ListOfEnemies[0]);
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
             if (ListOfEnemies[i] != null)
@@ -486,20 +490,22 @@ public class LineMovingEnemy : MonoBehaviour
                 //DestroyIfClose(ListOfEnemies[j]);
             }
         }
+        //PlayerFuncs.IsWaiting = false;
         PlayerFuncs.IsWaiting = false;
         yield return null;
     }
 
     void Start()
     {
-        PlayerFuncs = PlayerHandler.GetComponent<Player>();
+        //PlayerFuncs = PlayerHandler.GetComponent<Player>();
+        PlayerFuncs = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         KnifeFuncs = KnifeHandler.GetComponent<ThrowKnife>();
     }
 
     void FixedUpdate()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (Utilities.CheckifPlayerInfrontofEnemy(player, gameObject) && !Utilities.IsThereGate(gameObject.transform) && !Utilities.IsThereCamera(gameObject.transform) && PlayerFuncs.LightsOffTurns <= 0)
+        GameObject Player = GameObject.FindGameObjectWithTag("Player");
+        if (Utilities.CheckifPlayerInfrontofEnemy(Player, gameObject) && !Utilities.IsThereGate(gameObject.transform) && !Utilities.IsThereCamera(gameObject.transform) && PlayerFuncs.LightsOffTurns <= 0)
         {
             gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
             for (int i = 0; i < GameObject.FindGameObjectsWithTag("LineMovingEnemy").Length ; i++)
@@ -507,7 +513,8 @@ public class LineMovingEnemy : MonoBehaviour
                 if (GameObject.FindGameObjectsWithTag("LineMovingEnemy")[i] != null)
                     GameObject.FindGameObjectsWithTag("LineMovingEnemy")[i].GetComponent<LineMovingEnemy>().StopAllCoroutines();
             }
-            PlayerFuncs.StartCoroutine("KillingAnimation", gameObject);
+            PlayerFuncs.StartKillingCoroutine(gameObject);
+            
         }
     }
 }
