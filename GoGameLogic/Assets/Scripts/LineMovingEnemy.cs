@@ -6,108 +6,9 @@ using UnityEngine.UI;
 
 public class LineMovingEnemy : MonoBehaviour
 {
-    //public GameObject PlayerHandler;
     public GameObject KnifeHandler;
     private Player PlayerFuncs;
     private ThrowKnife KnifeFuncs;
-    private Player player;
-    GameObject player2;
-
-    public int[] IsCrossing(GameObject[] ListOfEnemies)
-    {
-        int[] IndexArray = new int[ListOfEnemies.Length * 2];
-        for (int i = 0; i < IndexArray.Length; i++)
-            IndexArray[i] = 50;
-        Vector3[] Positions = new Vector3[ListOfEnemies.Length];
-        for (int i = 0; i < ListOfEnemies.Length; i++)
-        {
-            if (ListOfEnemies[i] != null)
-            {
-                if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 0)
-                    Positions[i] = new Vector3(ListOfEnemies[i].transform.position.x, 1, ListOfEnemies[i].transform.position.z + 1);
-                if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 90)
-                    Positions[i] = new Vector3(ListOfEnemies[i].transform.position.x + 1, 1, ListOfEnemies[i].transform.position.z);
-                if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 180)
-                    Positions[i] = new Vector3(ListOfEnemies[i].transform.position.x, 1, ListOfEnemies[i].transform.position.z - 1);
-                if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 270)
-                    Positions[i] = new Vector3(ListOfEnemies[i].transform.position.x - 1, 1, ListOfEnemies[i].transform.position.z);
-            }
-            else
-                Positions[i] = Vector3.zero;
-        }
-        for (int i = 0; i < Positions.Length; i++)
-        {
-            if (Positions[i] != Vector3.zero)
-            {
-                for (int j = i + 1; j < Positions.Length; j++)
-                {
-                    if (Positions[j] != Vector3.zero)
-                    {
-                        if (Positions[i] == Positions[j])
-                        {
-                            for (int k = 0; k < IndexArray.Length; k++)
-                            {
-                                if (IndexArray[k] == 50)
-                                {
-                                    IndexArray[k] = i;
-                                    IndexArray[k + 1] = j;
-                                    break;
-                                }
-
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        int[] RetArray = new int[IndexArray.Length];
-        for (int i = 0; i < RetArray.Length; i++)
-        {
-            RetArray[i] = 50;
-        }
-        for (int i = 0; i < IndexArray.Length; i++)
-        {
-            if (IndexArray[i] != 50)
-                RetArray[i] = IndexArray[i];
-        }
-        int[] smth = new int[RetArray.Length];
-        for (int i = 0; i < smth.Length; i++)
-        {
-            smth[i] = 50;
-        }
-        bool flag = false;
-        for (int i = 0; i < RetArray.Length; i++)
-        {
-            flag = false;
-            for (int j = 0; j < smth.Length; j++)
-            {
-                if (RetArray[i] == smth[j])
-                {
-                    flag = true;
-                    break;
-                }
-            }
-            if (flag == false)
-                smth[i] = RetArray[i];
-        }
-        int numb = 0;
-        for (int i = 0; i < smth.Length; i++)
-        {
-            if (smth[i] != 50)
-                numb++;
-        }
-        int[] LastArray = new int[numb];
-        int m = 0;
-        for (int i = 0; i < smth.Length; i++)
-        {
-            if (smth[i] != 50)
-            {
-                LastArray[m] = smth[i];
-                m++;
-            }
-        }
-        return LastArray;
-    }
 
     public IEnumerator ReturnToMinusX(GameObject Enemy)
     {
@@ -306,51 +207,6 @@ public class LineMovingEnemy : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator StopBreaking()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        int RequiredAngle = 0;
-        if (player.transform.position.x > gameObject.transform.position.x)
-            RequiredAngle = 270;
-        else if (player.transform.position.x < gameObject.transform.position.x)
-            RequiredAngle = 90;
-        else if (player.transform.position.z > gameObject.transform.position.z)
-            RequiredAngle = 180;
-        else
-            RequiredAngle = 0;
-        int playerangle = (int)player.transform.rotation.eulerAngles.y;
-        int Diff = RequiredAngle - playerangle;
-        if (Diff == 270 || Diff == -270)
-            Diff = -Diff % 180;
-        if (Diff != 0)
-        {
-            player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1);
-            for (int i = 0; i < 30; i++)
-            {
-                player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + Diff / 30, 0);
-                yield return new WaitForSeconds(0.0133f);
-            }
-            player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
-            player.transform.rotation = Quaternion.Euler(0, RequiredAngle, 0);
-        }
-        yield return new WaitForSeconds(1);
-        for (int i = 0; i < PlayerFuncs.EnemiesKill.Length; i++)
-        {
-            if (PlayerFuncs.EnemiesKill[i] == null)
-            {
-                PlayerFuncs.EnemiesKill[i] = gameObject;
-                break;
-            }
-        }
-        gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("IsDead", true);
-        yield return new WaitForSeconds(0.5f);
-        Time.timeScale = 0.6f;
-        player.GetComponent<Animator>().SetBool("IsTaunting", false);
-        yield return new WaitForSeconds(0.5f);
-        Time.timeScale = 1;
-        yield return null;
-    }
-
     private void OnMouseDown()
     {
         if (Time.timeScale == 1)
@@ -362,7 +218,7 @@ public class LineMovingEnemy : MonoBehaviour
                 {
                     Time.timeScale = 0.99f;
                     PlayerFuncs.gameObject.GetComponent<Animator>().SetBool("IsTaunting", true);
-                    StartCoroutine("StopBreaking");
+                    PlayerFuncs.StartCoroutine("StopBreaking", gameObject);
                     if (GameObject.FindObjectOfType<FillKnife>() != null)
                         GameObject.FindObjectOfType<FillKnife>().GetComponent<Image>().fillAmount = 0;
                     PlayerFuncs.IsMovable = true;
@@ -388,7 +244,7 @@ public class LineMovingEnemy : MonoBehaviour
                 ListBuf[i] = null;
             }
         }
-        int[] Indexes = IsCrossing(ListBuf);
+        int[] Indexes = Crossing.IsCrossing(ListBuf);
         if (ReturnPositionsToTurn(ListBuf, Indexes) != 0)
             yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < ListBuf.Length; i++)
@@ -426,7 +282,6 @@ public class LineMovingEnemy : MonoBehaviour
             || VerticalLine.CheckIfThereIsLine(ListOfEnemies[i].transform.position, -1, ListOfEnemies[i].transform.position + new Vector3(0, 0, -1))))
                 ListOfEnemies[i] = null;
         }
-        //Debug.Log(ListOfEnemies[0]);
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
             if (ListOfEnemies[i] != null)
@@ -434,7 +289,7 @@ public class LineMovingEnemy : MonoBehaviour
             else
                 ListOfTransforms[i] = null;
         }
-        Indexes = IsCrossing(ListOfEnemies);
+        Indexes = Crossing.IsCrossing(ListOfEnemies);
         ReturnPositions(ListOfEnemies, Indexes);
         for (int i = 0; i < Indexes.Length; i++)
         {
@@ -487,17 +342,14 @@ public class LineMovingEnemy : MonoBehaviour
                     ListOfEnemies[j].transform.position = new Vector3(Mathf.Round(ListOfEnemies[j].transform.position.x), ListOfEnemies[j].transform.position.y, ListOfEnemies[j].transform.position.z);
                 if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 0 || ListOfEnemies[j].transform.rotation.eulerAngles.y == 180)
                     ListOfEnemies[j].transform.position = new Vector3(ListOfEnemies[j].transform.position.x, ListOfEnemies[j].transform.position.y, Mathf.Round(ListOfEnemies[j].transform.position.z));
-                //DestroyIfClose(ListOfEnemies[j]);
             }
         }
-        //PlayerFuncs.IsWaiting = false;
         PlayerFuncs.IsWaiting = false;
         yield return null;
     }
 
     void Start()
     {
-        //PlayerFuncs = PlayerHandler.GetComponent<Player>();
         PlayerFuncs = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         KnifeFuncs = KnifeHandler.GetComponent<ThrowKnife>();
     }
@@ -513,8 +365,8 @@ public class LineMovingEnemy : MonoBehaviour
                 if (GameObject.FindGameObjectsWithTag("LineMovingEnemy")[i] != null)
                     GameObject.FindGameObjectsWithTag("LineMovingEnemy")[i].GetComponent<LineMovingEnemy>().StopAllCoroutines();
             }
-            PlayerFuncs.StartKillingCoroutine(gameObject);
-            
+            //PlayerFuncs.StartKillingCoroutine(gameObject);
+            PlayerFuncs.StartCoroutine("KillingAnimation", gameObject);
         }
     }
 }

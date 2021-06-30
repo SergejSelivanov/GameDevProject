@@ -30,6 +30,58 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	IEnumerator StopBreaking(GameObject Enemy)
+	{
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		int RequiredAngle = 0;
+		if (player.transform.position.x > Enemy.transform.position.x)
+			RequiredAngle = 270;
+		else if (player.transform.position.x < Enemy.transform.position.x)
+			RequiredAngle = 90;
+		else if (player.transform.position.z > Enemy.transform.position.z)
+			RequiredAngle = 180;
+		else
+			RequiredAngle = 0;
+		int playerangle = (int)player.transform.rotation.eulerAngles.y;
+		int Diff = RequiredAngle - playerangle;
+		if (Diff == 270 || Diff == -270)
+			Diff = -Diff % 180;
+		if (Diff != 0)
+		{
+			player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1);
+			for (int i = 0; i < 30; i++)
+			{
+				player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + Diff / 30, 0);
+				yield return new WaitForSeconds(0.0133f);
+			}
+			player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
+			player.transform.rotation = Quaternion.Euler(0, RequiredAngle, 0);
+		}
+		yield return new WaitForSeconds(1);
+		for (int i = 0; i < EnemiesKill.Length; i++)
+		{
+			if (EnemiesKill[i] == null)
+			{
+				EnemiesKill[i] = Enemy;
+				break;
+			}
+		}
+		try
+		{
+			Enemy.transform.GetChild(0).GetComponent<Animator>().SetBool("IsDead", true);
+		}
+		catch
+        {
+			Enemy.GetComponent<Animator>().SetBool("IsDead", true);
+		}
+		yield return new WaitForSeconds(0.5f);
+		Time.timeScale = 0.6f;
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsTaunting", false);
+		yield return new WaitForSeconds(0.5f);
+		Time.timeScale = 1;
+		yield return null;
+	}
+
 	public GameObject GetStairwayNodePositionY(GameObject Obj)
 	{
 		Node[] Nodes = GameObject.FindObjectsOfType<Node>();
@@ -69,11 +121,6 @@ public class Player : MonoBehaviour
             else
 				StartCoroutine(WalkUpright(-1, Obj, DefiniteNode));
         }
-    }
-
-	public void StartKillingCoroutine(GameObject Enemy)
-    {
-		StartCoroutine(KillingAnimation(Enemy));
     }
 
 	IEnumerator KillingAnimation(GameObject Enemy)
@@ -267,7 +314,6 @@ public class Player : MonoBehaviour
 		}
 		gameObject.GetComponent<Animator>().SetInteger("KillingWalk", 0);
 		gameObject.transform.position = new Vector3(Mathf.Round(gameObject.transform.position.x), gameObject.transform.position.y, Mathf.Round(gameObject.transform.position.z));
-		
 		transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
 		for (int i = 0; i < CameraEnemies.Length; i++)
 			CameraEnemies[i].MoveCamera();
