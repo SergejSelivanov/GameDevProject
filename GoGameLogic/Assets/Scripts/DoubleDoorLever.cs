@@ -13,6 +13,8 @@ public class DoubleDoorLever : MonoBehaviour
 
     void ClosePart()
     {
+        FindObjectOfType<AudioManager>().Play("SwitchOff");
+        FindObjectOfType<AudioManager>().Play("Lever");
         if (PlaneToTurnOff != null)
             PlaneToTurnOff.SetActive(true);
         ConnectedPart.SetActive(true);
@@ -22,6 +24,8 @@ public class DoubleDoorLever : MonoBehaviour
 
     void OpenPart()
     {
+        FindObjectOfType<AudioManager>().Play("SwitchOn");
+        FindObjectOfType<AudioManager>().Play("Lever");
         if (PlaneToTurnOff != null)
             PlaneToTurnOff.SetActive(false);
         //ConnectedDoor.transform.GetChild(0).position -= new Vector3(0, 100, 0);
@@ -31,10 +35,7 @@ public class DoubleDoorLever : MonoBehaviour
 
     private void OnMouseDown()
     {
-        GameObject player;
-        //player = GameObject.FindGameObjectWithTag("Projection");
-        //if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (Mathf.Abs(player.transform.position.x - transform.position.x) <= DistanceToLever && Mathf.Abs(player.transform.position.z - transform.position.z) <= DistanceToLever)
         {
             if (IsOpen == false && IsWaiting == false)
@@ -45,26 +46,10 @@ public class DoubleDoorLever : MonoBehaviour
             }
             else if (IsOpen == true && IsWaiting == false)
             {
-                //Debug.Log("AUE");
                 IsWaiting = true;
                 IsOpen = false;
                 ClosePart();
             }
         }
     }
-
-
-
-
-    // Start is called before the first frame update
-    /* void Start()
-     {
-
-     }
-
-     // Update is called once per frame
-     void Update()
-     {
-
-     }*/
 }

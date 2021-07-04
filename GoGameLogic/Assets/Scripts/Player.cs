@@ -58,7 +58,10 @@ public class Player : MonoBehaviour
 			player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0); //stop rotation animation
 			player.transform.rotation = Quaternion.Euler(0, RequiredAngle, 0); //avoiding extra fraction
 		}
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(0.5f);
+		FindObjectOfType<AudioManager>().Play("Wrist");
+		yield return new WaitForSeconds(0.5f);
+		//yield return new WaitForSeconds(1);
 		for (int i = 0; i < EnemiesKill.Length; i++)
 		{
 			if (EnemiesKill[i] == null)
@@ -208,7 +211,10 @@ public class Player : MonoBehaviour
 		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, Mathf.Round(transform.position.z)); //to avoid extra fraction
 		InitDeathArr(); //init array of dead enemies if needed
 		for (int i = 0; i < CameraEnemies.Length; i++)
+		{
+			audioManager.Play("RotateCamera");
 			CameraEnemies[i].MoveCamera(); //rotate all camera enemies
+		}
 		IsWaiting = true; //player is waiting for enemies to move if there are any
 		turnManager.EndPlayersTurn(); //end players turn
 	}
@@ -285,8 +291,12 @@ public class Player : MonoBehaviour
 		gameObject.GetComponent<Animator>().SetInteger("KillingWalk", 0); //stop  animation of moving to enemy
 		yield return null;
 		gameObject.GetComponent<Animator>().SetBool("IsKilling", true); //start animation of punching 
-		yield return new WaitForSeconds(0.7f);
-        for (int i = 0; i < KilledEnemies.Length; i++)
+		audioManager.Play("Punch");
+		//yield return new WaitForSeconds(0.7f);
+		yield return new WaitForSeconds(0.4f);
+		audioManager.Play("Punch2");
+		yield return new WaitForSeconds(0.3f);
+		for (int i = 0; i < KilledEnemies.Length; i++)
 		{
 			if (KilledEnemies[i] != null)
 			{
@@ -306,6 +316,7 @@ public class Player : MonoBehaviour
                 {
 					KilledEnemies[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsDead", true); //start animation of death of line moving enemy
 				}
+				//audioManager.Play("RobotDeath");
 			}
 		}
 		yield return new WaitForSeconds(1);
@@ -319,9 +330,12 @@ public class Player : MonoBehaviour
 		}
 		gameObject.GetComponent<Animator>().SetInteger("KillingWalk", 0); // stop animation of remaining walk
 		gameObject.transform.position = new Vector3(Mathf.Round(gameObject.transform.position.x), gameObject.transform.position.y, Mathf.Round(gameObject.transform.position.z)); //to avoid extra fraction
-		//transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
+																																												  //transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
 		for (int i = 0; i < CameraEnemies.Length; i++)
+		{
+			audioManager.Play("RotateCamera");
 			CameraEnemies[i].MoveCamera(); //rotate camera enemies
+		}
 		IsWaiting = true; //player starts waiting for enemies turns
 		turnManager.EndPlayersTurn(); // end players turn
 		yield return null;

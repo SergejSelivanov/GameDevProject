@@ -6,13 +6,6 @@ public class DoubleDoor : MonoBehaviour
 {
     private bool IsOpened = false;
 
-    // Start is called before the first frame update
-   /* void Start()
-    {
-        
-    }*/
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (transform.Find("FirstPart").gameObject.activeInHierarchy == false && transform.Find("SecondPart").gameObject.activeInHierarchy == false && IsOpened == false)
