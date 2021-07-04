@@ -5,18 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-	public Texture2D[] SomeLightmaps;
-	public bool KnifeIsReady { get; set; }
-	public bool IsMovable { get; set; }
-	public bool IsWaiting { get; set; }
-	public int LightsOffTurns { get; set; }
-	private LightmapData[] LightMapBuf;
-	private bool LightsOff = false;
-	private CameraEnemy[] CameraEnemies;
-	private GameObject FinalNode;
-	private static GameObject[] EnemiesTokill;
+	public Texture2D[] SomeLightmaps; // Array to switch lightmaps
+	public bool KnifeIsReady { get; set; } //is killing button is pressed
+	public bool IsMovable { get; set; } //is player ready to move
+	public bool IsWaiting { get; set; } //is player waiting something to happen
+	public int LightsOffTurns { get; set; } //number of turns lights will be off
+	private LightmapData[] LightMapBuf; //buffer for lightmaps to switch
+	private bool LightsOff = false; //is light switched off
+	private CameraEnemy[] CameraEnemies; //array of cameras
+	private GameObject FinalNode; 
+	private static GameObject[] EnemiesTokill; //array of dead enemies
 	public GameObject turnManagerHandler;
 	private TurnManager turnManager;
+	private AudioManager audioManager;
 
 	public GameObject[] EnemiesKill
 	{
@@ -30,11 +31,11 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	IEnumerator StopBreaking(GameObject Enemy)
+	IEnumerator StopBreaking(GameObject Enemy) //Coroutine to turn player and break-in enemies
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		int RequiredAngle = 0;
-		if (player.transform.position.x > Enemy.transform.position.x)
+		if (player.transform.position.x > Enemy.transform.position.x) //getting needed angle to rotate player
 			RequiredAngle = 270;
 		else if (player.transform.position.x < Enemy.transform.position.x)
 			RequiredAngle = 90;
@@ -43,46 +44,46 @@ public class Player : MonoBehaviour
 		else
 			RequiredAngle = 0;
 		int playerangle = (int)player.transform.rotation.eulerAngles.y;
-		int Diff = RequiredAngle - playerangle;
+		int Diff = RequiredAngle - playerangle; // getting difference between required and present angles
 		if (Diff == 270 || Diff == -270)
 			Diff = -Diff % 180;
 		if (Diff != 0)
 		{
-			player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1);
+			player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1); //activate rotation animation
 			for (int i = 0; i < 30; i++)
 			{
-				player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + Diff / 30, 0);
+				player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + Diff / 30, 0); //rotating player in needed angle
 				yield return new WaitForSeconds(0.0133f);
 			}
-			player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
-			player.transform.rotation = Quaternion.Euler(0, RequiredAngle, 0);
+			player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0); //stop rotation animation
+			player.transform.rotation = Quaternion.Euler(0, RequiredAngle, 0); //avoiding extra fraction
 		}
 		yield return new WaitForSeconds(1);
 		for (int i = 0; i < EnemiesKill.Length; i++)
 		{
 			if (EnemiesKill[i] == null)
 			{
-				EnemiesKill[i] = Enemy;
+				EnemiesKill[i] = Enemy; //add enemy to list of enemies to kill
 				break;
 			}
 		}
 		try
 		{
-			Enemy.transform.GetChild(0).GetComponent<Animator>().SetBool("IsDead", true);
+			Enemy.transform.GetChild(0).GetComponent<Animator>().SetBool("IsDead", true); //activate LineMovingEnemy death animation
 		}
 		catch
         {
-			Enemy.GetComponent<Animator>().SetBool("IsDead", true);
+			Enemy.GetComponent<Animator>().SetBool("IsDead", true); //activate MotionlessEnemy death animation
 		}
 		yield return new WaitForSeconds(0.5f);
-		Time.timeScale = 0.6f;
-		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsTaunting", false);
+		Time.timeScale = 0.6f; //to animate death correctly
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsTaunting", false); //stop break-in player animation
 		yield return new WaitForSeconds(0.5f);
 		Time.timeScale = 1;
 		yield return null;
 	}
 
-	public GameObject GetStairwayNodePositionY(GameObject Obj)
+	private GameObject GetStairwayNodePositionY(GameObject Obj) //Find node to move 
 	{
 		Node[] Nodes = GameObject.FindObjectsOfType<Node>();
 		GameObject DefiniteNode;
@@ -97,125 +98,128 @@ public class Player : MonoBehaviour
 		return DefiniteNode;
 	}
 
-	IEnumerator WalkUpright(int sign, GameObject Obj, GameObject Node)
+	IEnumerator WalkUpright(int sign, GameObject Obj, GameObject Node) //Coroutine to walk down or up
     {
-		float diff = Mathf.Abs(Obj.transform.position.y - Node.transform.position.y);
+		float diff = Mathf.Abs(Obj.transform.position.y - Node.transform.position.y); //getting difference between heights
         for (float i = 0; i < 1; i += 0.01f)
         {
-			Obj.transform.position += new Vector3(0, diff / 100 * sign, 0);
+			Obj.transform.position += new Vector3(0, diff / 100 * sign, 0); //walking down or up
 			yield return new WaitForSeconds(0.004f);
         }
     }
 
-	public void CheckIfThereIsStairway(GameObject Obj)
+	public void CheckIfThereIsStairway(GameObject Obj) //Move up or down if there is stairway
     {
-		GameObject DefiniteNode = GetStairwayNodePositionY(Obj);
+		GameObject DefiniteNode = GetStairwayNodePositionY(Obj); //find node to move
 		if (DefiniteNode == null)
 			return;
 		float NodePositionY = DefiniteNode.transform.position.y;
 		float ObjPositionY = Obj.transform.position.y;
-		if (Mathf.Abs(NodePositionY - ObjPositionY) > 0.1f)
+		if (Mathf.Abs(NodePositionY - ObjPositionY) > 0.1f) // if there is difference between heights of two nodes
         {
 			if (NodePositionY > ObjPositionY)
-				StartCoroutine(WalkUpright(1, Obj, DefiniteNode));
+				StartCoroutine(WalkUpright(1, Obj, DefiniteNode));	//move up
             else
-				StartCoroutine(WalkUpright(-1, Obj, DefiniteNode));
+				StartCoroutine(WalkUpright(-1, Obj, DefiniteNode));	//move down
         }
     }
 
-	IEnumerator KillingAnimation(GameObject Enemy)
+	IEnumerator KillingAnimation(GameObject Enemy) //Player death animation
     {
+		Time.timeScale = 0.99f;
 		yield return new WaitForSeconds(0.6f);
-		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsKilled", true);
-		Enemy.transform.GetChild(1).gameObject.SetActive(true);
+		audioManager.Play("Lightning");
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsKilled", true); //start player death animation
+		Enemy.transform.GetChild(1).gameObject.SetActive(true); //activate lightning 
 		yield return new WaitForSeconds(1.5f);
-		SceneManager.LoadScene(0);
+		SceneManager.LoadScene(0); //end level
 		yield return null;
 	}
 
-	private void InitDeathArr()
+	private void InitDeathArr() //Init EnemiesToKill array
 	{
 		GameObject[] ListOfMovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
 		GameObject[] ListOfMotEnemies = GameObject.FindGameObjectsWithTag("MotionlessEnemy");
 		if (EnemiesTokill == null)
-			EnemiesTokill = new GameObject[ListOfMovingEnemies.Length + ListOfMotEnemies.Length];
+			EnemiesTokill = new GameObject[ListOfMovingEnemies.Length + ListOfMotEnemies.Length]; // it must be lenght of number of all enemies
 		LightsOffTurns--;
 	}
 
-	IEnumerator RotateEnemies(GameObject ObjectToRotate)
+	IEnumerator RotateEnemies(GameObject ObjectToRotate) //Coroutine to rotate enemies
 	{
 		if (ObjectToRotate != null)
 		{
-			int requiredAngle = Utilities.Opposite(ObjectToRotate);
-			ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1);
+			int requiredAngle = Utilities.Opposite(ObjectToRotate); //get required angle which is opposite of present
+			ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1); //activate rotation animation of enemy
 			for (int i = 0; i < 30; i++)
 			{
-				ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 6, 0);
+				ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 6, 0); //rotate enemy
 				yield return new WaitForSeconds(0.0133f);
 			}
-			ObjectToRotate.transform.rotation = Quaternion.Euler(0, requiredAngle, 0);
-			ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0);
+			ObjectToRotate.transform.rotation = Quaternion.Euler(0, requiredAngle, 0); //to avoid extra fraction
+			ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0); //end rotating animation
 		}
 		yield return null;
 	}
 
-	IEnumerator Rotate(int RequiredAngle, bool NeedToKill)
+	IEnumerator Rotate(int RequiredAngle, bool NeedToKill) //Coroutine to rotate player
     {
 		int playerangle = (int)gameObject.transform.rotation.eulerAngles.y;
-		int Diff = RequiredAngle - playerangle;
+		int Diff = RequiredAngle - playerangle; //getting difference between present angle and angle to rotate
 		if (Diff == 270 || Diff == -270)
 			Diff = -Diff % 180;
 		if (Diff != 0)
 		{
-			GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 1);
+			GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 1); //activate player rotating animation
 			for (int i = 0; i < 30; i++)
 			{
-				gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + Diff / 30, 0);
+				gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + Diff / 30, 0); //rotate
 				yield return new WaitForSeconds(0.0133f);
 			}
-			GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0);
-			gameObject.transform.rotation = Quaternion.Euler(0, RequiredAngle, 0);
+			GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0); //stop player rotating animation
+			gameObject.transform.rotation = Quaternion.Euler(0, RequiredAngle, 0); //avoiding extra fraction
 		}
-		if (NeedToKill == false)
+		if (NeedToKill == false) //if there is enemy to kill
 			StartCoroutine("Walk", RequiredAngle);
 		else
 			StartCoroutine("KillEnemy");
 		yield return null;
 	}
 
-	IEnumerator Walk(int requiredAngle)
+	IEnumerator Walk(int requiredAngle) //Coroutine to move player
     {
 		int X = 0;
 		int sign = 1;
 		int Z = 0;
-		if (requiredAngle == 0 || requiredAngle == 180)
+		if (requiredAngle == 0 || requiredAngle == 180) //if player need to move up or down
 			Z = 1;
-		else
+		else											//if player need to move left or right
 			X = 1;
-		if (requiredAngle == 180 || requiredAngle == 270)
+		if (requiredAngle == 180 || requiredAngle == 270) //if player needs to move to negative side 
 			sign = -1;
-		CheckIfThereIsStairway(gameObject);
-		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true);
+		CheckIfThereIsStairway(gameObject); //check if there is stairway and move up or down on it(on Y axis)
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true); // start moving animation
 		for (float i = 0; i < 1; i += 0.01f)
 		{
-			transform.position += new Vector3(0.01f * sign * X, 0, 0.01f * sign * Z);
+			transform.position += new Vector3(0.01f * sign * X, 0, 0.01f * sign * Z); //move player
 			yield return new WaitForSeconds(0.004f);
 		}
-		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false);
-		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, Mathf.Round(transform.position.z));
-		InitDeathArr();
+		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false); //stop moving animation
+		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, Mathf.Round(transform.position.z)); //to avoid extra fraction
+		InitDeathArr(); //init array of dead enemies if needed
 		for (int i = 0; i < CameraEnemies.Length; i++)
-			CameraEnemies[i].MoveCamera();
-		IsWaiting = true;
-		turnManager.EndPlayersTurn();
+			CameraEnemies[i].MoveCamera(); //rotate all camera enemies
+		IsWaiting = true; //player is waiting for enemies to move if there are any
+		turnManager.EndPlayersTurn(); //end players turn
 	}
 
-	public void ChangeLights()
+	public void ChangeLights() //Switch lightmaps
 	{
 		LightmapData[] LmData = new LightmapData[1];
 		LmData[0] = new LightmapData();
 		if (LightsOff == false)
 		{
+			audioManager.Play("LightsOff");
 			LmData[0] = LightmapSettings.lightmaps[0];
 			LmData[0].lightmapDir = SomeLightmaps[1];
 			LmData[0].lightmapColor = SomeLightmaps[0];
@@ -224,12 +228,13 @@ public class Player : MonoBehaviour
 		}
 		else
 		{
+			audioManager.Play("LightsOn");
 			LightmapSettings.lightmaps = LightMapBuf;
 			LightsOff = false;
 		}
 	}
 
-	private GameObject[] FindEnemies()
+	private GameObject[] FindEnemies() //Return array of enemies that had to be killed
     {
 		GameObject[] MotEnemies =  GameObject.FindGameObjectsWithTag("MotionlessEnemy");
 		GameObject[] MovingEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
@@ -237,13 +242,13 @@ public class Player : MonoBehaviour
 		Vector3 NewPos = gameObject.transform.position + gameObject.transform.forward;
 		for (int i = 0; i < MotEnemies.Length; i++)
         {
-			if (Mathf.Round(NewPos.x) == MotEnemies[i].transform.position.x && Mathf.Round(NewPos.z) == MotEnemies[i].transform.position.z)
+			if (Mathf.Round(NewPos.x) == MotEnemies[i].transform.position.x && Mathf.Round(NewPos.z) == MotEnemies[i].transform.position.z) //if on next step there will be motionless enemy
             {
                 for (int j = 0; j < Enemies.Length; j++)
                 {
 					if (Enemies[j] == null)
                     {
-						Enemies[j] = MotEnemies[i];
+						Enemies[j] = MotEnemies[i]; //add enemy to return array
 						break;
                     }
                 }
@@ -251,13 +256,13 @@ public class Player : MonoBehaviour
         }
 		for (int i = 0; i < MovingEnemies.Length; i++)
 		{
-			if (Mathf.Round(NewPos.x) == MovingEnemies[i].transform.position.x && Mathf.Round(NewPos.z) == MovingEnemies[i].transform.position.z)
+			if (Mathf.Round(NewPos.x) == MovingEnemies[i].transform.position.x && Mathf.Round(NewPos.z) == MovingEnemies[i].transform.position.z) //if on next step there will be linemoving enemy
 			{
 				for (int j = 0; j < Enemies.Length; j++)
 				{
 					if (Enemies[j] == null)
 					{
-						Enemies[j] = MovingEnemies[i];
+						Enemies[j] = MovingEnemies[i];  //add enemy to return array
 						break;
 					}
 				}
@@ -268,18 +273,18 @@ public class Player : MonoBehaviour
 
 	IEnumerator KillEnemy()
     {
-		GameObject[] KilledEnemies = FindEnemies();
-		CheckIfThereIsStairway(gameObject);
-		InitDeathArr();
-		gameObject.GetComponent<Animator>().SetInteger("KillingWalk",1);
+		GameObject[] KilledEnemies = FindEnemies(); //array of enemies that had to be killed
+		CheckIfThereIsStairway(gameObject); //check if there is stairway and move on it
+		InitDeathArr(); //init array of dead enemies
+		gameObject.GetComponent<Animator>().SetInteger("KillingWalk",1); // start animation of moving to enemy
 		for (int i = 0; i < 42; i++)
         {
-			gameObject.transform.position += gameObject.transform.forward / 100;
+			gameObject.transform.position += gameObject.transform.forward / 100; //move player forward
 			yield return new WaitForSeconds(0.01f);
         }
-		gameObject.GetComponent<Animator>().SetInteger("KillingWalk", 0);
+		gameObject.GetComponent<Animator>().SetInteger("KillingWalk", 0); //stop  animation of moving to enemy
 		yield return null;
-		gameObject.GetComponent<Animator>().SetBool("IsKilling", true);
+		gameObject.GetComponent<Animator>().SetBool("IsKilling", true); //start animation of punching 
 		yield return new WaitForSeconds(0.7f);
         for (int i = 0; i < KilledEnemies.Length; i++)
 		{
@@ -289,36 +294,36 @@ public class Player : MonoBehaviour
 				{
 					if (EnemiesTokill[j] == null)
 					{
-						EnemiesTokill[j] = KilledEnemies[i];
+						EnemiesTokill[j] = KilledEnemies[i]; //add dead enemy to array of dead enemies
 						break;
 					}
 				}
 				try
 				{
-					KilledEnemies[i].GetComponent<Animator>().SetBool("IsDead", true);
+					KilledEnemies[i].GetComponent<Animator>().SetBool("IsDead", true); //start animation of death of motionless enemy
 				}
 				catch
                 {
-					KilledEnemies[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsDead", true);
+					KilledEnemies[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsDead", true); //start animation of death of line moving enemy
 				}
 			}
 		}
 		yield return new WaitForSeconds(1);
-		gameObject.GetComponent<Animator>().SetBool("IsKilling", false);
+		gameObject.GetComponent<Animator>().SetBool("IsKilling", false); //stop animation of punching 
 		yield return null;
-		gameObject.GetComponent<Animator>().SetInteger("KillingWalk", 2);
+		gameObject.GetComponent<Animator>().SetInteger("KillingWalk", 2); // start animation of remaining walk
 		for (int i = 0; i < 58; i++)
 		{
-			gameObject.transform.position += gameObject.transform.forward / 100;
+			gameObject.transform.position += gameObject.transform.forward / 100; //move player 
 			yield return new WaitForSeconds(0.01f);
 		}
-		gameObject.GetComponent<Animator>().SetInteger("KillingWalk", 0);
-		gameObject.transform.position = new Vector3(Mathf.Round(gameObject.transform.position.x), gameObject.transform.position.y, Mathf.Round(gameObject.transform.position.z));
-		transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
+		gameObject.GetComponent<Animator>().SetInteger("KillingWalk", 0); // stop animation of remaining walk
+		gameObject.transform.position = new Vector3(Mathf.Round(gameObject.transform.position.x), gameObject.transform.position.y, Mathf.Round(gameObject.transform.position.z)); //to avoid extra fraction
+		//transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
 		for (int i = 0; i < CameraEnemies.Length; i++)
-			CameraEnemies[i].MoveCamera();
-		IsWaiting = true;
-		turnManager.EndPlayersTurn();
+			CameraEnemies[i].MoveCamera(); //rotate camera enemies
+		IsWaiting = true; //player starts waiting for enemies turns
+		turnManager.EndPlayersTurn(); // end players turn
 		yield return null;
 	}
 
@@ -438,10 +443,11 @@ public class Player : MonoBehaviour
     private void Awake()
     {
 		IsMovable = true;
-		FinalNode = GameObject.FindGameObjectWithTag("FinalNode");
+		FinalNode = GameObject.FindGameObjectWithTag("FinalNode"); //find final node 
 		LightMapBuf = LightmapSettings.lightmaps;
 		CameraEnemies = GameObject.FindObjectsOfType<CameraEnemy>();
 		turnManager = turnManagerHandler.GetComponent<TurnManager>();
+		audioManager = FindObjectOfType<AudioManager>();
 	}
 
 	void Update()

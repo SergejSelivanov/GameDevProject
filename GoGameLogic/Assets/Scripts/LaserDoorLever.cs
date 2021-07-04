@@ -12,6 +12,7 @@ public class LaserDoorLever : MonoBehaviour
 
     void CloseDoors()
     {
+        FindObjectOfType<AudioManager>().Play("SwitchOn");
         if (PlaneToTurnOff != null)
             PlaneToTurnOff.SetActive(true);
         ConnectedDoor.transform.GetChild(0).position += new Vector3(0, 100, 0);
@@ -20,35 +21,16 @@ public class LaserDoorLever : MonoBehaviour
 
     void OpenDoors()
     {
+        FindObjectOfType<AudioManager>().Play("SwitchOff");
         if (PlaneToTurnOff != null)
             PlaneToTurnOff.SetActive(false);
         ConnectedDoor.transform.GetChild(0).position -= new Vector3(0, 100, 0);
         IsWaiting = false;
     }
-    /*IEnumerator CloseDoors(int WhichCase)
-    {
-        if (PlaneToTurnOff != null)
-            PlaneToTurnOff.SetActive(true);
-        ConnectedDoor.transform.GetChild(0).position += new Vector3(0, 100, 0);
-        IsWaiting = false;
-        yield return null;
-    }*/
-
-    /*IEnumerator OpenDoors(int WhichCase)
-    {
-        if (PlaneToTurnOff != null)
-            PlaneToTurnOff.SetActive(false);
-        ConnectedDoor.transform.GetChild(0).position -= new Vector3(0, 100, 0);
-        IsWaiting = false;
-        yield return null;
-    }*/
 
     private void OnMouseDown()
     {
-        GameObject player;
-        player = GameObject.FindGameObjectWithTag("Projection");
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (Mathf.Abs(player.transform.position.x - transform.position.x) <= DistanceToLever && Mathf.Abs(player.transform.position.z - transform.position.z) <= DistanceToLever)
         {
             if (IsOpen == false && IsWaiting == false)
@@ -59,7 +41,6 @@ public class LaserDoorLever : MonoBehaviour
             }
             else if (IsOpen == true && IsWaiting == false)
             {
-                Debug.Log("AUE");
                 IsWaiting = true;
                 IsOpen = false;
                 CloseDoors();

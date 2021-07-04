@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class LineMovingEnemy : MonoBehaviour
 {
-    public GameObject KnifeHandler;
-    private Player PlayerFuncs;
-    private ThrowKnife KnifeFuncs;
+    public GameObject KnifeHandler; //canvas with knife throw script
+    private Player PlayerFuncs; //player functions
+    private ThrowKnife KnifeFuncs; //throw knife functions
+    private bool IsKilling;
 
     public IEnumerator ReturnToMinusX(GameObject Enemy)
     {
@@ -115,7 +116,7 @@ public class LineMovingEnemy : MonoBehaviour
         return ret;
     }
 
-    private void ReturnPositions(GameObject[] ListOfEnemies, int[] Indexes)
+    private void ReturnPositions(GameObject[] ListOfEnemies, int[] Indexes) //Return positions of enemies after crossing
     {
         bool flag = false;
         bool NeedToRotate = false;
@@ -167,9 +168,10 @@ public class LineMovingEnemy : MonoBehaviour
         }
     }
 
-    public IEnumerator GettingSlower(GameObject Enemy)
+    IEnumerator GettingSlower(GameObject Enemy) //Slow down enemy before crossing
     {
-        if (!(Mathf.Abs(Enemy.transform.GetChild(0).position.x - Mathf.Round(Enemy.transform.GetChild(0).position.x)) > 0.2f) && !(Mathf.Abs(Enemy.transform.GetChild(0).position.z - Mathf.Round(Enemy.transform.GetChild(0).position.z)) > 0.2f))
+        if (!(Mathf.Abs(Enemy.transform.GetChild(0).position.x - Mathf.Round(Enemy.transform.GetChild(0).position.x)) > 0.2f) //rotate visible part of enemy before crossing
+        && !(Mathf.Abs(Enemy.transform.GetChild(0).position.z - Mathf.Round(Enemy.transform.GetChild(0).position.z)) > 0.2f))
         {
             for (float i = 0; i < 1; i += 0.01f)
             {
@@ -209,33 +211,54 @@ public class LineMovingEnemy : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (Time.timeScale == 1)
+        if (Time.timeScale == 1) // to proetct multiple killing
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (PlayerFuncs.KnifeIsReady == true)
+            if (PlayerFuncs.KnifeIsReady == true) //if button is pressed
             {
-                if (KnifeFuncs.CheckIfInRange(gameObject, player))
+                if (KnifeFuncs.CheckIfInRange(gameObject, player)) //if enemy is in range of killing
                 {
-                    Time.timeScale = 0.99f;
-                    PlayerFuncs.gameObject.GetComponent<Animator>().SetBool("IsTaunting", true);
-                    PlayerFuncs.StartCoroutine("StopBreaking", gameObject);
+                    Time.timeScale = 0.99f; // to protect multiple killing
+                    PlayerFuncs.gameObject.GetComponent<Animator>().SetBool("IsTaunting", true); //activate player break-in animation
+                    PlayerFuncs.StartCoroutine("StopBreaking", gameObject); //rotate player and enemy death
                     if (GameObject.FindObjectOfType<FillKnife>() != null)
-                        GameObject.FindObjectOfType<FillKnife>().GetComponent<Image>().fillAmount = 0;
-                    PlayerFuncs.IsMovable = true;
+                        GameObject.FindObjectOfType<FillKnife>().GetComponent<Image>().fillAmount = 0; //unfill button
+                    PlayerFuncs.IsMovable = true; //player can move now
                 }
-                PlayerFuncs.KnifeIsReady = false;
+                PlayerFuncs.KnifeIsReady = false; //player can't break-in more 
             }
         }
     }
 
-    public IEnumerator LineMovingEnemyWalk2(GameObject[] ListOfEnemies)
+    private bool CheckIfThereIsNeedToRotate(GameObject Enemy)
+    {
+        Quaternion localRotation = Enemy.transform.rotation;
+        Enemy.transform.rotation = Quaternion.Euler(Enemy.transform.rotation.x, Utilities.Opposite(Enemy), Enemy.transform.rotation.z);
+        if (Enemy == null || !Node.CheckIfThereIsNodeToMove(Enemy) //check all cases if enemy dont need to move
+        || Utilities.IsThereGate(Enemy.transform)
+        || Utilities.IsThereCamera(Enemy.transform)
+        || Utilities.CheckIfThereIsMotEnemy(Enemy)
+        || !(HorizontalLine.CheckIfThereIsLine(Enemy.transform.position, -1, Enemy.transform.position + new Vector3(-1, 0, 0))
+        || HorizontalLine.CheckIfThereIsLine(Enemy.transform.position, 1, Enemy.transform.position + new Vector3(1, 0, 0))
+        || VerticalLine.CheckIfThereIsLine(Enemy.transform.position, 1, Enemy.transform.position + new Vector3(0, 0, 1))
+        || VerticalLine.CheckIfThereIsLine(Enemy.transform.position, -1, Enemy.transform.position + new Vector3(0, 0, -1))))
+        {
+            Enemy.transform.rotation = localRotation;
+            return false;
+        }
+        Enemy.transform.rotation = localRotation;
+        return true;
+    }
+
+    public IEnumerator LineMovingEnemyWalk2(GameObject[] ListOfEnemies) //Coroutine of enemies to walk
     {
         Transform[] ListOfTransforms = new Transform[ListOfEnemies.Length];
         GameObject[] ListBuf = new GameObject[ListOfEnemies.Length];
         ListOfEnemies.CopyTo(ListBuf , 0);
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
-            if (ListOfEnemies[i] != null && (!Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) || Utilities.IsThereGate(ListOfEnemies[i].transform) || Utilities.IsThereCamera(ListOfEnemies[i].transform) || Utilities.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
+            if (ListOfEnemies[i] != null && (!Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) || Utilities.IsThereGate(ListOfEnemies[i].transform) 
+            || Utilities.IsThereCamera(ListOfEnemies[i].transform) || Utilities.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
             {
                 //ListBuf[i] = null;///gavno
             }
@@ -244,14 +267,14 @@ public class LineMovingEnemy : MonoBehaviour
                 ListBuf[i] = null;
             }
         }
-        int[] Indexes = Crossing.IsCrossing(ListBuf);
-        if (ReturnPositionsToTurn(ListBuf, Indexes) != 0)
+        int[] Indexes = Crossing.IsCrossing(ListBuf); //get indexes of enemies which is going to cross
+        if (ReturnPositionsToTurn(ListBuf, Indexes) != 0) //return positions after crossing enemies
             yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < ListBuf.Length; i++)
         {
             if (ListBuf[i] != null)
             {
-                if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 0)
+                if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 0) //get childrens to same rotation
                     ListOfEnemies[i].transform.GetChild(0).rotation = Quaternion.Euler(0, 0, 0);
                 if (ListOfEnemies[i].transform.rotation.eulerAngles.y == 90)
                     ListOfEnemies[i].transform.GetChild(0).rotation = Quaternion.Euler(0, 90, 0);
@@ -264,15 +287,18 @@ public class LineMovingEnemy : MonoBehaviour
         }
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
-            if (ListOfEnemies[i] != null && (!Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) || Utilities.IsThereGate(ListOfEnemies[i].transform) || Utilities.IsThereCamera(ListOfEnemies[i].transform) || Utilities.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
-                PlayerFuncs.StartCoroutine("RotateEnemies", ListOfEnemies[i]);
+            if ((ListOfEnemies[i] != null && (!Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) || Utilities.IsThereGate(ListOfEnemies[i].transform) //if enemy have to place to move
+            || Utilities.IsThereCamera(ListOfEnemies[i].transform) || Utilities.CheckIfThereIsMotEnemy(ListOfEnemies[i]))) && CheckIfThereIsNeedToRotate(ListOfEnemies[i]))
+                // if (ListOfEnemies[i] != null && (!Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) || Utilities.IsThereGate(ListOfEnemies[i].transform) //if enemy have to place to move
+                // || Utilities.IsThereCamera(ListOfEnemies[i].transform) || Utilities.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
+                PlayerFuncs.StartCoroutine("RotateEnemies", ListOfEnemies[i]); //rotate it
         }
         // yield return new WaitForSeconds(0.5f);
         yield return new WaitForSeconds(0.8f);
         ////prover' potom vremya
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
-            if (ListOfEnemies[i] == null || !Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) 
+            if (ListOfEnemies[i] == null || !Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) //check all cases if enemy dont need to move
             || Utilities.IsThereGate(ListOfEnemies[i].transform)
             || Utilities.IsThereCamera(ListOfEnemies[i].transform)
             || Utilities.CheckIfThereIsMotEnemy(ListOfEnemies[i])
@@ -289,16 +315,16 @@ public class LineMovingEnemy : MonoBehaviour
             else
                 ListOfTransforms[i] = null;
         }
-        Indexes = Crossing.IsCrossing(ListOfEnemies);
-        ReturnPositions(ListOfEnemies, Indexes);
+        Indexes = Crossing.IsCrossing(ListOfEnemies); //get indexes of enemies which is need to return positions after crossing
+        ReturnPositions(ListOfEnemies, Indexes); //return their positions
         for (int i = 0; i < Indexes.Length; i++)
         {
-            StartCoroutine("GettingSlower", ListOfEnemies[Indexes[i]]);
+            StartCoroutine("GettingSlower", ListOfEnemies[Indexes[i]]); //slows enemies before crossing
         }
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
             if (ListOfEnemies[i] != null)
-                PlayerFuncs.CheckIfThereIsStairway(ListOfEnemies[i]);
+                PlayerFuncs.CheckIfThereIsStairway(ListOfEnemies[i]); // if there is stairway move down or up on it
         }
         for (float i = 0; i < 1; i += 0.01f)
         {
@@ -307,7 +333,7 @@ public class LineMovingEnemy : MonoBehaviour
                 if (ListOfEnemies[j] != null)
                 {
                     ListOfEnemies[j].GetComponentInChildren<Animator>().SetBool("IsRunning", true);
-                    if (ListOfTransforms[j].rotation.eulerAngles.y == 0)
+                    if (ListOfTransforms[j].rotation.eulerAngles.y == 0) 
                          ListOfEnemies[j].transform.position += new Vector3(0, 0, 0.01f);
                     if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 90)
                         ListOfEnemies[j].transform.position += new Vector3(0.01f, 0, 0);
@@ -323,7 +349,7 @@ public class LineMovingEnemy : MonoBehaviour
         {
             if (ListOfEnemies[i] != null)
             {
-                if (Mathf.Abs(ListOfEnemies[i].transform.GetChild(0).rotation.eulerAngles.y - 347.4f) < 0.1f)
+                if (Mathf.Abs(ListOfEnemies[i].transform.GetChild(0).rotation.eulerAngles.y - 347.4f) < 0.1f) //rotate enemies again to look better
                     ListOfEnemies[i].transform.GetChild(0).rotation = Quaternion.Euler(0, 0, 0);
                 if (Mathf.Abs(ListOfEnemies[i].transform.GetChild(0).rotation.eulerAngles.y - 77.4f) < 0.1f)
                     ListOfEnemies[i].transform.GetChild(0).rotation = Quaternion.Euler(0, 90, 0);
@@ -337,14 +363,14 @@ public class LineMovingEnemy : MonoBehaviour
         {
             if (ListOfEnemies[j] != null)
             {
-                ListOfEnemies[j].GetComponentInChildren<Animator>().SetBool("IsRunning", false);
-                if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 270 || ListOfEnemies[j].transform.rotation.eulerAngles.y == 90)
+                ListOfEnemies[j].GetComponentInChildren<Animator>().SetBool("IsRunning", false); //stop moving animations
+                if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 270 || ListOfEnemies[j].transform.rotation.eulerAngles.y == 90) //to avoid extra fraction
                     ListOfEnemies[j].transform.position = new Vector3(Mathf.Round(ListOfEnemies[j].transform.position.x), ListOfEnemies[j].transform.position.y, ListOfEnemies[j].transform.position.z);
                 if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 0 || ListOfEnemies[j].transform.rotation.eulerAngles.y == 180)
                     ListOfEnemies[j].transform.position = new Vector3(ListOfEnemies[j].transform.position.x, ListOfEnemies[j].transform.position.y, Mathf.Round(ListOfEnemies[j].transform.position.z));
             }
         }
-        PlayerFuncs.IsWaiting = false;
+        PlayerFuncs.IsWaiting = false; //player stops waiting for line moving enemies to turn
         yield return null;
     }
 
@@ -357,16 +383,18 @@ public class LineMovingEnemy : MonoBehaviour
     void FixedUpdate()
     {
         GameObject Player = GameObject.FindGameObjectWithTag("Player");
-        if (Utilities.CheckifPlayerInfrontofEnemy(Player, gameObject) && !Utilities.IsThereGate(gameObject.transform) && !Utilities.IsThereCamera(gameObject.transform) && PlayerFuncs.LightsOffTurns <= 0)
+        if (Utilities.CheckifPlayerInfrontofEnemy(Player, gameObject) && !Utilities.IsThereGate(gameObject.transform) //check if player is infront of enemy and nothing interfere
+        && !Utilities.IsThereCamera(gameObject.transform) && PlayerFuncs.LightsOffTurns <= 0 && IsKilling == false)
         {
-            gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true);
+            IsKilling = true;
+            gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true); //start killing animation
             for (int i = 0; i < GameObject.FindGameObjectsWithTag("LineMovingEnemy").Length ; i++)
             {
                 if (GameObject.FindGameObjectsWithTag("LineMovingEnemy")[i] != null)
-                    GameObject.FindGameObjectsWithTag("LineMovingEnemy")[i].GetComponent<LineMovingEnemy>().StopAllCoroutines();
+                    GameObject.FindGameObjectsWithTag("LineMovingEnemy")[i].GetComponent<LineMovingEnemy>().StopAllCoroutines(); //stop all other coroutines 
             }
             //PlayerFuncs.StartKillingCoroutine(gameObject);
-            PlayerFuncs.StartCoroutine("KillingAnimation", gameObject);
+            PlayerFuncs.StartCoroutine("KillingAnimation", gameObject); //player is dying 
         }
     }
 }

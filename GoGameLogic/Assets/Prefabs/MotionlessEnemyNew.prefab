@@ -98,7 +98,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 3b9f125e78cf795458051c11edadcea6, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -116,9 +116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3ed7f1f5943204fa1f38266926a41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VerLineHandler: {fileID: 0}
-  HorLineHandler: {fileID: 0}
-  PlayerHandler: {fileID: 0}
   KnifeHandler: {fileID: 0}
 --- !u!65 &2677613958404201223
 BoxCollider:
