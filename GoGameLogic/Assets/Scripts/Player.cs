@@ -567,7 +567,7 @@ public class Player : MonoBehaviour
 				}
 			}
 			if (transform.position.x == FinalNode.transform.position.x && transform.position.z == FinalNode.transform.position.z)
-				Application.LoadLevel(1);
+				FindObjectOfType<LevelLoader>().LoadNextLevel();
 		}
 	}
 }
