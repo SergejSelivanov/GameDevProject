@@ -135,7 +135,9 @@ public class Player : MonoBehaviour
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsKilled", true); //start player death animation
 		Enemy.transform.GetChild(1).gameObject.SetActive(true); //activate lightning 
 		yield return new WaitForSeconds(1.5f);
-		SceneManager.LoadScene(0); //end level
+		Time.timeScale = 1;
+		FindObjectOfType<LevelLoader>().LoadSameLevel();
+		//SceneManager.LoadScene(0); //end level
 		yield return null;
 	}
 
