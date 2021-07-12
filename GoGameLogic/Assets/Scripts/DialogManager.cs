@@ -13,7 +13,6 @@ public class DialogManager : MonoBehaviour
 
     private Queue<string> sentences;
 
-    // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
@@ -24,17 +23,11 @@ public class DialogManager : MonoBehaviour
        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void DisplayNextSentence()
     {
         if (sentences.Count == 0)
         {
-            Debug.Log("kuku");
+            //Debug.Log("kuku");
             EndDialog();
             return;
         }

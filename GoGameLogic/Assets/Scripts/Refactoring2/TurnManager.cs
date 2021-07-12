@@ -14,7 +14,7 @@ public class TurnManager : MonoBehaviour
         EnemiesList.CopyTo(LocalEnemiesList, 0);
         if (player.LightsOffTurns <= 0 && enemiesList.Length != 0)
         {
-            Debug.Log("A");
+           // Debug.Log("A");
             for (int i = 0; i < enemiesList.Length; i++)
             {
                 if (enemiesList[i] != null)
