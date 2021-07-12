@@ -133,6 +133,7 @@ public class Player : MonoBehaviour
 		yield return new WaitForSeconds(0.6f);
 		audioManager.Play("Lightning");
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsKilled", true); //start player death animation
+		audioManager.Play("PlayerDeath");
 		Enemy.transform.GetChild(1).gameObject.SetActive(true); //activate lightning 
 		yield return new WaitForSeconds(1.5f);
 		Time.timeScale = 1;
@@ -298,6 +299,7 @@ public class Player : MonoBehaviour
 		yield return new WaitForSeconds(0.4f);
 		audioManager.Play("Punch2");
 		yield return new WaitForSeconds(0.3f);
+		audioManager.Play("RobotDeath");
 		for (int i = 0; i < KilledEnemies.Length; i++)
 		{
 			if (KilledEnemies[i] != null)
