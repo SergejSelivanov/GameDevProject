@@ -5,22 +5,23 @@ using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour
 {
-    public Animator animator;
+   // public Animator animator;
     [TextArea(3, 10)]
     public string[] sentencesInput;
 
     public Text dialogText;
+    public GameObject dialog;
 
     private Queue<string> sentences;
 
     void Start()
     {
+        Time.timeScale = 0.99f;
         sentences = new Queue<string>();
         foreach (string sentence in sentencesInput)
         {
             sentences.Enqueue(sentence);
         }
-       
     }
 
     public void DisplayNextSentence()
@@ -52,7 +53,9 @@ public class DialogManager : MonoBehaviour
 
     void EndDialog()
     {
-        animator.SetBool("IsClosed", true);
+        //animator.SetBool("IsClosed", true);
+        dialog.SetActive(false);
+        Time.timeScale = 1;
     }
 
 }
