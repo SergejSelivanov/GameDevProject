@@ -324,7 +324,10 @@ public class LineMovingEnemy : MonoBehaviour
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
             if (ListOfEnemies[i] != null)
+            {
                 PlayerFuncs.CheckIfThereIsStairway(ListOfEnemies[i]); // if there is stairway move down or up on it
+                FindObjectOfType<AudioManager>().Play("RobotWalk");
+            }
         }
         for (float i = 0; i < 1; i += 0.01f)
         {

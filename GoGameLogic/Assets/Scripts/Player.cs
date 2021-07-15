@@ -211,6 +211,7 @@ public class Player : MonoBehaviour
 			sign = -1;
 		CheckIfThereIsStairway(gameObject); //check if there is stairway and move up or down on it(on Y axis)
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true); // start moving animation
+		audioManager.Play("PlayerWalk");
 		for (float i = 0; i < 1; i += 0.01f)
 		{
 			transform.position += new Vector3(0.01f * sign * X, 0, 0.01f * sign * Z); //move player
@@ -318,12 +319,15 @@ public class Player : MonoBehaviour
 						break;
 					}
 				}
+				//KilledEnemies[i].transform.GetChild(0).GetComponent<Animator>().applyRootMotion = true;
 				try
 				{
+					KilledEnemies[i].GetComponent<Animator>().applyRootMotion = true;
 					KilledEnemies[i].GetComponent<Animator>().SetBool("IsDead", true); //start animation of death of motionless enemy
 				}
 				catch
                 {
+					KilledEnemies[i].transform.GetChild(0).GetComponent<Animator>().applyRootMotion = true;
 					KilledEnemies[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsDead", true); //start animation of death of line moving enemy
 				}
 				//audioManager.Play("RobotDeath");
