@@ -159,11 +159,17 @@ public class Player : MonoBehaviour
 			ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1); //activate rotation animation of enemy
 			for (int i = 0; i < 30; i++)
 			{
-				ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 6, 0); //rotate enemy
-				yield return new WaitForSeconds(0.0133f);
+				if (ObjectToRotate != null)
+				{
+					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 6, 0); //rotate enemy
+					yield return new WaitForSeconds(0.0133f);
+				}
 			}
-			ObjectToRotate.transform.rotation = Quaternion.Euler(0, requiredAngle, 0); //to avoid extra fraction
-			ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0); //end rotating animation
+			if (ObjectToRotate != null)
+			{
+				ObjectToRotate.transform.rotation = Quaternion.Euler(0, requiredAngle, 0); //to avoid extra fraction
+				ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0); //end rotating animation
+			}
 		}
 		yield return null;
 	}
