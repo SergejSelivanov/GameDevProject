@@ -32,13 +32,18 @@ public class Menu : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
-        
+        Panel.SetActive(false);
+        FindObjectOfType<LevelLoader>().LoadSameLevel();
+        //SceneManager.LoadScene(0);
+
     }
 
     public void ChooseLevel()
     {
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
+        Time.timeScale = 1;
+        Panel.SetActive(false);
+        FindObjectOfType<LevelLoader>().LoadLevelSelector();
     }
 
     /*void Start()
