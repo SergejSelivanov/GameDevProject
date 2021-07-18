@@ -28,7 +28,23 @@ public class LaserDoorLever : MonoBehaviour
         IsWaiting = false;
     }
 
-    private void OnMouseDown()
+    public void ChangeState()
+    {
+        if (IsOpen == false && IsWaiting == false)
+        {
+            IsWaiting = true;
+            IsOpen = true;
+            OpenDoors();
+        }
+        else if (IsOpen == true && IsWaiting == false)
+        {
+            IsWaiting = true;
+            IsOpen = false;
+            CloseDoors();
+        }
+    }
+
+    /*private void OnMouseDown()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (Mathf.Abs(player.transform.position.x - transform.position.x) <= DistanceToLever && Mathf.Abs(player.transform.position.z - transform.position.z) <= DistanceToLever)
@@ -46,5 +62,5 @@ public class LaserDoorLever : MonoBehaviour
                 CloseDoors();
             }
         }
-    }
+    }*/
 }

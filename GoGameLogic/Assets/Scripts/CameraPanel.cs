@@ -23,18 +23,24 @@ public class CameraPanel : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
+    public void ChangeState()
+    {
+        //SwitchArrow();
+        ConnectedCamera.transform.GetChild(0).GetComponent<CameraEnemy>().IsClockwise *= -1;
+    }
+
+   /* private void OnMouseDown()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (Mathf.Abs(player.transform.position.x - transform.position.x) <= DistanceToPanel && Mathf.Abs(player.transform.position.z - transform.position.z) <= DistanceToPanel
         && GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().IsWaiting == false)
         {
-            /* if (ConnectedCamera.transform.GetChild(0).GetComponent<CameraEnemy>().IsClockwise == 1)
-                 FindObjectOfType<AudioManager>().Play("SwitchOff");
-             else
-                 FindObjectOfType<AudioManager>().Play("SwitchOn");*/
+            // if (ConnectedCamera.transform.GetChild(0).GetComponent<CameraEnemy>().IsClockwise == 1)
+              //   FindObjectOfType<AudioManager>().Play("SwitchOff");
+            // else
+             //    FindObjectOfType<AudioManager>().Play("SwitchOn");
             SwitchArrow();
             ConnectedCamera.transform.GetChild(0).GetComponent<CameraEnemy>().IsClockwise *= -1;
         }
-    }
+    }*/
 }
