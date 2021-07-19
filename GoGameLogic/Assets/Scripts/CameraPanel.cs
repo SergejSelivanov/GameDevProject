@@ -25,7 +25,7 @@ public class CameraPanel : MonoBehaviour
 
     public void ChangeState()
     {
-        //SwitchArrow();
+        SwitchArrow();
         ConnectedCamera.transform.GetChild(0).GetComponent<CameraEnemy>().IsClockwise *= -1;
     }
 
