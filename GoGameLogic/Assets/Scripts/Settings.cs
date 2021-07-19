@@ -29,6 +29,7 @@ public class Settings : MonoBehaviour
     private void SetQuality (int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
+        PlayerPrefs.SetInt("GraphicsDropdown", qualityIndex);
     }
 
     public void OpenSettings()
@@ -67,12 +68,21 @@ public class Settings : MonoBehaviour
             gameObject.transform.Find("SoundsToggle").gameObject.GetComponent<Toggle>().isOn = true;
            // PlayerPrefs.SetInt("SoundsVolume", 1);
         }
-        if (QualitySettings.GetQualityLevel() == 0)
+        if (PlayerPrefs.GetInt("GraphicsDropdown") == 0)
+        {
             gameObject.transform.Find("GraphicsDropdown").gameObject.GetComponent<Dropdown>().value = 0;
-        else if (QualitySettings.GetQualityLevel() == 1)
+            SetQuality(0);
+        }
+        else if (PlayerPrefs.GetInt("GraphicsDropdown") == 1)
+        {
             gameObject.transform.Find("GraphicsDropdown").gameObject.GetComponent<Dropdown>().value = 1;
-        else if (QualitySettings.GetQualityLevel() == 2)
+            SetQuality(1);
+        }
+        else if (PlayerPrefs.GetInt("GraphicsDropdown") == 2)
+        {
             gameObject.transform.Find("GraphicsDropdown").gameObject.GetComponent<Dropdown>().value = 2;
+            SetQuality(2);
+        }
         audioManager = FindObjectOfType<AudioManager>().gameObject;
         //DontDestroyOnLoad(gameObject);
     }
@@ -80,7 +90,7 @@ public class Settings : MonoBehaviour
     // Start is called before the first frame update
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //Debug.Log("a" + PlayerPrefs.GetInt("SoundsVolume"));
         if (gameObject.transform.Find("SoundsToggle").gameObject.GetComponent<Toggle>().isOn == true && PlayerPrefs.GetInt("SoundsVolume") == 0)
