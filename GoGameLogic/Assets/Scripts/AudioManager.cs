@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
             s.source.clip = s.clip;
             if (PlayerPrefs.GetInt("SoundsVolume") == 1)
             {
-                Debug.Log("Aue");
+                //Debug.Log("Aue");
                 s.source.volume = s.volume;
             }
             else

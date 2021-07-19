@@ -7,8 +7,9 @@ public class Settings : MonoBehaviour
 {
     public GameObject SettingsPanel;
     public GameObject MenuPanel;
+    GameObject audioManager;
 
-    public void ChangeMusicVolume()
+    /*public void ChangeMusicVolume()
     {
         if (PlayerPrefs.GetInt("MusicVolume") == 1)
             PlayerPrefs.SetInt("MusicVolume", 0);
@@ -23,7 +24,7 @@ public class Settings : MonoBehaviour
         else
             PlayerPrefs.SetInt("SoundsVolume", 1);
 
-    }
+    }*/
 
     public void OpenSettings()
     {
@@ -43,12 +44,12 @@ public class Settings : MonoBehaviour
         {
             //Debug.Log("AUE");
             gameObject.transform.Find("MusicToggle").gameObject.GetComponent<Toggle>().isOn = false;
-            PlayerPrefs.SetInt("MusicVolume", 0);
+           // PlayerPrefs.SetInt("MusicVolume", 0);
         }
         else
         {
             gameObject.transform.Find("MusicToggle").gameObject.GetComponent<Toggle>().isOn = true;
-            PlayerPrefs.SetInt("MusicVolume", 1);
+            //PlayerPrefs.SetInt("MusicVolume", 1);
         }
         if (PlayerPrefs.GetInt("SoundsVolume") == 0)
         {
@@ -61,6 +62,7 @@ public class Settings : MonoBehaviour
             gameObject.transform.Find("SoundsToggle").gameObject.GetComponent<Toggle>().isOn = true;
            // PlayerPrefs.SetInt("SoundsVolume", 1);
         }
+        audioManager = FindObjectOfType<AudioManager>().gameObject;
         //DontDestroyOnLoad(gameObject);
     }
 
@@ -69,7 +71,23 @@ public class Settings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("a" + PlayerPrefs.GetInt("SoundsVolume"));
+        //Debug.Log("a" + PlayerPrefs.GetInt("SoundsVolume"));
+        if (gameObject.transform.Find("SoundsToggle").gameObject.GetComponent<Toggle>().isOn == true && PlayerPrefs.GetInt("SoundsVolume") == 0)
+        {
+            audioManager.GetComponent<AudioManager>().SwapSoundVolume();
+            //PlayerPrefs.SetInt("SoundsVolume", 1);
+        }
+        if (gameObject.transform.Find("SoundsToggle").gameObject.GetComponent<Toggle>().isOn == false && PlayerPrefs.GetInt("SoundsVolume") == 1)
+        {
+            audioManager.GetComponent<AudioManager>().SwapSoundVolume();
+            //PlayerPrefs.SetInt("SoundsVolume", 0);
+        }
+        if (gameObject.transform.Find("MusicToggle").gameObject.GetComponent<Toggle>().isOn == true && PlayerPrefs.GetInt("MusicVolume") == 0)
+        {
+            PlayerPrefs.SetInt("MusicVolume", 1);
+        }
+        if (gameObject.transform.Find("MusicToggle").gameObject.GetComponent<Toggle>().isOn == false && PlayerPrefs.GetInt("MusicVolume") == 1)
+            PlayerPrefs.SetInt("MusicVolume", 0);
     }
 
 
