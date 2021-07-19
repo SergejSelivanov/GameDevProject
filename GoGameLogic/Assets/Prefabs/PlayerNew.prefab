@@ -663,7 +663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3234313291479448097
 Transform:
   m_ObjectHideFlags: 0
@@ -1402,7 +1402,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3241571208851791205
 Transform:
   m_ObjectHideFlags: 0
@@ -3111,12 +3111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ac5a724a0f66d4d8fe4af5a5b7a7ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeHandler: {fileID: 0}
-  VerLineHandler: {fileID: 0}
-  HorLineHandler: {fileID: 0}
-  LineMovingEnemyHandler: {fileID: 0}
-  MotionlessEnemyHandler: {fileID: 0}
   SomeLightmaps: []
+  turnManagerHandler: {fileID: 0}
 --- !u!65 &3630696550989080381
 BoxCollider:
   m_ObjectHideFlags: 0
