@@ -7,10 +7,9 @@ public class LevelLoader : MonoBehaviour
 {
     public Animator transition;
 
-    // Update is called once per frame
-    void Update()
+    public void LoadLevelSelector()
     {
-        
+        StartCoroutine(LoadLevel(0));
     }
 
     public void LoadSameLevel()

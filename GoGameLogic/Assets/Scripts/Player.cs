@@ -361,7 +361,7 @@ public class Player : MonoBehaviour
 		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
 			if (Node.CheckIfNodeExist(transform.position, 'y', 1)
-			&& VerticalLine.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(0, 0, 1)))
+				&& VerticalLine.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(0, 0, 1)))
 			{
 				OldRotation = transform.rotation;
 				transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -369,13 +369,13 @@ public class Player : MonoBehaviour
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
-					StartCoroutine("RotateAndKill", 0);
+					StartCoroutine(Rotate(0, true));
 				}
 				else if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
-					StartCoroutine("Rotate", 0);
+					StartCoroutine(Rotate(0, false));
 				}
 				else
 					transform.rotation = OldRotation;
@@ -389,7 +389,7 @@ public class Player : MonoBehaviour
 		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
 			if (Node.CheckIfNodeExist(transform.position, 'y', -1)
-				 && VerticalLine.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(0, 0, -1)))
+				&& VerticalLine.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(0, 0, -1)))
 			{
 				OldRotation = transform.rotation;
 				transform.rotation = Quaternion.Euler(0, 180, 0);
@@ -397,14 +397,13 @@ public class Player : MonoBehaviour
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
-					StartCoroutine("RotateAndKill", 180);
+					StartCoroutine(Rotate(180, true));
 				}
 				else if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
-					StartCoroutine("Rotate", 180);
-
+					StartCoroutine(Rotate(180, false));
 				}
 				else
 					transform.rotation = OldRotation;
@@ -417,6 +416,7 @@ public class Player : MonoBehaviour
 		Quaternion OldRotation;
 		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
+
 			if (Node.CheckIfNodeExist(transform.position, 'x', 1)
 			&& HorizontalLine.CheckIfThereIsLine(transform.position, 1, transform.position + new Vector3(1, 0, 0)))
 			{
@@ -426,13 +426,13 @@ public class Player : MonoBehaviour
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
-					StartCoroutine("RotateAndKill", 90);
+					StartCoroutine(Rotate(90, true));
 				}
 				else if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
-					StartCoroutine("Rotate", 90);
+					StartCoroutine(Rotate(90, false));
 				}
 				else
 					transform.rotation = OldRotation;
@@ -446,7 +446,7 @@ public class Player : MonoBehaviour
 		if (IsMovable == true && IsWaiting == false && Time.timeScale == 1)
 		{
 			if (Node.CheckIfNodeExist(transform.position, 'x', -1)
-			&& HorizontalLine.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(-1, 0, 0)))
+				&& HorizontalLine.CheckIfThereIsLine(transform.position, -1, transform.position + new Vector3(-1, 0, 0)))
 			{
 				OldRotation = transform.rotation;
 				transform.rotation = Quaternion.Euler(0, 270, 0);
@@ -454,13 +454,13 @@ public class Player : MonoBehaviour
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
-					StartCoroutine("RotateAndKill", 270);
+					StartCoroutine(Rotate(270, true));
 				}
 				else if (!Utilities.IsThereGate(transform) && !Utilities.IsThereCamera(transform))
 				{
 					transform.rotation = OldRotation;
 					IsWaiting = true;
-					StartCoroutine("Rotate", 270);
+					StartCoroutine(Rotate(270, false));
 				}
 				else
 					transform.rotation = OldRotation;
