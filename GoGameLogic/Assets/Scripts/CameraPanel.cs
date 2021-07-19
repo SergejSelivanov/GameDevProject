@@ -12,14 +12,18 @@ public class CameraPanel : MonoBehaviour
         if (ConnectedCamera.transform.GetChild(0).GetComponent<CameraEnemy>().IsClockwise == 1)
         {
             FindObjectOfType<AudioManager>().Play("SwitchOff");
-            ConnectedCamera.transform.GetChild(7).gameObject.SetActive(false);
-            ConnectedCamera.transform.GetChild(6).gameObject.SetActive(true);
+            ConnectedCamera.transform.GetChild(0).GetChild(8).gameObject.SetActive(false);
+            ConnectedCamera.transform.GetChild(0).GetChild(7).gameObject.SetActive(true);
+            //ConnectedCamera.transform.GetChild(7).gameObject.SetActive(false);
+            //ConnectedCamera.transform.GetChild(6).gameObject.SetActive(true);
         }
         else
         {
             FindObjectOfType<AudioManager>().Play("SwitchOn");
-            ConnectedCamera.transform.GetChild(7).gameObject.SetActive(true);
-            ConnectedCamera.transform.GetChild(6).gameObject.SetActive(false);
+            ConnectedCamera.transform.GetChild(0).GetChild(8).gameObject.SetActive(true);
+            ConnectedCamera.transform.GetChild(0).GetChild(7).gameObject.SetActive(false);
+            // ConnectedCamera.transform.GetChild(7).gameObject.SetActive(true);
+            //ConnectedCamera.transform.GetChild(6).gameObject.SetActive(false);
         }
     }
 
