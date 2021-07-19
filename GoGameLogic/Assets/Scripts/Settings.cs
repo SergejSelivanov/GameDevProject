@@ -80,7 +80,7 @@ public class Settings : MonoBehaviour
     // Start is called before the first frame update
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Debug.Log("a" + PlayerPrefs.GetInt("SoundsVolume"));
         if (gameObject.transform.Find("SoundsToggle").gameObject.GetComponent<Toggle>().isOn == true && PlayerPrefs.GetInt("SoundsVolume") == 0)
