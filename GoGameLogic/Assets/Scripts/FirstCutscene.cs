@@ -16,6 +16,7 @@ public class FirstCutscene : MonoBehaviour
 
     void Start()
     {
+        FindObjectOfType<AudioManager>().Play("Siren");
         StartCoroutine(StartDialog());
     }
 
