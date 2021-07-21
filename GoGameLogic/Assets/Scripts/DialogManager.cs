@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogManager : MonoBehaviour
 {
@@ -56,6 +57,8 @@ public class DialogManager : MonoBehaviour
         //animator.SetBool("IsClosed", true);
         dialog.SetActive(false);
         Time.timeScale = 1;
+       // if (SceneManager.GetActiveScene().name == "Cutscene_outsidebank")
+
     }
 
 }
