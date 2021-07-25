@@ -6286,8 +6286,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectedDoor: {fileID: 1731523892}
-  PlaneToTurnOff: {fileID: 0}
+  PlaneToTurnOff: {fileID: 469276438}
   IsOpen: 0
+--- !u!1 &469276438 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 187998878846192318, guid: bc6d99e3c502bad4181a090bd3a0c57a,
+    type: 3}
+  m_PrefabInstance: {fileID: 469276435}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &476367493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14487,6 +14493,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1042477416}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1042477418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 187998878846192318, guid: bc6d99e3c502bad4181a090bd3a0c57a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1042477416}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1042477424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14500,7 +14512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectedDoor: {fileID: 1819471841}
-  PlaneToTurnOff: {fileID: 0}
+  PlaneToTurnOff: {fileID: 1042477418}
   IsOpen: 1
 --- !u!1 &1043925811
 GameObject:
