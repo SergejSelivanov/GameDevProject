@@ -64,7 +64,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\DeathOfEnemy.cs" />
     <Compile Include="Assets\EnemyDeath.cs" />
     <Compile Include="Assets\LightningBolt\LightningBoltScript.cs" />
     <Compile Include="Assets\Scripts\AdInitialize.cs" />
@@ -76,6 +75,7 @@
     <Compile Include="Assets\Scripts\CameraSwitch.cs" />
     <Compile Include="Assets\Scripts\ChangeBackground.cs" />
     <Compile Include="Assets\Scripts\ChangeLever.cs" />
+    <Compile Include="Assets\Scripts\Crossing.cs" />
     <Compile Include="Assets\Scripts\DialogManager.cs" />
     <Compile Include="Assets\Scripts\FillKnife.cs" />
     <Compile Include="Assets\Scripts\FirstCutscene.cs" />
@@ -89,18 +89,6 @@
     <Compile Include="Assets\Scripts\MotionlessEnemy.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\RefactoredScripts\HorLine.cs" />
-    <Compile Include="Assets\Scripts\RefactoredScripts\Humanoid.cs" />
-    <Compile Include="Assets\Scripts\RefactoredScripts\ImmovableEnemy.cs" />
-    <Compile Include="Assets\Scripts\RefactoredScripts\Lines.cs" />
-    <Compile Include="Assets\Scripts\RefactoredScripts\MainCharacter.cs" />
-    <Compile Include="Assets\Scripts\RefactoredScripts\MovingEnemy.cs" />
-    <Compile Include="Assets\Scripts\RefactoredScripts\NodeNew.cs" />
-    <Compile Include="Assets\Scripts\RefactoredScripts\VerLine.cs" />
-    <Compile Include="Assets\Scripts\RefactoredScripts\WalkingHumanoid.cs" />
-    <Compile Include="Assets\Scripts\Refactoring2\Crossing.cs" />
-    <Compile Include="Assets\Scripts\Refactoring2\TurnManager.cs" />
-    <Compile Include="Assets\Scripts\Refactoring2\Utilities.cs" />
     <Compile Include="Assets\Scripts\RotateArrows.cs" />
     <Compile Include="Assets\Scripts\SecondCutscene.cs" />
     <Compile Include="Assets\Scripts\SelectLevel.cs" />
@@ -109,6 +97,8 @@
     <Compile Include="Assets\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\ThemeMusic.cs" />
     <Compile Include="Assets\Scripts\ThrowKnife.cs" />
+    <Compile Include="Assets\Scripts\TurnManager.cs" />
+    <Compile Include="Assets\Scripts\Utilities.cs" />
     <Compile Include="Assets\Scripts\VerticalLine.cs" />
     <Compile Include="Assets\Scripts\dunno\CameraMove.cs" />
     <Compile Include="Assets\Scripts\dunno\Lever.cs" />

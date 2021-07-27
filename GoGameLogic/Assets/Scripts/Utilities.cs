@@ -9,7 +9,7 @@ public static class Utilities
 		GameObject[] ListOfMotEnemies = GameObject.FindGameObjectsWithTag("LineMovingEnemy");
 		for (int i = 0; i < ListOfMotEnemies.Length; i++)
 		{
-			if (Utilities.CheckifPlayerInfrontofEnemy(ListOfMotEnemies[i], Obj))
+			if (CheckifPlayerInfrontofEnemy(ListOfMotEnemies[i], Obj))
 				return true;
 		}
 		return false;
@@ -20,7 +20,7 @@ public static class Utilities
 		GameObject[] ListOfMotEnemies = GameObject.FindGameObjectsWithTag("MotionlessEnemy");
 		for (int i = 0; i < ListOfMotEnemies.Length; i++)
 		{
-			if (Utilities.CheckifPlayerInfrontofEnemy(ListOfMotEnemies[i], Obj))
+			if (CheckifPlayerInfrontofEnemy(ListOfMotEnemies[i], Obj))
 				return true;
 		}
 		return false;
@@ -36,7 +36,7 @@ public static class Utilities
 		{
 			for (int i = 0; i < Gates.Length; i++)
 			{
-				if (Hit.collider.gameObject == Gates[i])
+				if (Hit.collider.gameObject == Gates[i]) //if ray hits gate
 					return true;
 			}
 		}
@@ -53,14 +53,14 @@ public static class Utilities
 		{
 			for (int i = 0; i < Cameras.Length; i++)
 			{
-				if (Hit.collider.gameObject == Cameras[i])
+				if (Hit.collider.gameObject == Cameras[i]) //if ray hits camera
 					return true;
 			}
 		}
 		return false;
 	}
 
-	public static int Opposite(GameObject Obj)
+	public static int Opposite(GameObject Obj) //get opposite angle
 	{
 		if (Obj.transform.rotation.eulerAngles.y == 0)
 			return (180);

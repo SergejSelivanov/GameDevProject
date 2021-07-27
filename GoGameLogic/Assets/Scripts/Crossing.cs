@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Crossing : MonoBehaviour
 {
-    public static int[] IsCrossing(GameObject[] ListOfEnemies)
+    public static int[] IsCrossing(GameObject[] ListOfEnemies) //madness checking if enemies need to cross
     {
         int[] IndexArray = new int[ListOfEnemies.Length * 2];
         for (int i = 0; i < IndexArray.Length; i++)
