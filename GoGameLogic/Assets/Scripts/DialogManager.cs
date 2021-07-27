@@ -6,13 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class DialogManager : MonoBehaviour
 {
-   // public Animator animator;
     [TextArea(3, 10)]
     public string[] sentencesInput;
 
     public Text dialogText;
     public GameObject dialog;
-
     private Queue<string> sentences;
 
     void Start()
@@ -27,38 +25,29 @@ public class DialogManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        if (sentences.Count == 0)
+        if (sentences.Count == 0) //if there is no more sentences
         {
-            //Debug.Log("kuku");
             EndDialog();
             return;
         }
-
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
-        //dialogText.text = sentence;
-        //Debug.Log(sentence);
     }
 
-    IEnumerator TypeSentence (string sentence)
+    IEnumerator TypeSentence (string sentence) 
     {
         dialogText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
-            dialogText.text += letter;
-           // yield return new WaitForSeconds(0.01f);
+            dialogText.text += letter; //to type by one letter
             yield return null;
         }
     }
 
     void EndDialog()
     {
-        //animator.SetBool("IsClosed", true);
         dialog.SetActive(false);
         Time.timeScale = 1;
-       // if (SceneManager.GetActiveScene().name == "Cutscene_outsidebank")
-
     }
-
 }

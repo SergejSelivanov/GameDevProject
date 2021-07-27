@@ -5,11 +5,10 @@ using UnityEngine;
 public class FirstCutscene : MonoBehaviour
 {
     float timer = 0;
-    // Start is called before the first frame update
 
     IEnumerator StartDialog()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2); //wait for animation
         gameObject.transform.Find("Dialogue").gameObject.SetActive(true);
         yield return null;
     }
@@ -20,11 +19,10 @@ public class FirstCutscene : MonoBehaviour
         StartCoroutine(StartDialog());
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         timer += Time.deltaTime;
-        if (gameObject.transform.Find("Dialogue").gameObject.activeSelf == false && timer > 2.2f)
+        if (gameObject.transform.Find("Dialogue").gameObject.activeSelf == false && timer > 2.2f) // after dialog has ended start next level
             FindObjectOfType<LevelLoader>().GetComponent<LevelLoader>().LoadNextLevel();
     }
 }

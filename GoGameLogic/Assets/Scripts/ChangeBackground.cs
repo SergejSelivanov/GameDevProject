@@ -12,7 +12,7 @@ public class ChangeBackground : MonoBehaviour
     private void Update()
     {
         Timer += Time.deltaTime;
-        if (Timer >= 10f)
+        if (Timer >= 10f) //every ten seconds change background image
         {
             Timer = 0;
             index++;

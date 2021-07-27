@@ -9,13 +9,7 @@ using System;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
-
     private float[] volumes;
-    // Start is called before the first frame update
-    /*void Start()
-    {
-        
-    }*/
 
     private void Start()
     {
@@ -23,28 +17,24 @@ public class AudioManager : MonoBehaviour
         volumes = new float[sounds.Length];
         foreach (Sound s in sounds)
         {
-            volumes[i] = s.volume;
+            volumes[i] = s.volume; //copying volumes of all sounds
             i++;
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-            if (PlayerPrefs.GetInt("SoundsVolume") == 1)
-            {
-                //Debug.Log("Aue");
+            if (PlayerPrefs.GetInt("SoundsVolume") == 1) //if sounds enabled
                 s.source.volume = s.volume;
-            }
             else
                 s.source.volume = 0;
-           // s.source.volume = s.volume = PlayerPrefs.GetInt("SoundsVolume");
         }
     }
 
-    public void Play (string name)
+    public void Play (string name) //Play sound
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Play();
     }
 
-    public void SwapSoundVolume()
+    public void SwapSoundVolume() //turn sound on and off
     {
         int i = 0;
         if (PlayerPrefs.GetInt("SoundsVolume") == 1)
@@ -57,7 +47,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            foreach (Sound s in sounds)
+            foreach (Sound s in sounds) //get needed volume
             {
                 s.source.volume = volumes[i];
                 i++;

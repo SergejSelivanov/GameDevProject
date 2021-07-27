@@ -9,7 +9,7 @@ public class HorizontalLine : MonoBehaviour
         HorizontalLine[] ListOfLines = GameObject.FindObjectsOfType<HorizontalLine>();
         for (int i = 0; i < ListOfLines.Length; i++)
         {
-            if (ListOfLines[i].transform.position.x - 0.5 * sign == PlayerPos.x 
+            if (ListOfLines[i].transform.position.x - 0.5 * sign == PlayerPos.x //check if there is line in needed destination
             && ListOfLines[i].transform.position.x + 0.5 * sign == FinalPos.x
             && ListOfLines[i].transform.position.z == PlayerPos.z)
                 return true;

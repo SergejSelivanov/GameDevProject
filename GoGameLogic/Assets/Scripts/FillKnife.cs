@@ -5,33 +5,25 @@ using UnityEngine.UI;
 
 public class FillKnife : MonoBehaviour
 {
-
     IEnumerator FillButton()
     {
-        for (int i = 0; i < 340; i++)
+        for (int i = 0; i < 340; i++) //fill button by third part
         {
-          //  Debug.Log("a");
             gameObject.GetComponent<Image>().fillAmount += 0.001f;
             yield return null;
         }
         yield return null;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponent<Button>().interactable = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //gameObject.GetComponent<Image>().fillAmount += 0.001f;
-        if (gameObject.GetComponent<Image>().fillAmount == 1)
-        {
-           // Debug.Log("aa");
+        if (gameObject.GetComponent<Image>().fillAmount == 1) //if buttin is filled it is ready to be used
             gameObject.GetComponent<Button>().interactable = true;
-        }
         else
             gameObject.GetComponent<Button>().interactable = false;
     }

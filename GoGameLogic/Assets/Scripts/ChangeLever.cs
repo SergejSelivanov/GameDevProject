@@ -30,24 +30,18 @@ public class ChangeLever : MonoBehaviour
 
     private void FixedUpdate()
     {
-        /*if (Mathf.Abs(player.transform.position.x - button.transform.position.x) <= DistanceToPanel && Mathf.Abs(player.transform.position.z - transform.position.z) <= DistanceToPanel
-        && GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().IsWaiting == false)
-        {
-            button.SetActive(true);
-        }
-        else
-            button.SetActive(false);*/
-        if (player.GetComponent<Player>().IsWaiting == false)
+        if (player.GetComponent<Player>().IsWaiting == false) //works only if player is ready to move
         {
             for (int i = 0; i < levers.Length; i++)
             {
-                if (Mathf.Abs(player.transform.position.x - levers[i].transform.position.x) <= DistanceToPanel && Mathf.Abs(player.transform.position.z - levers[i].transform.position.z) <= DistanceToPanel)
+                if (Mathf.Abs(player.transform.position.x - levers[i].transform.position.x) <= DistanceToPanel //if player is close enough to lever
+                && Mathf.Abs(player.transform.position.z - levers[i].transform.position.z) <= DistanceToPanel) 
                 {
-                    button.SetActive(true);
-                    currentLever = levers[i];
+                    button.SetActive(true); //activate button to interact with levers
+                    currentLever = levers[i]; //to understand which lever player needs to interact with
                     break;
                 }
-                button.SetActive(false);
+                button.SetActive(false); //unactivate button to interact with levers
             }
         }
         else

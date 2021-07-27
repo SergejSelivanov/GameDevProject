@@ -6,7 +6,7 @@ using GoogleMobileAds.Api;
 public class InterAd : MonoBehaviour
 {
     private InterstitialAd interstitialAd;
-    private string interstitialUnitId = "ca-app-pub-3940256099942544/8691691433";
+    private string interstitialUnitId = "ca-app-pub-3940256099942544/8691691433"; //id of Ad
 
     private void OnEnable()
     {
