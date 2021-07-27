@@ -11,39 +11,25 @@ public class ThemeMusic : MonoBehaviour
     private static int index = 0;
     public int volume = 1;
 
-    // Start is called before the first frame update
     void Start()
     {
-        //gameObject.GetComponent<AudioSource>().GetComponent<AudioClip>() = Songs[0];
         source = gameObject.GetComponent<AudioSource>();
         source.clip = Songs[0];
         source.Play();
-        //gameObject.GetComponent<AudioSource>().clip = Songs[0];
-        //clip = Songs[0];
-        //FindObjectsOfType<AudioSource>().
-        //gameObject.GetComponent<AudioSource>().Play();
     }
 
-    private void Awake()
-    {
-        //DontDestroyOnLoad(gameObject);
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        //Debug.Log(PlayerPrefs.GetInt("MusicVolume"));
         source.volume = PlayerPrefs.GetInt("MusicVolume");
         Timer += Time.deltaTime;
-        if (Timer >= source.clip.length)
+        if (Timer >= source.clip.length) //if song is over
         {
             Timer = 0;
             index++;
-            if (index >= Songs.Length)
-                index = 0;
+            if (index >= Songs.Length) //if there is no more songs
+                index = 0;  //start from first song
             source.clip = Songs[index];
             source.Play();
         }
-        //Debug.Log(source.clip.length);
     }
 }

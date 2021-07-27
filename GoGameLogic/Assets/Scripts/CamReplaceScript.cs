@@ -8,40 +8,30 @@ public class CamReplaceScript : MonoBehaviour
     public GameObject Cam1;
     public GameObject Cam2;
     public float distance;
-    float PositionPickUpX;
-    float PositionPickUpY;
     float PositionPickUpZ;
-
-    float PositionHeroX;
-    float PositionHeroY;
     float PositionHeroZ;
 
     private bool CamRep = true;
 
     void Start()
     {
-        PositionPickUpX = transform.position.x;
-        PositionPickUpY = transform.position.y;
         PositionPickUpZ = transform.position.z;
     }
 
     void Update()
     {
-        PositionHeroX = mainHero.transform.position.x;
-        PositionHeroY = mainHero.transform.position.y;
         PositionHeroZ = mainHero.transform.position.z;
-
-        if ((PositionPickUpZ - PositionHeroZ) < 0 && CamRep == false)
+        if ((PositionPickUpZ - PositionHeroZ) < 0 && CamRep == false) //if player is near camera trigger
         {
             CamRep = true;
-            Cam1.active = false;
-            Cam2.active = true;
+            Cam1.SetActive(false);
+            Cam2.SetActive(true);
         }
         else if ((PositionPickUpZ - PositionHeroZ) >= 0 && CamRep == true)
         {
             CamRep = false;
-            Cam1.active = true;
-            Cam2.active = false;
+            Cam1.SetActive(true);
+            Cam2.SetActive(false);
         }
     }
 }

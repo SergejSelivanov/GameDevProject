@@ -8,7 +8,6 @@ public class ThrowKnife : MonoBehaviour
     public GameObject PlayerHandler;
     public GameObject ButtonUI;
     private Player PlayerFuncs;
-    
     public int KillingRange = 2;
 
     public bool CheckIfInRange(GameObject Enemy, GameObject Player)
@@ -23,12 +22,12 @@ public class ThrowKnife : MonoBehaviour
             {
                 for (int i = 0; i < Gates.Length; i++)
                 {
-                    if (hit.collider.gameObject == Gates[i])
+                    if (hit.collider.gameObject == Gates[i]) // if there is gate between target and player
                         return false;
                 }
             }
             if (Enemy.transform.position.z == Player.transform.position.z 
-            && (Enemy.transform.position.x + j == Player.transform.position.x || Enemy.transform.position.x - j == Player.transform.position.x))
+            && (Enemy.transform.position.x + j == Player.transform.position.x || Enemy.transform.position.x - j == Player.transform.position.x)) //check if enemy is in range of killing
                 return true;
             if (Enemy.transform.position.x == Player.transform.position.x
             && (Enemy.transform.position.z + j == Player.transform.position.z || Enemy.transform.position.z - j == Player.transform.position.z))
@@ -39,14 +38,14 @@ public class ThrowKnife : MonoBehaviour
 
     public void Throwknife()
     {
-            if (PlayerFuncs.IsMovable == false)
-            {
-                PlayerFuncs.KnifeIsReady = false;
-                PlayerFuncs.IsMovable = true;
-                return;
-            }
-            PlayerFuncs.KnifeIsReady = true;
-            PlayerFuncs.IsMovable = false;
+        if (PlayerFuncs.IsMovable == false)
+        {
+            PlayerFuncs.KnifeIsReady = false;
+            PlayerFuncs.IsMovable = true;
+            return;
+        }
+        PlayerFuncs.KnifeIsReady = true;
+        PlayerFuncs.IsMovable = false;
     }
 
     void Start()
