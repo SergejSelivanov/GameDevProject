@@ -34,8 +34,13 @@ public class CameraMovementLevel7 : MonoBehaviour
             StartCamera.transform.position += PositionDiff;
             yield return new WaitForSeconds(0.01f);
         }
+        Time.timeScale = 1;
     }
 
+    private void Awake()
+    {
+        Time.timeScale = 0.99f;
+    }
     void Start()
     {
         float StartFOV = StartCamera.GetComponent<Camera>().fieldOfView;
