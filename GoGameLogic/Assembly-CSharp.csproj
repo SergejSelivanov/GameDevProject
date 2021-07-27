@@ -64,7 +64,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\EnemyDeath.cs" />
     <Compile Include="Assets\LightningBolt\LightningBoltScript.cs" />
     <Compile Include="Assets\Scripts\AdInitialize.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
@@ -77,6 +76,7 @@
     <Compile Include="Assets\Scripts\ChangeLever.cs" />
     <Compile Include="Assets\Scripts\Crossing.cs" />
     <Compile Include="Assets\Scripts\DialogManager.cs" />
+    <Compile Include="Assets\Scripts\EnemyDeath.cs" />
     <Compile Include="Assets\Scripts\FillKnife.cs" />
     <Compile Include="Assets\Scripts\FirstCutscene.cs" />
     <Compile Include="Assets\Scripts\HorizontalLine.cs" />
@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\SelectLevel.cs" />
     <Compile Include="Assets\Scripts\Settings.cs" />
     <Compile Include="Assets\Scripts\SkillPickUp.cs" />
+    <Compile Include="Assets\Scripts\Smth.cs" />
     <Compile Include="Assets\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\ThemeMusic.cs" />
     <Compile Include="Assets\Scripts\ThrowKnife.cs" />
@@ -102,7 +103,6 @@
     <Compile Include="Assets\Scripts\VerticalLine.cs" />
     <Compile Include="Assets\Scripts\dunno\CameraMove.cs" />
     <Compile Include="Assets\Scripts\dunno\Lever.cs" />
-    <Compile Include="Assets\Smth.cs" />
     <Compile Include="Assets\Star Pack\Samples\Star Pack Demo\Scripts\ActivateDepthRendering.cs" />
     <Compile Include="Assets\Star Pack\Samples\Star Pack Demo\Scripts\Spin.cs" />
     <None Include="Assets\LightningBolt\Readme.txt" />
