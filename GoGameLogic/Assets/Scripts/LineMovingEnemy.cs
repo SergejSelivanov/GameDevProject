@@ -260,7 +260,7 @@ public class LineMovingEnemy : MonoBehaviour
             if (ListOfEnemies[i] != null && (!Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) || Utilities.IsThereGate(ListOfEnemies[i].transform) 
             || Utilities.IsThereCamera(ListOfEnemies[i].transform) || Utilities.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
             {
-                //ListBuf[i] = null;///gavno
+                //ListBuf[i] = null;
             }
             else
             {
@@ -289,13 +289,9 @@ public class LineMovingEnemy : MonoBehaviour
         {
             if ((ListOfEnemies[i] != null && (!Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) || Utilities.IsThereGate(ListOfEnemies[i].transform) //if enemy have to place to move
             || Utilities.IsThereCamera(ListOfEnemies[i].transform) || Utilities.CheckIfThereIsMotEnemy(ListOfEnemies[i]))) && CheckIfThereIsNeedToRotate(ListOfEnemies[i]))
-                // if (ListOfEnemies[i] != null && (!Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) || Utilities.IsThereGate(ListOfEnemies[i].transform) //if enemy have to place to move
-                // || Utilities.IsThereCamera(ListOfEnemies[i].transform) || Utilities.CheckIfThereIsMotEnemy(ListOfEnemies[i])))
                 PlayerFuncs.StartCoroutine("RotateEnemies", ListOfEnemies[i]); //rotate it
         }
-        // yield return new WaitForSeconds(0.5f);
         yield return new WaitForSeconds(0.8f);
-        ////prover' potom vremya
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
             if (ListOfEnemies[i] == null || !Node.CheckIfThereIsNodeToMove(ListOfEnemies[i]) //check all cases if enemy dont need to move
@@ -396,7 +392,6 @@ public class LineMovingEnemy : MonoBehaviour
                 if (GameObject.FindGameObjectsWithTag("LineMovingEnemy")[i] != null)
                     GameObject.FindGameObjectsWithTag("LineMovingEnemy")[i].GetComponent<LineMovingEnemy>().StopAllCoroutines(); //stop all other coroutines 
             }
-            //PlayerFuncs.StartKillingCoroutine(gameObject);
             PlayerFuncs.StartCoroutine("KillingAnimation", gameObject); //player is dying 
         }
     }

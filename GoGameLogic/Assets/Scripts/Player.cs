@@ -326,7 +326,6 @@ public class Player : MonoBehaviour
 						break;
 					}
 				}
-				//KilledEnemies[i].transform.GetChild(0).GetComponent<Animator>().applyRootMotion = true;
 				try
 				{
 					KilledEnemies[i].GetComponent<Animator>().applyRootMotion = true;
@@ -337,7 +336,6 @@ public class Player : MonoBehaviour
 					KilledEnemies[i].transform.GetChild(0).GetComponent<Animator>().applyRootMotion = true;
 					KilledEnemies[i].transform.GetChild(0).GetComponent<Animator>().SetBool("IsDead", true); //start animation of death of line moving enemy
 				}
-				//audioManager.Play("RobotDeath");
 			}
 		}
 		yield return new WaitForSeconds(1);
