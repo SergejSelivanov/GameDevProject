@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
 	private TurnManager turnManager;
 	private AudioManager audioManager;
 
+	public InterAd interAd;
+	int tryCount;
+
 	public GameObject[] EnemiesKill
 	{
 		get
@@ -137,6 +140,10 @@ public class Player : MonoBehaviour
 		Enemy.transform.GetChild(1).gameObject.SetActive(true); //activate lightning 
 		yield return new WaitForSeconds(1.5f);
 		Time.timeScale = 1;
+		tryCount++;
+		PlayerPrefs.SetInt("tryCount", tryCount);
+		if (tryCount % 2 == 0)
+			interAd.ShowAd();
 		FindObjectOfType<LevelLoader>().LoadSameLevel();
 		//SceneManager.LoadScene(0); //end level
 		yield return null;
@@ -476,6 +483,7 @@ public class Player : MonoBehaviour
 		CameraEnemies = GameObject.FindObjectsOfType<CameraEnemy>();
 		turnManager = turnManagerHandler.GetComponent<TurnManager>();
 		audioManager = FindObjectOfType<AudioManager>();
+		tryCount = PlayerPrefs.GetInt("tryCount");
 	}
 
 	void Update()
