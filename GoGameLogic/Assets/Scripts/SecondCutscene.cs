@@ -11,11 +11,11 @@ public class SecondCutscene : MonoBehaviour
 
     IEnumerator StartCutscene()
     {
-        npc.GetComponent<Animator>().SetTrigger("IsReady");
+        npc.GetComponent<Animator>().SetTrigger("IsReady"); //start npc animation
         FindObjectOfType<AudioManager>().Play("Running");
         yield return new WaitForSeconds(0.2f);
         player.GetComponent<Animator>().applyRootMotion = true;
-        player.GetComponent<Animator>().SetTrigger("IsReady");
+        player.GetComponent<Animator>().SetTrigger("IsReady"); //start player animation
         yield return new WaitForSeconds(2.9f);
         FindObjectOfType<AudioManager>().Play("Breaking");
         light.SetActive(true);
@@ -24,22 +24,12 @@ public class SecondCutscene : MonoBehaviour
         yield return null;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.Find("Dialogue").gameObject.activeSelf == false && IsStarted == false)
+        if (gameObject.transform.Find("Dialogue").gameObject.activeSelf == false && IsStarted == false) //if dialog is closed
         {
             IsStarted = true;
             StartCoroutine(StartCutscene());
-            //npc.GetComponent<Animator>().SetTrigger("IsReady");
-            //Debug.Log("a");
         }
-
     }
 }

@@ -24,10 +24,8 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
-        transition.SetTrigger("Start");
-
-        yield return new WaitForSeconds(1f);
-
+        transition.SetTrigger("Start"); //start crossfade
+        yield return new WaitForSeconds(1f); //wait for crossfade animation
         SceneManager.LoadScene(levelIndex);
     }
 }

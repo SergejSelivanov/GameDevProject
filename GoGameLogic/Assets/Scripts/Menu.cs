@@ -5,21 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    // public GameObject InvisibilityButton;
-    // public GameObject ThrowKnifeButton;
     public GameObject Panel;
     public GameObject MenuButton;
-
-    // Start is called before the first frame update
 
     public void OpenMenu()
     {
         Panel.SetActive(true);
         MenuButton.SetActive(false);
         Time.timeScale = 0;
-       // InvisibilityButton.SetActive(false);
-       // ThrowKnifeButton.SetActive(false);
-
     }
 
     public void Continue()
@@ -34,29 +27,12 @@ public class Menu : MonoBehaviour
         Time.timeScale = 1;
         Panel.SetActive(false);
         FindObjectOfType<LevelLoader>().LoadSameLevel();
-        //SceneManager.LoadScene(0);
-
     }
 
     public void ChooseLevel()
     {
-        //SceneManager.LoadScene(1);
         Time.timeScale = 1;
         Panel.SetActive(false);
         FindObjectOfType<LevelLoader>().LoadLevelSelector();
-    }
-
-    /*void Start()
-    {
-        
-    }*/
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*if (Input.GetKeyDown("escape"))
-        {
-            OpenMenu();
-        }*/
     }
 }

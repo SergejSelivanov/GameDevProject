@@ -8,7 +8,7 @@ public class Node : MonoBehaviour
     {
         for (int i = 0; i < Nodes.Length; i++)
         {
-            if (Nodes[i].transform.position.x == X && Nodes[i].transform.position.z == Z)
+            if (Nodes[i].transform.position.x == X && Nodes[i].transform.position.z == Z) //if node is in definite position
                 return (Nodes[i].gameObject);
         }
         return (null);
@@ -18,25 +18,25 @@ public class Node : MonoBehaviour
     {
         if (Obj.transform.rotation.eulerAngles.y == 0)
         {
-            if (Node.CheckIfNodeExist(Obj.transform.position, 'y', 1)
-            && VerticalLine.CheckIfThereIsLine(Obj.transform.position, 1, Obj.transform.position + new Vector3(0, 0, 1)))
+            if (CheckIfNodeExist(Obj.transform.position, 'y', 1)
+            && VerticalLine.CheckIfThereIsLine(Obj.transform.position, 1, Obj.transform.position + new Vector3(0, 0, 1))) //check if there is node in front of object
                 return true;
         }
         if (Obj.transform.rotation.eulerAngles.y == 90)
         {
-            if (Node.CheckIfNodeExist(Obj.transform.position, 'x', 1)
+            if (CheckIfNodeExist(Obj.transform.position, 'x', 1)
             && HorizontalLine.CheckIfThereIsLine(Obj.transform.position, 1, Obj.transform.position + new Vector3(1, 0, 0)))
                 return true;
         }
         if (Obj.transform.rotation.eulerAngles.y == 180)
         {
-            if (Node.CheckIfNodeExist(Obj.transform.position, 'y', -1)
+            if (CheckIfNodeExist(Obj.transform.position, 'y', -1)
             && VerticalLine.CheckIfThereIsLine(Obj.transform.position, -1, Obj.transform.position + new Vector3(0, 0, -1)))
                 return true;
         }
         if (Obj.transform.rotation.eulerAngles.y == 270)
         {
-            if (Node.CheckIfNodeExist(Obj.transform.position, 'x', -1)
+            if (CheckIfNodeExist(Obj.transform.position, 'x', -1)
             && HorizontalLine.CheckIfThereIsLine(Obj.transform.position, -1, Obj.transform.position + new Vector3(-1, 0, 0)))
                 return true;
         }
