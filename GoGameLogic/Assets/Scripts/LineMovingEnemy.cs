@@ -385,6 +385,7 @@ public class LineMovingEnemy : MonoBehaviour
         if (Utilities.CheckifPlayerInfrontofEnemy(Player, gameObject) && !Utilities.IsThereGate(gameObject.transform) //check if player is infront of enemy and nothing interfere
         && !Utilities.IsThereCamera(gameObject.transform) && PlayerFuncs.LightsOffTurns <= 0 && IsKilling == false)
         {
+            FindObjectOfType<TurnManager>().gameObject.SetActive(false);
             IsKilling = true;
             gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("IsKilling", true); //start killing animation
             for (int i = 0; i < GameObject.FindGameObjectsWithTag("LineMovingEnemy").Length ; i++)
