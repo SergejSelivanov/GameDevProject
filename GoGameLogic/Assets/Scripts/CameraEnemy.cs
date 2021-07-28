@@ -43,6 +43,7 @@ public class CameraEnemy : MonoBehaviour
     IEnumerator redAlert() //animation of player being caught
     {
         FindObjectOfType<AudioManager>().Play("CameraAlarm");
+        FindObjectOfType<Canvas>().transform.Find("RedAlert").gameObject.SetActive(true);
         for (int i = 0; i < 100; i++) //screen become red 
         {
             FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255,0,0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0065f);
