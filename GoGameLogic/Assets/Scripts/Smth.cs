@@ -9,8 +9,7 @@ public class Smth : StateMachineBehaviour
         for (int i = 0; i < GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill.Length; i++)
         {
             if (GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i] != null)
-                //Destroy(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i]); //destroy every enemy thats in the list of dead enemies
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i].SetActive(false);
+                Destroy(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i]); //destroy every enemy thats in the list of dead enemies
         }
     }
 }
