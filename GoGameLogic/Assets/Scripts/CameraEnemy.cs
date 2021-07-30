@@ -8,7 +8,18 @@ public class CameraEnemy : MonoBehaviour
 {
     public int MovingClockwise = 1;
     private bool PlayerFound = false;
-    public int IsClockwise { get; set; }
+    public int IsClockwise
+    {
+        get
+        {
+            return MovingClockwise;
+        }
+        set
+        {
+            MovingClockwise = value;
+        }
+    }
+
 
     private bool CheckIfPlayerInfrontOfCamera()
     {
