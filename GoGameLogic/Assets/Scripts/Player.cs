@@ -130,6 +130,14 @@ public class Player : MonoBehaviour
         }
     }
 
+	public void AdCheckAndShow()
+    {
+		tryCount++;
+		PlayerPrefs.SetInt("tryCount", tryCount);
+		if (tryCount % 2 == 0)
+			interAd.ShowAd();
+	}
+
 	IEnumerator KillingAnimation(GameObject Enemy) //Player death animation
     {
 		Time.timeScale = 0.99f;
@@ -140,10 +148,11 @@ public class Player : MonoBehaviour
 		Enemy.transform.GetChild(1).gameObject.SetActive(true); //activate lightning 
 		yield return new WaitForSeconds(1.5f);
 		Time.timeScale = 1;
-		tryCount++;
+		AdCheckAndShow();
+		/*tryCount++;
 		PlayerPrefs.SetInt("tryCount", tryCount);
 		if (tryCount % 2 == 0)
-			interAd.ShowAd();
+			interAd.ShowAd();*/
 		FindObjectOfType<LevelLoader>().LoadSameLevel();
 		//SceneManager.LoadScene(0); //end level
 		yield return null;

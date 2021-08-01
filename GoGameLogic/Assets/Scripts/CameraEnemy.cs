@@ -8,7 +8,19 @@ public class CameraEnemy : MonoBehaviour
 {
     public int MovingClockwise = 1;
     private bool PlayerFound = false;
-    public int IsClockwise { get; set; }
+    private GameObject player;
+    public int IsClockwise
+    {
+        get
+        {
+            return MovingClockwise;
+        }
+        set
+        {
+            MovingClockwise = value;
+        }
+    }
+
 
     private bool CheckIfPlayerInfrontOfCamera()
     {
@@ -59,7 +71,13 @@ public class CameraEnemy : MonoBehaviour
             FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0065f);
             yield return new WaitForSeconds(0.008f);
         }
+        player.GetComponent<Player>().AdCheckAndShow();
         FindObjectOfType<LevelLoader>().LoadSameLevel();
+    }
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()

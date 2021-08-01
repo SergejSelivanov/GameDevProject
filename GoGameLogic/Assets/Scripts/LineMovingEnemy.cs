@@ -15,11 +15,14 @@ public class LineMovingEnemy : MonoBehaviour
     {
         for (float i = 0; i < 1; i += 0.01f)
         {
+            if (Enemy == null) // check if enemy destroyed
+                yield break;
             Enemy.transform.GetChild(0).position += new Vector3(-0.0028f, 0, 0);
             yield return new WaitForSeconds(0.004f);
         }
         yield return new WaitForSeconds(0.05f);
-        Enemy.transform.GetChild(0).position = new Vector3(Mathf.Round(Enemy.transform.GetChild(0).position.x), Enemy.transform.GetChild(0).position.y, Enemy.transform.GetChild(0).position.z);
+        if (Enemy != null)
+            Enemy.transform.GetChild(0).position = new Vector3(Mathf.Round(Enemy.transform.GetChild(0).position.x), Enemy.transform.GetChild(0).position.y, Enemy.transform.GetChild(0).position.z);
         yield return null;
     }
 
@@ -27,11 +30,14 @@ public class LineMovingEnemy : MonoBehaviour
     {
         for (float i = 0; i < 1; i += 0.01f)
         {
+            if (Enemy == null)  // check if enemy destroyed
+                yield break;
             Enemy.transform.GetChild(0).position += new Vector3(0.0028f, 0, 0);
             yield return new WaitForSeconds(0.004f);
         }
         yield return new WaitForSeconds(0.05f);
-        Enemy.transform.GetChild(0).position = new Vector3(Mathf.Round(Enemy.transform.GetChild(0).position.x), Enemy.transform.GetChild(0).position.y, Enemy.transform.GetChild(0).position.z);
+        if (Enemy != null)
+            Enemy.transform.GetChild(0).position = new Vector3(Mathf.Round(Enemy.transform.GetChild(0).position.x), Enemy.transform.GetChild(0).position.y, Enemy.transform.GetChild(0).position.z);
         yield return null;
     }
 
@@ -39,11 +45,14 @@ public class LineMovingEnemy : MonoBehaviour
     {
         for (float i = 0; i < 1; i += 0.01f)
         {
+            if (Enemy == null)  // check if enemy destroyed
+                yield break;
             Enemy.transform.GetChild(0).position += new Vector3(0, 0, 0.0028f);
             yield return new WaitForSeconds(0.004f);
         }
         yield return new WaitForSeconds(0.05f);
-        Enemy.transform.GetChild(0).position = new Vector3(Enemy.transform.GetChild(0).position.x, Enemy.transform.GetChild(0).position.y, Mathf.Round(Enemy.transform.GetChild(0).position.z));
+        if (Enemy != null)
+            Enemy.transform.GetChild(0).position = new Vector3(Enemy.transform.GetChild(0).position.x, Enemy.transform.GetChild(0).position.y, Mathf.Round(Enemy.transform.GetChild(0).position.z));
         yield return null;
     }
 
@@ -51,11 +60,14 @@ public class LineMovingEnemy : MonoBehaviour
     {
         for (float i = 0; i < 1; i += 0.01f)
         {
+            if (Enemy == null)  // check if enemy destroyed
+                yield break;
             Enemy.transform.GetChild(0).position += new Vector3(0, 0, -0.0028f);
             yield return new WaitForSeconds(0.004f);
         }
         yield return new WaitForSeconds(0.05f);
-        Enemy.transform.GetChild(0).position = new Vector3(Enemy.transform.GetChild(0).position.x, Enemy.transform.GetChild(0).position.y, Mathf.Round(Enemy.transform.GetChild(0).position.z));
+        if (Enemy != null)
+            Enemy.transform.GetChild(0).position = new Vector3(Enemy.transform.GetChild(0).position.x, Enemy.transform.GetChild(0).position.y, Mathf.Round(Enemy.transform.GetChild(0).position.z));
         yield return null;
     }
 

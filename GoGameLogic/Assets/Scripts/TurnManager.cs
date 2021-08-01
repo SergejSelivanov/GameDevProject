@@ -21,12 +21,12 @@ public class TurnManager : MonoBehaviour
                     StartCoroutine(enemiesList[i].LineMovingEnemyWalk2(LocalEnemiesList)); //enemies start walking
                     break;
                 }
-                else
-                    EndEnemiesTurn();
-            }       
+            }
         }
         else
+        {
             EndEnemiesTurn();
+        }
     }
 
     public void EndEnemiesTurn()
