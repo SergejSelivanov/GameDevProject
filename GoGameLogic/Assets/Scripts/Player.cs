@@ -164,7 +164,6 @@ public class Player : MonoBehaviour
 		GameObject[] ListOfMotEnemies = GameObject.FindGameObjectsWithTag("MotionlessEnemy");
 		if (EnemiesTokill == null)
 			EnemiesTokill = new GameObject[ListOfMovingEnemies.Length + ListOfMotEnemies.Length]; // it must be lenght of number of all enemies
-		LightsOffTurns--;
 	}
 
 	IEnumerator RotateEnemies(GameObject ObjectToRotate) //Coroutine to rotate enemies
@@ -242,6 +241,7 @@ public class Player : MonoBehaviour
 			CameraEnemies[i].MoveCamera(); //rotate all camera enemies
 		}
 		IsWaiting = true; //player is waiting for enemies to move if there are any
+		LightsOffTurns--;
 		turnManager.EndPlayersTurn(); //end players turn
 	}
 
@@ -365,6 +365,7 @@ public class Player : MonoBehaviour
 			CameraEnemies[i].MoveCamera(); //rotate camera enemies
 		}
 		IsWaiting = true; //player starts waiting for enemies turns
+		LightsOffTurns--;
 		turnManager.EndPlayersTurn(); // end players turn
 		yield return null;
 	}
