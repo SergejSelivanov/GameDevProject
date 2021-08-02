@@ -6832,7 +6832,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &717356615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14732,11 +14732,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1849282155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55e0b386f402af14281ab53a7ecf2f86, type: 3}
+  m_Script: {fileID: 11500000, guid: 26c80fb2a3bea9d41bf796b6ad588203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StartCamera: {fileID: 1808553962}
   MainCamera: {fileID: 434525051}
+  switchTime: 5
 --- !u!114 &1849282158 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3237030442007616512, guid: 276f4f792cdefe044aba32c0a87dd66c,
