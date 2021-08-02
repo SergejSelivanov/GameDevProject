@@ -13,6 +13,7 @@ public class FinalCutscene : MonoBehaviour
     public GameObject sixthCamera;
     public GameObject seventhCamera;
     public GameObject dialog;
+    public GameObject car;
     private bool DialogHasStarted;
 
     IEnumerator MoveSecond()
@@ -20,6 +21,7 @@ public class FinalCutscene : MonoBehaviour
        yield return new WaitForSeconds(7f);
         sixthCamera.SetActive(false);
         seventhCamera.SetActive(true);
+        car.GetComponent<Animator>().SetTrigger("IsFlying");
         yield return new WaitForSeconds(6f);
         SceneManager.LoadScene(0);
     }
