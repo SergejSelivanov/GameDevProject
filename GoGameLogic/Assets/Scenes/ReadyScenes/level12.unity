@@ -17831,6 +17831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartCamera: {fileID: 662824256}
   MainCamera: {fileID: 746007711}
+  switchTime: 4
 --- !u!1001 &1244309865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24628,7 +24629,7 @@ PrefabInstance:
     - target: {fileID: 2472710019875306123, guid: e8d2af48d6badd641a8f95e3b97875d9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.0008
       objectReference: {fileID: 0}
     - target: {fileID: 2472710019875306123, guid: e8d2af48d6badd641a8f95e3b97875d9,
         type: 3}
