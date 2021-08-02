@@ -6,6 +6,7 @@ public class CameraMovementLevel7 : MonoBehaviour
 {
     public GameObject StartCamera;
     public GameObject MainCamera;
+    public float switchTime = 5;
 
     IEnumerator MoveCamera()
     {
@@ -15,11 +16,11 @@ public class CameraMovementLevel7 : MonoBehaviour
         float MainFOV = MainCamera.GetComponent<Camera>().fieldOfView;
         Quaternion MainRotation = MainCamera.transform.rotation;
         Vector3 MainPosition = MainCamera.transform.position;
-        float FovDiff = (MainFOV - StartFOV) / 500;
-        float RotationDiffX = (StartRotation.eulerAngles.x - MainRotation.eulerAngles.x) / 500;
-        float RotationDiffY = (StartRotation.eulerAngles.y - MainRotation.eulerAngles.y) / 500;
-        Vector3 PositionDiff = (MainPosition - StartPosition) / 500;
-        for (float i = 0; i < 5; i += 0.01f)//changing FOV, rotation and position of camera
+        float FovDiff = (MainFOV - StartFOV) / switchTime * 100;
+        float RotationDiffX = (StartRotation.eulerAngles.x - MainRotation.eulerAngles.x) / switchTime * 100;
+        float RotationDiffY = (StartRotation.eulerAngles.y - MainRotation.eulerAngles.y) / switchTime * 100;
+        Vector3 PositionDiff = (MainPosition - StartPosition) / switchTime * 100;
+        for (float i = 0; i < switchTime; i += 0.01f)//changing FOV, rotation and position of camera
         {
             StartCamera.GetComponent<Camera>().fieldOfView += FovDiff; //changing FOV
             StartCamera.transform.rotation = Quaternion.Euler(StartCamera.transform.rotation.eulerAngles.x - RotationDiffX, StartCamera.transform.rotation.eulerAngles.y - RotationDiffY, 0);
