@@ -14,11 +14,23 @@ public class FinalCutscene : MonoBehaviour
     public GameObject seventhCamera;
     public GameObject dialog;
     public GameObject car;
+    public GameObject statueLight;
     private bool DialogHasStarted;
 
     IEnumerator MoveSecond()
     {
-       yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(1f);
+        statueLight.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        statueLight.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        statueLight.SetActive(true);
+        yield return new WaitForSeconds(1.2f);
+        statueLight.SetActive(false);
+        yield return new WaitForSeconds(1.8f);
+
+
+        //yield return new WaitForSeconds(7f);
         sixthCamera.SetActive(false);
         seventhCamera.SetActive(true);
         car.GetComponent<Animator>().SetTrigger("IsFlying");

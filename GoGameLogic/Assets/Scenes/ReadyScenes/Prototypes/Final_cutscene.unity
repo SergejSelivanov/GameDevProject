@@ -10958,6 +10958,7 @@ MonoBehaviour:
   seventhCamera: {fileID: 1238794471}
   dialog: {fileID: 983867544}
   car: {fileID: 164823096}
+  statueLight: {fileID: 1047026349}
 --- !u!1001 &351169803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34827,6 +34828,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 65b47e7f37e6f6341a8a4295c276f4f2, type: 2}
+    - target: {fileID: 3959006674396614531, guid: c2acb397c6ab40b4291676b6d657677e,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3959006674396614531, guid: c2acb397c6ab40b4291676b6d657677e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
