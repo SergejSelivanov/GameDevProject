@@ -949,7 +949,7 @@ PrefabInstance:
     - target: {fileID: 3459945956228493046, guid: 1056052a581bea347929936ebd7f4fad,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3459945956228493046, guid: 1056052a581bea347929936ebd7f4fad,
         type: 3}
@@ -18893,6 +18893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialog: {fileID: 444684154}
+  fx: {fileID: 1639891820}
 --- !u!4 &1652267455
 Transform:
   m_ObjectHideFlags: 0

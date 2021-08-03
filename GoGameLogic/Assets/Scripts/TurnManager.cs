@@ -8,11 +8,21 @@ public class TurnManager : MonoBehaviour
     private GameObject[] EnemiesList;
     private Player player;
 
+    private bool CheckForLivingEnemies(LineMovingEnemy[] enemies)
+    {
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            if (enemies[i] != null)
+                return true;
+        }
+        return false;
+    }
+
     public void EndPlayersTurn() 
     {
         GameObject[] LocalEnemiesList = new GameObject[EnemiesList.Length];
         EnemiesList.CopyTo(LocalEnemiesList, 0);
-        if (player.LightsOffTurns <= 0 && enemiesList.Length != 0) //if lights not off and there are enemies
+        if (player.LightsOffTurns <= 0 && enemiesList.Length != 0 && CheckForLivingEnemies(enemiesList) == true) //if lights not off and there are enemies
         {
             for (int i = 0; i < enemiesList.Length; i++)
             {
