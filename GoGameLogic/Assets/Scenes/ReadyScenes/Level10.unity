@@ -170,6 +170,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LineMovingEnemyFinally 1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3459945956228492813, guid: 1056052a581bea347929936ebd7f4fad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3459945956228493046, guid: 1056052a581bea347929936ebd7f4fad,
         type: 3}
       propertyPath: m_RootOrder
@@ -5169,6 +5174,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2116cbffcdc93b54da3cf623bfa07ffd, type: 3}
+--- !u!1 &675259421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2119257825}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &675259426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675259421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61602ce1cbe8bed43a7a12e9fef58d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrows: {fileID: 718231543}
 --- !u!1001 &680569925
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5735,6 +5759,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41bd131f003d8da439dd229aa2c850f4, type: 3}
+--- !u!1 &718231543 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5050177076046864487, guid: 6eb1ad14035776f4b8855aa822cb36d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2412895303706647121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &726016879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17875,6 +17905,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050177075359289083, guid: 6eb1ad14035776f4b8855aa822cb36d7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5050177076811952342, guid: 6eb1ad14035776f4b8855aa822cb36d7,
         type: 3}

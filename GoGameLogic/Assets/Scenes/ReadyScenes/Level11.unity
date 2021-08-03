@@ -8783,6 +8783,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -14042,6 +14047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartCamera: {fileID: 1531019825}
   MainCamera: {fileID: 93857910}
+  switchTime: 5
 --- !u!1 &1245938198 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3308425255456501401, guid: bc6d99e3c502bad4181a090bd3a0c57a,
@@ -17730,6 +17736,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -21341,6 +21352,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -23345,6 +23361,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvaswithleversandcameras
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050177075359289083, guid: 6eb1ad14035776f4b8855aa822cb36d7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5050177076811952342, guid: 6eb1ad14035776f4b8855aa822cb36d7,
         type: 3}
