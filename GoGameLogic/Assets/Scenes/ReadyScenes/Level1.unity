@@ -1693,7 +1693,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 349080439}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5248,10 +5248,10 @@ RectTransform:
   m_Children:
   - {fileID: 195614841}
   - {fileID: 379347261}
-  - {fileID: 1338691914}
   - {fileID: 1081180502}
   - {fileID: 712832523}
   - {fileID: 105371548}
+  - {fileID: 1338691914}
   m_Father: {fileID: 711211270}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9750,9 +9750,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sentencesInput:
-  - "piska\t"
-  - jopa
-  - anuss
+  - 'CHAD: LAST TIME IT COST ME MY HAND, OF COURSE NO TRICKS, VIC'
+  - 'VICTOR: I''LL BE WAITING FOR YOU NEAR ENTRY'
+  - 'CHAD: DON''T LET ME DOWN, MESSAGE IF SOMEBODY WOULD BE NEAR'
+  - 'VICTOR: WITH THIS INFORMATION WE WILL REVEAL THE TRUTH ABOUT JAIL BARON'
   dialogText: {fileID: 1338691915}
   dialog: {fileID: 349080438}
 --- !u!1001 &711855895
@@ -9854,7 +9855,7 @@ RectTransform:
   m_LocalScale: {x: 7.5, y: 7.5, z: 1}
   m_Children: []
   m_Father: {fileID: 349080439}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15369,7 +15370,7 @@ RectTransform:
   m_LocalScale: {x: 9, y: 9, z: 1}
   m_Children: []
   m_Father: {fileID: 349080439}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19035,12 +19036,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 349080439}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.7, y: 0.0000035763}
-  m_SizeDelta: {x: 1831.3048, y: 67.22713}
+  m_AnchoredPosition: {x: 0.35259, y: 0}
+  m_SizeDelta: {x: 2217.2944, y: 67.22713}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338691915
 MonoBehaviour:
@@ -19063,18 +19064,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: e78eca8c5edadb54b830604878404c62, type: 3}
-    m_FontSize: 25
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 80
+    m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'YOOO MATE '
+  m_Text: 'VICTOR: JUST TAKE THE DATA CARRIER AND LEAVE, NO TRICKS THIS TIME'
 --- !u!222 &1338691916
 CanvasRenderer:
   m_ObjectHideFlags: 0
