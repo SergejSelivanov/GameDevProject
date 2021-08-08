@@ -13,7 +13,11 @@ public class SelectLevel : MonoBehaviour
         for (int i = 0; i < levelButtons.Length; i++)
         {
             if (i + 1 > levelReached)
+            {
                 levelButtons[i].interactable = false;
+                levelButtons[i].transform.GetChild(0).GetComponent<Text>().color = new Color(0.57f, 0.57f, 0.57f);
+
+            }
         }
     }
 

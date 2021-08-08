@@ -496,13 +496,11 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-		Quaternion OldRotation;
 		if (LightsOffTurns <= 0 && SomeLightmaps.Length != 0 && LightsOff == true)
 		{
 			ChangeLights();
 		}
 		if (transform.position.x == FinalNode.transform.position.x && transform.position.z == FinalNode.transform.position.z)
 			FindObjectOfType<LevelLoader>().LoadNextLevel();
-		
 	}
 }
