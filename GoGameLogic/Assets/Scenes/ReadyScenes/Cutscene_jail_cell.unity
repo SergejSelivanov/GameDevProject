@@ -3234,7 +3234,6 @@ GameObject:
   - component: {fileID: 1009570295}
   - component: {fileID: 1009570294}
   - component: {fileID: 1009570293}
-  - component: {fileID: 1009570292}
   - component: {fileID: 1009570291}
   m_Layer: 5
   m_Name: Canvas (1)
@@ -3258,25 +3257,6 @@ MonoBehaviour:
   player: {fileID: 85725666}
   npc: {fileID: 498835330}
   light: {fileID: 1128725976}
---- !u!95 &1009570292
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1009570290}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a636b997293c86b4f902bab807811b56, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1009570293
 MonoBehaviour:
   m_ObjectHideFlags: 0

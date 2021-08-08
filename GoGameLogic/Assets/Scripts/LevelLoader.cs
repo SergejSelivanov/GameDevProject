@@ -19,6 +19,15 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        if (PlayerPrefs.GetInt("levelReached") < SceneManager.GetActiveScene().buildIndex + 1)
+        {
+            if (SceneManager.GetActiveScene().buildIndex + 1 > 6)
+                PlayerPrefs.SetInt("levelReached", SceneManager.GetActiveScene().buildIndex - 1);
+            else if (PlayerPrefs.GetInt("levelReached") == 5 || PlayerPrefs.GetInt("levelReached") == 6)
+                PlayerPrefs.SetInt("levelReached", 5);
+            else
+                PlayerPrefs.SetInt("levelReached", SceneManager.GetActiveScene().buildIndex + 1);
+        }
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
