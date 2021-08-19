@@ -19,9 +19,9 @@ public class ThemeMusic : MonoBehaviour
     }
 
     void Update()
-    {
+    { 
         source.volume = PlayerPrefs.GetInt("MusicVolume");
-        Timer += Time.deltaTime;
+        Timer += Time.unscaledDeltaTime;
         if (Timer >= source.clip.length) //if song is over
         {
             Timer = 0;
@@ -31,5 +31,13 @@ public class ThemeMusic : MonoBehaviour
             source.clip = Songs[index];
             source.Play();
         }
+    }
+
+    private void Awake()
+    {
+        GameObject[] musicObjects = GameObject.FindGameObjectsWithTag("Music");
+        if (musicObjects.Length > 1)
+            Destroy(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);
     }
 }
