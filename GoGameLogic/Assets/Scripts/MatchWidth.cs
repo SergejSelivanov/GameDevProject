@@ -22,8 +22,8 @@ public class MatchWidth : MonoBehaviour
         DownBar.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
         DownBar.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
         UpBar.SetActive(true);
-        UpBar.GetComponent<RectTransform>().anchorMin = new Vector2(0, 1);
-        UpBar.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1f - barThickness);
+        UpBar.GetComponent<RectTransform>().anchorMin = new Vector2(0, 1f - barThickness);
+        UpBar.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1);
         UpBar.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
         UpBar.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
     }
