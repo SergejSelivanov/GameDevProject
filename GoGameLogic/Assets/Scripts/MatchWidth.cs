@@ -7,22 +7,37 @@ public class MatchWidth : MonoBehaviour
     // Set this to your target aspect ratio, eg. (16, 9) or (4, 3).
     public Vector2 targetAspect = new Vector2(16, 9);
     Camera _camera;
+    public GameObject DownBar;
+    public GameObject UpBar;
+
+    private void GetBlackBars()
+    {
+        float screenRatio = Screen.width / (float)Screen.height;
+        float targetRatio = targetAspect.x / targetAspect.y;
+        float normalizedHeight = screenRatio / targetRatio;
+        float barThickness = (1f - normalizedHeight) / 2f;
+        DownBar.SetActive(true);
+        DownBar.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0);
+        DownBar.GetComponent<RectTransform>().anchorMax = new Vector2(1, barThickness);
+        DownBar.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+        DownBar.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+        UpBar.SetActive(true);
+        UpBar.GetComponent<RectTransform>().anchorMin = new Vector2(0, 1);
+        UpBar.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1f - barThickness);
+        UpBar.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+        UpBar.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+    }
 
     void Start()
     {
-        _camera = GetComponent<Camera>();
-        UpdateCrop();
+        if (Screen.width / (float)Screen.height < 1.42f)
+        {
+            _camera = GetComponent<Camera>();
+            UpdateCrop();
+            GetBlackBars();
+        }
     }
 
-    private void Update()
-    {
-        
-    }
-
-    /* private void Update()
-     {
-         UpdateCrop();
-     }*/
     // Call this method if your window size or target aspect change.
     public void UpdateCrop()
     {
@@ -35,13 +50,6 @@ public class MatchWidth : MonoBehaviour
             // Screen or window is the target aspect ratio: use the whole area.
             _camera.rect = new Rect(0, 0, 1, 1);
         }
-        else if (screenRatio > targetRatio)
-        {
-            // Screen or window is wider than the target: pillarbox.
-            float normalizedWidth = targetRatio / screenRatio;
-            float barThickness = (1f - normalizedWidth) / 2f;
-            _camera.rect = new Rect(barThickness, 0, normalizedWidth, 1);
-        }
         else
         {
             // Screen or window is narrower than the target: letterbox.
@@ -50,16 +58,4 @@ public class MatchWidth : MonoBehaviour
             _camera.rect = new Rect(0, barThickness, 1, normalizedHeight);
         }
     }
-    /*public float horizontalFoV = 90.0f;
-
-    void Update()
-    {
-        float halfWidth = Mathf.Tan(0.5f * horizontalFoV * Mathf.Deg2Rad);
-
-        float halfHeight = halfWidth * Screen.height / Screen.width;
-
-        float verticalFoV = 2.0f * Mathf.Atan(halfHeight) * Mathf.Rad2Deg;
-
-        gameObject.GetComponent<Camera>().fieldOfView = verticalFoV;
-    }*/
 }
