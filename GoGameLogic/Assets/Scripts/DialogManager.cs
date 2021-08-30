@@ -49,5 +49,6 @@ public class DialogManager : MonoBehaviour
     {
         dialog.SetActive(false);
         Time.timeScale = 1;
+        FindObjectOfType<MatchWidth>().GetBlackBars();
     }
 }
