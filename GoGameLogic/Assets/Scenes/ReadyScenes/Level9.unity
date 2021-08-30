@@ -5365,10 +5365,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 746007711}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5d1feef55dba14e86d1fb472e3e17f, type: 3}
+  m_Script: {fileID: 11500000, guid: 58a8d3a412143954d99990d978297962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  DownBar: {fileID: 0}
+  UpBar: {fileID: 0}
+  targetAspect: {x: 16, y: 9}
 --- !u!114 &746007718
 MonoBehaviour:
   m_ObjectHideFlags: 0
