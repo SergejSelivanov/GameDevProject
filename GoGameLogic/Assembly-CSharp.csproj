@@ -65,7 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\LightningBolt\LightningBoltScript.cs" />
-    <Compile Include="Assets\Scripts\AdInitialize.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\CamReplaceScript.cs" />
     <Compile Include="Assets\Scripts\CameraEnemy.cs" />
@@ -83,7 +82,6 @@
     <Compile Include="Assets\Scripts\FinalCutscene.cs" />
     <Compile Include="Assets\Scripts\FirstCutscene.cs" />
     <Compile Include="Assets\Scripts\HorizontalLine.cs" />
-    <Compile Include="Assets\Scripts\InterAd.cs" />
     <Compile Include="Assets\Scripts\LaserDoorLever.cs" />
     <Compile Include="Assets\Scripts\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\LightOff.cs" />
@@ -111,9 +109,7 @@
     <Compile Include="Assets\Star Pack\Samples\Star Pack Demo\Scripts\Spin.cs" />
     <None Include="Assets\LightningBolt\Readme.txt" />
     <None Include="Assets\PolygonSciFiCity\Shaders\Polygon_Triplanar.shader" />
-    <None Include="Assets\GoogleMobileAds\link.xml" />
     <None Include="Assets\PolygonSciFiCity\Shaders\Polygon_UVScroll.shader" />
-    <None Include="Assets\GoogleMobileAds\GoogleMobileAds_version-6.0.2_manifest.txt" />
     <None Include="Assets\Star Pack\Runtime\Shaders\Particle Standard Glow.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.20f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -291,18 +287,6 @@
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.20f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Common">
-      <HintPath>C:/Users/Danil/Desktop/Mobile_Game/GameDevProject/GoGameLogic/Assets/GoogleMobileAds/GoogleMobileAds.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Core">
-      <HintPath>C:/Users/Danil/Desktop/Mobile_Game/GameDevProject/GoGameLogic/Assets/GoogleMobileAds/GoogleMobileAds.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds">
-      <HintPath>C:/Users/Danil/Desktop/Mobile_Game/GameDevProject/GoGameLogic/Assets/GoogleMobileAds/GoogleMobileAds.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Unity">
-      <HintPath>C:/Users/Danil/Desktop/Mobile_Game/GameDevProject/GoGameLogic/Assets/GoogleMobileAds/GoogleMobileAds.Unity.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.20f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -701,12 +685,7 @@
       <HintPath>C:/Users/Danil/Desktop/Mobile_Game/GameDevProject/GoGameLogic/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="GoogleMobileAds.Editor.csproj">
-      <Project>{9FC05BE9-72C8-7611-0254-143F0EEDC76E}</Project>
-      <Name>GoogleMobileAds.Editor</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup></ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

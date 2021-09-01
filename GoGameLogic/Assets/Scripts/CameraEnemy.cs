@@ -71,7 +71,7 @@ public class CameraEnemy : MonoBehaviour
             FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0065f);
             yield return new WaitForSeconds(0.008f);
         }
-        player.GetComponent<Player>().AdCheckAndShow();
+        //player.GetComponent<Player>().AdCheckAndShow();
         FindObjectOfType<LevelLoader>().LoadSameLevel();
     }
 
