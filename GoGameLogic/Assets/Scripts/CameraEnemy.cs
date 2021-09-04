@@ -38,10 +38,13 @@ public class CameraEnemy : MonoBehaviour
 
     IEnumerator RotateCamera()
     {
-        for (int i = 0; i < 90; i++)
+        //for (int i = 0; i < 90; i++)
+        for (int i = 0; i < 30; i++)
         {
-            gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y + 1 * MovingClockwise, 0);
-            yield return new WaitForSeconds(0.00444f);
+            //gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y + 1 * MovingClockwise, 0);
+            gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y + 3 * MovingClockwise, 0);
+            // yield return new WaitForSeconds(0.00444f);
+            yield return new WaitForSeconds(0.01332f);
         }
         gameObject.transform.rotation = Quaternion.Euler(0, Mathf.Round(gameObject.transform.rotation.eulerAngles.y), 0);
         yield return null;

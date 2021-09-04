@@ -53,10 +53,13 @@ public class Player : MonoBehaviour
 		if (Diff != 0)
 		{
 			player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1); //activate rotation animation
-			for (int i = 0; i < 30; i++)
+			//for (int i = 0; i < 30; i++)
+			for (int i = 0; i < 10; i++)
 			{
-				player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + Diff / 30, 0); //rotating player in needed angle
-				yield return new WaitForSeconds(0.0133f);
+				//player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + Diff / 30, 0); //rotating player in needed angle
+				player.transform.rotation = Quaternion.Euler(0, (int)player.transform.rotation.eulerAngles.y + Diff / 10, 0); //rotating player in needed angle
+				//yield return new WaitForSeconds(0.0133f);
+				yield return new WaitForSeconds(0.04f);
 			}
 			player.GetComponentInChildren<Animator>().SetInteger("IsRotating", 0); //stop rotation animation
 			player.transform.rotation = Quaternion.Euler(0, RequiredAngle, 0); //avoiding extra fraction
@@ -107,10 +110,13 @@ public class Player : MonoBehaviour
 	IEnumerator WalkUpright(int sign, GameObject Obj, GameObject Node) //Coroutine to walk down or up
     {
 		float diff = Mathf.Abs(Obj.transform.position.y - Node.transform.position.y); //getting difference between heights
-        for (float i = 0; i < 1; i += 0.01f)
+        //for (float i = 0; i < 1; i += 0.01f)
+		for (float i = 0; i < 0.2f; i += 0.01f)
         {
-			Obj.transform.position += new Vector3(0, diff / 100 * sign, 0); //walking down or up
-			yield return new WaitForSeconds(0.004f);
+			//Obj.transform.position += new Vector3(0, diff / 100 * sign, 0); //walking down or up
+			Obj.transform.position += new Vector3(0, diff / 20 * sign, 0); //walking down or up
+			//yield return new WaitForSeconds(0.004f);
+			yield return new WaitForSeconds(0.02f);
         }
     }
 
@@ -172,12 +178,15 @@ public class Player : MonoBehaviour
 		{
 			int requiredAngle = Utilities.Opposite(ObjectToRotate); //get required angle which is opposite of present
 			ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1); //activate rotation animation of enemy
-			for (int i = 0; i < 30; i++)
+			//for (int i = 0; i < 30; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				if (ObjectToRotate != null)
 				{
-					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 6, 0); //rotate enemy
-					yield return new WaitForSeconds(0.0133f);
+					//ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 6, 0); //rotate enemy
+					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 18, 0); //rotate enemy
+					//yield return new WaitForSeconds(0.0133f);
+					yield return new WaitForSeconds(0.04f);
 				}
 			}
 			if (ObjectToRotate != null)
@@ -198,10 +207,13 @@ public class Player : MonoBehaviour
 		if (Diff != 0)
 		{
 			GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 1); //activate player rotating animation
-			for (int i = 0; i < 30; i++)
+			//for (int i = 0; i < 30; i++)
+			for (int i = 0; i < 20; i++)
 			{
-				gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + Diff / 30, 0); //rotate
-				yield return new WaitForSeconds(0.0133f);
+				//gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + Diff / 30, 0); //rotate
+				gameObject.transform.rotation = Quaternion.Euler(0, (int)gameObject.transform.rotation.eulerAngles.y + Diff / 20, 0); //rotate
+				//yield return new WaitForSeconds(0.0133f);
+				yield return new WaitForSeconds(0.02f);
 			}
 			GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetInteger("IsRotating", 0); //stop player rotating animation
 			gameObject.transform.rotation = Quaternion.Euler(0, RequiredAngle, 0); //avoiding extra fraction
@@ -227,10 +239,13 @@ public class Player : MonoBehaviour
 		CheckIfThereIsStairway(gameObject); //check if there is stairway and move up or down on it(on Y axis)
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", true); // start moving animation
 		audioManager.Play("PlayerWalk");
-		for (float i = 0; i < 1; i += 0.01f)
+		//for (float i = 0; i < 1; i += 0.01f)
+		for (float i = 0; i < 0.2f; i += 0.01f)
 		{
-			transform.position += new Vector3(0.01f * sign * X, 0, 0.01f * sign * Z); //move player
-			yield return new WaitForSeconds(0.004f);
+			//transform.position += new Vector3(0.01f * sign * X, 0, 0.01f * sign * Z); //move player
+			transform.position += new Vector3(0.05f * sign * X, 0, 0.05f * sign * Z); //move player
+			//yield return new WaitForSeconds(0.004f);
+			yield return new WaitForSeconds(0.02f);
 		}
 		GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("IsRunning", false); //stop moving animation
 		transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, Mathf.Round(transform.position.z)); //to avoid extra fraction
@@ -309,10 +324,13 @@ public class Player : MonoBehaviour
 		CheckIfThereIsStairway(gameObject); //check if there is stairway and move on it
 		InitDeathArr(); //init array of dead enemies
 		gameObject.GetComponent<Animator>().SetInteger("KillingWalk",1); // start animation of moving to enemy
-		for (int i = 0; i < 42; i++)
+		//for (int i = 0; i < 42; i++)
+		for (int i = 0; i < 14; i++)
         {
-			gameObject.transform.position += gameObject.transform.forward / 100; //move player forward
-			yield return new WaitForSeconds(0.01f);
+			//gameObject.transform.position += gameObject.transform.forward / 100; //move player forward
+			gameObject.transform.position += gameObject.transform.forward / 100 * 3; //move player forward
+			//yield return new WaitForSeconds(0.01f);
+			yield return new WaitForSeconds(0.03f);
         }
 		gameObject.GetComponent<Animator>().SetInteger("KillingWalk", 0); //stop  animation of moving to enemy
 		yield return null;
@@ -351,10 +369,13 @@ public class Player : MonoBehaviour
 		gameObject.GetComponent<Animator>().SetBool("IsKilling", false); //stop animation of punching 
 		yield return null;
 		gameObject.GetComponent<Animator>().SetInteger("KillingWalk", 2); // start animation of remaining walk
-		for (int i = 0; i < 58; i++)
+		//for (int i = 0; i < 58; i++)
+		for (int i = 0; i < 29; i++)
 		{
-			gameObject.transform.position += gameObject.transform.forward / 100; //move player 
-			yield return new WaitForSeconds(0.01f);
+			//gameObject.transform.position += gameObject.transform.forward / 100; //move player 
+			gameObject.transform.position += gameObject.transform.forward / 50; //move player 
+			//yield return new WaitForSeconds(0.01f);
+			yield return new WaitForSeconds(0.02f);
 		}
 		gameObject.GetComponent<Animator>().SetInteger("KillingWalk", 0); // stop animation of remaining walk
 		gameObject.transform.position = new Vector3(Mathf.Round(gameObject.transform.position.x), gameObject.transform.position.y, Mathf.Round(gameObject.transform.position.z)); //to avoid extra fraction
