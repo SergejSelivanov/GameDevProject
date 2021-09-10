@@ -337,24 +337,30 @@ public class LineMovingEnemy : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("RobotWalk");
             }
         }
-        for (float i = 0; i < 1; i += 0.01f)
+        // for (float i = 0; i < 1; i += 0.01f)
+        for (float i = 0; i < 0.25f; i += 0.01f)
         {
             for (int j = 0; j < ListOfEnemies.Length; j++)
             {
                 if (ListOfEnemies[j] != null)
                 {
                     ListOfEnemies[j].GetComponentInChildren<Animator>().SetBool("IsRunning", true);
-                    if (ListOfTransforms[j].rotation.eulerAngles.y == 0) 
-                         ListOfEnemies[j].transform.position += new Vector3(0, 0, 0.01f);
+                    if (ListOfTransforms[j].rotation.eulerAngles.y == 0)
+                        //ListOfEnemies[j].transform.position += new Vector3(0, 0, 0.01f);
+                        ListOfEnemies[j].transform.position += new Vector3(0, 0, 0.04f);
                     if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 90)
-                        ListOfEnemies[j].transform.position += new Vector3(0.01f, 0, 0);
+                        // ListOfEnemies[j].transform.position += new Vector3(0.01f, 0, 0);
+                        ListOfEnemies[j].transform.position += new Vector3(0.04f, 0, 0);
                     if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 180)
-                        ListOfEnemies[j].transform.position += new Vector3(0, 0, -0.01f);
+                        //ListOfEnemies[j].transform.position += new Vector3(0, 0, -0.01f);
+                        ListOfEnemies[j].transform.position += new Vector3(0, 0, -0.04f);
                     if (ListOfEnemies[j].transform.rotation.eulerAngles.y == 270)
-                        ListOfEnemies[j].transform.position += new Vector3(-0.01f, 0, 0);
+                        //ListOfEnemies[j].transform.position += new Vector3(-0.01f, 0, 0);
+                        ListOfEnemies[j].transform.position += new Vector3(-0.04f, 0, 0);
                 }
             }
-            yield return new WaitForSeconds(0.004f);
+            //yield return new WaitForSeconds(0.004f);
+            yield return new WaitForSeconds(0.016f);
         }
         for (int i = 0; i < ListOfEnemies.Length; i++)
         {
