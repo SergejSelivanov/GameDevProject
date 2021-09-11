@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.0020360854, g: 0.002145769, b: 0.0019359647, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -77610,6 +77610,81 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7470274381778172016, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274381778172016, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274381778172016, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274381778172016, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274381778172016, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274381778172016, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 399.74115
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274381778172016, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274382030783510, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274382030783510, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274382030783510, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274382030783510, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274382030783510, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274382030783510, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -363.30975
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274382030783510, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274382909389882, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7470274383461905042, guid: 4d1bf0373978ae44b85f90853e334f6c,
         type: 3}
       propertyPath: m_Name
@@ -77719,6 +77794,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470274383461905046, guid: 4d1bf0373978ae44b85f90853e334f6c,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d1bf0373978ae44b85f90853e334f6c, type: 3}
