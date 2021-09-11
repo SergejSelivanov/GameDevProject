@@ -13,12 +13,15 @@ public class LineMovingEnemy : MonoBehaviour
 
     public IEnumerator ReturnToMinusX(GameObject Enemy)
     {
-        for (float i = 0; i < 1; i += 0.01f)
+        //for (float i = 0; i < 1; i += 0.01f)
+        for (float i = 0; i < 1; i += 0.02f)
         {
             if (Enemy == null) // check if enemy destroyed
                 yield break;
-            Enemy.transform.GetChild(0).position += new Vector3(-0.0028f, 0, 0);
-            yield return new WaitForSeconds(0.004f);
+            //Enemy.transform.GetChild(0).position += new Vector3(-0.0028f, 0, 0);
+            Enemy.transform.GetChild(0).position += new Vector3(-0.0056f, 0, 0);
+            //yield return new WaitForSeconds(0.004f);
+            yield return new WaitForSeconds(0.008f);
         }
         yield return new WaitForSeconds(0.05f);
         if (Enemy != null)
@@ -28,12 +31,15 @@ public class LineMovingEnemy : MonoBehaviour
 
     public IEnumerator ReturnToX(GameObject Enemy)
     {
-        for (float i = 0; i < 1; i += 0.01f)
+        //for (float i = 0; i < 1; i += 0.01f)
+        for (float i = 0; i < 1; i += 0.02f)
         {
             if (Enemy == null)  // check if enemy destroyed
                 yield break;
-            Enemy.transform.GetChild(0).position += new Vector3(0.0028f, 0, 0);
-            yield return new WaitForSeconds(0.004f);
+            //Enemy.transform.GetChild(0).position += new Vector3(0.0028f, 0, 0);
+            Enemy.transform.GetChild(0).position += new Vector3(0.0056f, 0, 0);
+            //yield return new WaitForSeconds(0.004f);
+            yield return new WaitForSeconds(0.008f);
         }
         yield return new WaitForSeconds(0.05f);
         if (Enemy != null)
@@ -43,12 +49,15 @@ public class LineMovingEnemy : MonoBehaviour
 
     public IEnumerator ReturnToY(GameObject Enemy)
     {
-        for (float i = 0; i < 1; i += 0.01f)
+        //for (float i = 0; i < 1; i += 0.01f)
+        for (float i = 0; i < 1; i += 0.02f)
         {
             if (Enemy == null)  // check if enemy destroyed
                 yield break;
-            Enemy.transform.GetChild(0).position += new Vector3(0, 0, 0.0028f);
-            yield return new WaitForSeconds(0.004f);
+            //Enemy.transform.GetChild(0).position += new Vector3(0, 0, 0.0028f);
+            Enemy.transform.GetChild(0).position += new Vector3(0, 0, 0.0056f);
+            //yield return new WaitForSeconds(0.004f);
+            yield return new WaitForSeconds(0.008f);
         }
         yield return new WaitForSeconds(0.05f);
         if (Enemy != null)
@@ -58,12 +67,15 @@ public class LineMovingEnemy : MonoBehaviour
 
     public IEnumerator ReturnToMinusY(GameObject Enemy)
     {
-        for (float i = 0; i < 1; i += 0.01f)
+        //for (float i = 0; i < 1; i += 0.01f)
+        for (float i = 0; i < 1; i += 0.02f)
         {
             if (Enemy == null)  // check if enemy destroyed
                 yield break;
-            Enemy.transform.GetChild(0).position += new Vector3(0, 0, -0.0028f);
-            yield return new WaitForSeconds(0.004f);
+            // Enemy.transform.GetChild(0).position += new Vector3(0, 0, -0.0028f);
+            Enemy.transform.GetChild(0).position += new Vector3(0, 0, -0.0056f);
+            //yield return new WaitForSeconds(0.004f);
+            yield return new WaitForSeconds(0.008f);
         }
         yield return new WaitForSeconds(0.05f);
         if (Enemy != null)
@@ -185,29 +197,35 @@ public class LineMovingEnemy : MonoBehaviour
         if (!(Mathf.Abs(Enemy.transform.GetChild(0).position.x - Mathf.Round(Enemy.transform.GetChild(0).position.x)) > 0.2f) //rotate visible part of enemy before crossing
         && !(Mathf.Abs(Enemy.transform.GetChild(0).position.z - Mathf.Round(Enemy.transform.GetChild(0).position.z)) > 0.2f))
         {
-            for (float i = 0; i < 1; i += 0.01f)
+            //for (float i = 0; i < 1; i += 0.01f)
+            for (float i = 0; i < 1; i += 0.02f)
             {
                 if (Enemy.transform.rotation.eulerAngles.y == 0)
                 {
                     Enemy.transform.GetChild(0).rotation = Quaternion.Euler(0, 12.6f, 0);
-                    Enemy.transform.GetChild(0).position += new Vector3(0.0028f, 0, -0.0028f);
+                    //Enemy.transform.GetChild(0).position += new Vector3(0.0028f, 0, -0.0028f);
+                    Enemy.transform.GetChild(0).position += new Vector3(0.0056f, 0, -0.0056f);
                 }
                 if (Enemy.transform.rotation.eulerAngles.y == 90)
                 {
                     Enemy.transform.GetChild(0).rotation = Quaternion.Euler(0, 102.6f, 0);
-                    Enemy.transform.GetChild(0).position += new Vector3(-0.0028f, 0, -0.0028f);
+                    //Enemy.transform.GetChild(0).position += new Vector3(-0.0028f, 0, -0.0028f);
+                    Enemy.transform.GetChild(0).position += new Vector3(-0.0056f, 0, -0.0056f);
                 }
                 if (Enemy.transform.rotation.eulerAngles.y == 180)
                 {
                     Enemy.transform.GetChild(0).rotation = Quaternion.Euler(0, 192.6f, 0);
-                    Enemy.transform.GetChild(0).position += new Vector3(-0.0028f, 0, 0.0028f);
+                    //Enemy.transform.GetChild(0).position += new Vector3(-0.0028f, 0, 0.0028f);
+                    Enemy.transform.GetChild(0).position += new Vector3(-0.0056f, 0, 0.0056f);
                 }
                 if (Enemy.transform.rotation.eulerAngles.y == 270)
                 {
                     Enemy.transform.GetChild(0).rotation = Quaternion.Euler(0, 282.6f, 0);
-                    Enemy.transform.GetChild(0).position += new Vector3(0.0028f, 0, 0.0028f);
+                    //Enemy.transform.GetChild(0).position += new Vector3(0.0028f, 0, 0.0028f);
+                    Enemy.transform.GetChild(0).position += new Vector3(0.0056f, 0, 0.0056f);
                 }
-                yield return new WaitForSeconds(0.004f);
+                //yield return new WaitForSeconds(0.004f);
+                yield return new WaitForSeconds(0.008f);
             }
         }
         if (Mathf.Abs(Enemy.transform.GetChild(0).rotation.eulerAngles.y - 12.6f) < 0.1f)
