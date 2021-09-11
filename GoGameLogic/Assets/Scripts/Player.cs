@@ -179,14 +179,17 @@ public class Player : MonoBehaviour
 			int requiredAngle = Utilities.Opposite(ObjectToRotate); //get required angle which is opposite of present
 			ObjectToRotate.GetComponentInChildren<Animator>().SetInteger("IsRotating", 1); //activate rotation animation of enemy
 			//for (int i = 0; i < 30; i++)
-			for (int i = 0; i < 10; i++)
+			//for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 15; i++)
 			{
 				if (ObjectToRotate != null)
 				{
 					//ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 6, 0); //rotate enemy
-					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 18, 0); //rotate enemy
+					//ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 18, 0); //rotate enemy
+					ObjectToRotate.transform.rotation = Quaternion.Euler(0, (int)ObjectToRotate.transform.rotation.eulerAngles.y + 12, 0); //rotate enemy
 					//yield return new WaitForSeconds(0.0133f);
-					yield return new WaitForSeconds(0.04f);
+					//yield return new WaitForSeconds(0.04f);
+					yield return new WaitForSeconds(0.0266f);
 				}
 			}
 			if (ObjectToRotate != null)
