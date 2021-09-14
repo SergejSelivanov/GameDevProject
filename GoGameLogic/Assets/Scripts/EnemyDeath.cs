@@ -13,12 +13,12 @@ public class EnemyDeath : StateMachineBehaviour
                 try
                 {
                     GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i].transform.
-                    Find("Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head").GetChild(2).gameObject.SetActive(true); //activate part of lighthing if its motionless enemy
+                    Find("Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head").GetChild(2).gameObject.SetActive(true); //activateexplosion if its motionless enemy
                 }
                 catch
                 {
                     GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().EnemiesKill[i].transform.
-                    Find("Character_Cop_01/Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head").GetChild(2).gameObject.SetActive(true); //activate part of lightning if its line moving enemy
+                    Find("Character_Cop_01/Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head").GetChild(2).gameObject.SetActive(true); //activate explosion of line moving enemy
                 }
                 if (GameObject.FindObjectOfType<FillKnife>() != null)
                     GameObject.FindObjectOfType<FillKnife>().StartCoroutine("FillButton");
