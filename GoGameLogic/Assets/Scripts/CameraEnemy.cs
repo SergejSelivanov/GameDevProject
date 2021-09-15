@@ -59,20 +59,29 @@ public class CameraEnemy : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Play("CameraAlarm");
         FindObjectOfType<Canvas>().transform.Find("RedAlert").gameObject.SetActive(true);
-        for (int i = 0; i < 100; i++) //screen become red 
+        //for (int i = 0; i < 100; i++) //screen become red 
+        for (int i = 0; i < 20; i++) //screen become red 
         {
-            FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255,0,0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0065f);
-            yield return new WaitForSeconds(0.008f);
+            //FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255,0,0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0065f);
+            FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0325f);
+            //yield return new WaitForSeconds(0.008f);
+            yield return new WaitForSeconds(0.04f);
         }
-        for (int i = 0; i < 100; i++) //transparent again
+        // for (int i = 0; i < 100; i++) //transparent again
+        for (int i = 0; i < 20; i++) //transparent again
         {
-            FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a - 0.0065f);
-            yield return new WaitForSeconds(0.008f);
+            //FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a - 0.0065f);
+            FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a - 0.0325f);
+            //yield return new WaitForSeconds(0.008f);
+            yield return new WaitForSeconds(0.04f);
         }
-        for (int i = 0; i < 100; i++)//red again
+        //for (int i = 0; i < 100; i++)//red again
+        for (int i = 0; i < 20; i++)//red again
         {
-            FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0065f);
-            yield return new WaitForSeconds(0.008f);
+            //FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0065f);
+            FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color = new Color(255, 0, 0, FindObjectOfType<Canvas>().transform.Find("RedAlert").GetComponent<Image>().color.a + 0.0325f);
+            //yield return new WaitForSeconds(0.008f);
+            yield return new WaitForSeconds(0.04f);
         }
         //player.GetComponent<Player>().AdCheckAndShow();
         FindObjectOfType<LevelLoader>().LoadSameLevel();
