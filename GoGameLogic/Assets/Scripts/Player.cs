@@ -350,8 +350,12 @@ public class Player : MonoBehaviour
 			{
 				for (int j = 0; j < EnemiesKill.Length; j++)
 				{
+					if (GameObject.FindGameObjectWithTag("Test4") != null)
+						GameObject.FindGameObjectWithTag("Test4").SetActive(false);
 					if (EnemiesTokill[j] == null)
 					{
+						if (GameObject.FindGameObjectWithTag("Test5") != null)
+							GameObject.FindGameObjectWithTag("Test5").SetActive(false);
 						EnemiesTokill[j] = KilledEnemies[i]; //add dead enemy to array of dead enemies
 						break;
 					}
