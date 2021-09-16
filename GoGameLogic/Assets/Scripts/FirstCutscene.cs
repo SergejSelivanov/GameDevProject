@@ -8,14 +8,17 @@ public class FirstCutscene : MonoBehaviour
 
     IEnumerator StartDialog()
     {
-        yield return new WaitForSeconds(2); //wait for animation
+        yield return new WaitForSeconds(0.2f);
+        FindObjectOfType<AudioManager>().Play("Siren");
+        //yield return new WaitForSeconds(2); //wait for animation
+        yield return new WaitForSeconds(1.8f); //wait for animation
         gameObject.transform.Find("Dialogue").gameObject.SetActive(true);
         yield return null;
     }
 
     void Start()
     {
-        FindObjectOfType<AudioManager>().Play("Siren");
+        //FindObjectOfType<AudioManager>().Play("Siren");
         StartCoroutine(StartDialog());
     }
 
