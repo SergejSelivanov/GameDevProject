@@ -29760,6 +29760,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2256459460442975651, guid: 84c254923d913c541984473be1b27544,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 81
+      objectReference: {fileID: 0}
     - target: {fileID: 2256459460504741410, guid: 84c254923d913c541984473be1b27544,
         type: 3}
       propertyPath: m_Name
@@ -29875,6 +29880,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1241877260}
+    - target: {fileID: 2256459460855564534, guid: 84c254923d913c541984473be1b27544,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256459461219077329, guid: 84c254923d913c541984473be1b27544,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2256459461434185850, guid: 84c254923d913c541984473be1b27544,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -29890,6 +29905,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1241877260}
+    - target: {fileID: 6579511957342241770, guid: 84c254923d913c541984473be1b27544,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84c254923d913c541984473be1b27544, type: 3}
 --- !u!1 &6432645119557298927 stripped

@@ -14746,6 +14746,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1274303312}
+    - target: {fileID: 3246639904987514823, guid: 4e1c663493765124fbb97c5c14efc88b,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3246639905085211616, guid: 4e1c663493765124fbb97c5c14efc88b,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3246639905379700574, guid: 4e1c663493765124fbb97c5c14efc88b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -14859,6 +14869,11 @@ PrefabInstance:
     - target: {fileID: 3246639905469607226, guid: 4e1c663493765124fbb97c5c14efc88b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571100065896990972, guid: 4e1c663493765124fbb97c5c14efc88b,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -24497,6 +24497,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1241877262}
+    - target: {fileID: 3716687473778406610, guid: 57fc49398a866e048922ac36ec53cc2d,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716687474150437109, guid: 57fc49398a866e048922ac36ec53cc2d,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716687474390258055, guid: 57fc49398a866e048922ac36ec53cc2d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 81
+      objectReference: {fileID: 0}
     - target: {fileID: 3716687474464741894, guid: 57fc49398a866e048922ac36ec53cc2d,
         type: 3}
       propertyPath: m_Name
@@ -24612,5 +24627,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1241877262}
+    - target: {fileID: 8614191191106846670, guid: 57fc49398a866e048922ac36ec53cc2d,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57fc49398a866e048922ac36ec53cc2d, type: 3}

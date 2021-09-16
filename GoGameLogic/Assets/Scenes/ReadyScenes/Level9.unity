@@ -15497,6 +15497,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3108627401350668327, guid: fdc6c74d627b0234da30991426fb3422,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8015143488914340791, guid: fdc6c74d627b0234da30991426fb3422,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -15512,6 +15517,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1947456799}
+    - target: {fileID: 8015143490073218670, guid: fdc6c74d627b0234da30991426fb3422,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 81
+      objectReference: {fileID: 0}
     - target: {fileID: 8015143490401388001, guid: fdc6c74d627b0234da30991426fb3422,
         type: 3}
       propertyPath: m_Pivot.x
@@ -15627,6 +15637,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1947456799}
+    - target: {fileID: 8015143490751114043, guid: fdc6c74d627b0234da30991426fb3422,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015143490857266972, guid: fdc6c74d627b0234da30991426fb3422,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015143490857266974, guid: fdc6c74d627b0234da30991426fb3422,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdc6c74d627b0234da30991426fb3422, type: 3}
 --- !u!1 &8336817228883580534 stripped
