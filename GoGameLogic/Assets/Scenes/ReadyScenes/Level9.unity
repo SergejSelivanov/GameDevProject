@@ -5210,6 +5210,8 @@ GameObject:
   - component: {fileID: 746007712}
   - component: {fileID: 746007715}
   - component: {fileID: 746007717}
+  - component: {fileID: 746007718}
+  - component: {fileID: 746007716}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5342,6 +5344,18 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &746007716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746007711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1382d1cd03db10c489aee5f52ab90213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &746007717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5357,6 +5371,18 @@ MonoBehaviour:
   targetAspect: {x: 16, y: 9}
   DownBar: {fileID: 8336817228883580534}
   UpBar: {fileID: 8336817228883580535}
+--- !u!114 &746007718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746007711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621c2cfdc83954741bca8bb8860ba48d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &753958683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6699,7 +6725,7 @@ PrefabInstance:
         type: 3}
       propertyPath: interAd
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 746007716}
     - target: {fileID: 3237030442007616512, guid: 276f4f792cdefe044aba32c0a87dd66c,
         type: 3}
       propertyPath: NodeHandler
