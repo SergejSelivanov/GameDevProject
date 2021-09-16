@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 	private TurnManager turnManager;
 	private AudioManager audioManager;
 
-	public InterAd interAd;
+	//public InterAd interAd;
 	int tryCount;
 
 	public GameObject[] EnemiesKill
@@ -136,13 +136,13 @@ public class Player : MonoBehaviour
         }
     }
 
-	public void AdCheckAndShow()
+	/*public void AdCheckAndShow()
     {
 		tryCount++;
 		PlayerPrefs.SetInt("tryCount", tryCount);
 		if (tryCount % 2 == 0)
 			interAd.ShowAd();
-	}
+	}*/
 
 	IEnumerator KillingAnimation(GameObject Enemy) //Player death animation
     {
@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
 		Enemy.transform.GetChild(1).gameObject.SetActive(true); //activate lightning 
 		yield return new WaitForSeconds(1.5f);
 		Time.timeScale = 1;
-		AdCheckAndShow();
+		//AdCheckAndShow();
 		/*tryCount++;
 		PlayerPrefs.SetInt("tryCount", tryCount);
 		if (tryCount % 2 == 0)

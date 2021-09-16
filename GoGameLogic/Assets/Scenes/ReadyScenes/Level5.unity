@@ -4595,7 +4595,7 @@ PrefabInstance:
         type: 3}
       propertyPath: interAd
       value: 
-      objectReference: {fileID: 1990614119}
+      objectReference: {fileID: 0}
     - target: {fileID: 3237030442007616512, guid: 276f4f792cdefe044aba32c0a87dd66c,
         type: 3}
       propertyPath: NodeHandler
@@ -19705,8 +19705,6 @@ GameObject:
   - component: {fileID: 1990614118}
   - component: {fileID: 1990614117}
   - component: {fileID: 1990614121}
-  - component: {fileID: 1990614120}
-  - component: {fileID: 1990614119}
   m_Layer: 0
   m_Name: Main Camera (1)
   m_TagString: MainCamera
@@ -19779,30 +19777,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &1990614119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990614115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1382d1cd03db10c489aee5f52ab90213, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1990614120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990614115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 621c2cfdc83954741bca8bb8860ba48d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1990614121
 MonoBehaviour:
   m_ObjectHideFlags: 0

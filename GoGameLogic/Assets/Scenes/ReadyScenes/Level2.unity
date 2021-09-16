@@ -1049,7 +1049,7 @@ PrefabInstance:
         type: 3}
       propertyPath: interAd
       value: 
-      objectReference: {fileID: 817087200}
+      objectReference: {fileID: 648828404}
     - target: {fileID: 3237030442007616512, guid: 276f4f792cdefe044aba32c0a87dd66c,
         type: 3}
       propertyPath: NodeHandler
@@ -4260,8 +4260,6 @@ GameObject:
   - component: {fileID: 817087202}
   - component: {fileID: 817087201}
   - component: {fileID: 817087206}
-  - component: {fileID: 817087200}
-  - component: {fileID: 817087199}
   m_Layer: 0
   m_Name: Main Camera (1)
   m_TagString: MainCamera
@@ -4269,30 +4267,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!114 &817087199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817087198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 621c2cfdc83954741bca8bb8860ba48d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &817087200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817087198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1382d1cd03db10c489aee5f52ab90213, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &817087201
 MonoBehaviour:
   m_ObjectHideFlags: 0

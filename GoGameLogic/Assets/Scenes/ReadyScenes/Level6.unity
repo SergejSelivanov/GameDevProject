@@ -1939,7 +1939,7 @@ PrefabInstance:
         type: 3}
       propertyPath: interAd
       value: 
-      objectReference: {fileID: 1808553967}
+      objectReference: {fileID: 0}
     - target: {fileID: 3237030442007616512, guid: 276f4f792cdefe044aba32c0a87dd66c,
         type: 3}
       propertyPath: NodeHandler
@@ -14376,8 +14376,6 @@ GameObject:
   - component: {fileID: 1808553963}
   - component: {fileID: 1808553966}
   - component: {fileID: 1808553969}
-  - component: {fileID: 1808553968}
-  - component: {fileID: 1808553967}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -14510,30 +14508,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!114 &1808553967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1808553962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1382d1cd03db10c489aee5f52ab90213, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1808553968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1808553962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 621c2cfdc83954741bca8bb8860ba48d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1808553969
 MonoBehaviour:
   m_ObjectHideFlags: 0
