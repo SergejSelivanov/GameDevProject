@@ -17,6 +17,7 @@ public class FinalCutscene : MonoBehaviour
     public GameObject statueLight;
     private AudioManager audioManager;
     private bool DialogHasStarted;
+    private int qualLevel;
 
     IEnumerator MoveSecond()
     {
@@ -41,6 +42,7 @@ public class FinalCutscene : MonoBehaviour
         car.GetComponent<Animator>().SetTrigger("IsFlying");
         audioManager.Play("Car");
         yield return new WaitForSeconds(6f);
+        QualitySettings.SetQualityLevel(qualLevel);
         SceneManager.LoadScene(0);
     }
 
@@ -54,16 +56,18 @@ public class FinalCutscene : MonoBehaviour
         float MainFOV = secondCamera.GetComponent<Camera>().fieldOfView;
         Quaternion MainRotation = secondCamera.transform.rotation;
         Vector3 MainPosition = secondCamera.transform.position;
-        float FovDiff = (MainFOV - StartFOV) / 900;
-        float RotationDiffX = (StartRotation.eulerAngles.x - MainRotation.eulerAngles.x) / 900;
-        float RotationDiffY = (StartRotation.eulerAngles.y - MainRotation.eulerAngles.y) / 900;
-        Vector3 PositionDiff = (MainPosition - StartPosition) / 900;
-        for (float i = 0; i < 9; i += 0.01f)//changing FOV, rotation and position of camera
+        float FovDiff = (MainFOV - StartFOV) / 900 * 3;
+        float RotationDiffX = (StartRotation.eulerAngles.x - MainRotation.eulerAngles.x) / 900 * 3;
+        float RotationDiffY = (StartRotation.eulerAngles.y - MainRotation.eulerAngles.y) / 900 * 3;
+        Vector3 PositionDiff = (MainPosition - StartPosition) / 900 * 3;
+        //for (float i = 0; i < 9; i += 0.01f)//changing FOV, rotation and position of camera
+        for (float i = 0; i < 9; i += 0.03f)//changing FOV, rotation and position of camera
         {
             firstCamera.GetComponent<Camera>().fieldOfView += FovDiff; //changing FOV
             firstCamera.transform.rotation = Quaternion.Euler(firstCamera.transform.rotation.eulerAngles.x - RotationDiffX, firstCamera.transform.rotation.eulerAngles.y - RotationDiffY, 0);
             firstCamera.transform.position += PositionDiff;
-            yield return new WaitForSeconds(0.01f);
+            //yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.03f);
         }
         audioManager.Play("Room");
         /*for (float i = 0; i < 1; i += 0.01f)//changing FOV, rotation and position of camera
@@ -84,22 +88,30 @@ public class FinalCutscene : MonoBehaviour
         MainFOV = fourthCamera.GetComponent<Camera>().fieldOfView;
         MainRotation = fourthCamera.transform.rotation;
         MainPosition = fourthCamera.transform.position;
-        FovDiff = (MainFOV - StartFOV) / 740;
-        RotationDiffX = (StartRotation.eulerAngles.x - MainRotation.eulerAngles.x) / 740;
-        RotationDiffY = (StartRotation.eulerAngles.y - MainRotation.eulerAngles.y) / 740;
-        PositionDiff = (MainPosition - StartPosition) / 740;
-        for (float i = 0; i < 7.4; i += 0.01f)//changing FOV, rotation and position of camera
+        FovDiff = (MainFOV - StartFOV) / 740 * 3;
+        RotationDiffX = (StartRotation.eulerAngles.x - MainRotation.eulerAngles.x) / 740 * 3;
+        RotationDiffY = (StartRotation.eulerAngles.y - MainRotation.eulerAngles.y) / 740 * 3;
+        PositionDiff = (MainPosition - StartPosition) / 740 * 3;
+        //for (float i = 0; i < 7.4; i += 0.01f)//changing FOV, rotation and position of camera
+        for (float i = 0; i < 7.4; i += 0.03f)//changing FOV, rotation and position of camera
         {
             thirdCamera.GetComponent<Camera>().fieldOfView += FovDiff; //changing FOV
             thirdCamera.transform.rotation = Quaternion.Euler(thirdCamera.transform.rotation.eulerAngles.x - RotationDiffX, thirdCamera.transform.rotation.eulerAngles.y - RotationDiffY, 0);
             thirdCamera.transform.position += PositionDiff;
-            yield return new WaitForSeconds(0.01f);
+            //yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.03f);
         }
         thirdCamera.SetActive(false);
         fifthCamera.SetActive(true);
         dialog.SetActive(true);
         DialogHasStarted = true;
         yield return null;
+    }
+
+    private void Awake()
+    {
+        qualLevel = QualitySettings.GetQualityLevel();
+        QualitySettings.SetQualityLevel(2);
     }
 
     void Start()
