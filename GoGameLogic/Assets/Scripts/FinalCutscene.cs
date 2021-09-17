@@ -49,6 +49,7 @@ public class FinalCutscene : MonoBehaviour
 
     IEnumerator MoveFirstCamera()
     {
+        yield return new WaitForSeconds(0.2f);
         audioManager.Play("City");
         float StartFOV = firstCamera.GetComponent<Camera>().fieldOfView;
         Quaternion StartRotation = firstCamera.transform.rotation;
