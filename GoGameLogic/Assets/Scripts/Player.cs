@@ -520,6 +520,7 @@ public class Player : MonoBehaviour
 		turnManager = turnManagerHandler.GetComponent<TurnManager>();
 		audioManager = FindObjectOfType<AudioManager>();
 		tryCount = PlayerPrefs.GetInt("tryCount");
+		EnemiesKill = null;
 	}
 
 	void Update()
