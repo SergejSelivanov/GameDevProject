@@ -14878,6 +14878,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -16649,6 +16654,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CameraTrigger (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
         type: 3}
@@ -19843,6 +19853,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CameraTrigger (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
         type: 3}
@@ -24067,7 +24082,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714992119}
   m_LocalRotation: {x: 0.54066694, y: -0, z: -0, w: 0.84123677}
-  m_LocalPosition: {x: 0.493, y: 3.663, z: -0.172}
+  m_LocalPosition: {x: 1.99, y: 3.663, z: -0.172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -26636,6 +26651,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922741067886200094, guid: 5612ac2d8f0b7e9408b77478409ab3f7,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -28126,7 +28146,7 @@ PrefabInstance:
     - target: {fileID: 3234273684526177757, guid: 276f4f792cdefe044aba32c0a87dd66c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3234273684526177757, guid: 276f4f792cdefe044aba32c0a87dd66c,
         type: 3}
@@ -28136,7 +28156,7 @@ PrefabInstance:
     - target: {fileID: 3234273684526177757, guid: 276f4f792cdefe044aba32c0a87dd66c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3234273684526177757, guid: 276f4f792cdefe044aba32c0a87dd66c,
         type: 3}
@@ -28151,7 +28171,7 @@ PrefabInstance:
     - target: {fileID: 3234273684526177757, guid: 276f4f792cdefe044aba32c0a87dd66c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3234273684526177757, guid: 276f4f792cdefe044aba32c0a87dd66c,
         type: 3}

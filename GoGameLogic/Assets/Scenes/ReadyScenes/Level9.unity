@@ -2811,7 +2811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &392635354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5216,7 +5216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &746007712
 AudioListener:
   m_ObjectHideFlags: 0
@@ -13888,8 +13888,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e0b386f402af14281ab53a7ecf2f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartCamera: {fileID: 746007711}
-  MainCamera: {fileID: 392635353}
+  StartCamera: {fileID: 392635353}
+  MainCamera: {fileID: 746007711}
   switchTime: 3
 --- !u!1001 &1955949378
 PrefabInstance:

@@ -20915,7 +20915,7 @@ PrefabInstance:
     - target: {fileID: 2397783566877755058, guid: c2f432972e66fb94aa6d7c400983d948,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 234.26785
+      value: 317.51584
       objectReference: {fileID: 0}
     - target: {fileID: 2397783566877755058, guid: c2f432972e66fb94aa6d7c400983d948,
         type: 3}
@@ -21155,6 +21155,26 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2397783566072797867}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2397783566072797870 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2397783566877755059, guid: c2f432972e66fb94aa6d7c400983d948,
+    type: 3}
+  m_PrefabInstance: {fileID: 2397783566072797867}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2397783566072797871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2397783566072797870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 2
+  m_AspectRatio: 1
 --- !u!1 &8723035259814299700 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6361564448229528223, guid: c2f432972e66fb94aa6d7c400983d948,
