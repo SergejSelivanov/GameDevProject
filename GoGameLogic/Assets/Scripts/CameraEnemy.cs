@@ -83,6 +83,7 @@ public class CameraEnemy : MonoBehaviour
             //yield return new WaitForSeconds(0.008f);
             yield return new WaitForSeconds(0.04f);
         }
+        player.GetComponent<Player>().AdCheckAndShow();
         //player.GetComponent<Player>().AdCheckAndShow();
         FindObjectOfType<LevelLoader>().LoadSameLevel();
     }
