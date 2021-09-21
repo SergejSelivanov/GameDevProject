@@ -5,9 +5,9 @@ public class AdsCore : MonoBehaviour
 {
     [SerializeField] private bool _testMode = true;
 
-    private string _gameId = "4371740";
+    private string _gameId = "4371741";
 
-    private string _video = "Interstitial_iOS";
+    private string _video = "Interstitial_Android";
 
     private void Start()
     {

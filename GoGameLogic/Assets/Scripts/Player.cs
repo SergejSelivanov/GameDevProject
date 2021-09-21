@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
 		tryCount++;
 		PlayerPrefs.SetInt("tryCount", tryCount);
 		if (tryCount % 2 == 0)
-			AdsCore.ShowAdsVideo("Interstitial_iOS");
+			AdsCore.ShowAdsVideo("Interstitial_Android");
 			//interAd.ShowAd();
 	}
 
