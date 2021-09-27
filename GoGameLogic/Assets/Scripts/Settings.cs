@@ -9,11 +9,11 @@ public class Settings : MonoBehaviour
     public GameObject MenuPanel;
     GameObject audioManager;
 
-    private void SetQuality (int qualityIndex)
+    /*private void SetQuality (int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
         PlayerPrefs.SetInt("GraphicsDropdown", qualityIndex);
-    }
+    }*/
 
     public void OpenSettings()
     {
@@ -37,7 +37,7 @@ public class Settings : MonoBehaviour
             gameObject.transform.Find("SoundsToggle").gameObject.GetComponent<Toggle>().isOn = false;
         else
             gameObject.transform.Find("SoundsToggle").gameObject.GetComponent<Toggle>().isOn = true;
-        if (PlayerPrefs.GetInt("GraphicsDropdown") == 0)
+        /*if (PlayerPrefs.GetInt("GraphicsDropdown") == 0)
         {
             gameObject.transform.Find("GraphicsDropdown").gameObject.GetComponent<Dropdown>().value = 0;
             SetQuality(0);
@@ -51,7 +51,7 @@ public class Settings : MonoBehaviour
         {
             gameObject.transform.Find("GraphicsDropdown").gameObject.GetComponent<Dropdown>().value = 2;
             SetQuality(2);
-        }
+        }*/
         audioManager = FindObjectOfType<AudioManager>().gameObject;
     }
 
@@ -65,11 +65,11 @@ public class Settings : MonoBehaviour
             PlayerPrefs.SetInt("MusicVolume", 1);
         if (gameObject.transform.Find("MusicToggle").gameObject.GetComponent<Toggle>().isOn == false && PlayerPrefs.GetInt("MusicVolume") == 1)
             PlayerPrefs.SetInt("MusicVolume", 0);
-        if (gameObject.transform.Find("GraphicsDropdown").gameObject.GetComponent<Dropdown>().value == 0 && QualitySettings.GetQualityLevel() != 0) //if graphics dropdown is switched
+        /*if (gameObject.transform.Find("GraphicsDropdown").gameObject.GetComponent<Dropdown>().value == 0 && QualitySettings.GetQualityLevel() != 0) //if graphics dropdown is switched
             SetQuality(0);
         if (gameObject.transform.Find("GraphicsDropdown").gameObject.GetComponent<Dropdown>().value == 1 && QualitySettings.GetQualityLevel() != 1)
             SetQuality(1);
         if (gameObject.transform.Find("GraphicsDropdown").gameObject.GetComponent<Dropdown>().value == 2 && QualitySettings.GetQualityLevel() != 2)
-            SetQuality(2);
+            SetQuality(2);*/
     }
 }
