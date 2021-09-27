@@ -3,7 +3,7 @@ using UnityEngine.Advertisements;
 
 public class AdsCore : MonoBehaviour
 {
-    [SerializeField] private bool _testMode = true;
+    [SerializeField] private bool _testMode = false;
 
     private string _gameId = "4371740";
 
