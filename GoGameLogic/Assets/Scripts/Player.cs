@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
     {
 		tryCount++;
 		PlayerPrefs.SetInt("tryCount", tryCount);
-		if (tryCount % 2 == 0)
+		if (tryCount % 3 == 0)
 			AdsCore.ShowAdsVideo("Interstitial_iOS");
 			//interAd.ShowAd();
 	}
